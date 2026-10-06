@@ -1,0 +1,22 @@
+.primary-nav a,
+.mobile-nav a,
+.mobile-nav-trigger {
+  transition: color var(--hard-motion-fast) ease, background-color var(--hard-motion-fast) ease, transform var(--hard-motion-fast) ease;
+}
+
+.primary-nav a:hover,
+.mobile-nav a:hover,
+.mobile-nav-trigger:hover {
+  transform: translateY(-0.0625rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

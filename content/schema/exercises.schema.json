@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["lesson_id", "questions"],
+  "properties": {
+    "lesson_id": {"type": "string", "minLength": 1},
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "prompt", "experience_points"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "type": {"enum": ["knowledge", "code", "challenge", "scenario"]},
+          "prompt": {"type": "string", "minLength": 1},
+          "choices": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "text"],
+              "properties": {
+                "id": {"type": "string", "minLength": 1},
+                "text": {"type": "string", "minLength": 1}
+              },
+              "additionalProperties": false
+            }
+          },
+          "starter_code": {"type": "string"},
+          "visible_tests": {"type": "array", "items": {"type": "string"}},
+          "experience_points": {"type": "integer", "minimum": 0, "maximum": 1000},
+          "private": {
+            "type": "object",
+            "properties": {
+              "reference_answer": {"type": "string"},
+              "reference_solution": {"type": "string"},
+              "hidden_tests": {"type": "array", "items": {"type": "string"}}
+              ,"visible_test_cases": {"type": "array", "items": {"$ref": "#/$defs/testCase"}}
+              ,"hidden_test_cases": {"type": "array", "items": {"$ref": "#/$defs/testCase"}}
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {"testCase": {"type": "object", "properties": {"stdin": {"type": "string"}, "stdout": {"type": ["string", "null"]}, "exit_code": {"type": "integer"}, "assertion": {"enum": ["stdout_nonempty", null]}}, "additionalProperties": false}}
+}

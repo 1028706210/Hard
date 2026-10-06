@@ -1,0 +1,101 @@
+{
+  "language": "python",
+  "module": "python-concurrency-network",
+  "expected": 8,
+  "implemented": 8,
+  "validated": 8,
+  "reference_solutions_passed": 8,
+  "question_counts": {
+    "knowledge": 24,
+    "code": 8,
+    "challenge": 1
+  },
+  "test_case_counts": {
+    "visible": 9,
+    "hidden": 18,
+    "hidden_distinct_from_visible": 18
+  },
+  "source_section_mapping": [
+    {
+      "source_id": "python3-socket",
+      "lesson_id": "python-concurrency-network-sockets",
+      "source_primary_topic": "Python 网络编程",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-smtp",
+      "lesson_id": "python-concurrency-network-smtp",
+      "source_primary_topic": "Python SMTP",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-urllib",
+      "lesson_id": "python-concurrency-network-urllib",
+      "source_primary_topic": "Python urllib",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-requests",
+      "lesson_id": "python-concurrency-network-requests",
+      "source_primary_topic": "Python requests",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-subprocess",
+      "lesson_id": "python-concurrency-network-subprocess",
+      "source_primary_topic": "Python subprocess",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-multithreading",
+      "lesson_id": "python-concurrency-network-multithreading",
+      "source_primary_topic": "Python 多线程",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-treading",
+      "lesson_id": "python-concurrency-network-threading",
+      "source_primary_topic": "Python threading",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-asyncio",
+      "lesson_id": "python-concurrency-network-asyncio",
+      "source_primary_topic": "Python asyncio",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,110 @@
+{
+  "lesson_id": "python-automation-ui-web-selenium",
+  "questions": [
+    {
+      "id": "python-automation-ui-web-selenium-k01",
+      "type": "knowledge",
+      "prompt": "稳定的自动化定位可优先使用什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "data-testid"
+        },
+        {
+          "id": "b",
+          "text": "随机颜色类名"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-automation-ui-web-selenium-k02",
+      "type": "knowledge",
+      "prompt": "本课会启动真实浏览器吗？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "会下载驱动"
+        },
+        {
+          "id": "b",
+          "text": "不会，只检查 fixture"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-automation-ui-web-selenium-k03",
+      "type": "knowledge",
+      "prompt": "危险操作前应有什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "自动执行"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "明确确认步骤"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-automation-ui-web-selenium-c01",
+      "type": "code",
+      "prompt": "使用本地 fake WebDriver 验证定位、显式等待、点击和关闭语义。",
+      "starter_code": "import sys\n# 用 fake driver 验证定位、等待、操作与关闭\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\nclass Element:\n    def __init__(self, ident, events): self.ident, self.events = ident, events\n    def click(self): self.events.append(f'click:{self.ident}')\nclass Driver:\n    def __init__(self): self.events = []; self.closed = False\n    def find_element(self, selector):\n        if selector not in {'[data-testid=save]', '[data-testid=cancel]'}: raise LookupError(selector)\n        return Element(selector, self.events)\n    def quit(self): self.closed = True\ndef wait_until(driver, selector):\n    return driver.find_element(selector)\nselector = sys.stdin.read().strip()\nif selector == '__invalid__': selector = '[data-testid=missing]'\ndriver = Driver()\ntry:\n    element = wait_until(driver, selector)\n    element.click()\nfinally:\n    driver.quit()\nprint(f'{driver.events[0]}|closed={driver.closed}')\n",
+        "hidden_tests": [
+          "边界输入必须返回主题定义的结果。",
+          "无效输入必须进入可预期的失败分支。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "[data-testid=save]\n",
+            "stdout": "click:[data-testid=save]|closed=True\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "[data-testid=cancel]\n",
+            "stdout": "click:[data-testid=cancel]|closed=True\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

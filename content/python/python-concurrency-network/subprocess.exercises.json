@@ -1,0 +1,110 @@
+{
+  "lesson_id": "python-concurrency-network-subprocess",
+  "questions": [
+    {
+      "id": "python-concurrency-network-subprocess-k01",
+      "type": "knowledge",
+      "prompt": "用户文本可以直接作为命令执行吗？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "可以"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "不可以"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-concurrency-network-subprocess-k02",
+      "type": "knowledge",
+      "prompt": "命令参数应使用什么结构？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "结构化列表"
+        },
+        {
+          "id": "b",
+          "text": "shell 拼接字符串"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-concurrency-network-subprocess-k03",
+      "type": "knowledge",
+      "prompt": "安全练习应验证什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "任意系统命令"
+        },
+        {
+          "id": "b",
+          "text": "允许命令的静态配置"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-concurrency-network-subprocess-c01",
+      "type": "code",
+      "prompt": "用纯函数验证结构化命令白名单，不启动子进程或 shell。",
+      "starter_code": "import sys\n# 只检查结构化命令计划，不调用 subprocess\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\nparts = [part for part in sys.stdin.read().strip().split(' ') if part]\nif parts == ['__invalid__'] or not parts:\n    raise ValueError('command required')\nallowed = {'python': {'--version', '-V'}}\nname, *arguments = parts\nif name not in allowed or any(argument not in allowed[name] for argument in arguments):\n    print('rejected')\nelse:\n    print('allowed')\n",
+        "hidden_tests": [
+          "边界输入必须返回主题定义的结果。",
+          "无效输入必须进入可预期的失败分支。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "python --version\n",
+            "stdout": "allowed\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "python --bad\n",
+            "stdout": "rejected\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

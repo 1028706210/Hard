@@ -1,0 +1,146 @@
+{
+  "lesson_id": "python-stdlib-data-csv",
+  "questions": [
+    {
+      "id": "python-stdlib-data-csv-k01",
+      "type": "knowledge",
+      "prompt": "CSV 表示什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "文本表格"
+        },
+        {
+          "id": "b",
+          "text": "二进制程序"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-stdlib-data-csv-k02",
+      "type": "knowledge",
+      "prompt": "DictReader 按什么读取？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "随机位置"
+        },
+        {
+          "id": "b",
+          "text": "列名"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-stdlib-data-csv-k03",
+      "type": "knowledge",
+      "prompt": "CSV 输入应怎样？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "直接信任"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "验证字段"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-stdlib-data-csv-c01",
+      "type": "code",
+      "prompt": "从内嵌 CSV 读取 name 并输出 Hard。",
+      "starter_code": "import csv\nfrom io import StringIO\n# 读取列名",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-stdlib-data-csv-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    import csv\n    from io import StringIO\n    print(next(csv.DictReader(StringIO('name\\nHard\\n')))['name'])\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "Hard\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-stdlib-data-csv-c01\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "python-stdlib-data-csv-challenge",
+      "type": "challenge",
+      "prompt": "读取两行受信 CSV，计算 count 列总和并输出 3。",
+      "starter_code": "import csv\nfrom io import StringIO\n# 计算总和",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-stdlib-data-csv-challenge')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    import csv\n    from io import StringIO\n    rows = csv.DictReader(StringIO('count\\n1\\n2\\n'))\n    print(sum(int(row['count']) for row in rows))\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "3\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-stdlib-data-csv-challenge\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    }
+  ]
+}

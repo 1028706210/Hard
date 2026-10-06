@@ -1,0 +1,81 @@
+{
+  "language": "python",
+  "module": "python-modules-io-oop",
+  "expected": 6,
+  "implemented": 6,
+  "validated": 6,
+  "reference_solutions_passed": 6,
+  "question_counts": {
+    "knowledge": 18,
+    "code": 6,
+    "challenge": 1
+  },
+  "test_case_counts": {
+    "visible": 7,
+    "hidden": 14,
+    "hidden_distinct_from_visible": 14
+  },
+  "source_section_mapping": [
+    {
+      "source_id": "python3-module",
+      "lesson_id": "python-modules-io-oop-modules",
+      "source_primary_topic": "Python 模块",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-inputoutput",
+      "lesson_id": "python-modules-io-oop-input-output",
+      "source_primary_topic": "Python 输入和输出",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-file-methods",
+      "lesson_id": "python-modules-io-oop-files",
+      "source_primary_topic": "Python 文件",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-os-file-methods",
+      "lesson_id": "python-modules-io-oop-os",
+      "source_primary_topic": "Python OS",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-errors-execptions",
+      "lesson_id": "python-modules-io-oop-exceptions",
+      "source_primary_topic": "Python 错误和异常",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-class",
+      "lesson_id": "python-modules-io-oop-classes",
+      "source_primary_topic": "Python 面向对象",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    }
+  ],
+  "errors": []
+}

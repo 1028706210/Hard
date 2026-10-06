@@ -1,0 +1,330 @@
+language: python
+title: Python
+growth:
+  review_milestone_points: 15
+  badge_points:
+    first_lesson: 20
+    first_module_mastery: 30
+    seven_day_streak: 40
+placement_tests:
+  - id: python-foundations-placement
+    module_id: python-foundations
+    question_ids:
+      - python-foundations-hello-world-k01
+      - python-foundations-virtual-environment-k02
+      - python-foundations-package-management-k03
+    passing_score: 85
+  - id: python-core-types-placement
+    module_id: python-core-types
+    question_ids:
+      - python-core-types-basic-syntax-k01
+      - python-core-types-conversion-k02
+      - python-core-types-strings-k03
+    passing_score: 85
+  - id: python-flow-collections-placement
+    module_id: python-flow-collections
+    question_ids:
+      - python-flow-collections-lists-k01
+      - python-flow-collections-conditions-k02
+      - python-flow-collections-comprehensions-k03
+    passing_score: 85
+  - id: python-functions-iteration-placement
+    module_id: python-functions-iteration
+    question_ids:
+      - python-functions-iteration-functions-k01
+      - python-functions-iteration-iterators-k02
+      - python-functions-iteration-decorators-k03
+    passing_score: 85
+  - id: python-modules-io-oop-placement
+    module_id: python-modules-io-oop
+    question_ids:
+      - python-modules-io-oop-modules-k01
+      - python-modules-io-oop-exceptions-k02
+      - python-modules-io-oop-classes-k03
+    passing_score: 85
+  - id: python-stdlib-data-placement
+    module_id: python-stdlib-data
+    question_ids:
+      - python-stdlib-data-overview-k01
+      - python-stdlib-data-json-k02
+      - python-stdlib-data-re-k03
+    passing_score: 85
+  - id: python-concurrency-network-placement
+    module_id: python-concurrency-network
+    question_ids:
+      - python-concurrency-network-sockets-k01
+      - python-concurrency-network-threading-k02
+      - python-concurrency-network-asyncio-k03
+    passing_score: 85
+  - id: python-database-deployment-placement
+    module_id: python-database-deployment
+    question_ids:
+      - python-database-deployment-cgi-k01
+      - python-database-deployment-mysql-connector-k02
+      - python-database-deployment-uwsgi-k03
+    passing_score: 85
+  - id: python-automation-ui-web-placement
+    module_id: python-automation-ui-web
+    question_ids:
+      - python-automation-ui-web-pyecharts-k01
+      - python-automation-ui-web-selenium-k02
+      - python-automation-ui-web-pyqt-k03
+    passing_score: 85
+  - id: python-capstone-placement
+    module_id: python-capstone
+    question_ids:
+      - python-capstone-examples-k01
+      - python-capstone-openai-k02
+      - python-capstone-quant-k03
+    passing_score: 85
+modules:
+  - id: python-foundations
+    title: Python 基础
+    prerequisites: []
+    source_coverage:
+      - source_id: python3-tutorial
+        lesson_id: python-foundations-hello-world
+      - source_id: python3-intro
+        lesson_id: python-foundations-introduction
+      - source_id: python3-install
+        lesson_id: python-foundations-installation
+      - source_id: python-pycharm-usage
+        lesson_id: python-foundations-pycharm
+      - source_id: python-vscode-setup
+        lesson_id: python-foundations-vscode
+      - source_id: python3-interpreter
+        lesson_id: python-foundations-interpreter
+      - source_id: python-venv
+        lesson_id: python-foundations-virtual-environment
+      - source_id: python3-pip
+        lesson_id: python-foundations-package-management
+      - source_id: python3-resources
+        lesson_id: python-foundations-learning-resources
+    lessons:
+      - id: python-foundations-hello-world
+        path: python-foundations/hello-world.md
+      - id: python-foundations-introduction
+        path: python-foundations/introduction.md
+      - id: python-foundations-installation
+        path: python-foundations/installation.md
+      - id: python-foundations-pycharm
+        path: python-foundations/pycharm.md
+      - id: python-foundations-vscode
+        path: python-foundations/vscode.md
+      - id: python-foundations-interpreter
+        path: python-foundations/interpreter.md
+      - id: python-foundations-virtual-environment
+        path: python-foundations/virtual-environment.md
+      - id: python-foundations-package-management
+        path: python-foundations/package-management.md
+      - id: python-foundations-learning-resources
+        path: python-foundations/learning-resources.md
+  - id: python-core-types
+    title: Python 语法与核心类型
+    prerequisites: [python-foundations]
+    source_coverage:
+      - source_id: python3-basic-syntax
+        lesson_id: python-core-types-basic-syntax
+      - source_id: python3-data-type
+        lesson_id: python-core-types-data-types
+      - source_id: python3-type-conversion
+        lesson_id: python-core-types-conversion
+      - source_id: python3-comment
+        lesson_id: python-core-types-comments
+      - source_id: python3-basic-operators
+        lesson_id: python-core-types-operators
+      - source_id: python3-number
+        lesson_id: python-core-types-numbers
+      - source_id: python3-string
+        lesson_id: python-core-types-strings
+    lessons:
+      - id: python-core-types-basic-syntax
+        path: python-core-types/basic-syntax.md
+      - id: python-core-types-data-types
+        path: python-core-types/data-types.md
+      - id: python-core-types-conversion
+        path: python-core-types/conversion.md
+      - id: python-core-types-comments
+        path: python-core-types/comments.md
+      - id: python-core-types-operators
+        path: python-core-types/operators.md
+      - id: python-core-types-numbers
+        path: python-core-types/numbers.md
+      - id: python-core-types-strings
+        path: python-core-types/strings.md
+  - id: python-flow-collections
+    title: Python 集合与控制流
+    prerequisites: [python-core-types]
+    source_coverage:
+      - {source_id: python3-list, lesson_id: python-flow-collections-lists}
+      - {source_id: python3-tuple, lesson_id: python-flow-collections-tuples}
+      - {source_id: python3-dictionary, lesson_id: python-flow-collections-dictionaries}
+      - {source_id: python3-set, lesson_id: python-flow-collections-sets}
+      - {source_id: python3-conditional-statements, lesson_id: python-flow-collections-conditions}
+      - {source_id: python3-loop, lesson_id: python-flow-collections-loops}
+      - {source_id: python3-step1, lesson_id: python-flow-collections-first-program}
+      - {source_id: python-comprehensions, lesson_id: python-flow-collections-comprehensions}
+      - {source_id: python3-data-structure, lesson_id: python-flow-collections-data-structures}
+      - {source_id: python3-for, lesson_id: python-flow-collections-for-loop}
+      - {source_id: python3-while, lesson_id: python-flow-collections-while-loop}
+    lessons:
+      - {id: python-flow-collections-lists, path: python-flow-collections/lists.md}
+      - {id: python-flow-collections-tuples, path: python-flow-collections/tuples.md}
+      - {id: python-flow-collections-dictionaries, path: python-flow-collections/dictionaries.md}
+      - {id: python-flow-collections-sets, path: python-flow-collections/sets.md}
+      - {id: python-flow-collections-conditions, path: python-flow-collections/conditions.md}
+      - {id: python-flow-collections-loops, path: python-flow-collections/loops.md}
+      - {id: python-flow-collections-first-program, path: python-flow-collections/first-program.md}
+      - {id: python-flow-collections-comprehensions, path: python-flow-collections/comprehensions.md}
+      - {id: python-flow-collections-data-structures, path: python-flow-collections/data-structures.md}
+      - {id: python-flow-collections-for-loop, path: python-flow-collections/for-loop.md}
+      - {id: python-flow-collections-while-loop, path: python-flow-collections/while-loop.md}
+  - id: python-functions-iteration
+    title: Python 函数、迭代与作用域
+    prerequisites: [python-flow-collections]
+    source_coverage:
+      - {source_id: python3-iterator-generator, lesson_id: python-functions-iteration-iterators}
+      - {source_id: python3-with-keyword, lesson_id: python-functions-iteration-with}
+      - {source_id: python3-function, lesson_id: python-functions-iteration-functions}
+      - {source_id: python-lambda, lesson_id: python-functions-iteration-lambda}
+      - {source_id: python-decorators, lesson_id: python-functions-iteration-decorators}
+      - {source_id: python3-name-main, lesson_id: python-functions-iteration-name-main}
+      - {source_id: python3-namespace-scope, lesson_id: python-functions-iteration-scope}
+      - {source_id: python-type-hints, lesson_id: python-functions-iteration-type-hints}
+    lessons:
+      - {id: python-functions-iteration-iterators, path: python-functions-iteration/iterators.md}
+      - {id: python-functions-iteration-with, path: python-functions-iteration/with.md}
+      - {id: python-functions-iteration-functions, path: python-functions-iteration/functions.md}
+      - {id: python-functions-iteration-lambda, path: python-functions-iteration/lambda.md}
+      - {id: python-functions-iteration-decorators, path: python-functions-iteration/decorators.md}
+      - {id: python-functions-iteration-name-main, path: python-functions-iteration/name-main.md}
+      - {id: python-functions-iteration-scope, path: python-functions-iteration/scope.md}
+      - {id: python-functions-iteration-type-hints, path: python-functions-iteration/type-hints.md}
+  - id: python-modules-io-oop
+    title: Python 模块、IO、异常与面向对象
+    prerequisites: [python-functions-iteration]
+    source_coverage:
+      - {source_id: python3-module, lesson_id: python-modules-io-oop-modules}
+      - {source_id: python3-inputoutput, lesson_id: python-modules-io-oop-input-output}
+      - {source_id: python3-file-methods, lesson_id: python-modules-io-oop-files}
+      - {source_id: python3-os-file-methods, lesson_id: python-modules-io-oop-os}
+      - {source_id: python3-errors-execptions, lesson_id: python-modules-io-oop-exceptions}
+      - {source_id: python3-class, lesson_id: python-modules-io-oop-classes}
+    lessons:
+      - {id: python-modules-io-oop-modules, path: python-modules-io-oop/modules.md}
+      - {id: python-modules-io-oop-input-output, path: python-modules-io-oop/input-output.md}
+      - {id: python-modules-io-oop-files, path: python-modules-io-oop/files.md}
+      - {id: python-modules-io-oop-os, path: python-modules-io-oop/os.md}
+      - {id: python-modules-io-oop-exceptions, path: python-modules-io-oop/exceptions.md}
+      - {id: python-modules-io-oop-classes, path: python-modules-io-oop/classes.md}
+  - id: python-stdlib-data
+    title: Python 标准库与数据格式
+    prerequisites: [python-modules-io-oop]
+    source_coverage:
+      - {source_id: python3-stdlib, lesson_id: python-stdlib-data-overview}
+      - {source_id: python3-reg-expressions, lesson_id: python-stdlib-data-regex-basics}
+      - {source_id: python3-xml-processing, lesson_id: python-stdlib-data-xml}
+      - {source_id: python3-json, lesson_id: python-stdlib-data-json}
+      - {source_id: python3-date-time, lesson_id: python-stdlib-data-date-time}
+      - {source_id: python3-built-in-functions, lesson_id: python-stdlib-data-builtins}
+      - {source_id: python-operator, lesson_id: python-stdlib-data-operator}
+      - {source_id: python-math, lesson_id: python-stdlib-data-math}
+      - {source_id: python-random, lesson_id: python-stdlib-data-random}
+      - {source_id: python-statistics, lesson_id: python-stdlib-data-statistics}
+      - {source_id: python-hashlib, lesson_id: python-stdlib-data-hashlib}
+      - {source_id: python-sys, lesson_id: python-stdlib-data-sys}
+      - {source_id: python-pickle, lesson_id: python-stdlib-data-pickle}
+      - {source_id: python-queue, lesson_id: python-stdlib-data-queue}
+      - {source_id: python-stringio, lesson_id: python-stdlib-data-stringio}
+      - {source_id: python-logging, lesson_id: python-stdlib-data-logging}
+      - {source_id: python-datetime, lesson_id: python-stdlib-data-datetime}
+      - {source_id: python-re, lesson_id: python-stdlib-data-re}
+      - {source_id: python-csv, lesson_id: python-stdlib-data-csv}
+    lessons:
+      - {id: python-stdlib-data-overview, path: python-stdlib-data/overview.md}
+      - {id: python-stdlib-data-regex-basics, path: python-stdlib-data/regex-basics.md}
+      - {id: python-stdlib-data-xml, path: python-stdlib-data/xml.md}
+      - {id: python-stdlib-data-json, path: python-stdlib-data/json.md}
+      - {id: python-stdlib-data-date-time, path: python-stdlib-data/date-time.md}
+      - {id: python-stdlib-data-builtins, path: python-stdlib-data/builtins.md}
+      - {id: python-stdlib-data-operator, path: python-stdlib-data/operator.md}
+      - {id: python-stdlib-data-math, path: python-stdlib-data/math.md}
+      - {id: python-stdlib-data-random, path: python-stdlib-data/random.md}
+      - {id: python-stdlib-data-statistics, path: python-stdlib-data/statistics.md}
+      - {id: python-stdlib-data-hashlib, path: python-stdlib-data/hashlib.md}
+      - {id: python-stdlib-data-sys, path: python-stdlib-data/sys.md}
+      - {id: python-stdlib-data-pickle, path: python-stdlib-data/pickle.md}
+      - {id: python-stdlib-data-queue, path: python-stdlib-data/queue.md}
+      - {id: python-stdlib-data-stringio, path: python-stdlib-data/stringio.md}
+      - {id: python-stdlib-data-logging, path: python-stdlib-data/logging.md}
+      - {id: python-stdlib-data-datetime, path: python-stdlib-data/datetime.md}
+      - {id: python-stdlib-data-re, path: python-stdlib-data/re.md}
+      - {id: python-stdlib-data-csv, path: python-stdlib-data/csv.md}
+  - id: python-concurrency-network
+    title: Python 并发与网络
+    prerequisites: [python-stdlib-data]
+    source_coverage:
+      - {source_id: python3-socket, lesson_id: python-concurrency-network-sockets}
+      - {source_id: python3-smtp, lesson_id: python-concurrency-network-smtp}
+      - {source_id: python-urllib, lesson_id: python-concurrency-network-urllib}
+      - {source_id: python-requests, lesson_id: python-concurrency-network-requests}
+      - {source_id: python-subprocess, lesson_id: python-concurrency-network-subprocess}
+      - {source_id: python3-multithreading, lesson_id: python-concurrency-network-multithreading}
+      - {source_id: python-treading, lesson_id: python-concurrency-network-threading}
+      - {source_id: python-asyncio, lesson_id: python-concurrency-network-asyncio}
+    lessons:
+      - {id: python-concurrency-network-sockets, path: python-concurrency-network/sockets.md}
+      - {id: python-concurrency-network-smtp, path: python-concurrency-network/smtp.md}
+      - {id: python-concurrency-network-urllib, path: python-concurrency-network/urllib.md}
+      - {id: python-concurrency-network-requests, path: python-concurrency-network/requests.md}
+      - {id: python-concurrency-network-subprocess, path: python-concurrency-network/subprocess.md}
+      - {id: python-concurrency-network-multithreading, path: python-concurrency-network/multithreading.md}
+      - {id: python-concurrency-network-threading, path: python-concurrency-network/threading.md}
+      - {id: python-concurrency-network-asyncio, path: python-concurrency-network/asyncio.md}
+  - id: python-database-deployment
+    title: Python 数据库与部署专题
+    prerequisites: [python-concurrency-network]
+    source_coverage:
+      - {source_id: python3-cgi-programming, lesson_id: python-database-deployment-cgi}
+      - {source_id: python-mysql-connector, lesson_id: python-database-deployment-mysql-connector}
+      - {source_id: python3-mysql, lesson_id: python-database-deployment-pymysql}
+      - {source_id: python-mongodb, lesson_id: python-database-deployment-mongodb}
+      - {source_id: python-uwsgi, lesson_id: python-database-deployment-uwsgi}
+    lessons:
+      - {id: python-database-deployment-cgi, path: python-database-deployment/cgi.md}
+      - {id: python-database-deployment-mysql-connector, path: python-database-deployment/mysql-connector.md}
+      - {id: python-database-deployment-pymysql, path: python-database-deployment/pymysql.md}
+      - {id: python-database-deployment-mongodb, path: python-database-deployment/mongodb.md}
+      - {id: python-database-deployment-uwsgi, path: python-database-deployment/uwsgi.md}
+  - id: python-automation-ui-web
+    title: Python 自动化、UI 与 Web 工具
+    prerequisites: [python-database-deployment]
+    source_coverage:
+      - {source_id: python-pyecharts, lesson_id: python-automation-ui-web-pyecharts}
+      - {source_id: python-selenium, lesson_id: python-automation-ui-web-selenium}
+      - {source_id: python-spider-beautifulsoup, lesson_id: python-automation-ui-web-crawler}
+      - {source_id: python-scrapy, lesson_id: python-automation-ui-web-scrapy}
+      - {source_id: python-markdown2html, lesson_id: python-automation-ui-web-markdown}
+      - {source_id: python-pyqt, lesson_id: python-automation-ui-web-pyqt}
+    lessons:
+      - {id: python-automation-ui-web-pyecharts, path: python-automation-ui-web/pyecharts.md}
+      - {id: python-automation-ui-web-selenium, path: python-automation-ui-web/selenium.md}
+      - {id: python-automation-ui-web-crawler, path: python-automation-ui-web/crawler.md}
+      - {id: python-automation-ui-web-scrapy, path: python-automation-ui-web/scrapy.md}
+      - {id: python-automation-ui-web-markdown, path: python-automation-ui-web/markdown.md}
+      - {id: python-automation-ui-web-pyqt, path: python-automation-ui-web/pyqt.md}
+  - id: python-capstone
+    title: Python 结业专题
+    prerequisites: [python-automation-ui-web]
+    source_coverage:
+      - {source_id: python3-examples, lesson_id: python-capstone-examples}
+      - {source_id: python-quiz, lesson_id: python-capstone-quiz}
+      - {source_id: python-openai, lesson_id: python-capstone-openai}
+      - {source_id: python-ai-draw, lesson_id: python-capstone-ai-draw}
+      - {source_id: python-qt, lesson_id: python-capstone-quant}
+    lessons:
+      - {id: python-capstone-examples, path: python-capstone/examples.md}
+      - {id: python-capstone-quiz, path: python-capstone/quiz.md}
+      - {id: python-capstone-openai, path: python-capstone/openai.md}
+      - {id: python-capstone-ai-draw, path: python-capstone/ai-draw.md}
+      - {id: python-capstone-quant, path: python-capstone/quant.md}

@@ -1,0 +1,30 @@
+﻿[
+  {
+    "name": "python",
+    "path": "D:\\DevTools\\python\\python.exe",
+    "version": "3.13.13",
+    "healthy": true,
+    "detail": "健康。"
+  },
+  {
+    "name": "java",
+    "path": "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath\\javac.exe",
+    "version": "17.0.7",
+    "healthy": true,
+    "detail": "健康。"
+  },
+  {
+    "name": "dotnet",
+    "path": "D:\\DevTools\\dotnet\\dotnet.exe",
+    "version": "10.0.100",
+    "healthy": true,
+    "detail": "健康。"
+  },
+  {
+    "name": "msys2-gcc",
+    "path": "D:\\DevTools\\msys64\\ucrt64\\bin\\g++.exe",
+    "version": "16.2.0",
+    "healthy": true,
+    "detail": "健康。"
+  }
+]

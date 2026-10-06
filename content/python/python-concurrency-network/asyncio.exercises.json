@@ -1,0 +1,146 @@
+{
+  "lesson_id": "python-concurrency-network-asyncio",
+  "questions": [
+    {
+      "id": "python-concurrency-network-asyncio-k01",
+      "type": "knowledge",
+      "prompt": "协程在 await 处会怎样？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "永久阻塞整个程序"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "让出事件循环控制权"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-concurrency-network-asyncio-k02",
+      "type": "knowledge",
+      "prompt": "cancelled 是可见终态吗？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "是"
+        },
+        {
+          "id": "b",
+          "text": "不是"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-concurrency-network-asyncio-k03",
+      "type": "knowledge",
+      "prompt": "本课怎样验证异步流程？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "访问外网协程"
+        },
+        {
+          "id": "b",
+          "text": "检查确定状态序列"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-concurrency-network-asyncio-c01",
+      "type": "code",
+      "prompt": "真实运行 async def、await 与 asyncio.run：普通文本转大写，cancel 返回取消状态。",
+      "starter_code": "import asyncio\nimport sys\n# 用 async def、await 和 asyncio.run 处理输入\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import asyncio\nimport sys\nasync def render(text):\n    await asyncio.sleep(0)\n    return text.upper()\nasync def main(text):\n    if text == '__invalid__':\n        raise ValueError('invalid job')\n    if text == 'cancel':\n        task = asyncio.create_task(render('late'))\n        task.cancel()\n        try:\n            await task\n        except asyncio.CancelledError:\n            return 'cancelled'\n    if not text:\n        raise ValueError('text required')\n    return await asyncio.wait_for(render(text), timeout=0.1)\nprint(asyncio.run(main(sys.stdin.read().strip())))\n",
+        "hidden_tests": [
+          "边界输入必须返回主题定义的结果。",
+          "无效输入必须进入可预期的失败分支。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "hard\n",
+            "stdout": "HARD\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "cancel\n",
+            "stdout": "cancelled\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "python-concurrency-network-asyncio-challenge",
+      "type": "challenge",
+      "prompt": "判断 cancelled 是否属于终态集合，并输出 True。",
+      "starter_code": "terminal = {'done', 'cancelled'}\n# 输出检查结果",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-concurrency-network-asyncio-challenge')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    terminal = {'done', 'cancelled'}\n    print('cancelled' in terminal)\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "True\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-concurrency-network-asyncio-challenge\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    }
+  ]
+}

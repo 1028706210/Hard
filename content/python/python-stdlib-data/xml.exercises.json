@@ -1,0 +1,110 @@
+{
+  "lesson_id": "python-stdlib-data-xml",
+  "questions": [
+    {
+      "id": "python-stdlib-data-xml-k01",
+      "type": "knowledge",
+      "prompt": "XML 用什么表达层级？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "元素"
+        },
+        {
+          "id": "b",
+          "text": "端口"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-stdlib-data-xml-k02",
+      "type": "knowledge",
+      "prompt": "外部 XML 应怎样处理？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "直接信任"
+        },
+        {
+          "id": "b",
+          "text": "限制来源和大小"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-stdlib-data-xml-k03",
+      "type": "knowledge",
+      "prompt": "练习 XML 来自哪里？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "真实网站"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "内嵌受信文本"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-stdlib-data-xml-c01",
+      "type": "code",
+      "prompt": "解析 item 元素并输出 Hard。",
+      "starter_code": "# 解析内嵌 XML",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-stdlib-data-xml-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    from xml.etree import ElementTree as ET\n    print(ET.fromstring('<item>Hard</item>').text)\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "Hard\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-stdlib-data-xml-c01\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    }
+  ]
+}

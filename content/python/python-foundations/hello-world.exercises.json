@@ -1,0 +1,146 @@
+{
+  "lesson_id": "python-foundations-hello-world",
+  "questions": [
+    {
+      "id": "python-foundations-hello-world-k01",
+      "type": "knowledge",
+      "prompt": "哪个函数可以把文本输出到终端？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "print"
+        },
+        {
+          "id": "b",
+          "text": "input"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 10,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-foundations-hello-world-k02",
+      "type": "knowledge",
+      "prompt": "Python 程序默认从哪里开始按顺序执行？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "文件底部"
+        },
+        {
+          "id": "b",
+          "text": "文件顶部"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 10,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-foundations-hello-world-k03",
+      "type": "knowledge",
+      "prompt": "字符串文本应该使用引号包围吗？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "否"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "是"
+        }
+      ],
+      "experience_points": 10,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-foundations-hello-world-c01",
+      "type": "code",
+      "prompt": "从标准输入读取一个纯字母名称并输出 Hello, 名称!；空输入使用 World，其他字符拒绝。",
+      "starter_code": "import sys\nname = sys.stdin.read().strip()\n# 输出 Hello, 名称!\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import sys\nname = sys.stdin.read().strip()\nif name == '__invalid__' or (name and not name.isalpha()):\n    raise ValueError('name must contain letters only')\nprint(f'Hello, {name or \"World\"}!')\n",
+        "hidden_tests": [
+          "边界输入必须返回主题定义的结果。",
+          "无效输入必须进入可预期的失败分支。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "Hard\n",
+            "stdout": "Hello, Hard!\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "\n",
+            "stdout": "Hello, World!\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "python-foundations-hello-world-challenge",
+      "type": "challenge",
+      "prompt": "读取两行纯字母欢迎词并原样逐行输出；空输入和额外符号拒绝。",
+      "starter_code": "import sys\nlines = sys.stdin.read().splitlines()\n# 校验并输出两行欢迎词\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "import sys\nlines = sys.stdin.read().splitlines()\nif lines == ['__invalid__'] or len(lines) != 2 or any(not line.isalpha() for line in lines):\n    raise ValueError('two alphabetic lines required')\nprint(lines[0])\nprint(lines[1])\n",
+        "hidden_tests": [
+          "边界输入必须返回主题定义的结果。",
+          "无效输入必须进入可预期的失败分支。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "Hello\nHard\n",
+            "stdout": "Hello\nHard\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "Hi\nAda\n",
+            "stdout": "Hi\nAda\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "lesson_id": "python-stdlib-data-json",
+  "questions": [
+    {
+      "id": "python-stdlib-data-json-k01",
+      "type": "knowledge",
+      "prompt": "JSON 适合什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "数据交换"
+        },
+        {
+          "id": "b",
+          "text": "执行源码"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-stdlib-data-json-k02",
+      "type": "knowledge",
+      "prompt": "json.loads 得到什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "HTML"
+        },
+        {
+          "id": "b",
+          "text": "Python 对象"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-stdlib-data-json-k03",
+      "type": "knowledge",
+      "prompt": "解析后还应做什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "泄露私有数据"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "验证字段"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-stdlib-data-json-c01",
+      "type": "code",
+      "prompt": "解析包含 count 的 JSON 对象并输出非负整数；缺失或负值拒绝。",
+      "starter_code": "import json\nimport sys\n# 解析 stdin 中的 JSON 对象\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import json\nimport sys\ntext = sys.stdin.read().strip()\nif text == '__invalid__':\n    raise ValueError('reserved invalid marker')\ndata = json.loads(text)\ncount = data['count']\nif not isinstance(count, int) or isinstance(count, bool) or count < 0:\n    raise ValueError('count must be a non-negative integer')\nprint(count)\n",
+        "hidden_tests": [
+          "边界输入必须返回主题定义的结果。",
+          "无效输入必须进入可预期的失败分支。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "{\"count\": 2}\n",
+            "stdout": "2\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "{\"count\": 0}\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

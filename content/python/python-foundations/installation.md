@@ -1,0 +1,44 @@
+---
+id: python-foundations-installation
+title: 安装后的第一项检查
+concepts: [interpreter, tooling]
+objectives:
+  - 用版本信息确认终端找到的是预期解释器。
+  - 区分“已安装”与“当前终端可运行”。
+prerequisites: [python-foundations-introduction]
+difficulty: beginner
+experience_points: 30
+source_url: https://www.runoob.com/python3/python3-install.html
+source_snapshot_date: 2026-08-23
+---
+
+# 安装不是终点，验证才是
+
+装好 Python 后，先在自己的终端执行版本命令并记录结果。这个动作确认的是当前 shell 找到的解释器，而不是安装向导曾经显示过的版本。项目使用固定工具链时，尤其不要依赖模糊的“应该已经装好”。
+
+```python
+version = "3.x"
+print(f"Python {version} 已可用于学习")
+```
+
+版本号可以作为普通字符串处理；真正的安装和 PATH 修改应由受控的本地工具完成，而不是由学习题目触发。
+
+```python
+parts = "3.13".split(".")
+print(parts[0])
+```
+
+若终端找不到 Python，先检查命令路径和当前环境，不要随意复制未知网站的安装脚本。
+
+
+## 概念定义与适用场景
+
+安装后的第一项检查解决的是把明确输入转换为可核验结果的问题。先识别数据的来源、所有权和生命周期，再选择最小的 Python API；这比先堆叠库调用更容易排错，也更容易在测试中复现。
+
+## 语法、API 与边界
+
+示例中的调用应只承担一个职责：准备输入、执行主题操作、检查输出。外部数据、空值、编码、资源关闭和异常路径都属于接口合同；不要把它们藏在偶然成功的默认行为里。
+
+## 常见错误与实践建议
+
+常见错误是把演示环境当成生产环境、跳过返回值检查，或用固定输出掩盖未处理的分支。实践时应使用小而可重复的输入，为失败路径写断言，并把网络、文件、GUI 或服务端依赖限制在可替换的边界之后。

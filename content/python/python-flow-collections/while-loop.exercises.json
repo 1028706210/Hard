@@ -1,0 +1,146 @@
+{
+  "lesson_id": "python-flow-collections-while-loop",
+  "questions": [
+    {
+      "id": "python-flow-collections-while-loop-k01",
+      "type": "knowledge",
+      "prompt": "while 何时继续？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "条件为假时"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "条件为真时"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-flow-collections-while-loop-k02",
+      "type": "knowledge",
+      "prompt": "循环体应更新什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "停止相关状态"
+        },
+        {
+          "id": "b",
+          "text": "来源 URL"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-flow-collections-while-loop-k03",
+      "type": "knowledge",
+      "prompt": "忘记更新状态会造成什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "自动退出"
+        },
+        {
+          "id": "b",
+          "text": "无限循环风险"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-flow-collections-while-loop-c01",
+      "type": "code",
+      "prompt": "从 0 计数到 2 后输出 2。",
+      "starter_code": "count = 0\n# 写出循环",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-flow-collections-while-loop-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    count = 0\n    while count < 2:\n        count += 1\n    print(count)\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "2\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-flow-collections-while-loop-c01\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "python-flow-collections-while-loop-challenge",
+      "type": "challenge",
+      "prompt": "使用 while 输出 1、2、3 三行。",
+      "starter_code": "number = 1\n# 写出循环",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-flow-collections-while-loop-challenge')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    number = 1\n    while number <= 3:\n        print(number)\n        number += 1\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "1\n2\n3\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-flow-collections-while-loop-challenge\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    }
+  ]
+}

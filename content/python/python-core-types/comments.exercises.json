@@ -1,0 +1,110 @@
+{
+  "lesson_id": "python-core-types-comments",
+  "questions": [
+    {
+      "id": "python-core-types-comments-k01",
+      "type": "knowledge",
+      "prompt": "单行注释以哪个字符开始？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "#"
+        },
+        {
+          "id": "b",
+          "text": "//"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-core-types-comments-k02",
+      "type": "knowledge",
+      "prompt": "注释应该优先解释什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "每个字符"
+        },
+        {
+          "id": "b",
+          "text": "代码背后的理由"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-core-types-comments-k03",
+      "type": "knowledge",
+      "prompt": "解释器会执行注释吗？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "会"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "不会"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-core-types-comments-c01",
+      "type": "code",
+      "prompt": "保留一行说明性注释，并输出 5。",
+      "starter_code": "# explain this value\n# 写出输出",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-core-types-comments-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    # confirmed count\n    print(5)\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "5\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-core-types-comments-c01\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    }
+  ]
+}

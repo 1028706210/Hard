@@ -1,0 +1,110 @@
+{
+  "lesson_id": "python-flow-collections-lists",
+  "questions": [
+    {
+      "id": "python-flow-collections-lists-k01",
+      "type": "knowledge",
+      "prompt": "列表索引从哪里开始？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "1"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "0"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-flow-collections-lists-k02",
+      "type": "knowledge",
+      "prompt": "append 会把元素放在哪里？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "列表末尾"
+        },
+        {
+          "id": "b",
+          "text": "列表开头"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-flow-collections-lists-k03",
+      "type": "knowledge",
+      "prompt": "列表能修改吗？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "不能"
+        },
+        {
+          "id": "b",
+          "text": "能"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-flow-collections-lists-c01",
+      "type": "code",
+      "prompt": "创建含 read 和 code 的列表，输出第一个元素。",
+      "starter_code": "tasks = []\n# 输出第一个元素",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-flow-collections-lists-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    tasks = ['read', 'code']\n    print(tasks[0])\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "read\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-flow-collections-lists-c01\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    }
+  ]
+}

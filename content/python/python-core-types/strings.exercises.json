@@ -1,0 +1,146 @@
+{
+  "lesson_id": "python-core-types-strings",
+  "questions": [
+    {
+      "id": "python-core-types-strings-k01",
+      "type": "knowledge",
+      "prompt": "字符串索引从哪里开始？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "0"
+        },
+        {
+          "id": "b",
+          "text": "1"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-core-types-strings-k02",
+      "type": "knowledge",
+      "prompt": "切片会修改原字符串吗？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "会"
+        },
+        {
+          "id": "b",
+          "text": "不会"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-core-types-strings-k03",
+      "type": "knowledge",
+      "prompt": "f-string 的作用是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "创建集合"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "把变量嵌入文本"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-core-types-strings-c01",
+      "type": "code",
+      "prompt": "按输入文本输出前三个字符；空文本输出空行，非字母文本视为无效。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\n# 验证后输出前三个字符\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\nif text == '__invalid__' or not text.isalpha():\n    raise ValueError('letters required')\nprint(text[:3])\n",
+        "hidden_tests": [
+          "边界输入必须返回主题定义的结果。",
+          "无效输入必须进入可预期的失败分支。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "Python\n",
+            "stdout": "Pyt\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "Hi\n",
+            "stdout": "Hi\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "python-core-types-strings-challenge",
+      "type": "challenge",
+      "prompt": "用 f-string 问候输入的名字；空白名称使用 Learner，非字母名称拒绝。",
+      "starter_code": "import sys\nname = sys.stdin.read().strip()\n# 使用 f-string 输出问候\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "import sys\nname = sys.stdin.read().strip()\nif name == '__invalid__' or (name and not name.isalpha()):\n    raise ValueError('name must be letters')\nprint(f'Hello, {name or \"Learner\"}!')\n",
+        "hidden_tests": [
+          "边界输入必须返回主题定义的结果。",
+          "无效输入必须进入可预期的失败分支。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "Hard\n",
+            "stdout": "Hello, Hard!\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "\n",
+            "stdout": "Hello, Learner!\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

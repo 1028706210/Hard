@@ -1,0 +1,110 @@
+{
+  "lesson_id": "python-database-deployment-cgi",
+  "questions": [
+    {
+      "id": "python-database-deployment-cgi-k01",
+      "type": "knowledge",
+      "prompt": "CGI 响应正文之前通常要先提供什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "数据库密码"
+        },
+        {
+          "id": "b",
+          "text": "响应头"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-database-deployment-cgi-k02",
+      "type": "knowledge",
+      "prompt": "为什么要先验证表单字段？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "为了启动更多进程"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "输入来自不可信边界"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-database-deployment-cgi-k03",
+      "type": "knowledge",
+      "prompt": "本课练习为何不启动 CGI 服务？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "服务器环境不适合 Runner"
+        },
+        {
+          "id": "b",
+          "text": "Python 不支持函数"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-database-deployment-cgi-c01",
+      "type": "code",
+      "prompt": "实现 greeting(form)：去除 name 两端空白；空值返回 missing，否则返回 hello 加空格和名字。打印 greeting({'name': ' Ada '})。",
+      "starter_code": "def greeting(form):\n    # 验证字典中的 name\n    pass\n\nprint(greeting({'name': ' Ada '}))",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-database-deployment-cgi-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    def greeting(form):\n        name = form.get('name', '').strip()\n        return 'missing' if not name else f'hello {name}'\n\n    print(greeting({'name': ' Ada '}))\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "hello Ada\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-database-deployment-cgi-c01\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    }
+  ]
+}

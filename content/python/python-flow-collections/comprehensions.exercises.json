@@ -1,0 +1,110 @@
+{
+  "lesson_id": "python-flow-collections-comprehensions",
+  "questions": [
+    {
+      "id": "python-flow-collections-comprehensions-k01",
+      "type": "knowledge",
+      "prompt": "推导式通常包含什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "网络请求"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "表达式和遍历"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-flow-collections-comprehensions-k02",
+      "type": "knowledge",
+      "prompt": "推导式可以加入什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "筛选条件"
+        },
+        {
+          "id": "b",
+          "text": "防火墙规则"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-flow-collections-comprehensions-k03",
+      "type": "knowledge",
+      "prompt": "何时普通循环更合适？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "从不"
+        },
+        {
+          "id": "b",
+          "text": "逻辑过长时"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-flow-collections-comprehensions-c01",
+      "type": "code",
+      "prompt": "用推导式输出 1、2、3 的平方列表。",
+      "starter_code": "values = [1, 2, 3]\n# 构造平方列表",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-flow-collections-comprehensions-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    values = [1, 2, 3]\n    print([value * value for value in values])\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "[1, 4, 9]\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-flow-collections-comprehensions-c01\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    }
+  ]
+}

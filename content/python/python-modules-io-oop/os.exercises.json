@@ -1,0 +1,110 @@
+{
+  "lesson_id": "python-modules-io-oop-os",
+  "questions": [
+    {
+      "id": "python-modules-io-oop-os-k01",
+      "type": "knowledge",
+      "prompt": "pathlib 用于什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "网络监听"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "路径操作"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-modules-io-oop-os-k02",
+      "type": "knowledge",
+      "prompt": "外部路径输入应如何处理？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "限制在授权根目录"
+        },
+        {
+          "id": "b",
+          "text": "直接信任"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-modules-io-oop-os-k03",
+      "type": "knowledge",
+      "prompt": "Path.name 返回什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "文件内容"
+        },
+        {
+          "id": "b",
+          "text": "末尾名称"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-modules-io-oop-os-c01",
+      "type": "code",
+      "prompt": "创建 reports/today.txt 路径并输出 today.txt。",
+      "starter_code": "from pathlib import Path\n# 组合路径并输出名称",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-modules-io-oop-os-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    from pathlib import Path\n    path = Path('reports') / 'today.txt'\n    print(path.name)\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "today.txt\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-modules-io-oop-os-c01\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    }
+  ]
+}

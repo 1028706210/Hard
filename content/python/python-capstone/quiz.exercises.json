@@ -1,0 +1,146 @@
+{
+  "lesson_id": "python-capstone-quiz",
+  "questions": [
+    {
+      "id": "python-capstone-quiz-k01",
+      "type": "knowledge",
+      "prompt": "空列表在条件判断中通常表示什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "语法错误"
+        },
+        {
+          "id": "b",
+          "text": "假值"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-capstone-quiz-k02",
+      "type": "knowledge",
+      "prompt": "int('两') 失败时最贴近的异常是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "KeyError"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "ValueError"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-capstone-quiz-k03",
+      "type": "knowledge",
+      "prompt": "发现逻辑错误后最有帮助的动作是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "增加能触发分支的样本"
+        },
+        {
+          "id": "b",
+          "text": "删除所有输出"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-capstone-quiz-c01",
+      "type": "code",
+      "prompt": "实现 normalize(text)：去掉首尾空白后返回小写文本，并输出 normalize(' PyTHON ')。",
+      "starter_code": "def normalize(text):\n    # 返回规范化文本\n    pass\n\nprint(normalize(' PyTHON '))",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-capstone-quiz-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    def normalize(text):\n        return text.strip().lower()\n\n    print(normalize(' PyTHON '))\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "python\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-capstone-quiz-c01\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "python-capstone-quiz-challenge",
+      "type": "challenge",
+      "prompt": "完成离线结业挑战：JSON 输入、集合去重、函数拆分、异常分支、文件式 stdin 和 asyncio 协程共同生成学习摘要。",
+      "starter_code": "# 解析 JSON，组合函数、集合、异常与 asyncio 生成摘要\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "import asyncio\nimport json\nimport sys\ndef normalize(values):\n    if not isinstance(values, list) or not all(isinstance(value, int) and not isinstance(value, bool) for value in values):\n        raise ValueError('values must be integer list')\n    return sorted(set(values))\nasync def summarize(text):\n    values = normalize(json.loads(text)['scores'])\n    await asyncio.sleep(0)\n    return {'count': len(values), 'passed': sum(value >= 60 for value in values), 'total': sum(values)}\ntext = sys.stdin.read().strip()\nif text == '__invalid__':\n    raise ValueError('reserved invalid marker')\nprint(json.dumps(asyncio.run(summarize(text)), sort_keys=True))\n",
+        "hidden_tests": [
+          "边界输入必须返回主题定义的结果。",
+          "无效输入必须进入可预期的失败分支。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "{\"scores\": [60, 80, 60]}\n",
+            "stdout": "{\"count\": 2, \"passed\": 2, \"total\": 140}\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "{\"scores\": []}\n",
+            "stdout": "{\"count\": 0, \"passed\": 0, \"total\": 0}\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

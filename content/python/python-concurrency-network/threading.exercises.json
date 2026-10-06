@@ -1,0 +1,110 @@
+{
+  "lesson_id": "python-concurrency-network-threading",
+  "questions": [
+    {
+      "id": "python-concurrency-network-threading-k01",
+      "type": "knowledge",
+      "prompt": "锁保护的对象是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "所有无关代码"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "一次完整的共享状态修改"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-concurrency-network-threading-k02",
+      "type": "knowledge",
+      "prompt": "失败路径也必须考虑什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "释放状态"
+        },
+        {
+          "id": "b",
+          "text": "隐藏错误"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-concurrency-network-threading-k03",
+      "type": "knowledge",
+      "prompt": "本课运行真实线程吗？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "运行"
+        },
+        {
+          "id": "b",
+          "text": "不运行，只验证状态 fixture"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-concurrency-network-threading-c01",
+      "type": "code",
+      "prompt": "使用 threading.Lock 保护计数器；输入为线程数，零是边界，负数拒绝。",
+      "starter_code": "import threading\nimport sys\n# 使用 Lock 保护共享计数器\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\nimport threading\ncount = int(sys.stdin.read().strip())\nif count < 0 or count > 8:\n    raise ValueError('count out of range')\nstate = {'value': 0}\nlock = threading.Lock()\ndef increment():\n    with lock:\n        state['value'] += 1\nthreads = [threading.Thread(target=increment) for _ in range(count)]\nfor thread in threads: thread.start()\nfor thread in threads: thread.join()\nprint(state['value'])\n",
+        "hidden_tests": [
+          "边界输入必须返回主题定义的结果。",
+          "无效输入必须进入可预期的失败分支。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "2\n",
+            "stdout": "2\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

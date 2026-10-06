@@ -1,0 +1,36 @@
+:root {
+  --hard-color-space: #030815;
+  --hard-color-surface: #091126;
+  --hard-color-surface-raised: #101b37;
+  --hard-color-line: #263656;
+  --hard-color-text: #f4f6ff;
+  --hard-color-muted: #9aa8c7;
+  --hard-color-primary: #8a5cff;
+  --hard-color-primary-strong: #a78bff;
+  --hard-color-cyan: #4de5e7;
+  --hard-color-amber: #ffbd59;
+  --hard-color-danger: #ff6b72;
+  --hard-color-focus: #c1aeff;
+  --hard-shadow-raised: 0 18px 42px rgb(0 0 0 / 32%);
+  --hard-shadow-glow: 0 0 28px rgb(138 92 255 / 38%);
+  --hard-radius-sm: 0.5rem;
+  --hard-radius-md: 0.875rem;
+  --hard-radius-lg: 1.25rem;
+  --hard-space-1: 0.25rem;
+  --hard-space-2: 0.5rem;
+  --hard-space-3: 0.75rem;
+  --hard-space-4: 1rem;
+  --hard-space-5: 1.5rem;
+  --hard-space-6: 2rem;
+  --hard-space-8: 3rem;
+  --hard-font-body: "Segoe UI", "Microsoft YaHei UI", sans-serif;
+  --hard-font-display: "Arial", "Microsoft YaHei UI", sans-serif;
+  --hard-text-xs: 0.75rem;
+  --hard-text-sm: 0.875rem;
+  --hard-text-md: 1rem;
+  --hard-text-lg: 1.25rem;
+  --hard-text-xl: 1.75rem;
+  --hard-touch-target: 2.75rem;
+  --hard-motion-fast: 160ms;
+  --hard-motion-normal: 260ms;
+}

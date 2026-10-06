@@ -1,0 +1,17 @@
+{
+  "name": "hard",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@11.19.0",
+  "engines": {
+    "node": "24.17.0",
+    "pnpm": "11.19.0"
+  },
+  "scripts": {
+    "check:api": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/check.ps1 -Mode Api",
+    "check:web": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/check.ps1 -Mode Web",
+    "check:e2e": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/check.ps1 -Mode E2E",
+    "check:content": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/check.ps1 -Mode Content",
+    "check": "pnpm check:api && pnpm check:web && pnpm check:e2e && pnpm check:content"
+  }
+}

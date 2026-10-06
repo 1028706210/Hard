@@ -1,0 +1,110 @@
+{
+  "lesson_id": "python-automation-ui-web-pyecharts",
+  "questions": [
+    {
+      "id": "python-automation-ui-web-pyecharts-k01",
+      "type": "knowledge",
+      "prompt": "图表标签和数值序列首先应检查什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "长度是否一致"
+        },
+        {
+          "id": "b",
+          "text": "是否含有密码"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-automation-ui-web-pyecharts-k02",
+      "type": "knowledge",
+      "prompt": "本课为何不实际渲染图表？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "图表不能使用数据"
+        },
+        {
+          "id": "b",
+          "text": "练习只验证纯配置"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-automation-ui-web-pyecharts-k03",
+      "type": "knowledge",
+      "prompt": "传给展示层的数据应如何选择？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "包含全部凭据"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "只包含必要公开字段"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-automation-ui-web-pyecharts-c01",
+      "type": "code",
+      "prompt": "定义 labels 和 values 各含两个元素，输出它们长度是否相等。",
+      "starter_code": "labels = []\nvalues = []\n# 输出长度比较",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-automation-ui-web-pyecharts-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    labels = ['A', 'B']\n    values = [2, 4]\n    print(len(labels) == len(values))\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "True\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-automation-ui-web-pyecharts-c01\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    }
+  ]
+}

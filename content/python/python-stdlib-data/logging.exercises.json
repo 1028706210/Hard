@@ -1,0 +1,110 @@
+{
+  "lesson_id": "python-stdlib-data-logging",
+  "questions": [
+    {
+      "id": "python-stdlib-data-logging-k01",
+      "type": "knowledge",
+      "prompt": "日志不能包含什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "私密数据"
+        },
+        {
+          "id": "b",
+          "text": "安全标识"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-stdlib-data-logging-k02",
+      "type": "knowledge",
+      "prompt": "日志级别表达什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "文件大小"
+        },
+        {
+          "id": "b",
+          "text": "事件重要性"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-stdlib-data-logging-k03",
+      "type": "knowledge",
+      "prompt": "日志应具有什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "隐藏答案"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "可搜索性"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-stdlib-data-logging-c01",
+      "type": "code",
+      "prompt": "输出安全日志消息 retry planned。",
+      "starter_code": "import logging\n# 记录日志",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-stdlib-data-logging-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    import logging\n    import sys\n    logging.basicConfig(level=logging.WARNING, format='%(message)s', stream=sys.stdout)\n    logging.warning('retry planned')\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "retry planned\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-stdlib-data-logging-c01\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    }
+  ]
+}

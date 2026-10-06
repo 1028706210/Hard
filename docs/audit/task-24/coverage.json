@@ -1,0 +1,131 @@
+{
+  "language": "python",
+  "module": "python-flow-collections",
+  "expected": 11,
+  "implemented": 11,
+  "validated": 11,
+  "reference_solutions_passed": 11,
+  "question_counts": {
+    "knowledge": 33,
+    "code": 11,
+    "challenge": 1
+  },
+  "test_case_counts": {
+    "visible": 12,
+    "hidden": 24,
+    "hidden_distinct_from_visible": 24
+  },
+  "source_section_mapping": [
+    {
+      "source_id": "python3-list",
+      "lesson_id": "python-flow-collections-lists",
+      "source_primary_topic": "Python 列表",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-tuple",
+      "lesson_id": "python-flow-collections-tuples",
+      "source_primary_topic": "Python 元组",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-dictionary",
+      "lesson_id": "python-flow-collections-dictionaries",
+      "source_primary_topic": "Python 字典",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-set",
+      "lesson_id": "python-flow-collections-sets",
+      "source_primary_topic": "Python 集合",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-conditional-statements",
+      "lesson_id": "python-flow-collections-conditions",
+      "source_primary_topic": "Python 条件控制",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-loop",
+      "lesson_id": "python-flow-collections-loops",
+      "source_primary_topic": "Python 循环语句",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-step1",
+      "lesson_id": "python-flow-collections-first-program",
+      "source_primary_topic": "Python 编程第一步",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-comprehensions",
+      "lesson_id": "python-flow-collections-comprehensions",
+      "source_primary_topic": "Python 推导式",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-data-structure",
+      "lesson_id": "python-flow-collections-data-structures",
+      "source_primary_topic": "Python 数据结构",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-for",
+      "lesson_id": "python-flow-collections-for-loop",
+      "source_primary_topic": "Python for 循环",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-while",
+      "lesson_id": "python-flow-collections-while-loop",
+      "source_primary_topic": "Python while 循环",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    }
+  ],
+  "errors": []
+}

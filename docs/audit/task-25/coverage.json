@@ -1,0 +1,101 @@
+{
+  "language": "python",
+  "module": "python-functions-iteration",
+  "expected": 8,
+  "implemented": 8,
+  "validated": 8,
+  "reference_solutions_passed": 8,
+  "question_counts": {
+    "knowledge": 24,
+    "code": 8,
+    "challenge": 1
+  },
+  "test_case_counts": {
+    "visible": 9,
+    "hidden": 18,
+    "hidden_distinct_from_visible": 18
+  },
+  "source_section_mapping": [
+    {
+      "source_id": "python3-iterator-generator",
+      "lesson_id": "python-functions-iteration-iterators",
+      "source_primary_topic": "Python 迭代器与生成器",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-with-keyword",
+      "lesson_id": "python-functions-iteration-with",
+      "source_primary_topic": "Python with",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-function",
+      "lesson_id": "python-functions-iteration-functions",
+      "source_primary_topic": "Python 函数",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-lambda",
+      "lesson_id": "python-functions-iteration-lambda",
+      "source_primary_topic": "Python lambda",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-decorators",
+      "lesson_id": "python-functions-iteration-decorators",
+      "source_primary_topic": "Python 装饰器",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-name-main",
+      "lesson_id": "python-functions-iteration-name-main",
+      "source_primary_topic": "Python __name__",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-namespace-scope",
+      "lesson_id": "python-functions-iteration-scope",
+      "source_primary_topic": "Python 命名空间与作用域",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-type-hints",
+      "lesson_id": "python-functions-iteration-type-hints",
+      "source_primary_topic": "Python 类型注解",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    }
+  ],
+  "errors": []
+}

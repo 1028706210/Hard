@@ -1,0 +1,81 @@
+{
+  "language": "python",
+  "module": "python-automation-ui-web",
+  "expected": 6,
+  "implemented": 6,
+  "validated": 6,
+  "reference_solutions_passed": 6,
+  "question_counts": {
+    "knowledge": 18,
+    "code": 6,
+    "challenge": 1
+  },
+  "test_case_counts": {
+    "visible": 7,
+    "hidden": 14,
+    "hidden_distinct_from_visible": 14
+  },
+  "source_section_mapping": [
+    {
+      "source_id": "python-pyecharts",
+      "lesson_id": "python-automation-ui-web-pyecharts",
+      "source_primary_topic": "Python pyecharts 数据准备",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-selenium",
+      "lesson_id": "python-automation-ui-web-selenium",
+      "source_primary_topic": "Python selenium 选择器设计",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-spider-beautifulsoup",
+      "lesson_id": "python-automation-ui-web-crawler",
+      "source_primary_topic": "Python 爬虫解析边界",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-scrapy",
+      "lesson_id": "python-automation-ui-web-scrapy",
+      "source_primary_topic": "Python Scrapy 请求计划",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-markdown2html",
+      "lesson_id": "python-automation-ui-web-markdown",
+      "source_primary_topic": "Python Markdown 安全转换",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-pyqt",
+      "lesson_id": "python-automation-ui-web-pyqt",
+      "source_primary_topic": "Python PyQt 界面状态",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,1693 @@
+sources:
+- title: Python3 教程
+  url: https://www.runoob.com/python3/python3-tutorial.html
+  group: Python 3 教程
+  module_id: python-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 简介
+  url: https://www.runoob.com/python3/python3-intro.html
+  group: Python 3 教程
+  module_id: python-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 环境搭建
+  url: https://www.runoob.com/python3/python3-install.html
+  group: Python 3 教程
+  module_id: python-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 Pycharm
+  url: https://www.runoob.com/python3/python-pycharm-usage.html
+  group: Python 3 教程
+  module_id: python-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 VScode
+  url: https://www.runoob.com/python3/python-vscode-setup.html
+  group: Python 3 教程
+  module_id: python-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 基础语法
+  url: https://www.runoob.com/python3/python3-basic-syntax.html
+  group: Python 3 教程
+  module_id: python-core-types
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 基本数据类型
+  url: https://www.runoob.com/python3/python3-data-type.html
+  group: Python 3 教程
+  module_id: python-core-types
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 数据类型转换
+  url: https://www.runoob.com/python3/python3-type-conversion.html
+  group: Python 3 教程
+  module_id: python-core-types
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 解释器
+  url: https://www.runoob.com/python3/python3-interpreter.html
+  group: Python 3 教程
+  module_id: python-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 注释
+  url: https://www.runoob.com/python3/python3-comment.html
+  group: Python 3 教程
+  module_id: python-core-types
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 运算符
+  url: https://www.runoob.com/python3/python3-basic-operators.html
+  group: Python 3 教程
+  module_id: python-core-types
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 数字(Number)
+  url: https://www.runoob.com/python3/python3-number.html
+  group: Python 3 教程
+  module_id: python-core-types
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 字符串
+  url: https://www.runoob.com/python3/python3-string.html
+  group: Python 3 教程
+  module_id: python-core-types
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 列表
+  url: https://www.runoob.com/python3/python3-list.html
+  group: Python 3 教程
+  module_id: python-flow-collections
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 元组
+  url: https://www.runoob.com/python3/python3-tuple.html
+  group: Python 3 教程
+  module_id: python-flow-collections
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 字典
+  url: https://www.runoob.com/python3/python3-dictionary.html
+  group: Python 3 教程
+  module_id: python-flow-collections
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 集合
+  url: https://www.runoob.com/python3/python3-set.html
+  group: Python 3 教程
+  module_id: python-flow-collections
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 条件控制
+  url: https://www.runoob.com/python3/python3-conditional-statements.html
+  group: Python 3 教程
+  module_id: python-flow-collections
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 循环语句
+  url: https://www.runoob.com/python3/python3-loop.html
+  group: Python 3 教程
+  module_id: python-flow-collections
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 编程第一步
+  url: https://www.runoob.com/python3/python3-step1.html
+  group: Python 3 教程
+  module_id: python-flow-collections
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 推导式
+  url: https://www.runoob.com/python3/python-comprehensions.html
+  group: Python 3 教程
+  module_id: python-flow-collections
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 迭代器与生成器
+  url: https://www.runoob.com/python3/python3-iterator-generator.html
+  group: Python 3 教程
+  module_id: python-functions-iteration
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 with
+  url: https://www.runoob.com/python3/python3-with-keyword.html
+  group: Python 3 教程
+  module_id: python-functions-iteration
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 函数
+  url: https://www.runoob.com/python3/python3-function.html
+  group: Python 3 教程
+  module_id: python-functions-iteration
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 lambda
+  url: https://www.runoob.com/python3/python-lambda.html
+  group: Python 3 教程
+  module_id: python-functions-iteration
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 装饰器
+  url: https://www.runoob.com/python3/python-decorators.html
+  group: Python 3 教程
+  module_id: python-functions-iteration
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 数据结构
+  url: https://www.runoob.com/python3/python3-data-structure.html
+  group: Python 3 教程
+  module_id: python-flow-collections
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 模块
+  url: https://www.runoob.com/python3/python3-module.html
+  group: Python 3 教程
+  module_id: python-modules-io-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python __name__
+  url: https://www.runoob.com/python3/python3-name-main.html
+  group: Python 3 教程
+  module_id: python-functions-iteration
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 输入和输出
+  url: https://www.runoob.com/python3/python3-inputoutput.html
+  group: Python 3 教程
+  module_id: python-modules-io-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 File
+  url: https://www.runoob.com/python3/python3-file-methods.html
+  group: Python 3 教程
+  module_id: python-modules-io-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 OS
+  url: https://www.runoob.com/python3/python3-os-file-methods.html
+  group: Python 3 教程
+  module_id: python-modules-io-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 错误和异常
+  url: https://www.runoob.com/python3/python3-errors-execptions.html
+  group: Python 3 教程
+  module_id: python-modules-io-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 面向对象
+  url: https://www.runoob.com/python3/python3-class.html
+  group: Python 3 教程
+  module_id: python-modules-io-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 命名空间/作用域
+  url: https://www.runoob.com/python3/python3-namespace-scope.html
+  group: Python 3 教程
+  module_id: python-functions-iteration
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python 虚拟环境的创建
+  url: https://www.runoob.com/python3/python-venv.html
+  group: Python 3 教程
+  module_id: python-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python 类型注解
+  url: https://www.runoob.com/python3/python-type-hints.html
+  group: Python 3 教程
+  module_id: python-functions-iteration
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 标准库概览
+  url: https://www.runoob.com/python3/python3-stdlib.html
+  group: Python 3 教程
+  module_id: python-stdlib-data
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 实例
+  url: https://www.runoob.com/python3/python3-examples.html
+  group: Python 3 教程
+  module_id: python-capstone
+  content_type: example
+  snapshot_date: '2026-08-23'
+- title: Python 测验
+  url: https://www.runoob.com/quiz/python-quiz.html
+  group: Python 3 教程
+  module_id: python-capstone
+  content_type: quiz
+  snapshot_date: '2026-08-23'
+- title: Python3 正则表达式
+  url: https://www.runoob.com/python3/python3-reg-expressions.html
+  group: Python3 高级教程
+  module_id: python-stdlib-data
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 CGI编程
+  url: https://www.runoob.com/python3/python3-cgi-programming.html
+  group: Python3 高级教程
+  module_id: python-database-deployment
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 MySQL(mysql-connector)
+  url: https://www.runoob.com/python3/python-mysql-connector.html
+  group: Python3 高级教程
+  module_id: python-database-deployment
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 MySQL(PyMySQL)
+  url: https://www.runoob.com/python3/python3-mysql.html
+  group: Python3 高级教程
+  module_id: python-database-deployment
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 网络编程
+  url: https://www.runoob.com/python3/python3-socket.html
+  group: Python3 高级教程
+  module_id: python-concurrency-network
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 SMTP发送邮件
+  url: https://www.runoob.com/python3/python3-smtp.html
+  group: Python3 高级教程
+  module_id: python-concurrency-network
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 多线程
+  url: https://www.runoob.com/python3/python3-multithreading.html
+  group: Python3 高级教程
+  module_id: python-concurrency-network
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 XML 解析
+  url: https://www.runoob.com/python3/python3-xml-processing.html
+  group: Python3 高级教程
+  module_id: python-stdlib-data
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 JSON
+  url: https://www.runoob.com/python3/python3-json.html
+  group: Python3 高级教程
+  module_id: python-stdlib-data
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 日期和时间
+  url: https://www.runoob.com/python3/python3-date-time.html
+  group: Python3 高级教程
+  module_id: python-stdlib-data
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 内置函数
+  url: https://www.runoob.com/python3/python3-built-in-functions.html
+  group: Python3 高级教程
+  module_id: python-stdlib-data
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 MongoDB
+  url: https://www.runoob.com/python3/python-mongodb.html
+  group: Python3 高级教程
+  module_id: python-database-deployment
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 urllib
+  url: https://www.runoob.com/python3/python-urllib.html
+  group: Python3 高级教程
+  module_id: python-concurrency-network
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python uWSGI 安装配置
+  url: https://www.runoob.com/python3/python-uwsgi.html
+  group: Python3 高级教程
+  module_id: python-database-deployment
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 pip
+  url: https://www.runoob.com/python3/python3-pip.html
+  group: Python3 高级教程
+  module_id: python-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python3 operator
+  url: https://www.runoob.com/python3/python-operator.html
+  group: Python3 高级教程
+  module_id: python-stdlib-data
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python math
+  url: https://www.runoob.com/python3/python-math.html
+  group: Python3 高级教程
+  module_id: python-stdlib-data
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python requests
+  url: https://www.runoob.com/python3/python-requests.html
+  group: Python3 高级教程
+  module_id: python-concurrency-network
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python random
+  url: https://www.runoob.com/python3/python-random.html
+  group: Python3 高级教程
+  module_id: python-stdlib-data
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python OpenAI
+  url: https://www.runoob.com/python3/python-openai.html
+  group: Python3 高级教程
+  module_id: python-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python 有用的资源
+  url: https://www.runoob.com/python3/python3-resources.html
+  group: Python3 高级教程
+  module_id: python-foundations
+  content_type: resource
+  snapshot_date: '2026-08-23'
+- title: Python AI 绘画
+  url: https://www.runoob.com/python3/python-ai-draw.html
+  group: Python3 高级教程
+  module_id: python-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python statistics
+  url: https://www.runoob.com/python3/python-statistics.html
+  group: Python3 高级教程
+  module_id: python-stdlib-data
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python hashlib
+  url: https://www.runoob.com/python3/python-hashlib.html
+  group: Python3 高级教程
+  module_id: python-stdlib-data
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python 量化
+  url: https://www.runoob.com/python3/python-qt.html
+  group: Python3 高级教程
+  module_id: python-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python pyecharts
+  url: https://www.runoob.com/python3/python-pyecharts.html
+  group: Python3 高级教程
+  module_id: python-automation-ui-web
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python selenium 库
+  url: https://www.runoob.com/python3/python-selenium.html
+  group: Python3 高级教程
+  module_id: python-automation-ui-web
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python 爬虫
+  url: https://www.runoob.com/python3/python-spider-beautifulsoup.html
+  group: Python3 高级教程
+  module_id: python-automation-ui-web
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python Scrapy 库
+  url: https://www.runoob.com/python3/python-scrapy.html
+  group: Python3 高级教程
+  module_id: python-automation-ui-web
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python Markdown
+  url: https://www.runoob.com/python3/python-markdown2html.html
+  group: Python3 高级教程
+  module_id: python-automation-ui-web
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python sys 模块
+  url: https://www.runoob.com/python3/python-sys.html
+  group: Python3 高级教程
+  module_id: python-stdlib-data
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python Pickle 模块
+  url: https://www.runoob.com/python3/python-pickle.html
+  group: Python3 高级教程
+  module_id: python-stdlib-data
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python subprocess 模块
+  url: https://www.runoob.com/python3/python-subprocess.html
+  group: Python3 高级教程
+  module_id: python-concurrency-network
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python queue 模块
+  url: https://www.runoob.com/python3/python-queue.html
+  group: Python3 高级教程
+  module_id: python-stdlib-data
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python StringIO 模块
+  url: https://www.runoob.com/python3/python-stringio.html
+  group: Python3 高级教程
+  module_id: python-stdlib-data
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python logging 模块
+  url: https://www.runoob.com/python3/python-logging.html
+  group: Python3 高级教程
+  module_id: python-stdlib-data
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python datetime 模块
+  url: https://www.runoob.com/python3/python-datetime.html
+  group: Python3 高级教程
+  module_id: python-stdlib-data
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python re 模块
+  url: https://www.runoob.com/python3/python-re.html
+  group: Python3 高级教程
+  module_id: python-stdlib-data
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python csv 模块
+  url: https://www.runoob.com/python3/python-csv.html
+  group: Python3 高级教程
+  module_id: python-stdlib-data
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python threading 模块
+  url: https://www.runoob.com/python3/python-treading.html
+  group: Python3 高级教程
+  module_id: python-concurrency-network
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python asyncio 模块
+  url: https://www.runoob.com/python3/python-asyncio.html
+  group: Python3 高级教程
+  module_id: python-concurrency-network
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python PyQt
+  url: https://www.runoob.com/python3/python-pyqt.html
+  group: Python3 高级教程
+  module_id: python-automation-ui-web
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python for 循环
+  url: https://www.runoob.com/python3/python3-for.html
+  group: Python3 高级教程
+  module_id: python-flow-collections
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Python while 循环
+  url: https://www.runoob.com/python3/python3-while.html
+  group: Python3 高级教程
+  module_id: python-flow-collections
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 教程
+  url: https://www.runoob.com/java/java-tutorial.html
+  group: Java 教程
+  module_id: java-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 简介
+  url: https://www.runoob.com/java/java-intro.html
+  group: Java 教程
+  module_id: java-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 开发环境配置
+  url: https://www.runoob.com/java/java-environment-setup.html
+  group: Java 教程
+  module_id: java-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 基础语法
+  url: https://www.runoob.com/java/java-basic-syntax.html
+  group: Java 教程
+  module_id: java-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 注释
+  url: https://www.runoob.com/java/java-comments.html
+  group: Java 教程
+  module_id: java-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 对象和类
+  url: https://www.runoob.com/java/java-object-classes.html
+  group: Java 教程
+  module_id: java-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 基本数据类型
+  url: https://www.runoob.com/java/java-basic-datatypes.html
+  group: Java 教程
+  module_id: java-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 变量类型
+  url: https://www.runoob.com/java/java-variable-types.html
+  group: Java 教程
+  module_id: java-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 变量命名规则
+  url: https://www.runoob.com/java/java-variable-naming-rules.html
+  group: Java 教程
+  module_id: java-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 修饰符
+  url: https://www.runoob.com/java/java-modifier-types.html
+  group: Java 教程
+  module_id: java-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 运算符
+  url: https://www.runoob.com/java/java-operators.html
+  group: Java 教程
+  module_id: java-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 循环结构
+  url: https://www.runoob.com/java/java-loop.html
+  group: Java 教程
+  module_id: java-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 条件语句
+  url: https://www.runoob.com/java/java-if-else-switch.html
+  group: Java 教程
+  module_id: java-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java switch case
+  url: https://www.runoob.com/java/java-switch-case.html
+  group: Java 教程
+  module_id: java-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java Number & Math 类
+  url: https://www.runoob.com/java/java-number.html
+  group: Java 教程
+  module_id: java-core-api
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java Character 类
+  url: https://www.runoob.com/java/java-character.html
+  group: Java 教程
+  module_id: java-core-api
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java String 类
+  url: https://www.runoob.com/java/java-string.html
+  group: Java 教程
+  module_id: java-core-api
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java StringBuffer
+  url: https://www.runoob.com/java/java-stringbuffer.html
+  group: Java 教程
+  module_id: java-core-api
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 数组
+  url: https://www.runoob.com/java/java-array.html
+  group: Java 教程
+  module_id: java-core-api
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 日期时间
+  url: https://www.runoob.com/java/java-date-time.html
+  group: Java 教程
+  module_id: java-core-api
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 正则表达式
+  url: https://www.runoob.com/java/java-regular-expressions.html
+  group: Java 教程
+  module_id: java-core-api
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 方法
+  url: https://www.runoob.com/java/java-methods.html
+  group: Java 教程
+  module_id: java-core-api
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 构造方法
+  url: https://www.runoob.com/java/java-constructor.html
+  group: Java 教程
+  module_id: java-core-api
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java Stream、File、IO
+  url: https://www.runoob.com/java/java-files-io.html
+  group: Java 教程
+  module_id: java-oop-io
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java Scanner 类
+  url: https://www.runoob.com/java/java-scanner-class.html
+  group: Java 教程
+  module_id: java-core-api
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 异常处理
+  url: https://www.runoob.com/java/java-exceptions.html
+  group: Java 教程
+  module_id: java-oop-io
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 继承
+  url: https://www.runoob.com/java/java-inheritance.html
+  group: Java 面向对象
+  module_id: java-oop-io
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java Override/Overload
+  url: https://www.runoob.com/java/java-override-overload.html
+  group: Java 面向对象
+  module_id: java-oop-io
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 多态
+  url: https://www.runoob.com/java/java-polymorphism.html
+  group: Java 面向对象
+  module_id: java-oop-io
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 抽象类
+  url: https://www.runoob.com/java/java-abstraction.html
+  group: Java 面向对象
+  module_id: java-oop-io
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 封装
+  url: https://www.runoob.com/java/java-encapsulation.html
+  group: Java 面向对象
+  module_id: java-oop-io
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 接口
+  url: https://www.runoob.com/java/java-interfaces.html
+  group: Java 面向对象
+  module_id: java-oop-io
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 枚举
+  url: https://www.runoob.com/java/java-enum.html
+  group: Java 面向对象
+  module_id: java-oop-io
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 包(package)
+  url: https://www.runoob.com/java/java-package.html
+  group: Java 面向对象
+  module_id: java-oop-io
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 反射
+  url: https://www.runoob.com/java/java-reflection.html
+  group: Java 面向对象
+  module_id: java-collections-generics
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 数据结构
+  url: https://www.runoob.com/java/java-data-structures.html
+  group: Java 高级教程
+  module_id: java-collections-generics
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 集合框架
+  url: https://www.runoob.com/java/java-collections.html
+  group: Java 高级教程
+  module_id: java-collections-generics
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java ArrayList
+  url: https://www.runoob.com/java/java-arraylist.html
+  group: Java 高级教程
+  module_id: java-collections-generics
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java LinkedList
+  url: https://www.runoob.com/java/java-linkedlist.html
+  group: Java 高级教程
+  module_id: java-collections-generics
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java HashSet
+  url: https://www.runoob.com/java/java-hashset.html
+  group: Java 高级教程
+  module_id: java-collections-generics
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java HashMap
+  url: https://www.runoob.com/java/java-hashmap.html
+  group: Java 高级教程
+  module_id: java-collections-generics
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java Iterator
+  url: https://www.runoob.com/java/java-iterator.html
+  group: Java 高级教程
+  module_id: java-collections-generics
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java Object
+  url: https://www.runoob.com/java/java-object-class.html
+  group: Java 高级教程
+  module_id: java-collections-generics
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java NIO Files
+  url: https://www.runoob.com/java/java-nio-file.html
+  group: Java 高级教程
+  module_id: java-oop-io
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 泛型
+  url: https://www.runoob.com/java/java-generics.html
+  group: Java 高级教程
+  module_id: java-collections-generics
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 序列化
+  url: https://www.runoob.com/java/java-serialization.html
+  group: Java 高级教程
+  module_id: java-network-concurrency
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 网络编程
+  url: https://www.runoob.com/java/java-networking.html
+  group: Java 高级教程
+  module_id: java-network-concurrency
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 发送邮件
+  url: https://www.runoob.com/java/java-sending-email.html
+  group: Java 高级教程
+  module_id: java-network-concurrency
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 多线程编程
+  url: https://www.runoob.com/java/java-multithreading.html
+  group: Java 高级教程
+  module_id: java-network-concurrency
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java Applet 基础
+  url: https://www.runoob.com/java/java-applet-basics.html
+  group: Java 高级教程
+  module_id: java-network-concurrency
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 文档注释
+  url: https://www.runoob.com/java/java-documentation.html
+  group: Java 高级教程
+  module_id: java-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 实例
+  url: https://www.runoob.com/java/java-examples.html
+  group: Java 高级教程
+  module_id: java-capstone
+  content_type: example
+  snapshot_date: '2026-08-23'
+- title: Java 8 新特性
+  url: https://www.runoob.com/java/java8-new-features.html
+  group: Java 高级教程
+  module_id: java-modern-ecosystem
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java MySQL 连接
+  url: https://www.runoob.com/java/java-mysql-connect.html
+  group: Java 高级教程
+  module_id: java-modern-ecosystem
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 9 新特性
+  url: https://www.runoob.com/java/java9-new-features.html
+  group: Java 高级教程
+  module_id: java-modern-ecosystem
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: Java 测验
+  url: https://www.runoob.com/quiz/java-quiz.html
+  group: Java 高级教程
+  module_id: java-capstone
+  content_type: quiz
+  snapshot_date: '2026-08-23'
+- title: Java 常用类库
+  url: https://www.runoob.com/java/java-libs.html
+  group: Java 高级教程
+  module_id: java-modern-ecosystem
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 教程
+  url: https://www.runoob.com/csharp/csharp-tutorial.html
+  group: C# 教程
+  module_id: csharp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 简介
+  url: https://www.runoob.com/csharp/csharp-intro.html
+  group: C# 教程
+  module_id: csharp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 开发环境
+  url: https://www.runoob.com/csharp/csharp-environment-setup.html
+  group: C# 教程
+  module_id: csharp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 程序结构
+  url: https://www.runoob.com/csharp/csharp-program-structure.html
+  group: C# 教程
+  module_id: csharp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 基本语法
+  url: https://www.runoob.com/csharp/csharp-basic-syntax.html
+  group: C# 教程
+  module_id: csharp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 数据类型
+  url: https://www.runoob.com/csharp/csharp-data-types.html
+  group: C# 教程
+  module_id: csharp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 类型转换
+  url: https://www.runoob.com/csharp/csharp-type-conversion.html
+  group: C# 教程
+  module_id: csharp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 变量
+  url: https://www.runoob.com/csharp/csharp-variables.html
+  group: C# 教程
+  module_id: csharp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 变量作用域
+  url: https://www.runoob.com/csharp/csharp-variable-scope.html
+  group: C# 教程
+  module_id: csharp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 常量
+  url: https://www.runoob.com/csharp/csharp-constants.html
+  group: C# 教程
+  module_id: csharp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 运算符
+  url: https://www.runoob.com/csharp/csharp-operators.html
+  group: C# 教程
+  module_id: csharp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 判断
+  url: https://www.runoob.com/csharp/csharp-decision.html
+  group: C# 教程
+  module_id: csharp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 循环
+  url: https://www.runoob.com/csharp/csharp-loops.html
+  group: C# 教程
+  module_id: csharp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 封装
+  url: https://www.runoob.com/csharp/csharp-encapsulation.html
+  group: C# 教程
+  module_id: csharp-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 方法
+  url: https://www.runoob.com/csharp/csharp-methods.html
+  group: C# 教程
+  module_id: csharp-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 可空类型
+  url: https://www.runoob.com/csharp/csharp-nullable.html
+  group: C# 教程
+  module_id: csharp-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 数组（Array）
+  url: https://www.runoob.com/csharp/csharp-array.html
+  group: C# 教程
+  module_id: csharp-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 字符串（String）
+  url: https://www.runoob.com/csharp/csharp-string.html
+  group: C# 教程
+  module_id: csharp-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 结构体（Struct）
+  url: https://www.runoob.com/csharp/csharp-struct.html
+  group: C# 教程
+  module_id: csharp-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 枚举（Enum）
+  url: https://www.runoob.com/csharp/csharp-enum.html
+  group: C# 教程
+  module_id: csharp-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 类（Class）
+  url: https://www.runoob.com/csharp/csharp-class.html
+  group: C# 教程
+  module_id: csharp-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 继承
+  url: https://www.runoob.com/csharp/csharp-inheritance.html
+  group: C# 教程
+  module_id: csharp-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 多态性
+  url: https://www.runoob.com/csharp/csharp-polymorphism.html
+  group: C# 教程
+  module_id: csharp-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 运算符重载
+  url: https://www.runoob.com/csharp/csharp-operator-overloading.html
+  group: C# 教程
+  module_id: csharp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 接口（Interface）
+  url: https://www.runoob.com/csharp/csharp-interface.html
+  group: C# 教程
+  module_id: csharp-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 命名空间（Namespace）
+  url: https://www.runoob.com/csharp/csharp-namespace.html
+  group: C# 教程
+  module_id: csharp-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 预处理器指令
+  url: https://www.runoob.com/csharp/csharp-preprocessor-directives.html
+  group: C# 教程
+  module_id: csharp-io-metadata
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 正则表达式
+  url: https://www.runoob.com/csharp/csharp-regular-expressions.html
+  group: C# 教程
+  module_id: csharp-io-metadata
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 异常处理
+  url: https://www.runoob.com/csharp/csharp-exception-handling.html
+  group: C# 教程
+  module_id: csharp-io-metadata
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 文件的输入与输出
+  url: https://www.runoob.com/csharp/csharp-file-io.html
+  group: C# 教程
+  module_id: csharp-io-metadata
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 特性（Attribute）
+  url: https://www.runoob.com/csharp/csharp-attribute.html
+  group: C# 高级教程
+  module_id: csharp-io-metadata
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 反射（Reflection）
+  url: https://www.runoob.com/csharp/csharp-reflection.html
+  group: C# 高级教程
+  module_id: csharp-io-metadata
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 属性（Property）
+  url: https://www.runoob.com/csharp/csharp-property.html
+  group: C# 高级教程
+  module_id: csharp-language-features
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 索引器（Indexer）
+  url: https://www.runoob.com/csharp/csharp-indexer.html
+  group: C# 高级教程
+  module_id: csharp-language-features
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 委托（Delegate）
+  url: https://www.runoob.com/csharp/csharp-delegate.html
+  group: C# 高级教程
+  module_id: csharp-language-features
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 事件（Event）
+  url: https://www.runoob.com/csharp/csharp-event.html
+  group: C# 高级教程
+  module_id: csharp-language-features
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 集合（Collection）
+  url: https://www.runoob.com/csharp/csharp-collection.html
+  group: C# 高级教程
+  module_id: csharp-language-features
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 泛型（Generic）
+  url: https://www.runoob.com/csharp/csharp-generic.html
+  group: C# 高级教程
+  module_id: csharp-language-features
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 匿名方法
+  url: https://www.runoob.com/csharp/csharp-anonymous-methods.html
+  group: C# 高级教程
+  module_id: csharp-language-features
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 不安全代码
+  url: https://www.runoob.com/csharp/csharp-unsafe-codes.html
+  group: C# 高级教程
+  module_id: csharp-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 多线程
+  url: https://www.runoob.com/csharp/csharp-multithreading.html
+  group: C# 高级教程
+  module_id: csharp-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C# 语言测验
+  url: https://www.runoob.com/csharp/csharp-quiz.html
+  group: C# 高级教程
+  module_id: csharp-capstone
+  content_type: quiz
+  snapshot_date: '2026-08-23'
+- title: C++ 教程
+  url: https://www.runoob.com/cplusplus/cpp-tutorial.html
+  group: C++ 教程
+  module_id: cpp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 简介
+  url: https://www.runoob.com/cplusplus/cpp-intro.html
+  group: C++ 教程
+  module_id: cpp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 环境设置
+  url: https://www.runoob.com/cplusplus/cpp-environment-setup.html
+  group: C++ 教程
+  module_id: cpp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 基本语法
+  url: https://www.runoob.com/cplusplus/cpp-basic-syntax.html
+  group: C++ 教程
+  module_id: cpp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 注释
+  url: https://www.runoob.com/cplusplus/cpp-comments.html
+  group: C++ 教程
+  module_id: cpp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 数据类型
+  url: https://www.runoob.com/cplusplus/cpp-data-types.html
+  group: C++ 教程
+  module_id: cpp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 变量类型
+  url: https://www.runoob.com/cplusplus/cpp-variable-types.html
+  group: C++ 教程
+  module_id: cpp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 变量作用域
+  url: https://www.runoob.com/cplusplus/cpp-variable-scope.html
+  group: C++ 教程
+  module_id: cpp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 常量
+  url: https://www.runoob.com/cplusplus/cpp-constants-literals.html
+  group: C++ 教程
+  module_id: cpp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 修饰符类型
+  url: https://www.runoob.com/cplusplus/cpp-modifier-types.html
+  group: C++ 教程
+  module_id: cpp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 存储类
+  url: https://www.runoob.com/cplusplus/cpp-storage-classes.html
+  group: C++ 教程
+  module_id: cpp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 运算符
+  url: https://www.runoob.com/cplusplus/cpp-operators.html
+  group: C++ 教程
+  module_id: cpp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 循环
+  url: https://www.runoob.com/cplusplus/cpp-loops.html
+  group: C++ 教程
+  module_id: cpp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 判断
+  url: https://www.runoob.com/cplusplus/cpp-decision.html
+  group: C++ 教程
+  module_id: cpp-foundations
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 函数
+  url: https://www.runoob.com/cplusplus/cpp-functions.html
+  group: C++ 教程
+  module_id: cpp-core-memory
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 数字
+  url: https://www.runoob.com/cplusplus/cpp-numbers.html
+  group: C++ 教程
+  module_id: cpp-core-memory
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 数组
+  url: https://www.runoob.com/cplusplus/cpp-arrays.html
+  group: C++ 教程
+  module_id: cpp-core-memory
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 字符串
+  url: https://www.runoob.com/cplusplus/cpp-strings.html
+  group: C++ 教程
+  module_id: cpp-core-memory
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 指针
+  url: https://www.runoob.com/cplusplus/cpp-pointers.html
+  group: C++ 教程
+  module_id: cpp-core-memory
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 引用
+  url: https://www.runoob.com/cplusplus/cpp-references.html
+  group: C++ 教程
+  module_id: cpp-core-memory
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 日期 & 时间
+  url: https://www.runoob.com/cplusplus/cpp-date-time.html
+  group: C++ 教程
+  module_id: cpp-core-memory
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 基本的输入输出
+  url: https://www.runoob.com/cplusplus/cpp-basic-input-output.html
+  group: C++ 教程
+  module_id: cpp-core-memory
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 结构体(struct)
+  url: https://www.runoob.com/cplusplus/cpp-struct.html
+  group: C++ 教程
+  module_id: cpp-core-memory
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ vector 容器
+  url: https://www.runoob.com/cplusplus/cpp-vector.html
+  group: C++ 教程
+  module_id: cpp-core-memory
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 数据结构
+  url: https://www.runoob.com/cplusplus/cpp-data-structures.html
+  group: C++ 教程
+  module_id: cpp-core-memory
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 类 & 对象
+  url: https://www.runoob.com/cplusplus/cpp-classes-objects.html
+  group: C++ 面向对象
+  module_id: cpp-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 继承
+  url: https://www.runoob.com/cplusplus/cpp-inheritance.html
+  group: C++ 面向对象
+  module_id: cpp-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 重载运算符和重载函数
+  url: https://www.runoob.com/cplusplus/cpp-overloading.html
+  group: C++ 面向对象
+  module_id: cpp-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 多态
+  url: https://www.runoob.com/cplusplus/cpp-polymorphism.html
+  group: C++ 面向对象
+  module_id: cpp-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 数据抽象
+  url: https://www.runoob.com/cplusplus/cpp-data-abstraction.html
+  group: C++ 面向对象
+  module_id: cpp-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 数据封装
+  url: https://www.runoob.com/cplusplus/cpp-data-encapsulation.html
+  group: C++ 面向对象
+  module_id: cpp-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 接口（抽象类）
+  url: https://www.runoob.com/cplusplus/cpp-interfaces.html
+  group: C++ 面向对象
+  module_id: cpp-oop
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 文件和流
+  url: https://www.runoob.com/cplusplus/cpp-files-streams.html
+  group: C++ 高级教程
+  module_id: cpp-advanced
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 异常处理
+  url: https://www.runoob.com/cplusplus/cpp-exceptions-handling.html
+  group: C++ 高级教程
+  module_id: cpp-advanced
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 动态内存
+  url: https://www.runoob.com/cplusplus/cpp-dynamic-memory.html
+  group: C++ 高级教程
+  module_id: cpp-advanced
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 命名空间
+  url: https://www.runoob.com/cplusplus/cpp-namespaces.html
+  group: C++ 高级教程
+  module_id: cpp-advanced
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 模板
+  url: https://www.runoob.com/cplusplus/cpp-templates.html
+  group: C++ 高级教程
+  module_id: cpp-advanced
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 预处理器
+  url: https://www.runoob.com/cplusplus/cpp-preprocessor.html
+  group: C++ 高级教程
+  module_id: cpp-advanced
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 信号处理
+  url: https://www.runoob.com/cplusplus/cpp-signal-handling.html
+  group: C++ 高级教程
+  module_id: cpp-advanced
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 多线程
+  url: https://www.runoob.com/cplusplus/cpp-multithreading.html
+  group: C++ 高级教程
+  module_id: cpp-advanced
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ Web 编程
+  url: https://www.runoob.com/cplusplus/cpp-web-programming.html
+  group: C++ 高级教程
+  module_id: cpp-advanced
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ STL 教程
+  url: https://www.runoob.com/cplusplus/cpp-stl-tutorial.html
+  group: C++ 资源库
+  module_id: cpp-stl-containers
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 导入标准库
+  url: https://www.runoob.com/cplusplus/cppo-import-header-file.html
+  group: C++ 资源库
+  module_id: cpp-stl-containers
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 标准库
+  url: https://www.runoob.com/cplusplus/cpp-standard-library.html
+  group: C++ 资源库
+  module_id: cpp-stl-containers
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ 有用的资源
+  url: https://www.runoob.com/cplusplus/cpp-useful-resources.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: resource
+  snapshot_date: '2026-08-23'
+- title: C++ 实例
+  url: https://www.runoob.com/cplusplus/cpp-examples.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: example
+  snapshot_date: '2026-08-23'
+- title: C++ 测验
+  url: https://www.runoob.com/cplusplus/cpp-quiz.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: quiz
+  snapshot_date: '2026-08-23'
+- title: C++ <iostream>
+  url: https://www.runoob.com/cplusplus/cpp-libs-iostream.html
+  group: C++ 资源库
+  module_id: cpp-stl-containers
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <fstream>
+  url: https://www.runoob.com/cplusplus/cpp-libs-fstream.html
+  group: C++ 资源库
+  module_id: cpp-stl-containers
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <sstream>
+  url: https://www.runoob.com/cplusplus/cpp-libs-sstream.html
+  group: C++ 资源库
+  module_id: cpp-stl-containers
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <iomanip>
+  url: https://www.runoob.com/cplusplus/cpp-libs-iomanip.html
+  group: C++ 资源库
+  module_id: cpp-stl-containers
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <array>
+  url: https://www.runoob.com/cplusplus/cpp-libs-array.html
+  group: C++ 资源库
+  module_id: cpp-stl-containers
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <vector>
+  url: https://www.runoob.com/cplusplus/cpp-libs-vector.html
+  group: C++ 资源库
+  module_id: cpp-stl-containers
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <list>
+  url: https://www.runoob.com/cplusplus/cpp-libs-list.html
+  group: C++ 资源库
+  module_id: cpp-stl-containers
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <forward_list>
+  url: https://www.runoob.com/cplusplus/cpp-libs-forward_list.html
+  group: C++ 资源库
+  module_id: cpp-stl-containers
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <deque>
+  url: https://www.runoob.com/cplusplus/cpp-libs-deque.html
+  group: C++ 资源库
+  module_id: cpp-stl-containers
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <stack>
+  url: https://www.runoob.com/cplusplus/cpp-libs-stack.html
+  group: C++ 资源库
+  module_id: cpp-stl-containers
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <queue>
+  url: https://www.runoob.com/cplusplus/cpp-libs-queue.html
+  group: C++ 资源库
+  module_id: cpp-stl-containers
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <priority_queue>
+  url: https://www.runoob.com/cplusplus/cpp-libs-priority_queue.html
+  group: C++ 资源库
+  module_id: cpp-stl-containers
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <set>
+  url: https://www.runoob.com/cplusplus/cpp-libs-set.html
+  group: C++ 资源库
+  module_id: cpp-stl-containers
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <unordered_set>
+  url: https://www.runoob.com/cplusplus/cpp-libs-unordered_set.html
+  group: C++ 资源库
+  module_id: cpp-stl-containers
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <map>
+  url: https://www.runoob.com/cplusplus/cpp-libs-map.html
+  group: C++ 资源库
+  module_id: cpp-stl-containers
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <unordered_map>
+  url: https://www.runoob.com/cplusplus/cpp-libs-unordered_map.html
+  group: C++ 资源库
+  module_id: cpp-stl-containers
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <bitset>
+  url: https://www.runoob.com/cplusplus/cpp-libs-bitset.html
+  group: C++ 资源库
+  module_id: cpp-stl-containers
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <algorithm>
+  url: https://www.runoob.com/cplusplus/cpp-libs-algorithm.html
+  group: C++ 资源库
+  module_id: cpp-algorithms-concurrency
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <iterator>
+  url: https://www.runoob.com/cplusplus/cpp-libs-iterator.html
+  group: C++ 资源库
+  module_id: cpp-algorithms-concurrency
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <functional>
+  url: https://www.runoob.com/cplusplus/cpp-libs-functional.html
+  group: C++ 资源库
+  module_id: cpp-algorithms-concurrency
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <numeric>
+  url: https://www.runoob.com/cplusplus/cpp-libs-numeric.html
+  group: C++ 资源库
+  module_id: cpp-algorithms-concurrency
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <complex>
+  url: https://www.runoob.com/cplusplus/cpp-libs-complex.html
+  group: C++ 资源库
+  module_id: cpp-algorithms-concurrency
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <valarray>
+  url: https://www.runoob.com/cplusplus/cpp-libs-valarray.html
+  group: C++ 资源库
+  module_id: cpp-algorithms-concurrency
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <cmath>
+  url: https://www.runoob.com/cplusplus/cpp-libs-cmath.html
+  group: C++ 资源库
+  module_id: cpp-algorithms-concurrency
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <string>
+  url: https://www.runoob.com/cplusplus/cpp-libs-string.html
+  group: C++ 资源库
+  module_id: cpp-algorithms-concurrency
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <regex>
+  url: https://www.runoob.com/cplusplus/cpp-libs-regex.html
+  group: C++ 资源库
+  module_id: cpp-algorithms-concurrency
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <ctime>
+  url: https://www.runoob.com/cplusplus/cpp-libs-ctime.html
+  group: C++ 资源库
+  module_id: cpp-algorithms-concurrency
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <chrono>
+  url: https://www.runoob.com/cplusplus/cpp-libs-chrono.html
+  group: C++ 资源库
+  module_id: cpp-algorithms-concurrency
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <thread>
+  url: https://www.runoob.com/cplusplus/cpp-libs-thread.html
+  group: C++ 资源库
+  module_id: cpp-algorithms-concurrency
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <mutex>
+  url: https://www.runoob.com/cplusplus/cpp-libs-mutex.html
+  group: C++ 资源库
+  module_id: cpp-algorithms-concurrency
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <condition_variable>
+  url: https://www.runoob.com/cplusplus/cpp-libs-condition_variable.html
+  group: C++ 资源库
+  module_id: cpp-algorithms-concurrency
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <future>
+  url: https://www.runoob.com/cplusplus/cpp-libs-future.html
+  group: C++ 资源库
+  module_id: cpp-algorithms-concurrency
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <atomic>
+  url: https://www.runoob.com/cplusplus/cpp-libs-atomic.html
+  group: C++ 资源库
+  module_id: cpp-algorithms-concurrency
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <type_traits>
+  url: https://www.runoob.com/cplusplus/cpp-libs-type_traits.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <typeinfo>
+  url: https://www.runoob.com/cplusplus/cpp-libs-typeinfo.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <exception>
+  url: https://www.runoob.com/cplusplus/cpp-libs-exception.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <stdexcept>
+  url: https://www.runoob.com/cplusplus/cpp-libs-stdexcept.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <cstdio>
+  url: https://www.runoob.com/cplusplus/cpp-libs-cstdio.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <cstdint>
+  url: https://www.runoob.com/cplusplus/cpp-libs-cstdint.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <memory>
+  url: https://www.runoob.com/cplusplus/cpp-libs-memory.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <new>
+  url: https://www.runoob.com/cplusplus/cpp-libs-new.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <utility>
+  url: https://www.runoob.com/cplusplus/cpp-libs-utility.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <random>
+  url: https://www.runoob.com/cplusplus/cpp-libs-random.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <locale>
+  url: https://www.runoob.com/cplusplus/cpp-libs-locale.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <codecvt>
+  url: https://www.runoob.com/cplusplus/cpp-libs-codecvt.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <cassert>
+  url: https://www.runoob.com/cplusplus/cpp-libs-cassert.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <cwchar>
+  url: https://www.runoob.com/cplusplus/cpp-libs-cwchar.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <climits>
+  url: https://www.runoob.com/cplusplus/cpp-libs-climits.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <cfloat>
+  url: https://www.runoob.com/cplusplus/cpp-libs-cfloat.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <cstdlib>
+  url: https://www.runoob.com/cplusplus/cpp-libs-cstdlib.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ <numbers>
+  url: https://www.runoob.com/cplusplus/cpp-libs-numbers.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'
+- title: C++ OpenCV
+  url: https://www.runoob.com/cplusplus/cpp-opencv.html
+  group: C++ 资源库
+  module_id: cpp-capstone
+  content_type: lesson
+  snapshot_date: '2026-08-23'

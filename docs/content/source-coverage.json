@@ -1,0 +1,21 @@
+{
+  "snapshot_date": "2026-08-23",
+  "courses": {
+    "python": {
+      "expected": 84,
+      "assigned": 84
+    },
+    "java": {
+      "expected": 57,
+      "assigned": 57
+    },
+    "csharp": {
+      "expected": 42,
+      "assigned": 42
+    },
+    "cpp": {
+      "expected": 99,
+      "assigned": 99
+    }
+  }
+}

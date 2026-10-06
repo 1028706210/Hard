@@ -1,0 +1,110 @@
+{
+  "lesson_id": "python-capstone-openai",
+  "questions": [
+    {
+      "id": "python-capstone-openai-k01",
+      "type": "knowledge",
+      "prompt": "本课的 AI 响应测试使用什么数据？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "真实在线请求"
+        },
+        {
+          "id": "b",
+          "text": "固定本地 fixture"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-capstone-openai-k02",
+      "type": "knowledge",
+      "prompt": "真实密钥应出现在课程代码题中吗？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "应直接打印"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "不应出现"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-capstone-openai-k03",
+      "type": "knowledge",
+      "prompt": "把请求层与解析层分开的主要好处是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "可用固定数据独立测试解析"
+        },
+        {
+          "id": "b",
+          "text": "可以绕过权限"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-capstone-openai-c01",
+      "type": "code",
+      "prompt": "实现 extract_text(payload)：从本地 payload 的 choices 第一项取 content；输出 fixture 的内容。",
+      "starter_code": "def extract_text(payload):\n    # 只解析已给字典，不调用网络\n    pass\n\nfixture = {'choices': [{'message': {'content': 'Local result'}}]}\nprint(extract_text(fixture))",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-capstone-openai-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    def extract_text(payload):\n        return payload['choices'][0]['message']['content']\n\n    fixture = {'choices': [{'message': {'content': 'Local result'}}]}\n    print(extract_text(fixture))\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "Local result\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-capstone-openai-c01\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    }
+  ]
+}

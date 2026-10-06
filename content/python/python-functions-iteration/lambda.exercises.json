@@ -1,0 +1,110 @@
+{
+  "lesson_id": "python-functions-iteration-lambda",
+  "questions": [
+    {
+      "id": "python-functions-iteration-lambda-k01",
+      "type": "knowledge",
+      "prompt": "lambda 适合什么逻辑？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "多页流程"
+        },
+        {
+          "id": "b",
+          "text": "单个简单表达式"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-functions-iteration-lambda-k02",
+      "type": "knowledge",
+      "prompt": "复杂函数优先用什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "全局变量"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "def"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-functions-iteration-lambda-k03",
+      "type": "knowledge",
+      "prompt": "lambda 可以作为回调吗？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "可以"
+        },
+        {
+          "id": "b",
+          "text": "不可以"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-functions-iteration-lambda-c01",
+      "type": "code",
+      "prompt": "定义 double lambda 并输出 double(3)。",
+      "starter_code": "# 定义 double",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-functions-iteration-lambda-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    double = lambda value: value * 2\n    print(double(3))\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "6\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-functions-iteration-lambda-c01\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    }
+  ]
+}

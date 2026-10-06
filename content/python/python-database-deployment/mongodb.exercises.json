@@ -1,0 +1,146 @@
+{
+  "lesson_id": "python-database-deployment-mongodb",
+  "questions": [
+    {
+      "id": "python-database-deployment-mongodb-k01",
+      "type": "knowledge",
+      "prompt": "为什么要限制可过滤字段？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "让所有字段公开"
+        },
+        {
+          "id": "b",
+          "text": "控制查询边界"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-database-deployment-mongodb-k02",
+      "type": "knowledge",
+      "prompt": "MongoDB 文档可用哪种 Python 结构表示？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "套接字"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "字典"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-database-deployment-mongodb-k03",
+      "type": "knowledge",
+      "prompt": "未知过滤字段应如何处理？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "拒绝或忽略并说明"
+        },
+        {
+          "id": "b",
+          "text": "直接执行"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-database-deployment-mongodb-c01",
+      "type": "code",
+      "prompt": "实现 safe_filter(filters)：只有 name 和 level 都是允许键时返回 True，否则返回 False。打印 safe_filter({'level': 2}).",
+      "starter_code": "def safe_filter(filters):\n    # 检查过滤键白名单\n    pass\n\nprint(safe_filter({'level': 2}))",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-database-deployment-mongodb-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    def safe_filter(filters):\n        return set(filters) <= {'name', 'level'}\n\n    print(safe_filter({'level': 2}))\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "True\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-database-deployment-mongodb-c01\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "python-database-deployment-mongodb-challenge",
+      "type": "challenge",
+      "prompt": "实现 select_names(records, level)：从字典列表中按 level 筛选，返回姓名列表；打印给定数据中 level 为 2 的结果。",
+      "starter_code": "def select_names(records, level):\n    # 只读取内存记录\n    pass\n\nrecords = [{'name': 'Ada', 'level': 2}, {'name': 'Lin', 'level': 1}]\nprint(select_names(records, 2))",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-database-deployment-mongodb-challenge')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    def select_names(records, level):\n        return [record['name'] for record in records if record.get('level') == level]\n\n    records = [{'name': 'Ada', 'level': 2}, {'name': 'Lin', 'level': 1}]\n    print(select_names(records, 2))\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "['Ada']\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-database-deployment-mongodb-challenge\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    }
+  ]
+}

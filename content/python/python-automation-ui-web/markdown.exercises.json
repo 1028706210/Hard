@@ -1,0 +1,110 @@
+{
+  "lesson_id": "python-automation-ui-web-markdown",
+  "questions": [
+    {
+      "id": "python-automation-ui-web-markdown-k01",
+      "type": "knowledge",
+      "prompt": "Markdown 转成网页前仍需做什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "净化不可信内容"
+        },
+        {
+          "id": "b",
+          "text": "信任所有 HTML"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-automation-ui-web-markdown-k02",
+      "type": "knowledge",
+      "prompt": "# 后跟空格通常表示什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "二进制数据"
+        },
+        {
+          "id": "b",
+          "text": "标题"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-automation-ui-web-markdown-k03",
+      "type": "knowledge",
+      "prompt": "链接目标需要怎样处理？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "直接执行"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "单独审查"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-automation-ui-web-markdown-c01",
+      "type": "code",
+      "prompt": "检查 '# 今日计划' 是否为一级标题并输出 True。",
+      "starter_code": "line = '# 今日计划'\n# 输出判断",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-automation-ui-web-markdown-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    line = '# 今日计划'\n    print(line.startswith('# '))\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "True\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-automation-ui-web-markdown-c01\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    }
+  ]
+}

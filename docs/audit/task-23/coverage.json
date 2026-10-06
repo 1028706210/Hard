@@ -1,0 +1,91 @@
+{
+  "language": "python",
+  "module": "python-core-types",
+  "expected": 7,
+  "implemented": 7,
+  "validated": 7,
+  "reference_solutions_passed": 7,
+  "question_counts": {
+    "knowledge": 21,
+    "code": 7,
+    "challenge": 1
+  },
+  "test_case_counts": {
+    "visible": 8,
+    "hidden": 16,
+    "hidden_distinct_from_visible": 16
+  },
+  "source_section_mapping": [
+    {
+      "source_id": "python3-basic-syntax",
+      "lesson_id": "python-core-types-basic-syntax",
+      "source_primary_topic": "Python 基础语法",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-data-type",
+      "lesson_id": "python-core-types-data-types",
+      "source_primary_topic": "Python 基本数据类型",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-type-conversion",
+      "lesson_id": "python-core-types-conversion",
+      "source_primary_topic": "Python 数据类型转换",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-comment",
+      "lesson_id": "python-core-types-comments",
+      "source_primary_topic": "Python 注释",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-basic-operators",
+      "lesson_id": "python-core-types-operators",
+      "source_primary_topic": "Python 运算符",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-number",
+      "lesson_id": "python-core-types-numbers",
+      "source_primary_topic": "Python 数字",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-string",
+      "lesson_id": "python-core-types-strings",
+      "source_primary_topic": "Python 字符串",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    }
+  ],
+  "errors": []
+}

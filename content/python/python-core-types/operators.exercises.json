@@ -1,0 +1,110 @@
+{
+  "lesson_id": "python-core-types-operators",
+  "questions": [
+    {
+      "id": "python-core-types-operators-k01",
+      "type": "knowledge",
+      "prompt": "== 用来做什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "比较相等"
+        },
+        {
+          "id": "b",
+          "text": "赋值"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-core-types-operators-k02",
+      "type": "knowledge",
+      "prompt": "10 - 3 的结果是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "13"
+        },
+        {
+          "id": "b",
+          "text": "7"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-core-types-operators-k03",
+      "type": "knowledge",
+      "prompt": "比较运算通常产生什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "列表"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "布尔值"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-core-types-operators-c01",
+      "type": "code",
+      "prompt": "计算 9 是否大于 4，并输出结果。",
+      "starter_code": "# 输出比较结果",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-core-types-operators-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    print(9 > 4)\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "True\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-core-types-operators-c01\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    }
+  ]
+}

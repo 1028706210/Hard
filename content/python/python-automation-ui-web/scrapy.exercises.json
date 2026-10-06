@@ -1,0 +1,110 @@
+{
+  "lesson_id": "python-automation-ui-web-scrapy",
+  "questions": [
+    {
+      "id": "python-automation-ui-web-scrapy-k01",
+      "type": "knowledge",
+      "prompt": "允许域名列表限制什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "请求边界"
+        },
+        {
+          "id": "b",
+          "text": "Python 变量名"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-automation-ui-web-scrapy-k02",
+      "type": "knowledge",
+      "prompt": "URL 去重能避免什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "字段校验"
+        },
+        {
+          "id": "b",
+          "text": "重复请求"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-automation-ui-web-scrapy-k03",
+      "type": "knowledge",
+      "prompt": "本课会运行 Scrapy 吗？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "会访问公网"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "不会，只验证计划"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-automation-ui-web-scrapy-c01",
+      "type": "code",
+      "prompt": "用本地 URL fixture 去重并校验允许域名；外域 URL 拒绝。",
+      "starter_code": "import sys\n# 仅使用本地 fixture 验证请求计划\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\nfrom urllib.parse import urlsplit\nurls = [line.strip() for line in sys.stdin.read().splitlines() if line.strip()]\nif urls == ['__invalid__']:\n    urls = ['https://outside.test/x']\nfor url in urls:\n    if urlsplit(url).netloc != 'example.test':\n        raise ValueError('domain not allowed')\nprint(len(set(urls)))\n",
+        "hidden_tests": [
+          "边界输入必须返回主题定义的结果。",
+          "无效输入必须进入可预期的失败分支。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "https://example.test/a\nhttps://example.test/a\nhttps://example.test/b\n",
+            "stdout": "2\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

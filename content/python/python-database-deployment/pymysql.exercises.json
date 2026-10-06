@@ -1,0 +1,110 @@
+{
+  "lesson_id": "python-database-deployment-pymysql",
+  "questions": [
+    {
+      "id": "python-database-deployment-pymysql-k01",
+      "type": "knowledge",
+      "prompt": "写入操作成功后通常选择什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "丢弃所有错误"
+        },
+        {
+          "id": "b",
+          "text": "提交事务"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-database-deployment-pymysql-k02",
+      "type": "knowledge",
+      "prompt": "写入操作异常时应优先考虑什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "继续提交未知状态"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "回滚并报告错误"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-database-deployment-pymysql-k03",
+      "type": "knowledge",
+      "prompt": "连接密码应如何处理？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "与代码分离"
+        },
+        {
+          "id": "b",
+          "text": "打印到调试日志"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-database-deployment-pymysql-c01",
+      "type": "code",
+      "prompt": "实现 transaction_action(ok)：真值返回 commit，假值返回 rollback。依次打印 True 和 False 的结果。",
+      "starter_code": "def transaction_action(ok):\n    # 返回事务决策\n    pass\n\nprint(transaction_action(True))\nprint(transaction_action(False))",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-database-deployment-pymysql-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    def transaction_action(ok):\n        return 'commit' if ok else 'rollback'\n\n    print(transaction_action(True))\n    print(transaction_action(False))\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "commit\nrollback\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-database-deployment-pymysql-c01\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    }
+  ]
+}

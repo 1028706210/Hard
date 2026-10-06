@@ -1,0 +1,7 @@
+# Task 16 visual check
+
+- `desktop-1440x1024.png` is a viewport capture with verified `1440×1024` pixels. The actual local API state shows Python as “学习中” with 40% mastery; Java、C#、C++ show the muted “尚无课程内容” state. The center action uses the public title “Hello World”. Automated bounds checks confirm all four language nodes, the center action and the learning metrics are inside this viewport with no horizontal overflow.
+- `mobile-390x844.png` is a viewport capture with verified `390×844` pixels. It uses the vertical route and repeats the same API-derived status text beside each marker; unavailable routes are not styled as mastered. The automated check confirms no horizontal page overflow.
+- The pair was regenerated from the current local stack by the explicit visual-audit capture command. Ordinary Web checks write only to `.tool-cache`, so they do not overwrite these tracked audit images.
+- Comparison with `docs/design/hard-homepage-visual-target.png` confirms the retained dark stellar field, concentric orbital hierarchy, centered continuing-learning action and edge learning indicators. The target remains more decorative (denser stars, connectors and peripheral gauges); those parts are not claimed as matched because the current API does not provide equivalent live data.
+- Product Design browser inspection is unavailable in this environment because its browser bridge cannot initialize. The stored screenshots above were inspected directly; this record does not claim a browser-driven Product Design audit.

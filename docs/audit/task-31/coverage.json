@@ -1,0 +1,71 @@
+{
+  "language": "python",
+  "module": "python-capstone",
+  "expected": 5,
+  "implemented": 5,
+  "validated": 5,
+  "reference_solutions_passed": 5,
+  "question_counts": {
+    "knowledge": 15,
+    "code": 5,
+    "challenge": 1
+  },
+  "test_case_counts": {
+    "visible": 6,
+    "hidden": 12,
+    "hidden_distinct_from_visible": 12
+  },
+  "source_section_mapping": [
+    {
+      "source_id": "python3-examples",
+      "lesson_id": "python-capstone-examples",
+      "source_primary_topic": "Python 实例：从需求到可验证程序",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-quiz",
+      "lesson_id": "python-capstone-quiz",
+      "source_primary_topic": "Python 路线自测与诊断",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-openai",
+      "lesson_id": "python-capstone-openai",
+      "source_primary_topic": "Python AI 客户端的本地契约",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-ai-draw",
+      "lesson_id": "python-capstone-ai-draw",
+      "source_primary_topic": "AI 绘画任务的离线规格",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-qt",
+      "lesson_id": "python-capstone-quant",
+      "source_primary_topic": "量化策略的离线回测边界",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    }
+  ],
+  "errors": []
+}

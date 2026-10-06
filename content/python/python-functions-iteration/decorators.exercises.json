@@ -1,0 +1,110 @@
+{
+  "lesson_id": "python-functions-iteration-decorators",
+  "questions": [
+    {
+      "id": "python-functions-iteration-decorators-k01",
+      "type": "knowledge",
+      "prompt": "装饰器接收什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "端口"
+        },
+        {
+          "id": "b",
+          "text": "函数"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-functions-iteration-decorators-k02",
+      "type": "knowledge",
+      "prompt": "包装函数应保留什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "隐藏答案"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "原行为的约定"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-functions-iteration-decorators-k03",
+      "type": "knowledge",
+      "prompt": "装饰器适合什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "横切行为"
+        },
+        {
+          "id": "b",
+          "text": "修改来源网页"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-functions-iteration-decorators-c01",
+      "type": "code",
+      "prompt": "定义保留函数元数据的 announce 装饰器，为输入名称添加 run 前缀。",
+      "starter_code": "# 定义 announce 装饰器并调用 task\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import functools\nimport sys\ndef announce(func):\n    @functools.wraps(func)\n    def wrapped(name):\n        return 'run ' + func(name)\n    return wrapped\n@announce\ndef task(name):\n    return name\nname = sys.stdin.read().strip()\nif name == '__invalid__' or not name:\n    raise ValueError('task name required')\nprint(task(name))\n",
+        "hidden_tests": [
+          "边界输入必须返回主题定义的结果。",
+          "无效输入必须进入可预期的失败分支。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "task\n",
+            "stdout": "run task\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "review\n",
+            "stdout": "run review\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

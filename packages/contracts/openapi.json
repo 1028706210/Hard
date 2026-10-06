@@ -1,0 +1,2715 @@
+{
+  "components": {
+    "schemas": {
+      "AttemptRequest": {
+        "additionalProperties": true,
+        "properties": {
+          "answer": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Answer"
+          },
+          "exercise_id": {
+            "title": "Exercise Id",
+            "type": "string"
+          },
+          "hint_level": {
+            "enum": [
+              "none",
+              "light",
+              "strong",
+              "revealed"
+            ],
+            "title": "Hint Level",
+            "type": "string"
+          },
+          "lesson_id": {
+            "title": "Lesson Id",
+            "type": "string"
+          },
+          "runner_job_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Runner Job Id"
+          }
+        },
+        "required": [
+          "lesson_id",
+          "exercise_id",
+          "hint_level"
+        ],
+        "title": "AttemptRequest",
+        "type": "object"
+      },
+      "AttemptResponse": {
+        "properties": {
+          "attempt_id": {
+            "title": "Attempt Id",
+            "type": "string"
+          },
+          "category_scores": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "title": "Category Scores",
+            "type": "object"
+          },
+          "experience_candidate": {
+            "title": "Experience Candidate",
+            "type": "boolean"
+          },
+          "mastery": {
+            "title": "Mastery",
+            "type": "string"
+          },
+          "newly_unlocked": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Newly Unlocked",
+            "type": "array"
+          },
+          "passed": {
+            "title": "Passed",
+            "type": "boolean"
+          },
+          "question_score": {
+            "title": "Question Score",
+            "type": "number"
+          },
+          "review_status": {
+            "title": "Review Status",
+            "type": "string"
+          },
+          "total_score": {
+            "title": "Total Score",
+            "type": "number"
+          }
+        },
+        "required": [
+          "attempt_id",
+          "question_score",
+          "category_scores",
+          "total_score",
+          "passed",
+          "mastery",
+          "newly_unlocked",
+          "experience_candidate",
+          "review_status"
+        ],
+        "title": "AttemptResponse",
+        "type": "object"
+      },
+      "CatalogCourseResponse": {
+        "properties": {
+          "fixture_only": {
+            "title": "Fixture Only",
+            "type": "boolean"
+          },
+          "language": {
+            "title": "Language",
+            "type": "string"
+          },
+          "modules": {
+            "items": {
+              "$ref": "#/components/schemas/CatalogModuleResponse"
+            },
+            "title": "Modules",
+            "type": "array"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "language",
+          "title",
+          "fixture_only",
+          "modules"
+        ],
+        "title": "CatalogCourseResponse",
+        "type": "object"
+      },
+      "CatalogLessonResponse": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title"
+        ],
+        "title": "CatalogLessonResponse",
+        "type": "object"
+      },
+      "CatalogModuleResponse": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "lessons": {
+            "items": {
+              "$ref": "#/components/schemas/CatalogLessonResponse"
+            },
+            "title": "Lessons",
+            "type": "array"
+          },
+          "prerequisites": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Prerequisites",
+            "type": "array"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "prerequisites",
+          "lessons"
+        ],
+        "title": "CatalogModuleResponse",
+        "type": "object"
+      },
+      "CatalogResponse": {
+        "properties": {
+          "content_version": {
+            "title": "Content Version",
+            "type": "string"
+          },
+          "courses": {
+            "items": {
+              "$ref": "#/components/schemas/CatalogCourseResponse"
+            },
+            "title": "Courses",
+            "type": "array"
+          },
+          "isolated_errors": {
+            "items": {
+              "$ref": "#/components/schemas/IsolatedContentErrorResponse"
+            },
+            "title": "Isolated Errors",
+            "type": "array"
+          }
+        },
+        "required": [
+          "content_version",
+          "courses",
+          "isolated_errors"
+        ],
+        "title": "CatalogResponse",
+        "type": "object"
+      },
+      "CourseResponse": {
+        "properties": {
+          "content_version": {
+            "title": "Content Version",
+            "type": "string"
+          },
+          "fixture_only": {
+            "title": "Fixture Only",
+            "type": "boolean"
+          },
+          "language": {
+            "title": "Language",
+            "type": "string"
+          },
+          "modules": {
+            "items": {
+              "$ref": "#/components/schemas/CatalogModuleResponse"
+            },
+            "title": "Modules",
+            "type": "array"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "content_version",
+          "language",
+          "title",
+          "fixture_only",
+          "modules"
+        ],
+        "title": "CourseResponse",
+        "type": "object"
+      },
+      "DailyGoalRequest": {
+        "properties": {
+          "target_exercises": {
+            "minimum": 0.0,
+            "title": "Target Exercises",
+            "type": "integer"
+          },
+          "target_minutes": {
+            "minimum": 0.0,
+            "title": "Target Minutes",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "target_minutes",
+          "target_exercises"
+        ],
+        "title": "DailyGoalRequest",
+        "type": "object"
+      },
+      "DailyGoalResponse": {
+        "properties": {
+          "configured": {
+            "title": "Configured",
+            "type": "boolean"
+          },
+          "date": {
+            "title": "Date",
+            "type": "string"
+          },
+          "target_exercises": {
+            "title": "Target Exercises",
+            "type": "integer"
+          },
+          "target_minutes": {
+            "title": "Target Minutes",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "date",
+          "configured",
+          "target_minutes",
+          "target_exercises"
+        ],
+        "title": "DailyGoalResponse",
+        "type": "object"
+      },
+      "DailyGoalSummaryResponse": {
+        "properties": {
+          "achieved": {
+            "title": "Achieved",
+            "type": "boolean"
+          },
+          "completed_exercises": {
+            "title": "Completed Exercises",
+            "type": "integer"
+          },
+          "completion_ratio": {
+            "title": "Completion Ratio",
+            "type": "number"
+          },
+          "configured": {
+            "title": "Configured",
+            "type": "boolean"
+          },
+          "date": {
+            "title": "Date",
+            "type": "string"
+          },
+          "studied_seconds": {
+            "title": "Studied Seconds",
+            "type": "integer"
+          },
+          "target_exercises": {
+            "title": "Target Exercises",
+            "type": "integer"
+          },
+          "target_minutes": {
+            "title": "Target Minutes",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "date",
+          "configured",
+          "target_minutes",
+          "target_exercises",
+          "studied_seconds",
+          "completed_exercises",
+          "completion_ratio",
+          "achieved"
+        ],
+        "title": "DailyGoalSummaryResponse",
+        "type": "object"
+      },
+      "DeleteResponse": {
+        "properties": {
+          "deleted": {
+            "title": "Deleted",
+            "type": "boolean"
+          },
+          "lesson_id": {
+            "title": "Lesson Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "lesson_id",
+          "deleted"
+        ],
+        "title": "DeleteResponse",
+        "type": "object"
+      },
+      "ExportResponse": {
+        "properties": {
+          "archive_name": {
+            "title": "Archive Name",
+            "type": "string"
+          },
+          "content_version": {
+            "title": "Content Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "archive_name",
+          "content_version"
+        ],
+        "title": "ExportResponse",
+        "type": "object"
+      },
+      "FavoriteResponse": {
+        "properties": {
+          "favorite": {
+            "title": "Favorite",
+            "type": "boolean"
+          },
+          "lesson_id": {
+            "title": "Lesson Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "lesson_id",
+          "favorite"
+        ],
+        "title": "FavoriteResponse",
+        "type": "object"
+      },
+      "GrowthSummaryResponse": {
+        "properties": {
+          "badges": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Badges",
+            "type": "array"
+          },
+          "current_level_progress": {
+            "title": "Current Level Progress",
+            "type": "integer"
+          },
+          "level": {
+            "title": "Level",
+            "type": "integer"
+          },
+          "mastery": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Mastery",
+            "type": "array"
+          },
+          "new_badges": {
+            "items": {
+              "type": "string"
+            },
+            "title": "New Badges",
+            "type": "array"
+          },
+          "next_level_remaining": {
+            "title": "Next Level Remaining",
+            "type": "integer"
+          },
+          "route_completion": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Route Completion",
+            "type": "array"
+          },
+          "streak_days": {
+            "title": "Streak Days",
+            "type": "integer"
+          },
+          "total_experience": {
+            "title": "Total Experience",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "total_experience",
+          "level",
+          "current_level_progress",
+          "next_level_remaining",
+          "streak_days",
+          "badges",
+          "mastery",
+          "new_badges",
+          "route_completion"
+        ],
+        "title": "GrowthSummaryResponse",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "HistoryRecordResponse": {
+        "properties": {
+          "created_at": {
+            "title": "Created At",
+            "type": "string"
+          },
+          "diff": {
+            "title": "Diff",
+            "type": "string"
+          },
+          "duration_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Ms"
+          },
+          "exercise_id": {
+            "title": "Exercise Id",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "language": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Language"
+          },
+          "normalized_result": {
+            "additionalProperties": true,
+            "title": "Normalized Result",
+            "type": "object"
+          },
+          "score": {
+            "title": "Score",
+            "type": "number"
+          },
+          "source_code": {
+            "title": "Source Code",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "exercise_id",
+          "language",
+          "source_code",
+          "normalized_result",
+          "score",
+          "duration_ms",
+          "created_at",
+          "diff"
+        ],
+        "title": "HistoryRecordResponse",
+        "type": "object"
+      },
+      "HistoryResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/HistoryRecordResponse"
+            },
+            "title": "Items",
+            "type": "array"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "title": "HistoryResponse",
+        "type": "object"
+      },
+      "ImportResponse": {
+        "properties": {
+          "content_version": {
+            "title": "Content Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "content_version"
+        ],
+        "title": "ImportResponse",
+        "type": "object"
+      },
+      "IsolatedContentErrorResponse": {
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "path": {
+            "title": "Path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "code",
+          "message"
+        ],
+        "title": "IsolatedContentErrorResponse",
+        "type": "object"
+      },
+      "LanEnableRequest": {
+        "properties": {
+          "confirmed": {
+            "title": "Confirmed",
+            "type": "boolean"
+          },
+          "host": {
+            "title": "Host",
+            "type": "string"
+          }
+        },
+        "required": [
+          "host",
+          "confirmed"
+        ],
+        "title": "LanEnableRequest",
+        "type": "object"
+      },
+      "LanStatusResponse": {
+        "properties": {
+          "bind_host": {
+            "title": "Bind Host",
+            "type": "string"
+          },
+          "enabled": {
+            "title": "Enabled",
+            "type": "boolean"
+          },
+          "firewall_preview": {
+            "title": "Firewall Preview",
+            "type": "string"
+          },
+          "firewall_revoke_preview": {
+            "title": "Firewall Revoke Preview",
+            "type": "string"
+          },
+          "interfaces": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Interfaces",
+            "type": "array"
+          },
+          "port": {
+            "title": "Port",
+            "type": "integer"
+          },
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url"
+          },
+          "warning": {
+            "title": "Warning",
+            "type": "string"
+          }
+        },
+        "required": [
+          "enabled",
+          "bind_host",
+          "port",
+          "url",
+          "interfaces",
+          "warning",
+          "firewall_preview",
+          "firewall_revoke_preview"
+        ],
+        "title": "LanStatusResponse",
+        "type": "object"
+      },
+      "LessonResponse": {
+        "properties": {
+          "concepts": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Concepts",
+            "type": "array"
+          },
+          "content_version": {
+            "title": "Content Version",
+            "type": "string"
+          },
+          "difficulty": {
+            "title": "Difficulty",
+            "type": "string"
+          },
+          "exercises": {
+            "items": {
+              "$ref": "#/components/schemas/PublicExerciseResponse"
+            },
+            "title": "Exercises",
+            "type": "array"
+          },
+          "experience_points": {
+            "title": "Experience Points",
+            "type": "integer"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "language": {
+            "title": "Language",
+            "type": "string"
+          },
+          "module_id": {
+            "title": "Module Id",
+            "type": "string"
+          },
+          "objectives": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Objectives",
+            "type": "array"
+          },
+          "rendered_html": {
+            "title": "Rendered Html",
+            "type": "string"
+          },
+          "source_snapshot_date": {
+            "title": "Source Snapshot Date",
+            "type": "string"
+          },
+          "source_url": {
+            "title": "Source Url",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "language",
+          "module_id",
+          "objectives",
+          "concepts",
+          "difficulty",
+          "experience_points",
+          "rendered_html",
+          "source_url",
+          "source_snapshot_date",
+          "content_version",
+          "exercises"
+        ],
+        "title": "LessonResponse",
+        "type": "object"
+      },
+      "NoteRequest": {
+        "properties": {
+          "body": {
+            "title": "Body",
+            "type": "string"
+          }
+        },
+        "required": [
+          "body"
+        ],
+        "title": "NoteRequest",
+        "type": "object"
+      },
+      "NoteResponse": {
+        "properties": {
+          "body": {
+            "title": "Body",
+            "type": "string"
+          },
+          "lesson_id": {
+            "title": "Lesson Id",
+            "type": "string"
+          },
+          "updated_at": {
+            "title": "Updated At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "lesson_id",
+          "body",
+          "updated_at"
+        ],
+        "title": "NoteResponse",
+        "type": "object"
+      },
+      "PlacementRequest": {
+        "properties": {
+          "language": {
+            "title": "Language",
+            "type": "string"
+          },
+          "module_id": {
+            "title": "Module Id",
+            "type": "string"
+          },
+          "score": {
+            "anyOf": [
+              {
+                "maximum": 100.0,
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              }
+            ],
+            "title": "Score"
+          }
+        },
+        "required": [
+          "language",
+          "module_id",
+          "score"
+        ],
+        "title": "PlacementRequest",
+        "type": "object"
+      },
+      "PlacementResponse": {
+        "properties": {
+          "experience_candidate": {
+            "title": "Experience Candidate",
+            "type": "boolean"
+          },
+          "module_id": {
+            "title": "Module Id",
+            "type": "string"
+          },
+          "score": {
+            "title": "Score",
+            "type": "number"
+          },
+          "validated": {
+            "title": "Validated",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "module_id",
+          "score",
+          "validated",
+          "experience_candidate"
+        ],
+        "title": "PlacementResponse",
+        "type": "object"
+      },
+      "ProgressResponse": {
+        "properties": {
+          "lesson_id": {
+            "title": "Lesson Id",
+            "type": "string"
+          },
+          "position": {
+            "title": "Position",
+            "type": "integer"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "time_spent_seconds": {
+            "title": "Time Spent Seconds",
+            "type": "integer"
+          },
+          "updated_at": {
+            "title": "Updated At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "lesson_id",
+          "position",
+          "time_spent_seconds",
+          "status",
+          "updated_at"
+        ],
+        "title": "ProgressResponse",
+        "type": "object"
+      },
+      "ProgressUpdateRequest": {
+        "properties": {
+          "position": {
+            "minimum": 0.0,
+            "title": "Position",
+            "type": "integer"
+          },
+          "time_spent_seconds": {
+            "minimum": 0.0,
+            "title": "Time Spent Seconds",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "position",
+          "time_spent_seconds"
+        ],
+        "title": "ProgressUpdateRequest",
+        "type": "object"
+      },
+      "PublicChoiceResponse": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "text"
+        ],
+        "title": "PublicChoiceResponse",
+        "type": "object"
+      },
+      "PublicExerciseResponse": {
+        "properties": {
+          "choices": {
+            "items": {
+              "$ref": "#/components/schemas/PublicChoiceResponse"
+            },
+            "title": "Choices",
+            "type": "array"
+          },
+          "experience_points": {
+            "title": "Experience Points",
+            "type": "integer"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "prompt": {
+            "title": "Prompt",
+            "type": "string"
+          },
+          "starter_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Starter Code"
+          },
+          "type": {
+            "enum": [
+              "knowledge",
+              "code",
+              "challenge",
+              "scenario"
+            ],
+            "title": "Type",
+            "type": "string"
+          },
+          "visible_tests": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Visible Tests",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "prompt",
+          "choices",
+          "starter_code",
+          "visible_tests",
+          "experience_points"
+        ],
+        "title": "PublicExerciseResponse",
+        "type": "object"
+      },
+      "ReviewItemResponse": {
+        "properties": {
+          "concept_id": {
+            "title": "Concept Id",
+            "type": "string"
+          },
+          "due_on": {
+            "title": "Due On",
+            "type": "string"
+          },
+          "exercise_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Exercise Id"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "interval_days": {
+            "title": "Interval Days",
+            "type": "integer"
+          },
+          "last_score": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Score"
+          },
+          "lesson_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lesson Id"
+          }
+        },
+        "required": [
+          "id",
+          "concept_id",
+          "lesson_id",
+          "exercise_id",
+          "due_on",
+          "interval_days",
+          "last_score"
+        ],
+        "title": "ReviewItemResponse",
+        "type": "object"
+      },
+      "ReviewQueueResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ReviewItemResponse"
+            },
+            "title": "Items",
+            "type": "array"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "title": "ReviewQueueResponse",
+        "type": "object"
+      },
+      "ReviewScoreRequest": {
+        "properties": {
+          "score": {
+            "anyOf": [
+              {
+                "maximum": 100.0,
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              }
+            ],
+            "title": "Score"
+          }
+        },
+        "required": [
+          "score"
+        ],
+        "title": "ReviewScoreRequest",
+        "type": "object"
+      },
+      "ReviewScoreResponse": {
+        "properties": {
+          "due_on": {
+            "title": "Due On",
+            "type": "string"
+          },
+          "experience_candidate": {
+            "title": "Experience Candidate",
+            "type": "boolean"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "interval_days": {
+            "title": "Interval Days",
+            "type": "integer"
+          },
+          "score": {
+            "title": "Score",
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "score",
+          "interval_days",
+          "due_on",
+          "experience_candidate"
+        ],
+        "title": "ReviewScoreResponse",
+        "type": "object"
+      },
+      "RunnerJobResponse": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "result": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Result"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "result"
+        ],
+        "title": "RunnerJobResponse",
+        "type": "object"
+      },
+      "RunnerSubmissionRequest": {
+        "properties": {
+          "exercise_id": {
+            "maxLength": 192,
+            "minLength": 1,
+            "title": "Exercise Id",
+            "type": "string"
+          },
+          "lesson_id": {
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Lesson Id",
+            "type": "string"
+          },
+          "source_code": {
+            "title": "Source Code",
+            "type": "string"
+          },
+          "stdin": {
+            "default": "",
+            "title": "Stdin",
+            "type": "string"
+          }
+        },
+        "required": [
+          "lesson_id",
+          "exercise_id",
+          "source_code"
+        ],
+        "title": "RunnerSubmissionRequest",
+        "type": "object"
+      },
+      "SearchResponse": {
+        "properties": {
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/SearchResultResponse"
+            },
+            "title": "Results",
+            "type": "array"
+          }
+        },
+        "required": [
+          "results"
+        ],
+        "title": "SearchResponse",
+        "type": "object"
+      },
+      "SearchResultResponse": {
+        "properties": {
+          "anchor": {
+            "title": "Anchor",
+            "type": "string"
+          },
+          "language": {
+            "title": "Language",
+            "type": "string"
+          },
+          "lesson_id": {
+            "title": "Lesson Id",
+            "type": "string"
+          },
+          "snippet": {
+            "title": "Snippet",
+            "type": "string"
+          },
+          "source_type": {
+            "title": "Source Type",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "source_type",
+          "language",
+          "lesson_id",
+          "title",
+          "snippet",
+          "anchor"
+        ],
+        "title": "SearchResultResponse",
+        "type": "object"
+      },
+      "SummaryResponse": {
+        "properties": {
+          "continue_learning": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Continue Learning"
+          },
+          "current_experience": {
+            "title": "Current Experience",
+            "type": "integer"
+          },
+          "current_level": {
+            "title": "Current Level",
+            "type": "integer"
+          },
+          "daily_goal": {
+            "$ref": "#/components/schemas/DailyGoalSummaryResponse"
+          },
+          "due_review_count": {
+            "title": "Due Review Count",
+            "type": "integer"
+          },
+          "streak_days": {
+            "title": "Streak Days",
+            "type": "integer"
+          },
+          "unlocked_lessons": {
+            "additionalProperties": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "title": "Unlocked Lessons",
+            "type": "object"
+          }
+        },
+        "required": [
+          "daily_goal",
+          "streak_days",
+          "continue_learning",
+          "due_review_count",
+          "current_experience",
+          "current_level",
+          "unlocked_lessons"
+        ],
+        "title": "SummaryResponse",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      },
+      "WeaknessListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/WeaknessResponse"
+            },
+            "title": "Items",
+            "type": "array"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "title": "WeaknessListResponse",
+        "type": "object"
+      },
+      "WeaknessResponse": {
+        "properties": {
+          "concept_id": {
+            "title": "Concept Id",
+            "type": "string"
+          },
+          "exercise_id": {
+            "title": "Exercise Id",
+            "type": "string"
+          },
+          "lesson_id": {
+            "title": "Lesson Id",
+            "type": "string"
+          },
+          "score": {
+            "title": "Score",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "concept_id",
+          "score",
+          "lesson_id",
+          "exercise_id"
+        ],
+        "title": "WeaknessResponse",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "title": "Hard API",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/api/assessment/attempts": {
+      "post": {
+        "operationId": "attempt_api_assessment_attempts_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AttemptRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttemptResponse",
+                  "additionalProperties": true,
+                  "title": "AttemptResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Attempt",
+        "tags": [
+          "assessment"
+        ]
+      }
+    },
+    "/api/assessment/placement": {
+      "post": {
+        "operationId": "placement_api_assessment_placement_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlacementRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlacementResponse",
+                  "additionalProperties": true,
+                  "title": "PlacementResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Placement",
+        "tags": [
+          "assessment"
+        ]
+      }
+    },
+    "/api/backup/export": {
+      "post": {
+        "operationId": "export_data_api_backup_export_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportResponse",
+                  "additionalProperties": true,
+                  "title": "ExportResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Export Data",
+        "tags": [
+          "backup"
+        ]
+      }
+    },
+    "/api/backup/import": {
+      "post": {
+        "operationId": "import_data_api_backup_import_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Archive-Name",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Archive-Name"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImportResponse",
+                  "additionalProperties": true,
+                  "title": "ImportResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Import Data",
+        "tags": [
+          "backup"
+        ]
+      }
+    },
+    "/api/content/catalog": {
+      "get": {
+        "operationId": "catalog_api_content_catalog_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogResponse",
+                  "additionalProperties": true,
+                  "title": "CatalogResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Catalog",
+        "tags": [
+          "content"
+        ]
+      }
+    },
+    "/api/content/courses/{language}": {
+      "get": {
+        "operationId": "course_api_content_courses__language__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "language",
+            "required": true,
+            "schema": {
+              "title": "Language",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseResponse",
+                  "additionalProperties": true,
+                  "title": "CourseResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Course",
+        "tags": [
+          "content"
+        ]
+      }
+    },
+    "/api/content/lessons/{lesson_id}": {
+      "get": {
+        "operationId": "lesson_api_content_lessons__lesson_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "lesson_id",
+            "required": true,
+            "schema": {
+              "title": "Lesson Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LessonResponse",
+                  "additionalProperties": true,
+                  "title": "LessonResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Lesson",
+        "tags": [
+          "content"
+        ]
+      }
+    },
+    "/api/growth/history": {
+      "get": {
+        "operationId": "history_records_api_growth_history_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "exercise_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Exercise Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoryResponse",
+                  "additionalProperties": true,
+                  "title": "HistoryResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "History Records",
+        "tags": [
+          "growth"
+        ]
+      }
+    },
+    "/api/growth/summary": {
+      "get": {
+        "operationId": "summary_api_growth_summary_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GrowthSummaryResponse",
+                  "additionalProperties": true,
+                  "title": "GrowthSummaryResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Summary",
+        "tags": [
+          "growth"
+        ]
+      }
+    },
+    "/api/growth/weaknesses": {
+      "get": {
+        "operationId": "weaknesses_api_growth_weaknesses_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeaknessListResponse",
+                  "additionalProperties": true,
+                  "title": "WeaknessListResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Weaknesses",
+        "tags": [
+          "growth"
+        ]
+      }
+    },
+    "/api/lan/enable": {
+      "delete": {
+        "operationId": "disable_api_lan_enable_delete",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LanStatusResponse",
+                  "additionalProperties": true,
+                  "title": "LanDisableResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Disable",
+        "tags": [
+          "lan"
+        ]
+      },
+      "post": {
+        "operationId": "enable_api_lan_enable_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LanEnableRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LanStatusResponse",
+                  "additionalProperties": true,
+                  "title": "LanEnableResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Enable",
+        "tags": [
+          "lan"
+        ]
+      }
+    },
+    "/api/lan/status": {
+      "get": {
+        "operationId": "status_api_lan_status_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LanStatusResponse",
+                  "additionalProperties": true,
+                  "title": "LanStatusResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Status",
+        "tags": [
+          "lan"
+        ]
+      }
+    },
+    "/api/progress/daily-goal": {
+      "put": {
+        "operationId": "update_daily_goal_api_progress_daily_goal_put",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DailyGoalRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DailyGoalResponse",
+                  "additionalProperties": true,
+                  "title": "DailyGoalResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Update Daily Goal",
+        "tags": [
+          "progress"
+        ]
+      }
+    },
+    "/api/progress/favorites/{lesson_id}": {
+      "delete": {
+        "operationId": "remove_favorite_api_progress_favorites__lesson_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "lesson_id",
+            "required": true,
+            "schema": {
+              "title": "Lesson Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FavoriteResponse",
+                  "additionalProperties": true,
+                  "title": "DeleteFavoriteResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Remove Favorite",
+        "tags": [
+          "progress"
+        ]
+      },
+      "put": {
+        "operationId": "put_favorite_api_progress_favorites__lesson_id__put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "lesson_id",
+            "required": true,
+            "schema": {
+              "title": "Lesson Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FavoriteResponse",
+                  "additionalProperties": true,
+                  "title": "FavoriteResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Put Favorite",
+        "tags": [
+          "progress"
+        ]
+      }
+    },
+    "/api/progress/lessons/{lesson_id}": {
+      "patch": {
+        "operationId": "update_lesson_api_progress_lessons__lesson_id__patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "lesson_id",
+            "required": true,
+            "schema": {
+              "title": "Lesson Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProgressUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProgressResponse",
+                  "additionalProperties": true,
+                  "title": "ProgressResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Update Lesson",
+        "tags": [
+          "progress"
+        ]
+      }
+    },
+    "/api/progress/notes/{lesson_id}": {
+      "delete": {
+        "operationId": "remove_note_api_progress_notes__lesson_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "lesson_id",
+            "required": true,
+            "schema": {
+              "title": "Lesson Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResponse",
+                  "additionalProperties": true,
+                  "title": "DeleteNoteResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Remove Note",
+        "tags": [
+          "progress"
+        ]
+      },
+      "put": {
+        "operationId": "put_note_api_progress_notes__lesson_id__put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "lesson_id",
+            "required": true,
+            "schema": {
+              "title": "Lesson Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NoteRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoteResponse",
+                  "additionalProperties": true,
+                  "title": "NoteResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Put Note",
+        "tags": [
+          "progress"
+        ]
+      }
+    },
+    "/api/progress/summary": {
+      "get": {
+        "operationId": "summary_api_progress_summary_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SummaryResponse",
+                  "additionalProperties": true,
+                  "title": "SummaryResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Summary",
+        "tags": [
+          "progress"
+        ]
+      }
+    },
+    "/api/review/items/{review_item_id}": {
+      "post": {
+        "operationId": "score_item_api_review_items__review_item_id__post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "review_item_id",
+            "required": true,
+            "schema": {
+              "title": "Review Item Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReviewScoreRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewScoreResponse",
+                  "additionalProperties": true,
+                  "title": "ReviewScoreResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Score Item",
+        "tags": [
+          "review"
+        ]
+      }
+    },
+    "/api/review/queue": {
+      "get": {
+        "operationId": "queue_api_review_queue_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewQueueResponse",
+                  "additionalProperties": true,
+                  "title": "ReviewQueueResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Queue",
+        "tags": [
+          "review"
+        ]
+      }
+    },
+    "/api/runners/jobs/{job_id}": {
+      "delete": {
+        "operationId": "cancel_api_runners_jobs__job_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "job_id",
+            "required": true,
+            "schema": {
+              "title": "Job Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RunnerJobResponse",
+                  "additionalProperties": true,
+                  "title": "RunnerJobCancelResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Cancel",
+        "tags": [
+          "runners"
+        ]
+      },
+      "get": {
+        "operationId": "status_api_runners_jobs__job_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "job_id",
+            "required": true,
+            "schema": {
+              "title": "Job Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RunnerJobResponse",
+                  "additionalProperties": true,
+                  "title": "RunnerJobStatusResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Status",
+        "tags": [
+          "runners"
+        ]
+      }
+    },
+    "/api/runners/submissions": {
+      "post": {
+        "operationId": "submit_api_runners_submissions_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RunnerSubmissionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RunnerJobResponse",
+                  "additionalProperties": true,
+                  "title": "RunnerSubmissionResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Submit",
+        "tags": [
+          "runners"
+        ]
+      }
+    },
+    "/api/search": {
+      "get": {
+        "operationId": "search_api_search_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "default": "",
+              "title": "Q",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResponse",
+                  "additionalProperties": true,
+                  "title": "SearchResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Search",
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/v1/health/live": {
+      "get": {
+        "operationId": "live_api_v1_health_live_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "title": "Response Live Api V1 Health Live Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Live",
+        "tags": [
+          "health"
+        ]
+      }
+    },
+    "/api/v1/health/ready": {
+      "get": {
+        "operationId": "ready_api_v1_health_ready_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Ready Api V1 Health Ready Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Ready",
+        "tags": [
+          "health"
+        ]
+      }
+    }
+  }
+}

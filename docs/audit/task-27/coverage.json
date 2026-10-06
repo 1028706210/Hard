@@ -1,0 +1,211 @@
+{
+  "language": "python",
+  "module": "python-stdlib-data",
+  "expected": 19,
+  "implemented": 19,
+  "validated": 19,
+  "reference_solutions_passed": 19,
+  "question_counts": {
+    "knowledge": 57,
+    "code": 19,
+    "challenge": 1
+  },
+  "test_case_counts": {
+    "visible": 20,
+    "hidden": 40,
+    "hidden_distinct_from_visible": 40
+  },
+  "source_section_mapping": [
+    {
+      "source_id": "python3-stdlib",
+      "lesson_id": "python-stdlib-data-overview",
+      "source_primary_topic": "Python 标准库概览",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-reg-expressions",
+      "lesson_id": "python-stdlib-data-regex-basics",
+      "source_primary_topic": "Python 正则表达式基础",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-xml-processing",
+      "lesson_id": "python-stdlib-data-xml",
+      "source_primary_topic": "Python XML",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-json",
+      "lesson_id": "python-stdlib-data-json",
+      "source_primary_topic": "Python JSON",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-date-time",
+      "lesson_id": "python-stdlib-data-date-time",
+      "source_primary_topic": "Python 日期和时间",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-built-in-functions",
+      "lesson_id": "python-stdlib-data-builtins",
+      "source_primary_topic": "Python 内置函数",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-operator",
+      "lesson_id": "python-stdlib-data-operator",
+      "source_primary_topic": "Python operator",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-math",
+      "lesson_id": "python-stdlib-data-math",
+      "source_primary_topic": "Python math",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-random",
+      "lesson_id": "python-stdlib-data-random",
+      "source_primary_topic": "Python random",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-statistics",
+      "lesson_id": "python-stdlib-data-statistics",
+      "source_primary_topic": "Python statistics",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-hashlib",
+      "lesson_id": "python-stdlib-data-hashlib",
+      "source_primary_topic": "Python hashlib",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-sys",
+      "lesson_id": "python-stdlib-data-sys",
+      "source_primary_topic": "Python sys",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-pickle",
+      "lesson_id": "python-stdlib-data-pickle",
+      "source_primary_topic": "Python Pickle",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-queue",
+      "lesson_id": "python-stdlib-data-queue",
+      "source_primary_topic": "Python queue",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-stringio",
+      "lesson_id": "python-stdlib-data-stringio",
+      "source_primary_topic": "Python StringIO",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-logging",
+      "lesson_id": "python-stdlib-data-logging",
+      "source_primary_topic": "Python logging",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-datetime",
+      "lesson_id": "python-stdlib-data-datetime",
+      "source_primary_topic": "Python datetime",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-re",
+      "lesson_id": "python-stdlib-data-re",
+      "source_primary_topic": "Python re 模块",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-csv",
+      "lesson_id": "python-stdlib-data-csv",
+      "source_primary_topic": "Python csv",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    }
+  ],
+  "errors": []
+}

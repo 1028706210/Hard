@@ -1,0 +1,110 @@
+{
+  "lesson_id": "python-core-types-numbers",
+  "questions": [
+    {
+      "id": "python-core-types-numbers-k01",
+      "type": "knowledge",
+      "prompt": "7 / 2 的结果是哪种数？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "浮点数"
+        },
+        {
+          "id": "b",
+          "text": "字符串"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-core-types-numbers-k02",
+      "type": "knowledge",
+      "prompt": "哪个运算符得到余数？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "/"
+        },
+        {
+          "id": "b",
+          "text": "%"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-core-types-numbers-k03",
+      "type": "knowledge",
+      "prompt": "// 适合得到什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "字符串长度"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "整除后的商"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-core-types-numbers-c01",
+      "type": "code",
+      "prompt": "输出 7 除以 2 的余数。",
+      "starter_code": "# 输出余数",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-core-types-numbers-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    print(7 % 2)\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "1\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-core-types-numbers-c01\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    }
+  ]
+}

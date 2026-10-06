@@ -1,0 +1,146 @@
+{
+  "lesson_id": "python-modules-io-oop-classes",
+  "questions": [
+    {
+      "id": "python-modules-io-oop-classes-k01",
+      "type": "knowledge",
+      "prompt": "类描述什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "数据库迁移"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "对象的状态和行为"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-modules-io-oop-classes-k02",
+      "type": "knowledge",
+      "prompt": "实例方法通过什么访问状态？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "self"
+        },
+        {
+          "id": "b",
+          "text": "yield"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-modules-io-oop-classes-k03",
+      "type": "knowledge",
+      "prompt": "__init__ 用于什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "删除模块"
+        },
+        {
+          "id": "b",
+          "text": "初始化实例"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-modules-io-oop-classes-c01",
+      "type": "code",
+      "prompt": "定义 Learner，实例方法按输入名称输出问候；无名称使用 Learner。",
+      "starter_code": "import sys\nclass Learner:\n    # 保存名称并实现 greet\n    pass\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\nclass Learner:\n    def __init__(self, name):\n        self.name = name\n    def greet(self):\n        return f'Hello, {self.name}'\nname = sys.stdin.read().strip()\nif name == '__invalid__':\n    raise ValueError('invalid learner')\nprint(Learner(name or 'Learner').greet())\n",
+        "hidden_tests": [
+          "边界输入必须返回主题定义的结果。",
+          "无效输入必须进入可预期的失败分支。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "Hard\n",
+            "stdout": "Hello, Hard\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "\n",
+            "stdout": "Hello, Learner\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "python-modules-io-oop-classes-challenge",
+      "type": "challenge",
+      "prompt": "定义 Learner(name) 并输出 Hello, Hard。",
+      "starter_code": "class Learner:\n    # 初始化并问候\n    pass",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-modules-io-oop-classes-challenge')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    class Learner:\n        def __init__(self, name):\n            self.name = name\n        def greet(self):\n            return f'Hello, {self.name}'\n    print(Learner('Hard').greet())\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "Hello, Hard\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-modules-io-oop-classes-challenge\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    }
+  ]
+}

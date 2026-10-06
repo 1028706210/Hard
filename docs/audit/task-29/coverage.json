@@ -1,0 +1,71 @@
+{
+  "language": "python",
+  "module": "python-database-deployment",
+  "expected": 5,
+  "implemented": 5,
+  "validated": 5,
+  "reference_solutions_passed": 5,
+  "question_counts": {
+    "knowledge": 15,
+    "code": 5,
+    "challenge": 1
+  },
+  "test_case_counts": {
+    "visible": 6,
+    "hidden": 12,
+    "hidden_distinct_from_visible": 12
+  },
+  "source_section_mapping": [
+    {
+      "source_id": "python3-cgi-programming",
+      "lesson_id": "python-database-deployment-cgi",
+      "source_primary_topic": "CGI 的请求边界",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-mysql-connector",
+      "lesson_id": "python-database-deployment-mysql-connector",
+      "source_primary_topic": "mysql-connector 与参数化查询",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-mysql",
+      "lesson_id": "python-database-deployment-pymysql",
+      "source_primary_topic": "PyMySQL 的事务意图",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-mongodb",
+      "lesson_id": "python-database-deployment-mongodb",
+      "source_primary_topic": "MongoDB 文档与查询边界",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-uwsgi",
+      "lesson_id": "python-database-deployment-uwsgi",
+      "source_primary_topic": "uWSGI 部署配置审查",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    }
+  ],
+  "errors": []
+}

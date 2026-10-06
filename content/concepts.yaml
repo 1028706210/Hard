@@ -1,0 +1,73 @@
+concepts:
+  - id: variables
+    name: 变量
+    description: 保存可变值的命名位置。
+  - id: types
+    name: 类型
+    description: 值的分类及其允许操作。
+  - id: control-flow
+    name: 控制流
+    description: 条件、分支与循环决定代码执行路径。
+  - id: functions
+    name: 函数
+    description: 可复用的命名行为单元。
+  - id: collections
+    name: 集合
+    description: 组织多个值的数据结构。
+  - id: classes
+    name: 类
+    description: 描述对象状态和行为的类型模板。
+  - id: inheritance
+    name: 继承
+    description: 基于已有类型扩展行为的机制。
+  - id: polymorphism
+    name: 多态
+    description: 以统一接口处理不同具体类型的能力。
+  - id: exceptions
+    name: 异常
+    description: 表示并处理运行期错误的机制。
+  - id: generics
+    name: 泛型
+    description: 在保留类型约束的同时复用实现。
+  - id: io
+    name: IO
+    description: 输入、输出与文件数据交互。
+  - id: concurrency
+    name: 并发
+    description: 协调多个执行任务的能力。
+  - id: memory
+    name: 内存
+    description: 程序数据的分配、存活与释放。
+  - id: interpreter
+    name: 解释器
+    description: 读取并执行 Python 源代码的程序。
+  - id: environments
+    name: 虚拟环境
+    description: 为单个项目隔离依赖与解释器配置的目录。
+  - id: packages
+    name: 包管理
+    description: 安装、查看和约束项目依赖版本的流程。
+  - id: tooling
+    name: 开发工具
+    description: 用编辑器、终端和调试器支持稳定编程的协作方式。
+  - id: operators
+    name: 运算符
+    description: 把值组合、比较或转换为新结果的符号规则。
+  - id: strings
+    name: 字符串
+    description: 由有序字符组成、可切片和格式化的文本值。
+  - id: security
+    name: 安全边界
+    description: 对不受信输入、代码执行和数据访问设置明确限制的原则。
+  - id: web
+    name: Web 边界
+    description: 在 HTTP 请求、响应和用户输入之间定义明确的处理约定。
+  - id: databases
+    name: 数据库
+    description: 使用受控连接、参数化查询和最小权限保存结构化数据的原则。
+  - id: data-structures
+    name: 数据结构设计
+    description: 根据数据访问模式选择文档、键值或关系结构的建模方式。
+  - id: deployment
+    name: 部署配置
+    description: 将运行配置、凭据和进程边界显式隔离的发布实践。

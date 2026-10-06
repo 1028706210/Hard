@@ -1,0 +1,111 @@
+{
+  "language": "python",
+  "module": "python-foundations",
+  "expected": 9,
+  "implemented": 9,
+  "validated": 9,
+  "reference_solutions_passed": 9,
+  "question_counts": {
+    "knowledge": 27,
+    "code": 9,
+    "challenge": 2
+  },
+  "test_case_counts": {
+    "visible": 11,
+    "hidden": 22,
+    "hidden_distinct_from_visible": 22
+  },
+  "source_section_mapping": [
+    {
+      "source_id": "python3-tutorial",
+      "lesson_id": "python-foundations-hello-world",
+      "source_primary_topic": "Hello World",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-intro",
+      "lesson_id": "python-foundations-introduction",
+      "source_primary_topic": "Python 的学习方式",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-install",
+      "lesson_id": "python-foundations-installation",
+      "source_primary_topic": "安装后的第一项检查",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-pycharm-usage",
+      "lesson_id": "python-foundations-pycharm",
+      "source_primary_topic": "用 PyCharm 组织项目",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-vscode-setup",
+      "lesson_id": "python-foundations-vscode",
+      "source_primary_topic": "用 VS Code 编辑与运行",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-interpreter",
+      "lesson_id": "python-foundations-interpreter",
+      "source_primary_topic": "在解释器中验证想法",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python-venv",
+      "lesson_id": "python-foundations-virtual-environment",
+      "source_primary_topic": "为项目隔离虚拟环境",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-pip",
+      "lesson_id": "python-foundations-package-management",
+      "source_primary_topic": "用 pip 管理依赖",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    },
+    {
+      "source_id": "python3-resources",
+      "lesson_id": "python-foundations-learning-resources",
+      "source_primary_topic": "选择与整理学习资源",
+      "hard_sections": [
+        "概念定义与适用场景",
+        "语法、API 与边界",
+        "常见错误与实践建议"
+      ]
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,146 @@
+{
+  "lesson_id": "python-foundations-learning-resources",
+  "questions": [
+    {
+      "id": "python-foundations-learning-resources-k01",
+      "type": "knowledge",
+      "prompt": "评估资源时应优先确认什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "用途、版本与可复现性"
+        },
+        {
+          "id": "b",
+          "text": "页面动画数量"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-foundations-learning-resources-k02",
+      "type": "knowledge",
+      "prompt": "陌生脚本应怎样处理？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "立刻执行"
+        },
+        {
+          "id": "b",
+          "text": "先阅读和确认来源"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-foundations-learning-resources-k03",
+      "type": "knowledge",
+      "prompt": "学习笔记应记录什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "无关缓存"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "操作目的和结果"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-foundations-learning-resources-c01",
+      "type": "code",
+      "prompt": "定义 resource 为 docs，并输出“Resource: docs”。",
+      "starter_code": "resource = \"\"\n# 输出资源",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-foundations-learning-resources-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    resource = 'docs'\n    print(f'Resource: {resource}')\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "Resource: docs\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-foundations-learning-resources-c01\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "python-foundations-learning-resources-challenge",
+      "type": "challenge",
+      "prompt": "输出三行学习环境摘要：Interpreter: Python、Environment: study-env、Package: demo。",
+      "starter_code": "# 输出三行摘要",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-foundations-learning-resources-challenge')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    interpreter = 'Python'\n    environment = 'study-env'\n    package = 'demo'\n    print(f'Interpreter: {interpreter}')\n    print(f'Environment: {environment}')\n    print(f'Package: {package}')\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "Interpreter: Python\nEnvironment: study-env\nPackage: demo\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-foundations-learning-resources-challenge\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    }
+  ]
+}

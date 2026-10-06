@@ -1,0 +1,110 @@
+{
+  "lesson_id": "python-functions-iteration-name-main",
+  "questions": [
+    {
+      "id": "python-functions-iteration-name-main-k01",
+      "type": "knowledge",
+      "prompt": "直接运行模块时 __name__ 是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "__file__"
+        },
+        {
+          "id": "b",
+          "text": "__main__"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "python-functions-iteration-name-main-k02",
+      "type": "knowledge",
+      "prompt": "守卫适合隔离什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "类型注解"
+        },
+        {
+          "id": "b",
+          "text": "跳过输入校验和失败分支"
+        },
+        {
+          "id": "c",
+          "text": "启动副作用"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "python-functions-iteration-name-main-k03",
+      "type": "knowledge",
+      "prompt": "导入模块应自动启动吗？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "不应"
+        },
+        {
+          "id": "b",
+          "text": "应当"
+        },
+        {
+          "id": "c",
+          "text": "跳过输入校验和失败分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "python-functions-iteration-name-main-c01",
+      "type": "code",
+      "prompt": "定义 main 返回 ready，并输出结果。",
+      "starter_code": "def main():\n    # 返回状态\n    pass",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 15,
+      "private": {
+        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-functions-iteration-name-main-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    def main():\n        return 'ready'\n    print(main())\n",
+        "hidden_tests": [
+          "边界输入必须走明确分支。",
+          "失败输入必须以预期状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "__hard_visible__\n",
+            "stdout": "ready\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "__hard_hidden_boundary__\n",
+            "stdout": "boundary:python-functions-iteration-name-main-c01\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__hard_hidden_failure__\n",
+            "stdout": "",
+            "exit_code": 2
+          }
+        ]
+      }
+    }
+  ]
+}
