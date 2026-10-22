@@ -1,0 +1,128 @@
+{
+  "lesson_id": "csharp-oop-classes",
+  "questions": [
+    {
+      "id": "csharp-oop-classes-k01",
+      "type": "knowledge",
+      "prompt": "`new` 表达式在创建 class 实例时会做什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "分配对象内存并运行对应的构造函数"
+        },
+        {
+          "id": "b",
+          "text": "只编译类型定义，不产生运行时行为"
+        },
+        {
+          "id": "c",
+          "text": "复制该类的全部静态成员"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-classes-k02",
+      "type": "knowledge",
+      "prompt": "把一个 class 变量赋给另一个变量后，通过第二个变量修改字段，第一个变量会看到修改吗？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "会，两个变量引用同一个对象"
+        },
+        {
+          "id": "b",
+          "text": "不会，各自持有独立副本"
+        },
+        {
+          "id": "c",
+          "text": "不会，赋值时对象已被锁定"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-classes-k03",
+      "type": "knowledge",
+      "prompt": "关于构造函数的语法特征，正确的是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "与类同名且不声明返回类型"
+        },
+        {
+          "id": "b",
+          "text": "必须显式声明返回 void"
+        },
+        {
+          "id": "c",
+          "text": "一个类最多只能有一个构造函数"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-classes-c01",
+      "type": "code",
+      "prompt": "读取一行，用空格分隔三个字段：title（不含空格）、price（0..1000000 的整数）、discount（0..100 的整数）。定义带构造函数的类保存这些字段，方法 PriceAfterDiscount 按 price*(100-discount)/100 的整数除法计算折后价。输出两行：第一行是 title，第二行是折后价。字段数量不对、解析失败或 price、discount 越界时不输出并以退出码 1 结束。",
+      "starter_code": "var tokens = (Console.ReadLine() ?? \"\").Split(' ', StringSplitOptions.RemoveEmptyEntries);\n// 校验字段后用构造函数创建对象，再调用方法输出两行\n",
+      "visible_tests": [
+        "输入 CSharp 100 25 时输出 CSharp 和 75 两行。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var tokens = (Console.ReadLine() ?? \"\").Split(' ', StringSplitOptions.RemoveEmptyEntries);\nif (tokens.Length != 3) Environment.Exit(1);\nif (!int.TryParse(tokens[1], out var price)) Environment.Exit(1);\nif (!int.TryParse(tokens[2], out var discount)) Environment.Exit(1);\nif (price < 0 || price > 1000000 || discount < 0 || discount > 100) Environment.Exit(1);\nvar book = new Book(tokens[0], price, discount);\nConsole.WriteLine(book.GetTitle());\nConsole.WriteLine(book.PriceAfterDiscount());\n\nclass Book\n{\n    private readonly string _title;\n    private readonly int _price;\n    private readonly int _discountPercent;\n\n    public Book(string title, int price, int discountPercent)\n    {\n        _title = title;\n        _price = price;\n        _discountPercent = discountPercent;\n    }\n\n    public string GetTitle() => _title;\n\n    public int PriceAfterDiscount() => _price * (100 - _discountPercent) / 100;\n}\n",
+        "hidden_tests": [
+          "折扣为 0 时折后价等于原价。",
+          "折扣为 100 时折后价为 0。",
+          "折扣为 101 时无输出并以退出码 1 结束。",
+          "价格为负数时无输出并以退出码 1 结束。",
+          "价格不是整数时无输出并以退出码 1 结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "CSharp 100 25\n",
+            "stdout": "CSharp\n75\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "Book 80 0\n",
+            "stdout": "Book\n80\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "Book 99 100\n",
+            "stdout": "Book\n0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "Book 100 101\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "Book -1 10\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "Book x 10\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

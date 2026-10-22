@@ -1,0 +1,170 @@
+{
+  "lesson_id": "cpp-advanced-web",
+  "questions": [
+    {
+      "id": "cpp-advanced-web-k01",
+      "type": "knowledge",
+      "prompt": "CGI 程序把 HTTP 响应写到哪里？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "标准输出 stdout"
+        },
+        {
+          "id": "b",
+          "text": "固定的响应文件 response.txt"
+        },
+        {
+          "id": "c",
+          "text": "专门的套接字 API 参数"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-advanced-web-k02",
+      "type": "knowledge",
+      "prompt": "HTTP 响应头与正文之间的分隔是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "一个分号"
+        },
+        {
+          "id": "b",
+          "text": "一个空行"
+        },
+        {
+          "id": "c",
+          "text": "不分隔，直接连写"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-advanced-web-k03",
+      "type": "knowledge",
+      "prompt": "CGI 中 GET 请求的查询串通常通过什么进入程序？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "QUERY_STRING 环境变量"
+        },
+        {
+          "id": "b",
+          "text": "命令行第一个参数 argv[0]"
+        },
+        {
+          "id": "c",
+          "text": "响应头字段"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-advanced-web-c01",
+      "type": "code",
+      "prompt": "读取一行查询串（恰为 \"name=<值>&age=<值>\" 两对，值均为无空格非空 token），输出 HTTP 响应：第一行 \"Content-Type: text/plain\"，随后一个空行，再按 name、age 顺序各输出一行 \"<键>=<值>\"。查询串不是恰好两对、键不是 name 与 age、或任一值为空时，不输出任何内容并以非零退出码结束。",
+      "starter_code": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string query;\n    std::getline(std::cin, query);\n    // 解析查询串并按合同输出响应\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 name=ada&age=7 时依次输出 Content-Type 头、空行、name=ada 与 age=7。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string query;\n    if (!std::getline(std::cin, query)) return 1;\n    std::size_t amp = query.find('&');\n    if (amp == std::string::npos) return 1;\n    std::string first = query.substr(0, amp);\n    std::string second = query.substr(amp + 1);\n    if (second.find('&') != std::string::npos) return 1;\n    std::size_t eq1 = first.find('=');\n    std::size_t eq2 = second.find('=');\n    if (eq1 == std::string::npos || eq2 == std::string::npos) return 1;\n    std::string key1 = first.substr(0, eq1);\n    std::string value1 = first.substr(eq1 + 1);\n    std::string key2 = second.substr(0, eq2);\n    std::string value2 = second.substr(eq2 + 1);\n    if (key1 != \"name\" || key2 != \"age\") return 1;\n    if (value1.empty() || value2.empty()) return 1;\n    if (value1.find(' ') != std::string::npos || value2.find(' ') != std::string::npos) return 1;\n    std::cout << \"Content-Type: text/plain\\n\\n\";\n    std::cout << \"name=\" << value1 << \"\\n\";\n    std::cout << \"age=\" << value2 << \"\\n\";\n    return 0;\n}\n",
+        "hidden_tests": [
+          "另一组键值按同样合同输出。",
+          "缺少 & 分隔时不输出并以非零退出码结束。",
+          "键顺序颠倒（age 在前）时被拒绝并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "name=ada&age=7\n",
+            "stdout": "Content-Type: text/plain\n\nname=ada\nage=7\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "name=bob&age=42\n",
+            "stdout": "Content-Type: text/plain\n\nname=bob\nage=42\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "name=ada\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "age=7&name=ada\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "cpp-advanced-web-challenge",
+      "type": "challenge",
+      "prompt": "模块挑战：编写模板函数 total_of(const std::vector<T>&) 对 int 求和、对 std::string 求拼接。读取整数 n（合同范围 1..1000，含两端），随后 n 行，每行为 \"num x\"（x 为整数，合同范围 0..100，含两端）或 \"word w\"（w 为无空格非空小写单词）。把 num 值与 word 值分别收集，输出两行：第一行 \"nums <所有 num 之和>\"，第二行 \"words <所有 word 按输入顺序拼接>\"（若没有 word 行则拼接为空串）。n、行格式或 num 范围不合法时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <iostream>\n#include <string>\n#include <vector>\n\n// 定义模板函数 total_of\n\nint main() {\n    // 读取并校验 n 与各行，分类型收集后输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 n=3、num 2、word ab、num 3 时输出 nums 5 与 words ab 两行。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <string>\n#include <vector>\n\ntemplate <typename T>\nT total_of(const std::vector<T>& items) {\n    T total = T();\n    for (const T& item : items) {\n        total += item;\n    }\n    return total;\n}\n\nint main() {\n    std::string line;\n    if (!std::getline(std::cin, line)) return 1;\n    int n = 0;\n    try {\n        std::size_t pos = 0;\n        n = std::stoi(line, &pos);\n        if (pos != line.size()) return 1;\n    } catch (...) {\n        return 1;\n    }\n    if (n < 1 || n > 1000) return 1;\n    std::vector<int> nums;\n    std::vector<std::string> words;\n    for (int i = 0; i < n; i++) {\n        if (!std::getline(std::cin, line)) return 1;\n        std::size_t space = line.find(' ');\n        if (space == std::string::npos) return 1;\n        std::string kind = line.substr(0, space);\n        std::string rest = line.substr(space + 1);\n        if (rest.empty() || rest.find(' ') != std::string::npos) return 1;\n        if (kind == \"num\") {\n            int value = 0;\n            try {\n                std::size_t pos = 0;\n                value = std::stoi(rest, &pos);\n                if (pos != rest.size()) return 1;\n            } catch (...) {\n                return 1;\n            }\n            if (value < 0 || value > 100) return 1;\n            nums.push_back(value);\n        } else if (kind == \"word\") {\n            for (char ch : rest) {\n                if (ch < 'a' || ch > 'z') return 1;\n            }\n            words.push_back(rest);\n        } else {\n            return 1;\n        }\n    }\n    std::cout << \"nums \" << total_of(nums) << \"\\n\";\n    std::cout << \"words \" << total_of(words) << \"\\n\";\n    return 0;\n}\n",
+        "hidden_tests": [
+          "只有 num 行时 words 拼接为空串。",
+          "num 0 下边界正常参与求和。",
+          "num 101 越界时不输出并以非零退出码结束。",
+          "n=0 越界时不输出并以非零退出码结束。",
+          "未知行类型 decimal 5 不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3\nnum 2\nword ab\nnum 3\n",
+            "stdout": "nums 5\nwords ab\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "2\nnum 4\nnum 3\n",
+            "stdout": "nums 7\nwords \n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2\nnum 0\nword x\n",
+            "stdout": "nums 0\nwords x\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1\nnum 101\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "0\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "1\ndecimal 5\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

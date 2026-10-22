@@ -73,35 +73,56 @@
     {
       "id": "python-concurrency-network-smtp-c01",
       "type": "code",
-      "prompt": "从受信邮件 fixture 输出正文 ready。",
-      "starter_code": "mail = {'to': 'learner@example.test', 'body': 'ready'}\n# 输出正文",
+      "prompt": "读取 JSON 对象，要求 to 是非空字符串，body 是字符串（允许空）。输出 body 原文，print 添加换行；允许额外字段。格式或字段类型不合法时无输出，退出码 1。这里只读取消息 fixture，不验证邮箱规范，也不发送邮件。支架已经提供 data。",
+      "starter_code": "import sys, json\ntry:\n    data = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif not isinstance(data, dict):\n    raise SystemExit(1)\nif not isinstance(data.get(\"to\"), str) or not data[\"to\"].strip() or not isinstance(data.get(\"body\"), str):\n    raise SystemExit(1)\n# 按题面实现本课操作\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '{\"to\":\"a@example.test\",\"body\":\"ready\"}'，输出 'ready\\n'，退出码 0。",
+        "输入 '{\"to\":\"b@example.test\",\"body\":\"学习\"}'，输出 '学习\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-concurrency-network-smtp-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    mail = {'to': 'learner@example.test', 'body': 'ready'}\n    print(mail['body'])\n",
+        "reference_solution": "import sys, json\ntry:\n    data = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif not isinstance(data, dict):\n    raise SystemExit(1)\nif not isinstance(data.get(\"to\"), str) or not data[\"to\"].strip() or not isinstance(data.get(\"body\"), str):\n    raise SystemExit(1)\nprint(data[\"body\"])\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面规定的有效边界和失败行为。",
+          "输出格式、类型和顺序以题面约定为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "{\"to\":\"a@example.test\",\"body\":\"ready\"}",
             "stdout": "ready\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"to\":\"b@example.test\",\"body\":\"学习\"}",
+            "stdout": "学习\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-concurrency-network-smtp-c01\n",
+            "stdin": "{\"to\":\"x\",\"body\":\"\"}",
+            "stdout": "\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "{\"to\":\"x\",\"body\":\" A  B \"}",
+            "stdout": " A  B \n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"body\":\"x\"}",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "{\"to\":\"x\",\"body\":null}",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

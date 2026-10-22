@@ -1,0 +1,110 @@
+{
+  "lesson_id": "csharp-foundations-variables",
+  "questions": [
+    {
+      "id": "csharp-foundations-variables-k01",
+      "type": "knowledge",
+      "prompt": "C# 变量的主要特征是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "声明后永远不能改变"
+        },
+        {
+          "id": "b",
+          "text": "用名称引用可在允许范围内更新的值"
+        },
+        {
+          "id": "c",
+          "text": "只能存储字符串"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-foundations-variables-k02",
+      "type": "knowledge",
+      "prompt": "交换 left 与 right 两个变量时，哪种 C# 语法无需手写第三个临时变量？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "left = right = left;"
+        },
+        {
+          "id": "b",
+          "text": "left.Equals(right);"
+        },
+        {
+          "id": "c",
+          "text": "(left, right) = (right, left);"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "csharp-foundations-variables-k03",
+      "type": "knowledge",
+      "prompt": "读取尚未明确赋值的局部变量，会发生什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "编译器报告使用了未赋值的局部变量"
+        },
+        {
+          "id": "b",
+          "text": "自动得到随机值"
+        },
+        {
+          "id": "c",
+          "text": "总是自动得到 null"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-foundations-variables-c01",
+      "type": "code",
+      "prompt": "依次读取整数 left 和 right；交换两个变量的值，再把交换后的 left 加 1，最后输出 left right。",
+      "starter_code": "var left = int.Parse(Console.ReadLine() ?? \"\");\nvar right = int.Parse(Console.ReadLine() ?? \"\");\n// 交换状态，再更新 left\n",
+      "visible_tests": [
+        "输入 3 和 8 时输出 9 3。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var left = int.Parse(Console.ReadLine() ?? \"\");\nvar right = int.Parse(Console.ReadLine() ?? \"\");\n(left, right) = (right, left);\nleft += 1;\nConsole.WriteLine($\"{left} {right}\");\n",
+        "hidden_tests": [
+          "包含零和负数时仍按步骤更新。",
+          "两个初值相同时也执行交换与更新。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3\n8\n",
+            "stdout": "9 3\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n-2\n",
+            "stdout": "-1 0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "5\n5\n",
+            "stdout": "6 5\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

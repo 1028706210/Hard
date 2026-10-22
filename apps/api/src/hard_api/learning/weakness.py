@@ -40,15 +40,18 @@ def weaknesses(
             continue
         normalized = json.loads(attempt["normalized_result"]) if attempt["normalized_result"] else {}
         hidden_failures = min(max(0, int(normalized.get("hidden_test_failures", 0))) * 2, 6)
+        signal_score = (4 if float(attempt["raw_score"] or 0) < 100 else 0)
+        signal_score += {"light": 1, "strong": 2, "revealed": 4}.get(str(attempt["hint_level"]), 0)
+        signal_score += 2 if normalized.get("compile_error_category") else 0
+        signal_score += hidden_failures
+        if not signal_score:
+            continue
         for concept_id in lesson.document.front_matter.concepts:
-            if float(attempt["raw_score"] or 0) < 100:
-                scores[concept_id] += 4
-            scores[concept_id] += {"light": 1, "strong": 2, "revealed": 4}.get(str(attempt["hint_level"]), 0)
-            if normalized.get("compile_error_category"):
-                scores[concept_id] += 2
-            scores[concept_id] += hidden_failures
-            latest[concept_id] = max(latest.get(concept_id, ""), str(attempt["created_at"]))
-            links[concept_id] = (lesson.document.front_matter.id, str(attempt["exercise_id"] or ""))
+            scores[concept_id] += signal_score
+            timestamp = str(attempt["created_at"])
+            if timestamp >= latest.get(concept_id, ""):
+                latest[concept_id] = timestamp
+                links[concept_id] = (lesson.document.front_matter.id, str(attempt["exercise_id"] or ""))
     for review in review_items:
         lesson = repository.lesson_for(str(review["lesson_id"]))
         if lesson is None:
@@ -56,9 +59,15 @@ def weaknesses(
         overdue = min(7, max(0, (current_day - date.fromisoformat(str(review["due_on"]))).days))
         concept_id = str(review["concept_id"])
         scores[concept_id] += overdue
-        latest[concept_id] = max(latest.get(concept_id, ""), str(review["updated_at"]))
-        links[concept_id] = (lesson.document.front_matter.id, str(review["exercise_id"] or ""))
-    ranked = [(concept_id, score) for concept_id, score in scores.items() if concept_id in links]
+        timestamp = str(review["updated_at"])
+        if timestamp >= latest.get(concept_id, ""):
+            latest[concept_id] = timestamp
+            links[concept_id] = (lesson.document.front_matter.id, str(review["exercise_id"] or ""))
+    ranked = [
+        (concept_id, score)
+        for concept_id, score in scores.items()
+        if score > 0 and concept_id in links
+    ]
     ranked.sort(key=lambda item: item[0])
     ranked.sort(key=lambda item: latest.get(item[0], ""), reverse=True)
     ranked.sort(key=lambda item: item[1], reverse=True)

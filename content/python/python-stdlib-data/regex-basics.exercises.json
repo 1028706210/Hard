@@ -73,35 +73,66 @@
     {
       "id": "python-stdlib-data-regex-basics-c01",
       "type": "code",
-      "prompt": "验证 42 只含数字并输出 True。",
-      "starter_code": "import re\n# 输出验证结果",
+      "prompt": "读取全部文本，仅删除末尾换行符 \\n。用 [0-9]+ 和 fullmatch 验证是否恰好为一个或多个 ASCII 数字字符，输出 True 或 False。保留前导零；负号、小数点、空格、Unicode 数字与空文本都是 False，退出码 0。",
+      "starter_code": "import sys\ntext = sys.stdin.read().rstrip(\"\\n\")\nimport re\n# 完成本课操作与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '42'，输出 'True\\n'，退出码 0。",
+        "输入 '4a'，输出 'False\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-stdlib-data-regex-basics-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    import re\n    print(bool(re.fullmatch(r'[0-9]+', '42')))\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().rstrip(\"\\n\")\nimport re\nprint(bool(re.fullmatch(r\"[0-9]+\", text)))\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的正常边界。",
+          "输入、输出和退出状态必须符合题面。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "42",
             "stdout": "True\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "4a",
+            "stdout": "False\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-stdlib-data-regex-basics-c01\n",
+            "stdin": "007",
+            "stdout": "True\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
-            "stdout": "",
-            "exit_code": 2
+            "stdin": "",
+            "stdout": "False\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-1",
+            "stdout": "False\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1.0",
+            "stdout": "False\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": " 42",
+            "stdout": "False\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "１２",
+            "stdout": "False\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "42x",
+            "stdout": "False\n",
+            "exit_code": 0
           }
         ]
       }

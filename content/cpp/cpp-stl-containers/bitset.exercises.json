@@ -1,0 +1,164 @@
+{
+  "lesson_id": "cpp-stl-containers-bitset",
+  "questions": [
+    {
+      "id": "cpp-stl-containers-bitset-k01",
+      "type": "knowledge",
+      "prompt": "bitset 的 count() 返回？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "位总数 N"
+        },
+        {
+          "id": "b",
+          "text": "值为 1 的位数"
+        },
+        {
+          "id": "c",
+          "text": "值为 0 的位数"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-bitset-k02",
+      "type": "knowledge",
+      "prompt": "用字符串 \"1010\" 构造 bitset<4> 时，最左侧的 '1' 位于？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "不占任何位"
+        },
+        {
+          "id": "b",
+          "text": "最低位（第 0 位）"
+        },
+        {
+          "id": "c",
+          "text": "最高位（第 3 位）"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-bitset-k03",
+      "type": "knowledge",
+      "prompt": "构造字符串长度超过 bitset<N> 的 N 时会？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "自动截断"
+        },
+        {
+          "id": "b",
+          "text": "低位对齐保留尾部"
+        },
+        {
+          "id": "c",
+          "text": "抛出 std::invalid_argument"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-bitset-c01",
+      "type": "code",
+      "prompt": "读取一行仅由 0 与 1 组成的字符串（长度 1..64，含两端），构造 std::bitset<64> 后输出其中 1 的个数。行内出现其他字符、长度越界或无输入时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <bitset>\n#include <iostream>\n#include <string>\n\nint main() {\n    // 读取 0/1 串，bitset 统计 1 的个数\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 1011 时输出 3。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <bitset>\n#include <iostream>\n#include <string>\n\nint main() {\n    std::string line;\n    if (!std::getline(std::cin, line)) return 1;\n    if (line.size() < 1 || line.size() > 64) return 1;\n    for (char ch : line) {\n        if (ch != '0' && ch != '1') return 1;\n    }\n    std::bitset<64> bits(line);\n    std::cout << bits.count() << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "全 0 串输出 0。",
+          "全 1 串（64 位）输出 64。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1011\n",
+            "stdout": "3\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0000\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1111111111111111111111111111111111111111111111111111111111111111\n",
+            "stdout": "64\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "cpp-stl-containers-bitset-challenge",
+      "type": "challenge",
+      "prompt": "模块挑战：读取整数 n（合同范围 1..1000，含两端），随后 n 行指令，逐行处理一个 std::vector<long long>：\"push x\"（x 为整数，合同范围 0..1000，含两端，追加到 vector 末尾）、\"min\"（输出当前最小值，空容器时输出 empty）、\"size\"（输出当前元素个数）。指令格式非法、或 x 越界时不输出后续内容并以非零退出码结束；合法指令的输出按顺序各占一行。",
+      "starter_code": "#include <iostream>\n#include <string>\n#include <vector>\n\nint main() {\n    // 读取 n 行指令，模拟 push/min/size\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 n=4、push 3、push 1、min、size 时输出 1 与 2 两行。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <string>\n#include <vector>\n\nint main() {\n    int n = 0;\n    if (!(std::cin >> n)) return 1;\n    if (n < 1 || n > 1000) return 1;\n    std::vector<long long> values;\n    std::string kind;\n    for (int i = 0; i < n; i++) {\n        if (!(std::cin >> kind)) return 1;\n        if (kind == \"push\") {\n            long long x = 0;\n            if (!(std::cin >> x)) return 1;\n            if (x < 0 || x > 1000) return 1;\n            values.push_back(x);\n        } else if (kind == \"min\") {\n            if (values.empty()) {\n                std::cout << \"empty\" << std::endl;\n            } else {\n                long long best = values[0];\n                for (long long value : values) {\n                    if (value < best) best = value;\n                }\n                std::cout << best << std::endl;\n            }\n        } else if (kind == \"size\") {\n            std::cout << values.size() << std::endl;\n        } else {\n            return 1;\n        }\n    }\n    return 0;\n}\n",
+        "hidden_tests": [
+          "空容器上 min 输出 empty。",
+          "push 0 下边界参与最小值比较。",
+          "push 1000 上边界正常追加。",
+          "push 1001 越界时不输出并以非零退出码结束。",
+          "未知指令 clear 5 不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "4\npush 3\npush 1\nmin\nsize\n",
+            "stdout": "1\n2\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "2\nmin\nsize\n",
+            "stdout": "empty\n0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3\npush 5\npush 0\nmin\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2\npush 1000\nsize\n",
+            "stdout": "1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1\npush 1001\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "1\nclear 5\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

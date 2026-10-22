@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-algorithms-concurrency-future",
+  "questions": [
+    {
+      "id": "cpp-algorithms-concurrency-future-k01",
+      "type": "knowledge",
+      "prompt": "std::async 返回的 future 调用 get() 会？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "阻塞直到结果就绪并返回，且只能一次"
+        },
+        {
+          "id": "b",
+          "text": "立即返回缓存值"
+        },
+        {
+          "id": "c",
+          "text": "每次调用都重新执行任务"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-future-k02",
+      "type": "knowledge",
+      "prompt": "异步任务中抛出的异常会？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "立即导致整个进程 terminate"
+        },
+        {
+          "id": "b",
+          "text": "存入 future，get() 时重新抛出"
+        },
+        {
+          "id": "c",
+          "text": "被静默吞掉"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-future-k03",
+      "type": "knowledge",
+      "prompt": "对同一个 future 第二次调用 get()？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "返回相同的缓存值"
+        },
+        {
+          "id": "b",
+          "text": "重新启动任务"
+        },
+        {
+          "id": "c",
+          "text": "future 已无效，行为未定义"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-future-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 1..1000，含两端）与 n 个整数（每个合同范围 -10000..10000，含两端）存入 vector。用 std::async(std::launch::async, ...) 启动任务对全部元素求和，主线程在 future 上 get() 取回结果后输出总和。任一输入无法解析或越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <future>\n#include <iostream>\n#include <vector>\n\nint main() {\n    // 读取 n 与 n 个整数，async 求和后 get 输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 n=4 与 1 2 3 4 时输出 10。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <future>\n#include <iostream>\n#include <vector>\n\nint main() {\n    int n = 0;\n    if (!(std::cin >> n)) return 1;\n    if (n < 1 || n > 1000) return 1;\n    std::vector<long long> values;\n    for (int i = 0; i < n; i++) {\n        long long value = 0;\n        if (!(std::cin >> value)) return 1;\n        if (value < -10000 || value > 10000) return 1;\n        values.push_back(value);\n    }\n    std::future<long long> task = std::async(std::launch::async, [&values] {\n        long long total = 0;\n        for (long long value : values) total += value;\n        return total;\n    });\n    std::cout << task.get() << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "n=1 时对唯一元素求和。",
+          "含负数时总和保留符号。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "4 1 2 3 4\n",
+            "stdout": "10\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1 7\n",
+            "stdout": "7\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3 -1 2 -3\n",
+            "stdout": "-2\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

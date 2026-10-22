@@ -1,0 +1,110 @@
+{
+  "lesson_id": "csharp-foundations-introduction",
+  "questions": [
+    {
+      "id": "csharp-foundations-introduction-k01",
+      "type": "knowledge",
+      "prompt": "C# 与 .NET 的基本关系，哪项描述正确？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "C# 是操作系统，.NET 是文本编辑器"
+        },
+        {
+          "id": "b",
+          "text": "C# 是语言，.NET 提供运行时、库和工具链"
+        },
+        {
+          "id": "c",
+          "text": "二者只是同一个产品的两个拼写"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-foundations-introduction-k02",
+      "type": "knowledge",
+      "prompt": "安装 .NET SDK 后，哪个命令行入口通常用于创建、生成和运行 C# 项目？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "csharp"
+        },
+        {
+          "id": "b",
+          "text": "runtime"
+        },
+        {
+          "id": "c",
+          "text": "dotnet"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "csharp-foundations-introduction-k03",
+      "type": "knowledge",
+      "prompt": "把“C# 语言版本”和“目标 .NET 框架”当成同一设置，会忽略什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "语言规则与运行平台能力是相关但不同的维度"
+        },
+        {
+          "id": "b",
+          "text": "C# 程序不需要编译"
+        },
+        {
+          "id": "c",
+          "text": ".NET 只能运行一种语言"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-foundations-introduction-c01",
+      "type": "code",
+      "prompt": "读取一个 .NET 主版本号 n，输出 C# -> .NET n，用一行结果表达 C# 语言与 .NET 平台的关系。",
+      "starter_code": "var major = int.Parse(Console.ReadLine() ?? \"\");\n// 输出语言与平台关系\n",
+      "visible_tests": [
+        "输入 8 时输出 C# -> .NET 8。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var major = int.Parse(Console.ReadLine() ?? \"\");\nConsole.WriteLine($\"C# -> .NET {major}\");\n",
+        "hidden_tests": [
+          "输入 6 时保留对应平台版本。",
+          "输入 9 时保留对应平台版本。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "8\n",
+            "stdout": "C# -> .NET 8\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "6\n",
+            "stdout": "C# -> .NET 6\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "9\n",
+            "stdout": "C# -> .NET 9\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

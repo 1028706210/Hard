@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-stl-containers-sstream",
+  "questions": [
+    {
+      "id": "cpp-stl-containers-sstream-k01",
+      "type": "knowledge",
+      "prompt": "从字符串文本中流式拆出整数应使用？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "std::istringstream"
+        },
+        {
+          "id": "b",
+          "text": "std::ofstream"
+        },
+        {
+          "id": "c",
+          "text": "std::cin"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-sstream-k02",
+      "type": "knowledge",
+      "prompt": "从 ostringstream 取出拼接结果的方法是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": ".c_str()"
+        },
+        {
+          "id": "b",
+          "text": ".str()"
+        },
+        {
+          "id": "c",
+          "text": ".data()"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-sstream-k03",
+      "type": "knowledge",
+      "prompt": "istringstream 读尽内容后的状态是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "进入 eof/fail，需 clear 才能重用"
+        },
+        {
+          "id": "b",
+          "text": "自动回到开头"
+        },
+        {
+          "id": "c",
+          "text": "抛出越界异常"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-sstream-c01",
+      "type": "code",
+      "prompt": "读取一行以空格分隔的整数（个数 0..100，含两端，每个绝对值不超过 10000），用 istringstream 逐个解析并输出总和（long long）。行内任一 token 不是合法整数、或数值、个数越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <iostream>\n#include <sstream>\n#include <string>\n\nint main() {\n    // 读取一行，istringstream 拆分求和\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 1 2 3 时输出 6。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <sstream>\n#include <string>\n\nint main() {\n    std::string line;\n    if (!std::getline(std::cin, line)) return 1;\n    std::istringstream reader(line);\n    long long total = 0;\n    int count = 0;\n    std::string token;\n    while (reader >> token) {\n        if (count >= 100) return 1;\n        long long value = 0;\n        try {\n            std::size_t pos = 0;\n            value = std::stoll(token, &pos);\n            if (pos != token.size()) return 1;\n        } catch (...) {\n            return 1;\n        }\n        if (value < -10000 || value > 10000) return 1;\n        total += value;\n        count++;\n    }\n    std::cout << total << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "空行输出 0。",
+          "含负数时求和保留符号。",
+          "混入非数字 token 时以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1 2 3\n",
+            "stdout": "6\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-5 2\n",
+            "stdout": "-3\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1 x 3\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

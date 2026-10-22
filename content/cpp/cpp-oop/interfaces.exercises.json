@@ -1,0 +1,164 @@
+{
+  "lesson_id": "cpp-oop-interfaces",
+  "questions": [
+    {
+      "id": "cpp-oop-interfaces-k01",
+      "type": "knowledge",
+      "prompt": "C++ 表达「接口」的惯用方式是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "全部成员函数为纯虚函数的抽象类"
+        },
+        {
+          "id": "b",
+          "text": "static class 关键字"
+        },
+        {
+          "id": "c",
+          "text": "带默认实现的普通基类"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-oop-interfaces-k02",
+      "type": "knowledge",
+      "prompt": "实现类要能创建对象，必须？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "继承接口即可，无需实现"
+        },
+        {
+          "id": "b",
+          "text": "实现接口的全部纯虚函数"
+        },
+        {
+          "id": "c",
+          "text": "把接口声明为友元"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-oop-interfaces-k03",
+      "type": "knowledge",
+      "prompt": "接口类通常不应包含的是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "纯虚函数声明"
+        },
+        {
+          "id": "b",
+          "text": "数据成员与具体实现"
+        },
+        {
+          "id": "c",
+          "text": "虚析构函数"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-oop-interfaces-c01",
+      "type": "code",
+      "prompt": "定义接口 Greeter（纯虚函数 greet(name)），实现类 FormalGreeter 输出 \"hello, <name>\"、CasualGreeter 输出 \"hi, <name>\"。读取一行名字（可能为空），经 Greeter 引用分别调用两个实现，输出两行问候。",
+      "starter_code": "#include <iostream>\n#include <string>\n\nclass Greeter {\npublic:\n    virtual ~Greeter() = default;\n    virtual std::string greet(const std::string& name) const = 0;\n};\n\n// 定义 FormalGreeter 与 CasualGreeter\n\nint main() {\n    std::string name;\n    std::getline(std::cin, name);\n    // 经接口输出两行问候\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 tom 时第一行输出 hello, tom、第二行输出 hi, tom。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <string>\n\nclass Greeter {\npublic:\n    virtual ~Greeter() = default;\n    virtual std::string greet(const std::string& name) const = 0;\n};\n\nclass FormalGreeter : public Greeter {\npublic:\n    std::string greet(const std::string& name) const override {\n        return \"hello, \" + name;\n    }\n};\n\nclass CasualGreeter : public Greeter {\npublic:\n    std::string greet(const std::string& name) const override {\n        return \"hi, \" + name;\n    }\n};\n\nint main() {\n    std::string name;\n    std::getline(std::cin, name);\n    FormalGreeter formal;\n    CasualGreeter casual;\n    Greeter& first = formal;\n    Greeter& second = casual;\n    std::cout << first.greet(name) << std::endl;\n    std::cout << second.greet(name) << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "另一名字按两个前缀分别输出。",
+          "空名字输出带前缀的空串问候。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "tom\n",
+            "stdout": "hello, tom\nhi, tom\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "ada\n",
+            "stdout": "hello, ada\nhi, ada\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "\n",
+            "stdout": "hello, \nhi, \n",
+            "exit_code": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "cpp-oop-interfaces-challenge",
+      "type": "challenge",
+      "prompt": "模块挑战：定义抽象基类 Shape（纯虚函数 area()，虚析构），派生 Square（边长 s，面积 s*s）与 Circle（半径 r，面积 3*r*r）。读取整数 n（合同范围 1..1000，含两端），随后 n 行每行为 \"square s\" 或 \"circle r\"（参数合同范围 0..100，含两端）。用基类指针把对象存入容器，多态求总面积（long long）并输出。n、行格式或参数无法解析或越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <iostream>\n#include <memory>\n#include <string>\n#include <vector>\n\n// 定义 Shape / Square / Circle\n\nint main() {\n    // 读取并校验 n 与图形行，多态求和输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 n=2、square 3 与 circle 2 时输出 21。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <memory>\n#include <string>\n#include <vector>\n\nclass Shape {\npublic:\n    virtual ~Shape() = default;\n    virtual long long area() const = 0;\n};\n\nclass Square : public Shape {\npublic:\n    explicit Square(int side) : side_(side) {}\n    long long area() const override { return static_cast<long long>(side_) * side_; }\nprivate:\n    int side_;\n};\n\nclass Circle : public Shape {\npublic:\n    explicit Circle(int radius) : radius_(radius) {}\n    long long area() const override { return 3LL * radius_ * radius_; }\nprivate:\n    int radius_;\n};\n\nint main() {\n    std::string line;\n    if (!std::getline(std::cin, line)) return 1;\n    int n = 0;\n    try {\n        std::size_t pos = 0;\n        n = std::stoi(line, &pos);\n        if (pos != line.size()) return 1;\n    } catch (...) {\n        return 1;\n    }\n    if (n < 1 || n > 1000) return 1;\n    std::vector<std::unique_ptr<Shape>> shapes;\n    for (int i = 0; i < n; i++) {\n        if (!std::getline(std::cin, line)) return 1;\n        std::size_t space = line.find(' ');\n        if (space == std::string::npos) return 1;\n        std::string kind = line.substr(0, space);\n        std::string rest = line.substr(space + 1);\n        int parameter = 0;\n        try {\n            std::size_t pos = 0;\n            parameter = std::stoi(rest, &pos);\n            if (pos != rest.size()) return 1;\n        } catch (...) {\n            return 1;\n        }\n        if (parameter < 0 || parameter > 100) return 1;\n        if (kind == \"square\") {\n            shapes.push_back(std::make_unique<Square>(parameter));\n        } else if (kind == \"circle\") {\n            shapes.push_back(std::make_unique<Circle>(parameter));\n        } else {\n            return 1;\n        }\n    }\n    long long total = 0;\n    for (const auto& shape : shapes) {\n        total += shape->area();\n    }\n    std::cout << total << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "单图形下边界参数 0 输出 0。",
+          "上边界参数 100 的正方形输出 10000。",
+          "n=0 越界时不输出并以非零退出码结束。",
+          "未知图形类型不输出并以非零退出码结束。",
+          "参数 101 越界时不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "2\nsquare 3\ncircle 2\n",
+            "stdout": "21\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1\nsquare 0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1\nsquare 100\n",
+            "stdout": "10000\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "0\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "1\ntriangle 5\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "1\ncircle 101\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

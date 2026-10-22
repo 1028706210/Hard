@@ -73,35 +73,71 @@
     {
       "id": "python-stdlib-data-random-c01",
       "type": "code",
-      "prompt": "固定种子后从单元素列表输出 a。",
-      "starter_code": "import random\n# 输出选择",
+      "prompt": "输入恰好两行：第一行整数种子，第二行以空白分隔的非空候选名称。创建独立的 random.Random(seed)，调用一次 choice(items) 并输出选中名称。保留候选顺序与重复项，中文有效。本题使用当前 Python 运行环境的伪随机算法；固定种子用于本环境复现，不承诺跨版本相同，也不用于安全凭据。行数错误、无效种子或空候选时不输出内容，退出码 1。起始代码已提供 seed、items。",
+      "starter_code": "import sys, random\nlines = sys.stdin.read().splitlines()\nif len(lines) != 2:\n    raise SystemExit(1)\ntry:\n    seed = int(lines[0])\nexcept ValueError:\n    raise SystemExit(1)\nitems = lines[1].split()\nif not items:\n    raise SystemExit(1)\n# 完成本课操作与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '1\\na b c\\n'，输出 'a\\n'，退出码 0。",
+        "输入 '5\\na b c\\n'，输出 'c\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-stdlib-data-random-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    import random\n    random.seed(1)\n    print(random.choice(['a']))\n",
+        "reference_solution": "import sys, random\nlines = sys.stdin.read().splitlines()\nif len(lines) != 2:\n    raise SystemExit(1)\ntry:\n    seed = int(lines[0])\nexcept ValueError:\n    raise SystemExit(1)\nitems = lines[1].split()\nif not items:\n    raise SystemExit(1)\nrng = random.Random(seed)\nprint(rng.choice(items))\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的正常边界。",
+          "输入、输出和退出状态必须符合题面。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "1\na b c\n",
             "stdout": "a\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "5\na b c\n",
+            "stdout": "c\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-stdlib-data-random-c01\n",
+            "stdin": "0\none\n",
+            "stdout": "one\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "2\n学习 复习 练习\n",
+            "stdout": "学习\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-7\nx y z\n",
+            "stdout": "y\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "9\na a b\n",
+            "stdout": "a\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "x\na b",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "1\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "1\na\nextra",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

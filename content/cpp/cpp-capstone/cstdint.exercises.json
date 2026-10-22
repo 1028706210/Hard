@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-capstone-cstdint",
+  "questions": [
+    {
+      "id": "cpp-capstone-cstdint-k01",
+      "type": "knowledge",
+      "prompt": "std::int64_t 的位宽承诺是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "恰好 64 位，跨平台一致"
+        },
+        {
+          "id": "b",
+          "text": "至少 64 位，可更多"
+        },
+        {
+          "id": "c",
+          "text": "由编译器随机决定"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-capstone-cstdint-k02",
+      "type": "knowledge",
+      "prompt": "对 10^12 级数值求和应选用的类型是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "int"
+        },
+        {
+          "id": "b",
+          "text": "short"
+        },
+        {
+          "id": "c",
+          "text": "std::int64_t"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-cstdint-k03",
+      "type": "knowledge",
+      "prompt": "有符号与无符号整数直接比较会？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "触发整型提升转换，负数可能被当大正数"
+        },
+        {
+          "id": "b",
+          "text": "编译错误"
+        },
+        {
+          "id": "c",
+          "text": "按数学大小正确比较"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-capstone-cstdint-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 1..1000，含两端），随后 n 个 64 位整数（每个合同范围 -1000000000000..1000000000000，即 ±10^12，含两端），用 std::int64_t 累加求和并输出一行总和。任一输入无法解析、越界或缺失时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cstdint>\n#include <cstdio>\n\nint main() {\n    // 读取 n 与 int64 值，int64_t 累加输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3 与 1000000000000 -500000000000 1 时输出 500000000001。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <cstdint>\n#include <cstdio>\n\nint main() {\n    int n = 0;\n    if (std::scanf(\"%d\", &n) != 1) return 1;\n    if (n < 1 || n > 1000) return 1;\n    std::int64_t total = 0;\n    for (int i = 0; i < n; i++) {\n        long long value = 0;\n        if (std::scanf(\"%lld\", &value) != 1) return 1;\n        if (value < -1000000000000LL || value > 1000000000000LL) return 1;\n        total += static_cast<std::int64_t>(value);\n    }\n    std::printf(\"%lld\\n\", static_cast<long long>(total));\n    return 0;\n}\n",
+        "hidden_tests": [
+          "单个 -1000000000000 输出自身。",
+          "两个上边界之和 2000000000000 正确累加。",
+          "越界 1000000000001 不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 1000000000000 -500000000000 1\n",
+            "stdout": "500000000001\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1 -1000000000000\n",
+            "stdout": "-1000000000000\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2 1000000000000 1000000000000\n",
+            "stdout": "2000000000000\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1 1000000000001\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

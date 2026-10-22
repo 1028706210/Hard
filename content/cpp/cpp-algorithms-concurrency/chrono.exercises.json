@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-algorithms-concurrency-chrono",
+  "questions": [
+    {
+      "id": "cpp-algorithms-concurrency-chrono-k01",
+      "type": "knowledge",
+      "prompt": "duration_cast<seconds>(milliseconds(1500)) 的结果是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "1500 秒"
+        },
+        {
+          "id": "b",
+          "text": "2 秒（四舍五入）"
+        },
+        {
+          "id": "c",
+          "text": "1 秒（截断取整）"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-chrono-k02",
+      "type": "knowledge",
+      "prompt": "测量代码执行耗时应选用？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "tm 结构"
+        },
+        {
+          "id": "b",
+          "text": "std::system_clock"
+        },
+        {
+          "id": "c",
+          "text": "std::steady_clock"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-chrono-k03",
+      "type": "knowledge",
+      "prompt": "毫秒时长转秒之所以必须显式 duration_cast，是因为？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "编译器不支持隐式转换任何类型"
+        },
+        {
+          "id": "b",
+          "text": "毫秒和秒无法换算"
+        },
+        {
+          "id": "c",
+          "text": "可能有精度损失，语言要求显式确认"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-chrono-c01",
+      "type": "code",
+      "prompt": "读取整数毫秒数 m（合同范围 0..2000000000，含两端），构造 std::chrono::milliseconds(m) 后用 duration_cast 换算为秒，输出整秒数（long long）。m 无法解析或越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <chrono>\n#include <iostream>\n\nint main() {\n    // 读取毫秒数 m，duration_cast 换算输出整秒\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 1500 时输出 1。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <chrono>\n#include <iostream>\n\nint main() {\n    long long m = 0;\n    if (!(std::cin >> m)) return 1;\n    if (m < 0 || m > 2000000000LL) return 1;\n    std::chrono::milliseconds span(m);\n    auto whole_seconds = std::chrono::duration_cast<std::chrono::seconds>(span);\n    std::cout << whole_seconds.count() << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "999 毫秒截断为 0 秒。",
+          "1000 毫秒恰好 1 秒。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1500\n",
+            "stdout": "1\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "999\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1000\n",
+            "stdout": "1\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

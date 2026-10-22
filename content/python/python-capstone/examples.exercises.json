@@ -73,35 +73,56 @@
     {
       "id": "python-capstone-examples-c01",
       "type": "code",
-      "prompt": "实现 passed(score)：分数不低于 60 返回 True，并输出 passed(60)。",
-      "starter_code": "def passed(score):\n    # 返回是否通过\n    pass\n\nprint(passed(60))",
+      "prompt": "读取0到100（含端点）的整数成绩，定义passed(score)，不低于60返回True，否则False，打印返回值。非整数、空输入或越界无输出，退出码1。支架已提供n。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    n = int(text)\nexcept ValueError:\n    raise SystemExit(1)\nif not 0 <= n <= 100:\n    raise SystemExit(1)\n# 按题面实现本课操作\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '60'，输出 'True\\n'，退出码 0。",
+        "输入 '59'，输出 'False\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-capstone-examples-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    def passed(score):\n        return score >= 60\n\n    print(passed(60))\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    n = int(text)\nexcept ValueError:\n    raise SystemExit(1)\nif not 0 <= n <= 100:\n    raise SystemExit(1)\ndef passed(score):\n    return score >= 60\nprint(passed(n))\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面规定的有效边界和失败行为。",
+          "输出格式、类型和顺序以题面约定为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "60",
             "stdout": "True\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "59",
+            "stdout": "False\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-capstone-examples-c01\n",
+            "stdin": "0",
+            "stdout": "False\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "100",
+            "stdout": "True\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-1",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "101",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

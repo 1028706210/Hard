@@ -73,35 +73,61 @@
     {
       "id": "python-stdlib-data-sys-c01",
       "type": "code",
-      "prompt": "输出当前 Python 主版本至少为 3。",
-      "starter_code": "import sys\n# 输出布尔值",
+      "prompt": "读取一个 1 到 99（含端点）的整数 required，比较当前解释器 sys.version_info.major 是否大于或等于 required，输出 True 或 False。读取真实运行环境，不通过修改 sys.version_info 模拟版本；本项目课程 Runner 使用 Python 3，因此 required=3 为 True、required=4 为 False。空输入、非整数或越界时不输出内容，退出码 1。起始代码已验证 required。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    required = int(text)\nexcept ValueError:\n    raise SystemExit(1)\nif not 1 <= required <= 99:\n    raise SystemExit(1)\n# 完成本课操作与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '3'，输出 'True\\n'，退出码 0。",
+        "输入 '4'，输出 'False\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-stdlib-data-sys-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    import sys\n    print(sys.version_info.major >= 3)\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    required = int(text)\nexcept ValueError:\n    raise SystemExit(1)\nif not 1 <= required <= 99:\n    raise SystemExit(1)\nprint(sys.version_info.major >= required)\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的正常边界。",
+          "输入、输出和退出状态必须符合题面。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "3",
             "stdout": "True\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "4",
+            "stdout": "False\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-stdlib-data-sys-c01\n",
+            "stdin": "1",
+            "stdout": "True\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "99",
+            "stdout": "False\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "0",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "100",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "3.0",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

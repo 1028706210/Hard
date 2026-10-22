@@ -1,0 +1,128 @@
+{
+  "lesson_id": "csharp-language-features-indexer",
+  "questions": [
+    {
+      "id": "csharp-language-features-indexer-k01",
+      "type": "knowledge",
+      "prompt": "索引器与属性的关系是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "索引器是静态方法的一种别名，与属性无关"
+        },
+        {
+          "id": "b",
+          "text": "索引器是带参数的属性，用 this 声明，同样具有 get/set 访问器"
+        },
+        {
+          "id": "c",
+          "text": "索引器只能用于数组类型，属性只能用于标量类型"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-language-features-indexer-k02",
+      "type": "knowledge",
+      "prompt": "声明字符串只读索引器的正确语法是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "public string this[int index] { get { ... } }"
+        },
+        {
+          "id": "b",
+          "text": "public string Indexer(int index) { get { ... } }"
+        },
+        {
+          "id": "c",
+          "text": "public this[string index] { get { ... } }"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-language-features-indexer-k03",
+      "type": "knowledge",
+      "prompt": "关于索引器对越界输入的处理，正确的是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "运行时对所有越界访问自动返回 null，无需关心"
+        },
+        {
+          "id": "b",
+          "text": "越界行为由索引器实现者决定，必须写成明确契约（抛异常或返回约定值）"
+        },
+        {
+          "id": "c",
+          "text": "索引器不允许出现越界输入，编译器会静态检查所有下标"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-language-features-indexer-c01",
+      "type": "code",
+      "prompt": "定义类 PhoneBook：构造时接收名字数组并复制保存；只读属性 Count；索引器 this[int index] 在 0..Count-1 时返回对应名字，否则抛出 IndexOutOfRangeException。输入：第一行 n（1..50 含两端）；随后 n 行每行一个名字（非空、不含空格）；随后一行 q（1..20 含两端）；随后 q 行每行一个整数索引。对每个查询用索引器访问：合法索引输出 name=<名字>；越界时捕获 IndexOutOfRangeException 输出 out-of-range。以下情形不输出并以退出码 1 结束：n 或 q 不是整数或越界；名字为空或含空格；索引行不是整数。",
+      "starter_code": "// 实现 PhoneBook 的只读属性 Count 与 this[int] 索引器，并处理越界查询\n",
+      "visible_tests": [
+        "输入 2、alpha、beta、3 个查询 0/1/2 时输出 name=alpha、name=beta、out-of-range 三行。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "if (!int.TryParse((Console.ReadLine() ?? \"\").Trim(), out var count) || count < 1 || count > 50) Environment.Exit(1);\nvar names = new string[count];\nfor (var i = 0; i < count; i++)\n{\n    var name = (Console.ReadLine() ?? \"\").Trim();\n    if (name.Length == 0 || name.Contains(' ')) Environment.Exit(1);\n    names[i] = name;\n}\nif (!int.TryParse((Console.ReadLine() ?? \"\").Trim(), out var queries) || queries < 1 || queries > 20) Environment.Exit(1);\nvar book = new PhoneBook(names);\nfor (var i = 0; i < queries; i++)\n{\n    if (!int.TryParse((Console.ReadLine() ?? \"\").Trim(), out var index)) Environment.Exit(1);\n    try\n    {\n        Console.WriteLine(\"name=\" + book[index]);\n    }\n    catch (IndexOutOfRangeException)\n    {\n        Console.WriteLine(\"out-of-range\");\n    }\n}\n\nsealed class PhoneBook\n{\n    private readonly string[] _names;\n\n    public int Count => _names.Length;\n\n    public PhoneBook(string[] names)\n    {\n        _names = new string[names.Length];\n        Array.Copy(names, _names, names.Length);\n    }\n\n    public string this[int index] =>\n        index >= 0 && index < Count ? _names[index] : throw new IndexOutOfRangeException();\n}\n",
+        "hidden_tests": [
+          "负数索引与合法索引混合时分别输出 out-of-range 与对应名字。",
+          "n 为 0 时不输出并以退出码 1 结束。",
+          "索引行不是整数时不输出并以退出码 1 结束。",
+          "名字含空格时不输出并以退出码 1 结束。",
+          "多个查询全为合法索引时按查询顺序输出全部名字。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "2\nalpha\nbeta\n3\n0\n1\n2\n",
+            "stdout": "name=alpha\nname=beta\nout-of-range\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1\nsolo\n2\n-1\n0\n",
+            "stdout": "out-of-range\nname=solo\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "0\n1\n0\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "1\nsolo\n1\nx\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "1\na b\n1\n0\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "2\nx\ny\n2\n1\n0\n",
+            "stdout": "name=y\nname=x\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

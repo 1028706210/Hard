@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-capstone-opencv",
+  "questions": [
+    {
+      "id": "cpp-capstone-opencv-k01",
+      "type": "knowledge",
+      "prompt": "OpenCV 中 cv::Mat 的 at<T>(y, x) 前两个下标的顺序是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "先列后行（x 在前）"
+        },
+        {
+          "id": "b",
+          "text": "先行后列（y 在前）"
+        },
+        {
+          "id": "c",
+          "text": "随机顺序"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-capstone-opencv-k02",
+      "type": "knowledge",
+      "prompt": "8 位单通道灰度图（CV_8UC1）单个像素的取值范围是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "0..65535"
+        },
+        {
+          "id": "b",
+          "text": "0..1"
+        },
+        {
+          "id": "c",
+          "text": "0..255"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-opencv-k03",
+      "type": "knowledge",
+      "prompt": "本课程 C++ 环境验证 OpenCV 相关算法的方式是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "强制安装 OpenCV 二进制包"
+        },
+        {
+          "id": "b",
+          "text": "用纯数据 fixture（标准库容器模拟矩阵）表达同一算法"
+        },
+        {
+          "id": "c",
+          "text": "联网调用在线图像服务"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-capstone-opencv-c01",
+      "type": "code",
+      "prompt": "用纯数据 fixture 模拟 3x3 灰度图：读取 9 个整数像素值（每个合同范围 0..255，含两端，按先行后列顺序），随后读取阈值 t（合同范围 0..255，含两端）。统计灰度值 >= t 的像素个数并输出一行计数。任一输入无法解析、越界或缺失时不输出内容并以非零退出码结束。（本题不使用也不安装 OpenCV，仅用标准库模拟算法。）",
+      "starter_code": "#include <cstdio>\n#include <vector>\n\nint main() {\n    // 读取 3x3 灰度值与阈值，统计 >= 阈值的像素数\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 10 20 30 40 50 60 70 80 90 与阈值 50 时输出 5。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <cstdio>\n#include <vector>\n\nint main() {\n    std::vector<std::vector<int>> gray(3, std::vector<int>(3));\n    for (int row = 0; row < 3; row++) {\n        for (int col = 0; col < 3; col++) {\n            if (std::scanf(\"%d\", &gray[row][col]) != 1) return 1;\n            if (gray[row][col] < 0 || gray[row][col] > 255) return 1;\n        }\n    }\n    int threshold = 0;\n    if (std::scanf(\"%d\", &threshold) != 1) return 1;\n    if (threshold < 0 || threshold > 255) return 1;\n    int count = 0;\n    for (const auto& row : gray) {\n        for (int pixel : row) {\n            if (pixel >= threshold) count++;\n        }\n    }\n    std::printf(\"%d\\n\", count);\n    return 0;\n}\n",
+        "hidden_tests": [
+          "阈值 0 时全部 9 个像素计入。",
+          "阈值 255 时仅等于 255 的像素计入。",
+          "像素值 256 越界不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "10 20 30 40 50 60 70 80 90 50\n",
+            "stdout": "5\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "10 20 30 40 50 60 70 80 90 0\n",
+            "stdout": "9\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "255 254 3 2 1 0 9 18 27 255\n",
+            "stdout": "1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "256 20 30 40 50 60 70 80 90 50\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

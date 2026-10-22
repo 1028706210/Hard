@@ -1,0 +1,10 @@
+{
+  "valid": true,
+  "counts": {
+内容校验通过：1 门课程、99 节课、99 份练习。
+    "courses": 1,
+    "lessons": 99,
+    "exercises": 99
+  },
+  "errors": []
+}

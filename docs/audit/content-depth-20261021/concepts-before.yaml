@@ -1,0 +1,1336 @@
+concepts:
+  - id: variables
+    name: 变量
+    description: 保存可变值的命名位置。
+    compare:
+      python:
+        status: available
+        summary: 变量是对象的命名引用，赋值即建立绑定，无需声明类型。
+        difference: 动态类型，同一名字可重新绑定不同类型的对象，其余三语言均在声明处固定类型。
+        code: |
+          count = 10          # 绑定为 int 对象
+          count = "ten"       # 可重新绑定 str 对象
+          print(type(count))
+        lesson_id: python-core-types-basic-syntax
+      java:
+        status: available
+        summary: 变量是带静态声明类型的存储位置，分为基本类型与引用类型。
+        difference: 编译期固定类型，赋值必须与声明类型兼容，区别于 Python 的动态绑定。
+        code: |
+          int count = 10;
+          String label = "ten";  // 类型在声明处固定
+          System.out.println(label);
+        lesson_id: java-foundations-variable-types
+      csharp:
+        status: available
+        summary: 变量必须先声明类型（或用 var 由右侧推断），默认有明确的编译期类型。
+        difference: 与 Java 同为静态类型，但提供 var 推断与可空引用标注，空值检查更严格。
+        code: |
+          int count = 10;
+          var label = "ten";   // 编译器推断为 string
+          Console.WriteLine(label);
+        lesson_id: csharp-foundations-variables
+      cpp:
+        status: available
+        summary: 变量是确定类型的对象实体，可用 auto 让编译器推导初始化类型。
+        difference: 对象语义直接承载值本身，区分栈对象与堆分配，局部标量应先初始化再读取；只声明变量本身不等于发生未定义行为。
+        code: |
+          int count = 10;
+          auto label = std::string{"ten"};
+          std::cout << label << '\n';
+        lesson_id: cpp-foundations-variables
+  - id: types
+    name: 类型
+    description: 值的分类及其允许操作。
+    compare:
+      python:
+        status: available
+        summary: 类型与对象绑定，常用 int、float、str、bool 等内建类型，可在运行期查询。
+        difference: 类型检查发生在运行期，type() 与 isinstance() 是主要自省手段。
+        code: |
+          value = 3.14
+          print(type(value))            # <class 'float'>
+          print(isinstance(value, float))
+        lesson_id: python-core-types-data-types
+      java:
+        status: available
+        summary: 类型分为基本类型（int、double 等）与引用类型，编译期严格检查。
+        difference: 基本类型与包装类型（Integer 等）双轨并存，需要手动考虑装箱拆箱。
+        code: |
+          double value = 3.14;
+          Integer boxed = (int) value;   // 显式收窄与装箱
+          System.out.println(boxed);
+        lesson_id: java-core-api-number-math
+      csharp:
+        status: available
+        summary: 类型系统统一为值类型与引用类型，全部隐式继承 object。
+        difference: 提供可空值类型 int? 与模式匹配，空值语义比 Java 显式。
+        code: |
+          double value = 3.14;
+          object boxed = value;          // 装箱为引用
+          Console.WriteLine(boxed.GetType());
+        lesson_id: csharp-oop-nullable
+      cpp:
+        status: available
+        summary: 类型在编译期确定，通过 <type_traits> 可在编译期查询与分支。
+        difference: 支持值类别与 cv 限定，模板按类型实例化，类型信息可以完全不进入运行期。
+        code: |
+          static_assert(std::is_integral_v<int>);
+          double value = 3.14;
+          std::cout << typeid(value).name() << '\n';
+        lesson_id: cpp-foundations-data-types
+  - id: control-flow
+    name: 控制流
+    description: 条件、分支与循环决定代码执行路径。
+    compare:
+      python:
+        status: available
+        summary: 用 if/elif/else 与 for、while 表达分支与循环，以缩进划分块。
+        difference: 无 switch 原生结构（以 if 链或字典分发替代），for 是对可迭代对象的遍历。
+        code: |
+          for item in [1, 2, 3]:
+              if item % 2 == 0:
+                  print(item, "偶数")
+        lesson_id: python-flow-collections-conditions
+      java:
+        status: available
+        summary: if/else、switch、for、while、do-while 全套经典控制结构。
+        difference: switch 支持字符串与箭头标签，for 既有计数循环也有 for-each 遍历。
+        code: |
+          for (int item : new int[]{1, 2, 3}) {
+              if (item % 2 == 0) System.out.println(item + " 偶数");
+          }
+        lesson_id: java-foundations-loops
+      csharp:
+        status: available
+        summary: if/else、switch、for、foreach、while 与模式匹配分支。
+        difference: switch 表达式可以把分支作为值返回，模式匹配能力最强。
+        code: |
+          foreach (var item in new[] {1, 2, 3}) {
+              if (item % 2 == 0) Console.WriteLine($"{item} 偶数");
+          }
+        lesson_id: csharp-foundations-loops
+      cpp:
+        status: available
+        summary: if/else、switch、for、while 与基于范围的 for 循环。
+        difference: 没有虚拟机层的安全网，越界访问或读取未初始化的条件值可能导致未定义行为；应先初始化并检查边界。
+        code: |
+          for (int item : {1, 2, 3}) {
+              if (item % 2 == 0) std::cout << item << " 偶数\n";
+          }
+        lesson_id: cpp-foundations-decisions
+  - id: functions
+    name: 函数
+    description: 可复用的命名行为单元。
+    compare:
+      python:
+        status: available
+        summary: 用 def 定义函数，参数无需类型，函数是与变量同级的对象。
+        difference: 函数是一等公民，可赋值、传参、嵌套定义并被装饰器包装。
+        code: |
+          def add(left, right):
+              return left + right
+
+          print(add(2, 3))
+        lesson_id: python-functions-iteration-functions
+      java:
+        status: available
+        summary: 方法必须属于类或接口，参数与返回值都有静态类型。
+        difference: 不存在独立于类的函数，重载靠参数表区分，方法不是一等值（需借函数式接口）。
+        code: |
+          static int add(int left, int right) {
+              return left + right;
+          }
+          System.out.println(add(2, 3));
+        lesson_id: java-core-api-methods
+      csharp:
+        status: available
+        summary: 方法与本地函数都可用，支持可选参数、命名参数与表达式体。
+        difference: 方法可通过委托作为值传递，语言级支持比 Java 直接。
+        code: |
+          static int Add(int left, int right) => left + right;
+          Console.WriteLine(Add(2, 3));
+        lesson_id: csharp-oop-methods
+      cpp:
+        status: available
+        summary: 自由函数与成员函数并存，支持默认参数、重载与模板函数。
+        difference: 函数重载在编译期决议，内联与模板实例化让抽象几乎零运行开销。
+        code: |
+          int add(int left, int right) { return left + right; }
+          std::cout << add(2, 3) << '\n';
+        lesson_id: cpp-core-memory-functions
+  - id: collections
+    name: 集合
+    description: 组织多个值的数据结构。
+    compare:
+      python:
+        status: available
+        summary: 内建 list、tuple、dict、set，字面量即可创建。
+        difference: 内建集合直接可用且可混合类型，无需导入容器头文件或泛型参数。
+        code: |
+          values = [1, 2, 3]
+          values.append(4)
+          print(len(values))
+        lesson_id: python-flow-collections-lists
+      java:
+        status: available
+        summary: 集合框架以 List、Set、Map 接口与 ArrayList、HashMap 等实现为核心。
+        difference: 集合默认持引用、泛型擦除在运行期不保留元素类型，需通过 Iterator 遍历。
+        code: |
+          List<Integer> values = new ArrayList<>();
+          values.add(1);
+          System.out.println(values.size());
+        lesson_id: java-collections-generics-collections-framework
+      csharp:
+        status: available
+        summary: List<T>、Dictionary<K,V>、HashSet<T> 等泛型集合是默认选择。
+        difference: 泛型在运行期保留，配合 LINQ 可对集合做声明式查询。
+        code: |
+          var values = new List<int> {1, 2, 3};
+          values.Add(4);
+          Console.WriteLine(values.Count);
+        lesson_id: csharp-language-features-collections
+      cpp:
+        status: available
+        summary: STL 容器按语义选择：vector、list、set、map、unordered_map 等。
+        difference: 容器直接持有值并连续管理内存，迭代器失效规则是独有约束。
+        code: |
+          std::vector<int> values{1, 2, 3};
+          values.push_back(4);
+          std::cout << values.size() << '\n';
+        lesson_id: cpp-stl-containers-vector
+  - id: classes
+    name: 类
+    description: 描述对象状态和行为的类型模板。
+    compare:
+      python:
+        status: available
+        summary: 用 class 定义类型，属性在运行期动态附加，方法第一参数是 self。
+        difference: 没有访问修饰符关键字，靠下划线约定表达私有，类本身就是对象。
+        code: |
+          class Counter:
+              def __init__(self):
+                  self.value = 0
+
+          counter = Counter()
+          print(counter.value)
+        lesson_id: python-modules-io-oop-classes
+      java:
+        status: available
+        summary: 类是引用类型的模板，字段、构造器与方法组成，默认单继承。
+        difference: 访问控制是语言关键字，所有对象都在堆上由 GC 管理。
+        code: |
+          class Counter {
+              int value = 0;
+          }
+          Counter counter = new Counter();
+          System.out.println(counter.value);
+        lesson_id: java-core-api-constructors
+      csharp:
+        status: available
+        summary: class 定义引用类型，支持属性、表达式体成员与分部类。
+        difference: 与结构体（值类型）语义分立，类实例默认可空注解受编译器检查。
+        code: |
+          class Counter {
+              public int Value { get; set; }
+          }
+          var counter = new Counter();
+          Console.WriteLine(counter.Value);
+        lesson_id: csharp-oop-classes
+      cpp:
+        status: available
+        summary: class 与 struct 仅默认访问不同，支持构造、析构与拷贝控制。
+        difference: 对象可栈分配、可值语义复制，析构函数决定 RAII 资源释放时机。
+        code: |
+          class Counter {
+          public:
+              int value = 0;
+          };
+          Counter counter;
+          std::cout << counter.value << '\n';
+        lesson_id: cpp-oop-classes
+  - id: inheritance
+    name: 继承
+    description: 基于已有类型扩展行为的机制。
+    compare:
+      python:
+        status: missing
+        note: Python 支持类继承（含多继承），但当前路线未设以继承为主题的标注课时，相关语法并入类与对象课时。
+      java:
+        status: available
+        summary: extends 实现单继承，abstract 类约束子类必须实现的成员。
+        difference: 类单继承 + 接口多实现的组合是 Java 的固定模型，无多重类继承。
+        code: |
+          class Animal {
+              void speak() { System.out.println("..."); }
+          }
+          class Dog extends Animal {}
+        lesson_id: java-oop-io-inheritance
+      csharp:
+        status: available
+        summary: 冒号语法实现基类继承，sealed 可终止继承链。
+        difference: 与 Java 同为单类继承，但支持扩展方法为不相关类型附加行为。
+        code: |
+          class Animal {
+              public virtual void Speak() => Console.WriteLine("...");
+          }
+          class Dog : Animal { }
+        lesson_id: csharp-oop-inheritance
+      cpp:
+        status: available
+        summary: 支持公有/保护/私有三种继承方式与虚函数表驱动的动态派发。
+        difference: 允许多继承与虚继承，需要显式考虑对象布局与菱形继承问题。
+        code: |
+          class Animal {
+          public:
+              virtual void speak() { std::cout << "...\n"; }
+          };
+          class Dog : public Animal {};
+        lesson_id: cpp-oop-inheritance
+  - id: polymorphism
+    name: 多态
+    description: 以统一接口处理不同具体类型的能力。
+    compare:
+      python:
+        status: missing
+        note: Python 天然以鸭子类型实现多态，但路线内没有以多态为主题的标注课时；相关讨论见类与对象课时。
+      java:
+        status: available
+        summary: 通过方法重写与父类/接口引用在运行期派发。
+        difference: 动态派发是默认行为，重载则发生在编译期，两者界限清晰。
+        code: |
+          Animal animal = new Dog();
+          animal.speak();   // 运行期调用 Dog 的实现
+        lesson_id: java-oop-io-polymorphism
+      csharp:
+        status: available
+        summary: virtual/override 关键字显式声明可重写与重写成员。
+        difference: 不写 virtual 就不能被重写，比 Java 的默认可重写更保守。
+        code: |
+          Animal animal = new Dog();
+          animal.Speak();   // Dog 重写了 Speak
+        lesson_id: csharp-oop-polymorphism
+      cpp:
+        status: available
+        summary: 通过基类虚函数与指针/引用实现运行期多态。
+        difference: 只有通过指针或引用调用虚函数才动态派发，值语义下会发生切片。
+        code: |
+          Animal& animal = dog;
+          animal.speak();   // 虚函数表派发
+        lesson_id: cpp-oop-polymorphism
+  - id: exceptions
+    name: 异常
+    description: 表示并处理运行期错误的机制。
+    compare:
+      python:
+        status: available
+        summary: try/except/finally 捕获任意异常类型，异常也是普通对象。
+        difference: 一切错误皆异常（包括 KeyError 等），没有受检异常概念。
+        code: |
+          try:
+              risky()
+          except ValueError as error:
+              print(error)
+        lesson_id: python-modules-io-oop-exceptions
+      java:
+        status: available
+        summary: try/catch/finally 与 try-with-resources，异常分为受检与非受检两类。
+        difference: 受检异常强制调用方声明或捕获，是四语言中唯一的编译期约束。
+        code: |
+          try {
+              risky();
+          } catch (IOException error) {
+              System.out.println(error.getMessage());
+          }
+        lesson_id: java-oop-io-exceptions
+      csharp:
+        status: available
+        summary: try/catch/finally 按类型匹配异常，using 语句负责资源释放。
+        difference: 无受检异常，异常筛选器（when 子句）可附加条件。
+        code: |
+          try {
+              Risky();
+          } catch (IOException error) when (error.Data.Count == 0) {
+              Console.WriteLine(error.Message);
+          }
+        lesson_id: csharp-io-metadata-exception-handling
+      cpp:
+        status: available
+        summary: throw 抛出、try/catch 捕获，RAII 保证栈展开时资源释放。
+        difference: 异常安全依赖析构函数，也可选择 noexcept 或错误码风格完全绕开异常。
+        code: |
+          try {
+              risky();
+          } catch (const std::exception& error) {
+              std::cout << error.what() << '\n';
+          }
+        lesson_id: cpp-advanced-exceptions
+  - id: generics
+    name: 泛型
+    description: 在保留类型约束的同时复用实现。
+    compare:
+      python:
+        status: missing
+        note: Python 以类型注解与 typing 泛型语法表达约束（运行期不强制），路线内在类型注解课时涉及，未设泛型标注课时。
+      java:
+        status: available
+        summary: 泛型类与方法用类型参数复用实现，编译期检查类型安全。
+        difference: 类型擦除使运行期没有泛型信息，不能 new T()，边界用 extends 约束。
+        code: |
+          static <T> T first(List<T> items) {
+              return items.get(0);
+          }
+        lesson_id: java-collections-generics-generics
+      csharp:
+        status: available
+        summary: List<T> 与 where 约束让泛型在运行期保持完整类型。
+        difference: 泛型实化（reified）优于 Java 擦除，支持 typeof(T) 与泛型约束组合。
+        code: |
+          static T First<T>(List<T> items) where T : notnull => items[0];
+        lesson_id: csharp-language-features-generics
+      cpp:
+        status: available
+        summary: 模板在编译期按类型实例化，配合 concepts/traits 表达约束。
+        difference: 图灵完备的编译期计算与特化机制，抽象零运行开销但报错信息更复杂。
+        code: |
+          template <typename T>
+          T first(const std::vector<T>& items) { return items.front(); }
+        lesson_id: cpp-advanced-templates
+  - id: io
+    name: IO
+    description: 输入、输出与文件数据交互。
+    compare:
+      python:
+        status: available
+        summary: print/input 处理标准流，with open(...) 统一文件读写。
+        difference: 文件对象自带上下文管理器，路径与编码是常见注意点。
+        code: |
+          with open("data.txt", encoding="utf-8") as handle:
+              print(handle.read())
+        lesson_id: python-modules-io-oop-input-output
+      java:
+        status: available
+        summary: 以流（Stream/Reader/Writer）抽象分层处理字节与字符 IO。
+        difference: 装饰器式流组合显式但冗长，NIO 提供面向缓冲区的 Files 工具。
+        code: |
+          try (var reader = Files.newBufferedReader(Path.of("data.txt"))) {
+              System.out.println(reader.readLine());
+          }
+        lesson_id: java-oop-io-files-io
+      csharp:
+        status: available
+        summary: File 静态类一行完成读写，Stream 体系支持细粒度控制。
+        difference: 同步与异步 IO（async/await）在 API 层一等并列。
+        code: |
+          var text = File.ReadAllText("data.txt");
+          Console.WriteLine(text);
+        lesson_id: csharp-io-metadata-file-io
+      cpp:
+        status: available
+        summary: iostream 处理标准流，fstream 按二进制或文本模式读写文件。
+        difference: 流运算符可重载，缓冲区与刷新时机需要显式管理。
+        code: |
+          std::ifstream file{"data.txt"};
+          std::string line;
+          std::getline(file, line);
+        lesson_id: cpp-stl-containers-iostream
+  - id: concurrency
+    name: 并发
+    description: 协调多个执行任务的能力。
+    compare:
+      python:
+        status: available
+        summary: threading 多线程与 asyncio 协程并存，GIL 使 CPU 密集线程无法并行。
+        difference: 解释器级全局锁是 Python 独有约束，IO 密集适合线程，CPU 密集需多进程。
+        code: |
+          import threading
+
+          worker = threading.Thread(target=run, args=(1,))
+          worker.start()
+          worker.join()
+        lesson_id: python-concurrency-network-threading
+      java:
+        status: available
+        summary: Thread 与 Runnable 是并发基础，线程生命周期由 JVM 调度。
+        difference: 没有全局锁限制，synchronized 与并发库（java.util.concurrent）支撑高并发。
+        code: |
+          Thread worker = new Thread(() -> run(1));
+          worker.start();
+          worker.join();
+        lesson_id: java-network-concurrency-multithreading
+      csharp:
+        status: available
+        summary: Thread、Task 与 async/await 组合表达并发与异步。
+        difference: async/await 是语言级关键字，Task 调度器统一线程池管理。
+        code: |
+          var worker = new Thread(() => Run(1));
+          worker.Start();
+          worker.Join();
+        lesson_id: csharp-capstone-multithreading
+      cpp:
+        status: available
+        summary: std::thread 直接映射 OS 线程，配合 mutex、atomic 与 future 协调。
+        difference: 内存模型由标准定义，数据竞争是未定义行为，必须显式同步。
+        code: |
+          std::thread worker{run, 1};
+          worker.join();
+        lesson_id: cpp-algorithms-concurrency-thread
+  - id: memory
+    name: 内存
+    description: 程序数据的分配、存活与释放。
+    compare:
+      python:
+        status: missing
+        note: Python 由解释器与垃圾回收自动管理对象生命周期，路线内无专门内存标注课时；引用语义见变量与类课时。
+      java:
+        status: available
+        summary: 对象在堆上由垃圾回收管理，可达性决定存活。
+        difference: 无手动释放，序列化课时讨论对象图的持久化，是内存模型在路线内的落点。
+        code: |
+          byte[] snapshot = toBytes(graph);   // GC 管理堆对象
+          System.out.println(snapshot.length);
+        lesson_id: java-network-concurrency-serialization
+      csharp:
+        status: available
+        summary: 类实例由 GC 管理，结构体随栈或容器按值存活。
+        difference: 值类型/引用类型二分让内存语义显式，unsafe 指针只在服务端白名单题启用。
+        code: |
+          var point = new Point { X = 1 };   // struct，按值复制
+          Console.WriteLine(point.X);
+        lesson_id: csharp-oop-structs
+      cpp:
+        status: available
+        summary: 手动 new/delete 与智能指针（unique_ptr、shared_ptr）共同管理堆内存。
+        difference: RAII 把资源生命周期绑定到对象作用域，悬垂指针与泄漏是真实风险。
+        code: |
+          auto buffer = std::make_unique<int[]>(64);
+          buffer[0] = 7;   // 离开作用域自动释放
+        lesson_id: cpp-advanced-dynamic-memory
+  - id: interpreter
+    name: 解释器
+    description: 读取并执行 Python 源代码的程序。
+    compare:
+      python:
+        status: available
+        summary: CPython 解释器逐条执行源码，交互式 REPL 与 python 命令是主要入口。
+        difference: 解释执行是 Python 的运行模型本体，其余三语言以编译产物运行。
+        code: |
+          python -c "print('hello')"   # 命令行直接执行
+          python lesson.py             # 运行脚本文件
+        lesson_id: python-foundations-interpreter
+      java:
+        status: missing
+        note: Java 由 javac 编译为字节码后交给 JVM 执行，路线内没有解释器启动课时。
+      csharp:
+        status: missing
+        note: C# 编译为 IL 后由 CLR 执行，路线内没有解释器课时。
+      cpp:
+        status: missing
+        note: C++ 是本地编译语言，g++ 直接产出机器码，不存在解释器概念。
+  - id: environments
+    name: 虚拟环境
+    description: 为单个项目隔离依赖与解释器配置的目录。
+    compare:
+      python:
+        status: available
+        summary: venv 为项目创建独立解释器与 site-packages，pip install 只影响该环境。
+        difference: 语言内建的按项目环境隔离是 Python 特色，其余三语言由构建工具管理依赖。
+        code: |
+          python -m venv .venv
+          .venv/Scripts/pip install requests
+        lesson_id: python-foundations-virtual-environment
+      java:
+        status: missing
+        note: Java 路线内没有虚拟环境课时；依赖隔离由 Maven/Gradle 的项目级依赖树承担。
+      csharp:
+        status: missing
+        note: C# 路线内没有虚拟环境课时；依赖由 NuGet 与项目文件按项目解析。
+      cpp:
+        status: missing
+        note: C++ 路线内没有虚拟环境课时；库以系统目录或包管理器方式引入。
+  - id: packages
+    name: 包管理
+    description: 安装、查看和约束项目依赖版本的流程。
+    compare:
+      python:
+        status: available
+        summary: pip 配合 requirements 或 pyproject 约束依赖版本。
+        difference: 包管理器内置于语言工具链，环境与依赖绑定在虚拟环境上。
+        code: |
+          pip install requests==2.31.0
+          pip freeze > requirements.txt
+        lesson_id: python-foundations-package-management
+      java:
+        status: available
+        summary: 类库以 jar 分发，路线内介绍常用类库的引入与使用。
+        difference: 现代项目依赖 Maven/Gradle 坐标解析，课程聚焦类库本身而非构建脚本。
+        code: |
+          // 类库以 jar 形式加入 classpath 后直接 import
+          import org.example.Library;
+        lesson_id: java-modern-ecosystem-libraries
+      csharp:
+        status: missing
+        note: C# 依赖由 NuGet 与项目文件管理，路线内没有包管理标注课时。
+      cpp:
+        status: missing
+        note: C++ 没有统一官方包管理器，路线内也没有相应标注课时；库经系统路径或 vcpkg 等引入。
+  - id: tooling
+    name: 开发工具
+    description: 用编辑器、终端和调试器支持稳定编程的协作方式。
+    compare:
+      python:
+        status: available
+        summary: VS Code、PyCharm 与终端工具链覆盖编辑、调试与运行。
+        difference: 工具课把解释器选择、虚拟环境和编码风格串成完整工作流。
+        code: |
+          # 在 VS Code 中选择 .venv 解释器后
+          python -m pdb lesson.py   # 标准库调试器
+        lesson_id: python-foundations-vscode
+      java:
+        status: available
+        summary: 包（package）与 jar 工具组织代码与制品。
+        difference: 工具链围绕编译单元与类路径展开，IDE 集成不在路线内展开。
+        code: |
+          package com.example.lesson;
+
+          public class Lesson { }
+        lesson_id: java-oop-io-packages
+      csharp:
+        status: missing
+        note: C# 路线内没有开发工具标注课时；dotnet 命令与 IDE 用法未单独成课。
+      cpp:
+        status: available
+        summary: 编译器、构建参数与断言工具构成 C++ 的基本工作台。
+        difference: 编译期可用的 static_assert 与头文件组织是 C++ 工具链独有内容。
+        code: |
+          g++ -std=c++20 -Wall main.cpp -o main
+          ./main
+        lesson_id: cpp-foundations-environment
+  - id: operators
+    name: 运算符
+    description: 把值组合、比较或转换为新结果的符号规则。
+    compare:
+      python:
+        status: available
+        summary: 算术、比较、逻辑（and/or/not）、身份与成员运算符齐备。
+        difference: 逻辑运算符是英文单词，/ 恒产生浮点而 // 才是整除。
+        code: |
+          print(7 / 2, 7 // 2)      # 3.5 3
+          print(3 < x and x < 9)
+        lesson_id: python-core-types-operators
+      java:
+        status: available
+        summary: 算术、关系、逻辑与位运算符，短路求值与类型提升遵循规范。
+        difference: 整数除法直接截断，&& 与 || 短路而 & 与 | 不短路。
+        code: |
+          System.out.println(7 / 2);        // 3
+          System.out.println(x > 3 && x < 9);
+        lesson_id: java-core-api-number-math
+      csharp:
+        status: available
+        summary: 与 Java 同源的运算符集合，外加空合并与可空比较。
+        difference: ?? 与 ??= 处理可空值，运算符可对自定义类型重载（见运算符重载概念）。
+        code: |
+          Console.WriteLine(7 / 2);       // 3
+          var name = input ?? "默认值";
+        lesson_id: csharp-oop-operator-overloading
+      cpp:
+        status: available
+        summary: 算术、关系、逻辑、位与成员访问运算符，均可对自定义类型重载。
+        difference: 未定义行为边界更多（如除零、有符号溢出），需谨慎对待副作用顺序。
+        code: |
+          std::cout << 7 / 2 << '\n';     // 3
+          bool ok = x > 3 && x < 9;
+        lesson_id: cpp-foundations-operators
+  - id: strings
+    name: 字符串
+    description: 由有序字符组成、可切片和格式化的文本值。
+    compare:
+      python:
+        status: available
+        summary: str 不可变，支持切片、f-string 格式化与丰富内建方法。
+        difference: 字符串字面量即对象，切片语法与格式化最简洁。
+        code: |
+          name = "Hard"
+          print(f"你好，{name}!")
+        lesson_id: python-core-types-strings
+      java:
+        status: available
+        summary: String 不可变，StringBuffer/Builder 承担高频拼接。
+        difference: 不可变对象共享池化，格式化用 format 或文本块。
+        code: |
+          String name = "Hard";
+          System.out.println("你好，" + name + "!");
+        lesson_id: java-core-api-string
+      csharp:
+        status: available
+        summary: string 不可变，插值字符串 $"" 与 StringBuilder 是主流写法。
+        difference: 插值表达式可含格式说明符，字符串比较默认区分区域性设置。
+        code: |
+          var name = "Hard";
+          Console.WriteLine($"你好，{name}!");
+        lesson_id: csharp-oop-strings
+      cpp:
+        status: available
+        summary: std::string 管理堆上字符缓冲，std::format 与流运算符负责格式化。
+        difference: C 风格字符数组仍共存，字符串字面量与 string 对象的转换是常见边界。
+        code: |
+          std::string name = "Hard";
+          std::cout << "你好，" << name << "!\n";
+        lesson_id: cpp-core-memory-strings
+  - id: security
+    name: 安全边界
+    description: 对不受信输入、代码执行和数据访问设置明确限制的原则。
+    compare:
+      python:
+        status: available
+        summary: 子进程、网络与反序列化是主要风险面，课程强调最小权限与输入校验。
+        difference: 解释执行放大了任意代码风险，pickle 等模块明确标注不可用于不受信数据。
+        code: |
+          import subprocess
+
+          subprocess.run(["python", "-V"], check=True)   # 参数数组，不拼接 shell
+        lesson_id: python-concurrency-network-subprocess
+      java:
+        status: available
+        summary: 封装（private 字段 + 受控访问器）是 Java 课程表达安全边界的主要方式。
+        difference: 安全讨论聚焦类型系统与访问控制，无解释器级动态执行风险。
+        code: |
+          public class Account {
+              private long balance;   // 受控访问
+              public long getBalance() { return balance; }
+          }
+        lesson_id: java-oop-io-encapsulation
+      csharp:
+        status: missing
+        note: C# 路线内没有安全边界标注课时；访问控制与 unsafe 白名单约束散落在面向对象与结业课时中。
+      cpp:
+        status: available
+        summary: 以确定性随机数课程讨论可预测性与边界条件。
+        difference: 手动内存管理使安全边界还包含越界与未定义行为，课程以纯数据题演示。
+        code: |
+          std::mt19937 engine{9};
+          std::uniform_int_distribution<int> dist{1, 6};
+          std::cout << dist(engine) << '\n';
+        lesson_id: cpp-capstone-random
+  - id: web
+    name: Web 边界
+    description: 在 HTTP 请求、响应和用户输入之间定义明确的处理约定。
+    compare:
+      python:
+        status: available
+        summary: CGI 课时演示从环境变量与标准输入读取请求并返回响应。
+        difference: 标准库级别的最小 Web 模型，不引入框架依赖。
+        code: |
+          print("Content-Type: text/plain")
+          print()
+          print("hello")
+        lesson_id: python-database-deployment-cgi
+      java:
+        status: available
+        summary: 以 Socket 与 URL 类演示 HTTP 客户端与服务端的基本交互。
+        difference: 从套接字层理解协议，不引入 Servlet 容器。
+        code: |
+          URL url = new URL("http://127.0.0.1/");
+          HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        lesson_id: java-network-concurrency-networking
+      csharp:
+        status: missing
+        note: C# 路线内没有 Web 标注课时。
+      cpp:
+        status: available
+        summary: Web 编程课时讨论请求处理与边界约束的思路。
+        difference: 不引入网络框架，聚焦概念与可验证的数据处理练习。
+        code: |
+          // 课程练习聚焦请求字段的解析与校验
+          const std::string body = "ok";
+        lesson_id: cpp-advanced-web
+  - id: databases
+    name: 数据库
+    description: 使用受控连接、参数化查询和最小权限保存结构化数据的原则。
+    compare:
+      python:
+        status: available
+        summary: mysql-connector、PyMySQL 与 MongoDB 课时演示连接与参数化查询。
+        difference: 课程强调参数化占位符防注入，不要求本地数据库服务。
+        code: |
+          cursor.execute(
+              "SELECT * FROM users WHERE id = %s",
+              (user_id,),
+          )
+        lesson_id: python-database-deployment-mysql-connector
+      java:
+        status: available
+        summary: MySQL 连接课时演示 JDBC 式的驱动加载与查询流程。
+        difference: 概念上与 Python 章节一致，代码示例使用 PreparedStatement 参数化。
+        code: |
+          PreparedStatement query = conn.prepareStatement(
+              "SELECT * FROM users WHERE id = ?");
+          query.setInt(1, userId);
+        lesson_id: java-modern-ecosystem-mysql-connect
+      csharp:
+        status: missing
+        note: C# 路线内没有数据库标注课时。
+      cpp:
+        status: missing
+        note: C++ 路线内没有数据库标注课时。
+  - id: data-structures
+    name: 数据结构设计
+    description: 根据数据访问模式选择文档、键值或关系结构的建模方式。
+    compare:
+      python:
+        status: available
+        summary: MongoDB 文档模型课时演示按访问模式选择嵌套文档或引用。
+        difference: 文档与键值建模为主，区别于关系表的固定模式。
+        code: |
+          record = {"user_id": 7, "tags": ["a", "b"]}
+          collection.insert_one(record)
+        lesson_id: python-database-deployment-mongodb
+      java:
+        status: available
+        summary: 数据结构课时按查找、插入与遍历成本比较 LinkedList 与 HashMap 等实现。
+        difference: 以接口声明选择实现，替换容器不影响调用方。
+        code: |
+          Map<String, Integer> scores = new HashMap<>();
+          scores.put("hard", 90);
+        lesson_id: java-collections-generics-data-structures
+      csharp:
+        status: missing
+        note: C# 路线内没有数据结构设计标注课时；容器选择原则散落在集合课时中。
+      cpp:
+        status: available
+        summary: 数据结构课时覆盖栈、队列、优先队列与 bitset 等按访问模式选型。
+        difference: 容器承诺的复杂度是标准合同，底层布局（连续或链接）差异更大。
+        code: |
+          std::stack<int> pending;
+          pending.push(1);
+        lesson_id: cpp-core-memory-data-structures
+  - id: deployment
+    name: 部署配置
+    description: 将运行配置、凭据和进程边界显式隔离的发布实践。
+    compare:
+      python:
+        status: available
+        summary: uWSGI 课时介绍进程启动、配置文件与运行边界。
+        difference: 部署讨论限定在本地单机模型，不引入云服务。
+        code: |
+          uwsgi --http 127.0.0.1:8000 --module app
+        lesson_id: python-database-deployment-uwsgi
+      java:
+        status: missing
+        note: Java 路线内没有部署配置标注课时。
+      csharp:
+        status: missing
+        note: C# 路线内没有部署配置标注课时。
+      cpp:
+        status: missing
+        note: C++ 路线内没有部署配置标注课时。
+  - id: encapsulation
+    name: 封装
+    description: 隐藏对象内部状态并通过受控方法访问的原则。
+    compare:
+      python:
+        status: missing
+        note: Python 以下划线约定与 property 表达封装，路线内没有单独标注封装的课时；相关语法见类与对象课时。
+      java:
+        status: missing
+        note: Java 通过 private 与访问器实现封装并贯穿各课，但没有以封装为主题的标注课时。
+      csharp:
+        status: available
+        summary: private 字段加 public 属性是标准封装形态，访问器可加校验逻辑。
+        difference: 语言级属性语法让受控访问无需手写 getXxx/setXxx 样板。
+        code: |
+          class Account {
+              private int balance;
+              public int Balance => balance;
+          }
+        lesson_id: csharp-oop-encapsulation
+      cpp:
+        status: available
+        summary: class 默认私有成员，接口经 public 方法暴露。
+        difference: 友元与头文件组织扩展了封装边界的选择。
+        code: |
+          class Account {
+          public:
+              int balance() const { return balance_; }
+          private:
+              int balance_ = 0;
+          };
+        lesson_id: cpp-oop-encapsulation
+  - id: methods
+    name: 方法
+    description: 带参数与返回值的命名行为单元。
+    compare:
+      python:
+        status: missing
+        note: Python 中方法与函数语法统一（def + self），路线内没有以方法为主题的标注课时；见函数与类课时。
+      java:
+        status: missing
+        note: Java 方法在各课贯穿使用，但没有以方法为主题的标注课时；见方法与构造器相关课时的 functions 概念映射。
+      csharp:
+        status: available
+        summary: 方法支持重载、可选参数、表达式体与递归。
+        difference: 与委托结合可以把方法当值传递（见委托概念）。
+        code: |
+          static int Square(int value) => value * value;
+          Console.WriteLine(Square(4));
+        lesson_id: csharp-oop-methods
+      cpp:
+        status: missing
+        note: C++ 成员函数与自由函数语法统一，路线内没有以方法为主题的标注课时；见函数与类课时。
+  - id: nullable-types
+    name: 可空类型
+    description: 表示值可能缺失的 Nullable 包装与可空引用标注。
+    compare:
+      python:
+        status: missing
+        note: Python 以 None 表达缺失并配合类型注解 Optional，路线内没有可空类型标注课时。
+      java:
+        status: missing
+        note: Java 以 null 引用表达缺失，路线内没有可空类型标注课时；原生的 int 等基本类型无空值语义。
+      csharp:
+        status: available
+        summary: int? 包装值类型，string? 标注可空引用，编译器做空值流分析。
+        difference: 语言与编译器把空值安全变成静态检查，是四路线中最显式的可空建模。
+        code: |
+          int? maybe = null;
+          Console.WriteLine(maybe ?? -1);
+        lesson_id: csharp-oop-nullable
+      cpp:
+        status: missing
+        note: C++ 以指针空值或 std::optional 表达缺失，路线内没有可空类型标注课时。
+  - id: arrays
+    name: 数组
+    description: 长度固定、按索引访问的同类型元素序列。
+    compare:
+      python:
+        status: missing
+        note: Python 路线以 list 标注数组语义（长度可变、元素混合类型），没有以 arrays 为名的标注课时。
+      java:
+        status: missing
+        note: Java 数组语法在各课使用（如 String[] args），但没有以数组为主题的标注课时；集合见 collections 概念。
+      csharp:
+        status: available
+        summary: 数组长度固定、按索引访问，多维与交错数组均有语法支持。
+        difference: 数组是独立于 List<T> 的类型，Length 属性与 foreach 遍历是惯用法。
+        code: |
+          int[] values = {1, 2, 3};
+          Console.WriteLine(values.Length);
+        lesson_id: csharp-oop-arrays
+      cpp:
+        status: available
+        summary: 原生数组与 std::array 并存，长度是类型的一部分。
+        difference: 原生数组会退化为指针，边界检查需改用 std::array 或 vector 的 at()。
+        code: |
+          std::array<int, 3> values{1, 2, 3};
+          std::cout << values.size() << '\n';
+        lesson_id: cpp-core-memory-arrays
+  - id: structs
+    name: 结构体
+    description: 赋值时整体复制的轻量值类型。
+    compare:
+      python:
+        status: missing
+        note: Python 没有值类型结构体，路线内以类与元组表达聚合数据，无 structs 标注课时。
+      java:
+        status: missing
+        note: Java 没有自定义值类型结构体，路线内无 structs 标注课时；record 类承担聚合建模。
+      csharp:
+        status: available
+        summary: struct 是值类型，赋值整体复制，适合小型不可变数据。
+        difference: 与 class 的引用语义分立，装箱与只读约束是独有注意点。
+        code: |
+          struct Point {
+              public int X { get; init; }
+          }
+          var p = new Point { X = 1 };
+        lesson_id: csharp-oop-structs
+      cpp:
+        status: available
+        summary: struct 与 class 语义相同，仅默认成员访问不同。
+        difference: 聚合初始化与按值拷贝是默认行为，常用于纯数据载体。
+        code: |
+          struct Point { int x = 0; int y = 0; };
+          Point p{1, 2};
+        lesson_id: cpp-core-memory-struct
+  - id: enums
+    name: 枚举
+    description: 一组命名常量组成的受限取值类型。
+    compare:
+      python:
+        status: missing
+        note: Python 提供 enum 模块，但路线内没有枚举标注课时；常量约定见常量相关课时。
+      java:
+        status: missing
+        note: Java 枚举在抽象类等课时出现，但没有以枚举为主题的标注课时。
+      csharp:
+        status: available
+        summary: enum 定义命名常量类型，可与位标志和转换组合。
+        difference: 枚举是值类型，Enum.Parse/TryParse 负责与文本互转。
+        code: |
+          enum Level { Low, Middle, High }
+          var level = Level.High;
+          Console.WriteLine((int) level);
+        lesson_id: csharp-oop-enums
+      cpp:
+        status: missing
+        note: C++ enum 在常量与数据类型课时涉及，路线内没有以枚举为主题的标注课时。
+  - id: operator-overloading
+    name: 运算符重载
+    description: 为自定义类型定义运算符行为的静态成员。
+    compare:
+      python:
+        status: missing
+        note: Python 以 __add__ 等魔术方法支持运算符重载，路线内没有专门标注课时。
+      java:
+        status: missing
+        note: Java 不支持用户自定义运算符重载，路线内无相应课时。
+      csharp:
+        status: available
+        summary: 以 public static operator 成员为类型定义 +、== 等运算符。
+        difference: 运算符重载必须是静态成员且成对定义（如 == 与 !=），语法比 C++ 更受限。
+        code: |
+          static Money operator +(Money a, Money b) => new(a.Value + b.Value);
+        lesson_id: csharp-oop-operator-overloading
+      cpp:
+        status: available
+        summary: 运算符可作为成员或自由函数重载，支持成员与非成员混合重载集。
+        difference: 重载空间远大于 C#（含 ()、->、逗号），须保持语义直觉。
+        code: |
+          Money operator+(const Money& a, const Money& b) {
+              return Money{a.value + b.value};
+          }
+        lesson_id: cpp-oop-overloading
+  - id: interfaces
+    name: 接口
+    description: 描述能力合同而不保存实例状态的类型。
+    compare:
+      python:
+        status: missing
+        note: Python 以协议与鸭子类型表达接口合同，路线内没有接口标注课时。
+      java:
+        status: missing
+        note: Java 接口在抽象类等课时出现，但没有以接口为主题的标注课时；implement 语法见相关课时。
+      csharp:
+        status: available
+        summary: interface 声明成员合同，类可同时实现多个接口。
+        difference: 默认接口实现与显式接口实现是 C# 独有特性。
+        code: |
+          interface IShape { double Area(); }
+          class Square : IShape {
+              public double Area() => 4;
+          }
+        lesson_id: csharp-oop-interfaces
+      cpp:
+        status: available
+        summary: 以纯虚函数类模拟接口，多继承组合多个合同。
+        difference: 没有专门 interface 关键字，合同靠纯虚析构与纯虚函数约定。
+        code: |
+          class IShape {
+          public:
+              virtual double area() const = 0;
+              virtual ~IShape() = default;
+          };
+        lesson_id: cpp-oop-interfaces
+  - id: namespaces
+    name: 命名空间
+    description: 按层次组织类型并避免同名冲突的机制。
+    compare:
+      python:
+        status: missing
+        note: Python 以模块与包组织命名空间，路线内没有 namespaces 标注课时；见模块课时。
+      java:
+        status: missing
+        note: Java 以 package 组织命名空间，路线内没有以命名空间为主题的标注课时；见包相关课时。
+      csharp:
+        status: available
+        summary: namespace 按层次组织类型，文件范围命名空间可减少缩进。
+        difference: using 指令与别名让长命名空间名可用短名引用。
+        code: |
+          namespace Hard.Lessons;
+
+          class Lesson { }
+        lesson_id: csharp-oop-namespaces
+      cpp:
+        status: available
+        summary: namespace 分组声明，内联命名空间与匿名命名空间控制链接性。
+        difference: ADL（参数依赖查找）让命名空间参与重载决议，是 C++ 独有语义。
+        code: |
+          namespace hard {
+              inline namespace v1 {
+                  struct Lesson { };
+              }
+          }
+        lesson_id: cpp-advanced-namespaces
+  - id: preprocessor-directives
+    name: 预处理器指令
+    description: 编译期控制代码裁剪与诊断行为的 # 指令。
+    compare:
+      python:
+        status: missing
+        note: Python 没有预处理器，路线内无相应课时。
+      java:
+        status: missing
+        note: Java 没有预处理器，路线内无相应课时。
+      csharp:
+        status: available
+        summary: "#define/#if 控制条件编译，#region 与 #warning 组织与诊断源码。"
+        difference: 指令不定义符号常量宏，仅用于条件编译与诊断，比 C/C++ 受限。
+        code: |
+          #if DEBUG
+              Console.WriteLine("调试分支");
+          #endif
+        lesson_id: csharp-io-metadata-preprocessor-directives
+      cpp:
+        status: available
+        summary: "#include、#define、#if 与 #pragma once 组成预处理阶段。"
+        difference: 宏是文本替换，发生在编译之前，现代课程强调用常量与模板替代函数式宏。
+        code: |
+          #include <iostream>
+          #define HARD_LESSON 1
+
+          int main() {
+          #if HARD_LESSON
+              std::cout << "lesson\n";
+          #endif
+          }
+        lesson_id: cpp-advanced-preprocessor
+  - id: regular-expressions
+    name: 正则表达式
+    description: 用模式描述并匹配字符串形状的工具。
+    compare:
+      python:
+        status: missing
+        note: Python re 模块在标准库课时覆盖，路线内没有以正则为主题的标注课时（见 strings 与 functions 课时的关联映射）。
+      java:
+        status: missing
+        note: Java 正则在 String/Regex 课时出现，但没有以正则为主题的标注课时。
+      csharp:
+        status: available
+        summary: Regex 类提供编译、匹配与分组捕获，支持静态与实例两种用法。
+        difference: RegexOptions 选项显式控制行为，超时设置防回溯爆炸。
+        code: |
+          var match = Regex.Match(input, @"\d+");
+          Console.WriteLine(match.Value);
+        lesson_id: csharp-io-metadata-regular-expressions
+      cpp:
+        status: available
+        summary: <regex> 提供 std::regex_match/search 与 smatch 捕获结果。
+        difference: 标准未定义实现算法，复杂回溯的性能特征需要实测。
+        code: |
+          std::regex pattern{R"(\d+)"};
+          std::smatch match;
+          std::regex_search(text, match, pattern);
+        lesson_id: cpp-algorithms-concurrency-regex
+  - id: attributes
+    name: 特性
+    description: 附着到程序元素上的声明式元数据。
+    compare:
+      python:
+        status: missing
+        note: Python 以装饰器表达类似意图，路线内没有 attributes 标注课时；见装饰器课时。
+      java:
+        status: missing
+        note: Java 注解（Annotation）在反射课时外未单独成课，路线内没有 attributes 标注课时。
+      csharp:
+        status: available
+        summary: "特性语法 [Attribute] 附着到类、方法或参数，运行期可被反射读取。"
+        difference: 特性是真实类型，可继承自定义并携带构造参数。
+        code: |
+          [Lesson(Id = 7)]
+          class Lesson { }
+        lesson_id: csharp-io-metadata-attributes
+      cpp:
+        status: missing
+        note: C++ 以 [[attribute]] 语法提供编译器提示，路线内没有相应标注课时。
+  - id: reflection
+    name: 反射
+    description: 运行期检查程序集类型与成员元数据的能力。
+    compare:
+      python:
+        status: missing
+        note: Python 自省（type、dir、getattr）内建于语言，路线内没有反射标注课时。
+      java:
+        status: missing
+        note: Java 反射在 Class 与 Object 课时出现，但没有以反射为主题的标注课时。
+      csharp:
+        status: available
+        summary: Type 与 Assembly 在运行期枚举类型、属性与自定义特性。
+        difference: 反射与特性组合是元编程主路径，性能开销需注意。
+        code: |
+          foreach (var property in typeof(Lesson).GetProperties())
+              Console.WriteLine(property.Name);
+        lesson_id: csharp-io-metadata-reflection
+      cpp:
+        status: missing
+        note: C++ 标准缺少运行期反射，RTTI 仅覆盖 typeid/dynamic_cast，路线内没有反射标注课时。
+  - id: properties
+    name: 属性
+    description: 通过 get/set 访问器受控读写对象状态的语言构造。
+    compare:
+      python:
+        status: missing
+        note: Python 的 property 装饰器提供同等能力，路线内没有 properties 标注课时；见类与对象课时。
+      java:
+        status: missing
+        note: Java 用 getter/setter 手写访问器，没有语言级属性，路线内无 properties 标注课时。
+      csharp:
+        status: available
+        summary: 属性把访问器暴露成字段语法，自动属性与 init 只读初始化常用。
+        difference: 调用侧看不出方法调用，验证逻辑可无缝加入 set 访问器。
+        code: |
+          class Lesson {
+              public int Points { get; init; }
+          }
+        lesson_id: csharp-language-features-properties
+      cpp:
+        status: missing
+        note: C++ 没有语言级属性（依赖 getter/setter 或运算符技巧），路线内没有相应标注课时。
+  - id: indexer
+    name: 索引器
+    description: 用 this 下标语法访问对象内部数据的带参属性。
+    compare:
+      python:
+        status: missing
+        note: Python 以 __getitem__ 支持下标语法，路线内没有 indexer 标注课时。
+      java:
+        status: missing
+        note: Java 无索引器语法（以 get(int) 方法代替），路线内无相应标注课时。
+      csharp:
+        status: available
+        summary: this[int index] 访问器让对象像数组一样按下标读写。
+        difference: 索引器可重载多组参数类型并带校验，是语言级语法糖。
+        code: |
+          public string this[int index] => items[index];
+        lesson_id: csharp-language-features-indexer
+      cpp:
+        status: missing
+        note: C++ 以 operator[] 重载提供下标语法，路线内没有 indexer 标注课时；见运算符重载课时。
+  - id: delegates
+    name: 委托
+    description: 把方法当作一等值绑定、传递与调用的签名类型。
+    compare:
+      python:
+        status: missing
+        note: Python 函数是一等对象，无需委托类型，路线内没有 delegates 标注课时。
+      java:
+        status: missing
+        note: Java 以函数式接口与 lambda 模拟委托，路线内没有 delegates 标注课时。
+      csharp:
+        status: available
+        summary: delegate 类型定义方法签名契约，多播委托可串联多个调用。
+        difference: 语言级委托类型 + 多播是 C# 独有建模，事件构建在其上。
+        code: |
+          delegate int Transform(int value);
+          Transform doubleIt = v => v * 2;
+        lesson_id: csharp-language-features-delegates
+      cpp:
+        status: missing
+        note: C++ 以函数指针与 std::function 表达同等能力，路线内没有 delegates 标注课时。
+  - id: events
+    name: 事件
+    description: 发布者通知订阅者的封装委托机制。
+    compare:
+      python:
+        status: missing
+        note: Python 以回调列表或框架信号表达事件，路线内没有 events 标注课时。
+      java:
+        status: missing
+        note: Java 以监听器接口模式表达事件，路线内没有 events 标注课时。
+      csharp:
+        status: available
+        summary: event 关键字封装委托字段，仅允许在声明类内触发。
+        difference: 订阅/退订（+=、-=）语法与封装规则是语言级约定。
+        code: |
+          public event EventHandler<int> Scored;
+          Scored?.Invoke(this, 90);
+        lesson_id: csharp-language-features-events
+      cpp:
+        status: missing
+        note: C++ 无内建事件机制（常用回调与观察者模式），路线内没有相应标注课时。
+  - id: anonymous-methods
+    name: 匿名方法
+    description: 就地定义、无需命名的方法体（含 lambda 形式）。
+    compare:
+      python:
+        status: missing
+        note: Python 的 lambda 与嵌套 def 覆盖同等能力，路线内没有匿名方法标注课时；见 lambda 课时。
+      java:
+        status: missing
+        note: Java 8 lambda 表达式覆盖同等能力，路线内没有匿名方法标注课时；见 Java 8 特性课时。
+      csharp:
+        status: available
+        summary: lambda 表达式与匿名方法体可捕获外部变量形成闭包。
+        difference: 表达式树（Expression）可把 lambda 编译为数据，是查询提供者的基础。
+        code: |
+          Func<int, int> square = v => v * v;
+          Console.WriteLine(square(5));
+        lesson_id: csharp-language-features-anonymous-methods
+      cpp:
+        status: missing
+        note: C++ lambda（含捕获列表）覆盖同等能力，路线内没有匿名方法标注课时。
+  - id: pointers
+    name: 指针
+    description: 保存变量地址并支持间接访问与解引用的值。
+    compare:
+      python:
+        status: missing
+        note: Python 没有可操作的指针，对象经引用访问且由 GC 管理，路线内无 pointers 标注课时。
+      java:
+        status: missing
+        note: Java 引用不可显式解引用或运算，路线内无 pointers 标注课时。
+      csharp:
+        status: missing
+        note: C# 指针限定在 unsafe 上下文且仅服务端白名单题启用，路线内没有指针标注课时。
+      cpp:
+        status: available
+        summary: 指针保存对象地址，支持解引用与算术运算，是 C++ 内存模型核心。
+        difference: 裸指针的空悬与所有权问题由智能指针缓解，语义在全语言中最完整。
+        code: |
+          int value = 7;
+          int* pointer = &value;
+          std::cout << *pointer << '\n';
+        lesson_id: cpp-core-memory-pointers
+  - id: references
+    name: 引用
+    description: 绑定既有对象的别名，必须初始化且不可改绑。
+    compare:
+      python:
+        status: missing
+        note: Python 变量天然是对象引用，但没有 references 标注课时；语义见变量课时。
+      java:
+        status: missing
+        note: Java 对象引用即默认语义，路线内没有 references 标注课时。
+      csharp:
+        status: missing
+        note: C# 的 ref 参数与引用返回在路线内没有单独标注课时。
+      cpp:
+        status: available
+        summary: 引用是对象的别名，初始化后不可改绑，常用于参数传递避免拷贝。
+        difference: 与指针分离：引用不能为空、无需解引用语法，生命周期语义更安全。
+        code: |
+          void scale(int& value) { value *= 2; }
+
+          int number = 7;
+          scale(number);
+        lesson_id: cpp-core-memory-references
+  - id: signals
+    name: 信号
+    description: 以注册处理器方式响应的异步软件中断通知机制。
+    compare:
+      python:
+        status: missing
+        note: Python 以 signal 模块处理信号，路线内没有 signals 标注课时。
+      java:
+        status: missing
+        note: Java 依赖 JVM 关闭钩子等机制处理进程信号，路线内没有 signals 标注课时。
+      csharp:
+        status: missing
+        note: C# 进程信号处理在路线内没有相应标注课时。
+      cpp:
+        status: available
+        summary: <csignal> 注册处理器响应 SIGINT 等异步中断。
+        difference: 处理器内只允许调用异步信号安全函数，限制比事件回调更严。
+        code: |
+          std::signal(SIGINT, handle);
+        lesson_id: cpp-advanced-signals

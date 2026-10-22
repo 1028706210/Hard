@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-oop-encapsulation",
+  "questions": [
+    {
+      "id": "cpp-oop-encapsulation-k01",
+      "type": "knowledge",
+      "prompt": "封装中「对象不变量」指的是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "对象任意时刻都必须满足的状态约束（如余额非负）"
+        },
+        {
+          "id": "b",
+          "text": "永远不能修改的常量字段"
+        },
+        {
+          "id": "c",
+          "text": "编译器自动生成的构造函数"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-oop-encapsulation-k02",
+      "type": "knowledge",
+      "prompt": "withdraw 金额超过余额时较好的处理方式是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "把余额取成负数"
+        },
+        {
+          "id": "b",
+          "text": "静默忽略并不给任何信号"
+        },
+        {
+          "id": "c",
+          "text": "返回失败标志且对象状态保持不变"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-oop-encapsulation-k03",
+      "type": "knowledge",
+      "prompt": "为所有私有成员机械生成 public setter 的问题是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "外部可绕过校验直接改写状态，等于放弃封装"
+        },
+        {
+          "id": "b",
+          "text": "编译器会拒绝编译"
+        },
+        {
+          "id": "c",
+          "text": "setter 不能有返回值"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-oop-encapsulation-c01",
+      "type": "code",
+      "prompt": "定义类 Account（私有余额 balance_，公有 deposit(int) 存入、withdraw(int) 返回 bool 且超额拒绝、balance() 只读）。第一行读取初始余额与操作数 n，随后 n 行每行为 deposit x 或 withdraw x，按序执行（被拒绝的操作跳过），输出最终余额。",
+      "starter_code": "#include <iostream>\n#include <string>\n\nclass Account {\npublic:\n    explicit Account(int balance) : balance_(balance) {}\n    // deposit / withdraw / balance\nprivate:\n    int balance_;\n};\n\nint main() {\n    int initial = 0;\n    int n = 0;\n    std::cin >> initial >> n;\n    Account account(initial);\n    // 处理指令并输出最终余额\n    return 0;\n}\n",
+      "visible_tests": [
+        "初始 100、3 次操作 deposit 50、withdraw 200、withdraw 30 后输出 120。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <string>\n\nclass Account {\npublic:\n    explicit Account(int balance) : balance_(balance) {}\n    void deposit(int amount) { balance_ += amount; }\n    bool withdraw(int amount) {\n        if (amount > balance_) {\n            return false;\n        }\n        balance_ -= amount;\n        return true;\n    }\n    int balance() const { return balance_; }\nprivate:\n    int balance_;\n};\n\nint main() {\n    int initial = 0;\n    int n = 0;\n    std::cin >> initial >> n;\n    Account account(initial);\n    for (int i = 0; i < n; i++) {\n        std::string op;\n        int amount = 0;\n        std::cin >> op >> amount;\n        if (op == \"deposit\") {\n            account.deposit(amount);\n        } else if (op == \"withdraw\") {\n            account.withdraw(amount);\n        }\n    }\n    std::cout << account.balance() << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "零初始余额下取款被拒且存入生效。",
+          "全部操作被拒时余额保持初始值。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "100 3\ndeposit 50\nwithdraw 200\nwithdraw 30\n",
+            "stdout": "120\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0 2\nwithdraw 10\ndeposit 40\n",
+            "stdout": "40\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "50 2\nwithdraw 60\nwithdraw 70\n",
+            "stdout": "50\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

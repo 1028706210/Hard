@@ -1,0 +1,168 @@
+{
+  "baseline_scope": "captured this agent task start; preserves earlier uncommitted repairs",
+  "changed_markdown_files": 22,
+  "deepened_lessons": 19,
+  "narrow_factual_fixes": 3,
+  "lessons_unchanged": 35,
+  "all_57_original_frontmatters_byte_exact": true,
+  "all_57_exercise_files_sha256_unchanged": true,
+  "course_yaml_sha256_unchanged": true,
+  "changed": [
+    {
+      "path": "content/java/java-collections-generics/arraylist.md",
+      "before_sha256": "2abfc57e73f19fbd8428e5a6757a7cef0e73b103f4d23ce1441e047f5b1610ff",
+      "after_sha256": "f1cd985703720280c914cad712d40500962e5c3e51dc9b6d486dcf419bd18486",
+      "before_body_chars": 1000,
+      "after_body_chars": 1957
+    },
+    {
+      "path": "content/java/java-collections-generics/collections-framework.md",
+      "before_sha256": "aac9b467c4d397a0d0cd9a082a6eda24b93cb3ff76c5ed3810a569669cb220cf",
+      "after_sha256": "989edf09ef76187370d7397bb9628ce347fe27ca41482a1bf602b452ffe6bd96",
+      "before_body_chars": 874,
+      "after_body_chars": 2437
+    },
+    {
+      "path": "content/java/java-collections-generics/data-structures.md",
+      "before_sha256": "2873bfc2f932744d077c12543f3d17d9f80a7fb025705ad9de8f27cb4d78473e",
+      "after_sha256": "a49d757da64ed4ca473268c537ec5dcd1a84ebe8ad97cb774bd1b7f511a3f890",
+      "before_body_chars": 890,
+      "after_body_chars": 1031
+    },
+    {
+      "path": "content/java/java-collections-generics/generics.md",
+      "before_sha256": "ce405278adbb004e4f354bee9ed37086021c4a04e86edcc66c5b14aa841233e9",
+      "after_sha256": "f821c3d3dfe3d73d688a8f9b0ed2c68db0bec30fad647fa5106884cdf010b147",
+      "before_body_chars": 902,
+      "after_body_chars": 2533
+    },
+    {
+      "path": "content/java/java-collections-generics/hashmap.md",
+      "before_sha256": "4603010d3e1de889fa9eb50a8c8f360ee0b642a35fda9aeecda4b634ed2a044e",
+      "after_sha256": "6de3dbdad9e64825953c2ac92c58c01654d4cab9a97397d7ddaebb5b902ce8f0",
+      "before_body_chars": 989,
+      "after_body_chars": 2090
+    },
+    {
+      "path": "content/java/java-collections-generics/hashset.md",
+      "before_sha256": "eba99417f49ea4dc65befcbf61832c26e7fbc86faf7eb31d1847db8feb4c15ff",
+      "after_sha256": "9317e8bbae44c34b477fcab44578ed897ef3696295bb3c9baff39c9f57183277",
+      "before_body_chars": 967,
+      "after_body_chars": 1924
+    },
+    {
+      "path": "content/java/java-collections-generics/iterator.md",
+      "before_sha256": "973ce479aa0c18d7774881182dfc361d64751691602943c40f619bea1b3c060d",
+      "after_sha256": "c31cb0ad227895812224d03a5daf3e2e1f73640b5bf9074ab6182331d1b2cf09",
+      "before_body_chars": 1071,
+      "after_body_chars": 2126
+    },
+    {
+      "path": "content/java/java-collections-generics/linkedlist.md",
+      "before_sha256": "fc49bad094f4cb644460ad73af9ef62befdf79dd6bafa37377aeb1ef60ff9dd0",
+      "after_sha256": "a33ea5cea7a42babd533cbf9680d443b4ff6d6845bae3bb64eff57ac7651e462",
+      "before_body_chars": 1034,
+      "after_body_chars": 1829
+    },
+    {
+      "path": "content/java/java-collections-generics/object-class.md",
+      "before_sha256": "8109ee788f665ea7c0225326b76106fb7dc80b1de8763df475be56c307aca702",
+      "after_sha256": "54f7b90d3c45032f8b73c8bd87b7c93ddbff3a2d02316257a480a76bf8d9a224",
+      "before_body_chars": 931,
+      "after_body_chars": 2576
+    },
+    {
+      "path": "content/java/java-core-api/constructors.md",
+      "before_sha256": "3a4a9234aaa796893ac0bede6691e7fa95be85098e8d01764754c3329ad29b00",
+      "after_sha256": "bd0be5fc890b6be75257b05989c35a4fdc7ed1594071eef49a4fe007cd46319c",
+      "before_body_chars": 980,
+      "after_body_chars": 2168
+    },
+    {
+      "path": "content/java/java-core-api/date-time.md",
+      "before_sha256": "a447897950455261d5982298fcd1855157fe301bf042bde6551293d2776fa624",
+      "after_sha256": "9a63eeaab9672939a2a0c434f8a01e6fc431b81d8c9cf612db8be6280780450b",
+      "before_body_chars": 974,
+      "after_body_chars": 1129
+    },
+    {
+      "path": "content/java/java-core-api/string.md",
+      "before_sha256": "59bf500ac5891974ab6cbd5cca0b1302dfc7f7e561202aa882adc6e42076acec",
+      "after_sha256": "63169a012ec5cb308e9bf7f6cbd09104e2d871d2fd83ae6299ddd12c2f14b1db",
+      "before_body_chars": 880,
+      "after_body_chars": 1033
+    },
+    {
+      "path": "content/java/java-foundations/basic-data-types.md",
+      "before_sha256": "8e71b91cf45531bc4882bc9d8e9379018fefe96ebe81e872b89ee4b46e42b4a9",
+      "after_sha256": "8226c3b261730b1e16a6f8b3646493b5fe63dbd1e497a2d4d0cfadfa98ba7898",
+      "before_body_chars": 997,
+      "after_body_chars": 2394
+    },
+    {
+      "path": "content/java/java-foundations/objects-classes.md",
+      "before_sha256": "bedc060d4f9db9171605e128d6f5b7dde1145144e83c76279a8c1aa30c980476",
+      "after_sha256": "4e1589b7246e112f4fbc275445038def1e0ae1e0f0f617ff1eaaf3bb97ea666c",
+      "before_body_chars": 1276,
+      "after_body_chars": 2098
+    },
+    {
+      "path": "content/java/java-foundations/variable-types.md",
+      "before_sha256": "c18c55f9097a2221d0276393aa1f6f8ee1018432a10744494eef13df9334ec2d",
+      "after_sha256": "7e7dd35cbde4a02ec693f2fdb82d1b6a8d0063664490d709f7a414582cd0de44",
+      "before_body_chars": 1203,
+      "after_body_chars": 1959
+    },
+    {
+      "path": "content/java/java-oop-io/abstraction.md",
+      "before_sha256": "f72d524835a5cf9d386fd6db9dd567ed3fced2a7a8ea0a262efb5a8fc2513bbe",
+      "after_sha256": "ca51caa8fa620178d32488fb48de0bd6cb95aad9284e670ac1372778a8cc9347",
+      "before_body_chars": 1083,
+      "after_body_chars": 2131
+    },
+    {
+      "path": "content/java/java-oop-io/encapsulation.md",
+      "before_sha256": "dc4bac5f4a76ea00146065ec804b320ce3a567e27906301d1a92539349c9ad4f",
+      "after_sha256": "9204d773f8a5c0d6dec1ca08593fa42a0f31d8dadc7aaa8b7425cc06de396902",
+      "before_body_chars": 1149,
+      "after_body_chars": 2154
+    },
+    {
+      "path": "content/java/java-oop-io/exceptions.md",
+      "before_sha256": "b7bc4a903153e6aea0193d32d6209c4c3b35adc7ba29cbb9dbbcb5d74127cca3",
+      "after_sha256": "49c04fa029f1f335ee6823ad1d7deaf8cc323f54ea626d5eef06db852a0e062d",
+      "before_body_chars": 1030,
+      "after_body_chars": 2475
+    },
+    {
+      "path": "content/java/java-oop-io/inheritance.md",
+      "before_sha256": "5e8d5806736a5a67eb5242a2ca0de5d9f2f829324c05fc740b26844696c0e5af",
+      "after_sha256": "323615d29029e816c0287d916116e54479e5a62978921bf9d798cb9ef0d82e44",
+      "before_body_chars": 1170,
+      "after_body_chars": 2107
+    },
+    {
+      "path": "content/java/java-oop-io/interfaces.md",
+      "before_sha256": "d55b55a0b354e7579f6247ac2763ed09101ac2aa323f73a8791d47144e9f10a0",
+      "after_sha256": "b9b682b08ac6fc4087afc8542809d2e90dcf98f902e7c1d28dd285667e57620d",
+      "before_body_chars": 1040,
+      "after_body_chars": 2343
+    },
+    {
+      "path": "content/java/java-oop-io/override-overload.md",
+      "before_sha256": "00850d07a6152cad1ac145d8d0aaf734f7652ef695d82d49284d6a0bac5092b9",
+      "after_sha256": "1b91a03057e8cd58fdfd07df5ac8934dc1473eba0e0373f15f56729af4a43e62",
+      "before_body_chars": 990,
+      "after_body_chars": 2052
+    },
+    {
+      "path": "content/java/java-oop-io/polymorphism.md",
+      "before_sha256": "5d624ce6c383a1543a1b4bdae886b26684e3e00c13061d7ae56aba3df9dae2ed",
+      "after_sha256": "3d071ee6f2e945d18644eae2cad891938fc8b08487e593b1fa08d82c2f45cc02",
+      "before_body_chars": 1102,
+      "after_body_chars": 2132
+    }
+  ],
+  "errors": [],
+  "limits": "This task does not compare other agents files; compiler/browser/full-suite execution coordinated by root."
+}

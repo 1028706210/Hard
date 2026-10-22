@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-oop-inheritance",
+  "questions": [
+    {
+      "id": "cpp-oop-inheritance-k01",
+      "type": "knowledge",
+      "prompt": "class Manager : public Employee 表达的关系是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Manager 是一种 Employee（is-a）"
+        },
+        {
+          "id": "b",
+          "text": "Employee 是一种 Manager"
+        },
+        {
+          "id": "c",
+          "text": "两者只是共享同一个文件"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-oop-inheritance-k02",
+      "type": "knowledge",
+      "prompt": "派生类构造函数如何初始化基类部分？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "在函数体里给基类成员直接赋值即可"
+        },
+        {
+          "id": "b",
+          "text": "基类部分自动为空，无需处理"
+        },
+        {
+          "id": "c",
+          "text": "在成员初始化列表中调用基类构造函数"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-oop-inheritance-k03",
+      "type": "knowledge",
+      "prompt": "protected 成员的可见性是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "对外完全公开"
+        },
+        {
+          "id": "b",
+          "text": "对派生类可见、对其他外部代码私有"
+        },
+        {
+          "id": "c",
+          "text": "仅本类可见，派生类也不可访问"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-oop-inheritance-c01",
+      "type": "code",
+      "prompt": "定义基类 Employee（构造接收底薪 base，salary() 返回 base）与派生类 Manager（额外持有奖金 bonus，salary() 返回 base + bonus）。读取一行三个值 base bonus role（role 为 employee 或 manager），构造对应对象并输出 salary() 结果。",
+      "starter_code": "#include <iostream>\n#include <string>\n\nclass Employee {\npublic:\n    explicit Employee(int base) : base_(base) {}\n    int salary() const { return base_; }\nprotected:\n    int base_;\n};\n\n// 定义派生类 Manager\n\nint main() {\n    int base = 0;\n    int bonus = 0;\n    std::string role;\n    std::cin >> base >> bonus >> role;\n    // 按 role 构造对象并输出 salary()\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 100 50 manager 时输出 150。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <string>\n\nclass Employee {\npublic:\n    explicit Employee(int base) : base_(base) {}\n    int salary() const { return base_; }\nprotected:\n    int base_;\n};\n\nclass Manager : public Employee {\npublic:\n    Manager(int base, int bonus) : Employee(base), bonus_(bonus) {}\n    int salary() const { return base_ + bonus_; }\nprivate:\n    int bonus_;\n};\n\nint main() {\n    int base = 0;\n    int bonus = 0;\n    std::string role;\n    std::cin >> base >> bonus >> role;\n    if (role == \"manager\") {\n        Manager lead(base, bonus);\n        std::cout << lead.salary() << std::endl;\n    } else {\n        Employee staff(base);\n        std::cout << staff.salary() << std::endl;\n    }\n    return 0;\n}\n",
+        "hidden_tests": [
+          "employee 角色忽略奖金只输出底薪。",
+          "零值输入按各自 salary() 语义输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "100 50 manager\n",
+            "stdout": "150\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "100 50 employee\n",
+            "stdout": "100\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "0 0 employee\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

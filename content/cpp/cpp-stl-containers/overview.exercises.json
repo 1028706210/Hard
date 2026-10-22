@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-stl-containers-overview",
+  "questions": [
+    {
+      "id": "cpp-stl-containers-overview-k01",
+      "type": "knowledge",
+      "prompt": "STL 的三大组成部分是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "容器、迭代器、算法"
+        },
+        {
+          "id": "b",
+          "text": "类、对象、继承"
+        },
+        {
+          "id": "c",
+          "text": "编译器、链接器、调试器"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-overview-k02",
+      "type": "knowledge",
+      "prompt": "连接容器与算法的组件是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "虚函数表"
+        },
+        {
+          "id": "b",
+          "text": "迭代器"
+        },
+        {
+          "id": "c",
+          "text": "宏定义"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-overview-k03",
+      "type": "knowledge",
+      "prompt": "std::accumulate 定义在哪个头文件？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "<algorithm>"
+        },
+        {
+          "id": "b",
+          "text": "<vector>"
+        },
+        {
+          "id": "c",
+          "text": "<numeric>"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-overview-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 0..1000，含两端），随后 n 个整数，存入 vector 后用 std::accumulate 求和（long long）并输出。n 或任一整数无法解析时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <iostream>\n#include <numeric>\n#include <vector>\n\nint main() {\n    // 读取 n 与 n 个整数，accumulate 求和输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 n=5 与 1 2 3 4 5 时输出 15。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <numeric>\n#include <string>\n#include <vector>\n\nint main() {\n    int n = 0;\n    if (!(std::cin >> n)) return 1;\n    if (n < 0 || n > 1000) return 1;\n    std::vector<long long> values;\n    for (int i = 0; i < n; i++) {\n        long long value = 0;\n        if (!(std::cin >> value)) return 1;\n        values.push_back(value);\n    }\n    long long total = std::accumulate(values.begin(), values.end(), 0LL);\n    std::cout << total << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "n=0 空序列输出 0。",
+          "含负数时求和保留符号。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "5 1 2 3 4 5\n",
+            "stdout": "15\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3 -5 2 -1\n",
+            "stdout": "-4\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "lesson_id": "csharp-capstone-unsafe-code",
+  "questions": [
+    {
+      "id": "csharp-capstone-unsafe-code-k01",
+      "type": "knowledge",
+      "prompt": "为什么对托管数组取得指针时通常需要 fixed？",
+      "choices": [
+        {"id": "a", "text": "fixed 会把数组永久复制到非托管内存"},
+        {"id": "b", "text": "fixed 在有限作用域内阻止垃圾回收器移动该对象，使指针地址保持稳定"},
+        {"id": "c", "text": "fixed 会自动检查所有指针是否越界"}
+      ],
+      "experience_points": 5,
+      "private": {"reference_answer": "b"}
+    },
+    {
+      "id": "csharp-capstone-unsafe-code-k02",
+      "type": "knowledge",
+      "prompt": "对 int* pointer 执行 pointer + 1 的含义是什么？",
+      "choices": [
+        {"id": "a", "text": "前进一个 int 元素的大小，而不是只前进一个字节"},
+        {"id": "b", "text": "把 pointer 指向的整数值加一"},
+        {"id": "c", "text": "创建一个新的托管 int 对象"}
+      ],
+      "experience_points": 5,
+      "private": {"reference_answer": "a"}
+    },
+    {
+      "id": "csharp-capstone-unsafe-code-k03",
+      "type": "knowledge",
+      "prompt": "本平台如何决定某道 C# 题是否允许不安全代码？",
+      "choices": [
+        {"id": "a", "text": "用户在源码首行写 allow_unsafe=true"},
+        {"id": "b", "text": "前端在提交请求中附加 /unsafe 参数"},
+        {"id": "c", "text": "只有服务端内部白名单中的专用课时与题目组合可以启用，普通题保持禁用"}
+      ],
+      "experience_points": 5,
+      "private": {"reference_answer": "c"}
+    },
+    {
+      "id": "csharp-capstone-unsafe-code-c01",
+      "type": "code",
+      "prompt": "输入一行 1..20 个以空格分隔的整数，每个整数范围为 -1000000..1000000。把整数保存到 int[]，在 unsafe 块中用 fixed 取得首元素指针，并通过指针位移与解引用计算 long 类型总和，输出 sum=<总和>。空输入、数量超限、非整数或越界值均不输出并以退出码 1 结束。本题由服务端专用白名单启用不安全代码；不得提供项目文件或编译参数。",
+      "starter_code": "// 本题专用模板允许 unsafe；先校验输入，再在短小的 fixed 作用域内遍历数组\n",
+      "visible_tests": ["输入 1 2 3 4 时输出 sum=10。"],
+      "experience_points": 25,
+      "private": {
+        "reference_solution": "var tokens = (Console.ReadLine() ?? \"\").Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);\nif (tokens.Length < 1 || tokens.Length > 20) Environment.Exit(1);\nvar values = new int[tokens.Length];\nfor (var index = 0; index < tokens.Length; index++)\n{\n    if (!int.TryParse(tokens[index], out var value) || value < -1000000 || value > 1000000) Environment.Exit(1);\n    values[index] = value;\n}\nlong sum = 0;\nunsafe\n{\n    fixed (int* start = values)\n    {\n        for (var index = 0; index < values.Length; index++) sum += *(start + index);\n    }\n}\nConsole.WriteLine($\"sum={sum}\");\n",
+        "hidden_tests": [
+          "单个整数可以通过指针解引用求和。",
+          "负数和正数混合时使用 long 正确汇总。",
+          "20 个整数的上边界数量可以执行。",
+          "非整数 token 被拒绝。",
+          "空输入被拒绝。",
+          "21 个整数超过数量上限时被拒绝。"
+        ],
+        "visible_test_cases": [
+          {"stdin": "1 2 3 4\n", "stdout": "sum=10\n", "exit_code": 0}
+        ],
+        "hidden_test_cases": [
+          {"stdin": "7\n", "stdout": "sum=7\n", "exit_code": 0},
+          {"stdin": "-5 2 8\n", "stdout": "sum=5\n", "exit_code": 0},
+          {"stdin": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n", "stdout": "sum=210\n", "exit_code": 0},
+          {"stdin": "1 x\n", "stdout": "", "exit_code": 1},
+          {"stdin": "\n", "stdout": "", "exit_code": 1},
+          {"stdin": "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\n", "stdout": "", "exit_code": 1}
+        ]
+      }
+    }
+  ]
+}

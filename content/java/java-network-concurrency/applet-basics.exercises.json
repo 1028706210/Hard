@@ -1,0 +1,146 @@
+{
+  "lesson_id": "java-network-concurrency-applet-basics",
+  "questions": [
+    {
+      "id": "java-network-concurrency-applet-basics-k01",
+      "type": "knowledge",
+      "prompt": "Applet 生命周期的第一个阶段是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "start"
+        },
+        {
+          "id": "b",
+          "text": "init"
+        },
+        {
+          "id": "c",
+          "text": "destroy"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-network-concurrency-applet-basics-k02",
+      "type": "knowledge",
+      "prompt": "Applet 的状态是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "活跃技术"
+        },
+        {
+          "id": "b",
+          "text": "已弃用"
+        },
+        {
+          "id": "c",
+          "text": "仅移动端"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-network-concurrency-applet-basics-k03",
+      "type": "knowledge",
+      "prompt": "Applet 生命周期有多少个阶段？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "2"
+        },
+        {
+          "id": "b",
+          "text": "4"
+        },
+        {
+          "id": "c",
+          "text": "3"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-network-concurrency-applet-basics-c01",
+      "type": "code",
+      "prompt": "从标准输入读取当前阶段名(init/start/stop)，输出下一阶段名。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        String next;\n        switch (input) {\n            case \"init\": next = \"start\"; break;\n            case \"start\": next = \"stop\"; break;\n            case \"stop\": next = \"destroy\"; break;\n            default: System.exit(1); return;\n        }\n        System.out.println(next);\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "init\n",
+            "stdout": "start\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "start\n",
+            "stdout": "stop\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "java-network-concurrency-applet-basics-challenge",
+      "type": "challenge",
+      "prompt": "从标准输入读取一个阶段名，输出完整生命周期序列(用空格分隔)。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        String[] all = {\"init\", \"start\", \"stop\", \"destroy\"};\n        int start = 0;\n        for (int i = 0; i < all.length; i++) if (all[i].equals(input)) { start = i; break; }\n        StringBuilder sb = new StringBuilder();\n        for (int i = start; i < all.length; i++) { if (sb.length() > 0) sb.append(\" \"); sb.append(all[i]); }\n        System.out.println(sb);\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "init\n",
+            "stdout": "init start stop destroy\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "stop\n",
+            "stdout": "stop destroy\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

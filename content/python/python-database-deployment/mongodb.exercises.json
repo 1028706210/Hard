@@ -73,35 +73,51 @@
     {
       "id": "python-database-deployment-mongodb-c01",
       "type": "code",
-      "prompt": "实现 safe_filter(filters)：只有 name 和 level 都是允许键时返回 True，否则返回 False。打印 safe_filter({'level': 2}).",
-      "starter_code": "def safe_filter(filters):\n    # 检查过滤键白名单\n    pass\n\nprint(safe_filter({'level': 2}))",
+      "prompt": "输入 JSON 对象作为查询条件，只检查顶层键是否全部属于 name、level。输出 True 或 False；空对象为 True。值不参与本题判断，因此这不是完整查询净化。非法JSON或非对象无输出，退出码1。不连接MongoDB。",
+      "starter_code": "import sys, json\ntry:\n    data = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif not isinstance(data, dict):\n    raise SystemExit(1)\n# 按题面实现本课操作\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '{\"level\":2}'，输出 'True\\n'，退出码 0。",
+        "输入 '{\"other\":2}'，输出 'False\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-database-deployment-mongodb-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    def safe_filter(filters):\n        return set(filters) <= {'name', 'level'}\n\n    print(safe_filter({'level': 2}))\n",
+        "reference_solution": "import sys, json\ntry:\n    data = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif not isinstance(data, dict):\n    raise SystemExit(1)\ndef safe_filter(filters):\n    return set(filters) <= {\"name\", \"level\"}\nprint(safe_filter(data))\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面规定的有效边界和失败行为。",
+          "输出格式、类型和顺序以题面约定为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "{\"level\":2}",
             "stdout": "True\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"other\":2}",
+            "stdout": "False\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-database-deployment-mongodb-c01\n",
+            "stdin": "{}",
+            "stdout": "True\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "{\"name\":\"Ada\",\"level\":2}",
+            "stdout": "True\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"name\":\"Ada\",\"$where\":\"x\"}",
+            "stdout": "False\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "[]",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
           }
         ]
       }
@@ -109,35 +125,56 @@
     {
       "id": "python-database-deployment-mongodb-challenge",
       "type": "challenge",
-      "prompt": "实现 select_names(records, level)：从字典列表中按 level 筛选，返回姓名列表；打印给定数据中 level 为 2 的结果。",
-      "starter_code": "def select_names(records, level):\n    # 只读取内存记录\n    pass\n\nrecords = [{'name': 'Ada', 'level': 2}, {'name': 'Lin', 'level': 1}]\nprint(select_names(records, 2))",
+      "prompt": "输入JSON对象，records为记录列表，level为整数（非布尔）。每条记录必须含字符串name和整数level。按level精确匹配，输出姓名JSON列表，保留原顺序和重复项，使用ensure_ascii=False。空列表或无匹配输出[]。错误结构无输出，退出码1。不连接数据库。",
+      "starter_code": "import sys, json\ntry:\n    data = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif not isinstance(data, dict):\n    raise SystemExit(1)\nif not isinstance(data.get(\"records\"),list) or type(data.get(\"level\")) is not int or any(not isinstance(r,dict) or not isinstance(r.get(\"name\"),str) or type(r.get(\"level\")) is not int for r in data[\"records\"]):\n    raise SystemExit(1)\n# 按题面实现本课操作\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '{\"records\":[{\"name\":\"Ada\",\"level\":2},{\"name\":\"Lin\",\"level\":1}],\"level\":2}'，输出 '[\"Ada\"]\\n'，退出码 0。",
+        "输入 '{\"records\":[],\"level\":1}'，输出 '[]\\n'，退出码 0。"
       ],
       "experience_points": 30,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-database-deployment-mongodb-challenge')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    def select_names(records, level):\n        return [record['name'] for record in records if record.get('level') == level]\n\n    records = [{'name': 'Ada', 'level': 2}, {'name': 'Lin', 'level': 1}]\n    print(select_names(records, 2))\n",
+        "reference_solution": "import sys, json\ntry:\n    data = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif not isinstance(data, dict):\n    raise SystemExit(1)\nif not isinstance(data.get(\"records\"),list) or type(data.get(\"level\")) is not int or any(not isinstance(r,dict) or not isinstance(r.get(\"name\"),str) or type(r.get(\"level\")) is not int for r in data[\"records\"]):\n    raise SystemExit(1)\ndef select_names(records,level):\n    return [r[\"name\"] for r in records if r[\"level\"] == level]\nprint(json.dumps(select_names(data[\"records\"],data[\"level\"]),ensure_ascii=False))\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面规定的有效边界和失败行为。",
+          "输出格式、类型和顺序以题面约定为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
-            "stdout": "['Ada']\n",
+            "stdin": "{\"records\":[{\"name\":\"Ada\",\"level\":2},{\"name\":\"Lin\",\"level\":1}],\"level\":2}",
+            "stdout": "[\"Ada\"]\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"records\":[],\"level\":1}",
+            "stdout": "[]\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-database-deployment-mongodb-challenge\n",
+            "stdin": "{\"records\":[{\"name\":\"学习\",\"level\":2},{\"name\":\"学习\",\"level\":2}],\"level\":2}",
+            "stdout": "[\"学习\", \"学习\"]\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "{\"records\":[{\"name\":\"x\",\"level\":1}],\"level\":2}",
+            "stdout": "[]\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"records\":[],\"level\":true}",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "{}",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "{\"records\":[{\"name\":\"Above\",\"level\":3}],\"level\":2}",
+            "stdout": "[]\n",
+            "exit_code": 0
           }
         ]
       }

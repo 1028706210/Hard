@@ -94,6 +94,30 @@ def test_fixture_only_course_is_never_reported_as_a_complete_route(tmp_path: Pat
     assert route == {"language": "python", "fixture_only": True, "complete": False}
 
 
+def test_activity_summary_keeps_real_counts_within_the_inclusive_90_day_window(tmp_path: Path) -> None:
+    client, database_path = learning_client(tmp_path)
+    today = date(2026, 10, 1)
+    start = today - timedelta(days=89)
+    with closing(sqlite3.connect(database_path)) as connection:
+        with connection:
+            for activity_date, seconds, exercises in [(start - timedelta(days=1), 99, 9), (start, 60, 2), (today, 0, 0), (today + timedelta(days=1), 42, 3)]:
+                connection.execute(
+                    "INSERT INTO learning_activity_days (activity_date, time_spent_seconds, completed_exercises, updated_at) VALUES (?, ?, ?, ?)",
+                    (activity_date.isoformat(), seconds, exercises, datetime(2026, 10, 1)),
+                )
+    summary = growth_summary(database_path, repository=client.app.state.content_service.repository, today=today)
+    assert summary["activity_start_date"] == start.isoformat()
+    assert summary["activity_end_date"] == today.isoformat()
+    assert summary["activity_days"] == [
+        {"date": start.isoformat(), "time_spent_seconds": 60, "completed_exercises": 2},
+        {"date": today.isoformat(), "time_spent_seconds": 0, "completed_exercises": 0},
+    ]
+    with client:
+        response = client.get("/api/growth/summary")
+        assert response.status_code == 200
+        assert "activity_days" in response.json()
+
+
 def test_growth_summary_is_read_only_even_when_all_initial_badges_are_eligible(tmp_path: Path) -> None:
     client, database_path = learning_client(tmp_path)
     today = date(2026, 8, 24)

@@ -11,6 +11,63 @@ $projectRoot = Split-Path -Parent $PSScriptRoot
 $venvPython = Join-Path $projectRoot '.venv\Scripts\python.exe'
 $pnpmStore = Join-Path $projectRoot '.tool-cache\pnpm-store'
 $pnpmLock = Join-Path $projectRoot 'pnpm-lock.yaml'
+$backendRequirementsLock = Join-Path $projectRoot 'apps\api\requirements.lock'
+$coreCoverageGate = Join-Path $projectRoot 'apps\api\tests\core_coverage_gate.py'
+
+function Assert-DDrivePath {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Name,
+        [AllowEmptyString()]
+        [string]$Value
+    )
+
+    if ([string]::IsNullOrWhiteSpace($Value)) {
+        return
+    }
+
+    if ($Value.Trim() -match '^(?i)c:') {
+        throw "$Name 不允许指向 C: 盘：$Value"
+    }
+}
+
+function Set-ProjectCacheDefaults {
+    if ($projectRoot -notmatch '^(?i)d:(?:[\\/]|$)') {
+        throw "项目根目录必须位于 D: 盘：$projectRoot"
+    }
+
+    foreach ($name in @('HARD_DATA_DIR', 'HARD_BACKUP_DIR', 'HARD_EXPORT_DIR', 'HARD_RUNNER_WORK_DIR')) {
+        Assert-DDrivePath -Name $name -Value ([Environment]::GetEnvironmentVariable($name, 'Process'))
+    }
+
+    $cacheDefaults = [ordered]@{
+        NPM_CONFIG_CACHE = 'D:\DevTools\cache\npm'
+        npm_config_store_dir = $pnpmStore
+        PIP_CACHE_DIR = 'D:\DevTools\cache\pip'
+        NUGET_PACKAGES = 'D:\DevTools\cache\nuget-packages'
+        NUGET_HTTP_CACHE_PATH = 'D:\DevTools\cache\nuget-http'
+        DOTNET_CLI_HOME = 'D:\DevTools\cache\dotnet-cli'
+        MSYS2_CACHE_DIR = 'D:\DevTools\cache\msys2'
+    }
+
+    foreach ($entry in $cacheDefaults.GetEnumerator()) {
+        $configured = [Environment]::GetEnvironmentVariable($entry.Key, 'Process')
+        Assert-DDrivePath -Name $entry.Key -Value $configured
+        if ([string]::IsNullOrWhiteSpace($configured)) {
+            [Environment]::SetEnvironmentVariable($entry.Key, $entry.Value, 'Process')
+        }
+    }
+}
+
+function Assert-BackendAsgiDependency {
+    if (-not (Test-Path -LiteralPath $backendRequirementsLock -PathType Leaf)) {
+        throw "缺少后端锁文件：$backendRequirementsLock"
+    }
+
+    if (-not (Select-String -Path $backendRequirementsLock -Pattern '^uvicorn==\d+\.\d+\.\d+$' -Quiet)) {
+        throw '后端锁文件缺少 ASGI 运行依赖 uvicorn。'
+    }
+}
 
 function Invoke-CheckedCommand {
     param(
@@ -29,6 +86,9 @@ function Invoke-CheckedCommand {
 if (-not (Test-Path -LiteralPath $venvPython -PathType Leaf)) {
     throw "缺少 .venv：请先运行 $projectRoot\scripts\bootstrap-project.ps1。"
 }
+
+Set-ProjectCacheDefaults
+Assert-BackendAsgiDependency
 
 $nodeVersion = @(& node --version 2>&1) -join [Environment]::NewLine
 if ($LASTEXITCODE -ne 0) {
@@ -59,8 +119,32 @@ function Test-PnpmLock {
 }
 
 function Test-ApiDependencies {
+    Test-ApiCoreCoverage
+
     Invoke-CheckedCommand -Description '后端依赖不可用，请运行 scripts\\bootstrap-project.ps1' -Command {
-        & $venvPython -c 'import alembic, fastapi, httpx, markdown_it, psutil, sqlalchemy, yaml'
+        & $venvPython -c 'import alembic, fastapi, httpx, markdown_it, psutil, sqlalchemy, uvicorn, yaml'
+    }
+}
+
+function Test-ApiCoreCoverage {
+    if (-not (Test-Path -LiteralPath $coreCoverageGate -PathType Leaf)) {
+        throw "缺少后端核心覆盖率门禁：$coreCoverageGate"
+    }
+
+    $temporaryRoot = Join-Path $projectRoot '.tool-cache\check-temp'
+    $previousTemp = $env:TEMP
+    $previousTmp = $env:TMP
+    try {
+        New-Item -ItemType Directory -Force -Path $temporaryRoot | Out-Null
+        $env:TEMP = $temporaryRoot
+        $env:TMP = $temporaryRoot
+        Invoke-CheckedCommand -Description '后端核心覆盖率门禁失败' -Command {
+            & $venvPython $coreCoverageGate
+        }
+    }
+    finally {
+        $env:TEMP = $previousTemp
+        $env:TMP = $previousTmp
     }
 }
 

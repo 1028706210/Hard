@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-capstone-memory",
+  "questions": [
+    {
+      "id": "cpp-capstone-memory-k01",
+      "type": "knowledge",
+      "prompt": "std::unique_ptr 的拷贝语义是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "任意拷贝共享所有权"
+        },
+        {
+          "id": "b",
+          "text": "不可拷贝，只能移动"
+        },
+        {
+          "id": "c",
+          "text": "拷贝时自动深复制对象"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-capstone-memory-k02",
+      "type": "knowledge",
+      "prompt": "make_unique 相比 new 的主要优势是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "无需包含任何头文件"
+        },
+        {
+          "id": "b",
+          "text": "分配在栈上"
+        },
+        {
+          "id": "c",
+          "text": "一步分配构造且异常安全"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-memory-k03",
+      "type": "knowledge",
+      "prompt": "对 unique_ptr 调用 get() 后手动 delete 会？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "安全转移所有权"
+        },
+        {
+          "id": "b",
+          "text": "程序退出时正常清理"
+        },
+        {
+          "id": "c",
+          "text": "与析构时的释放叠加为二次释放"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-memory-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 1..1000，含两端）与 n 个整数（每个合同范围 -10000..10000，含两端），用 std::make_unique<std::vector<long long>>() 建立独占管理的动态 vector，通过该 unique_ptr 完成填充与求和，输出一行总和。任一输入无法解析、越界或缺失时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cstdio>\n#include <memory>\n#include <vector>\n\nint main() {\n    // 读取 n 与整数，装进 make_unique 的 vector 求和\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3 与 1 2 3 时输出 6。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <cstdio>\n#include <memory>\n#include <vector>\n\nint main() {\n    int n = 0;\n    if (std::scanf(\"%d\", &n) != 1) return 1;\n    if (n < 1 || n > 1000) return 1;\n    auto data = std::make_unique<std::vector<long long>>();\n    for (int i = 0; i < n; i++) {\n        long long value = 0;\n        if (std::scanf(\"%lld\", &value) != 1) return 1;\n        if (value < -10000 || value > 10000) return 1;\n        data->push_back(value);\n    }\n    long long total = 0;\n    for (long long value : *data) total += value;\n    std::printf(\"%lld\\n\", total);\n    return 0;\n}\n",
+        "hidden_tests": [
+          "单个 7 输出 7。",
+          "负数混合 -1 2 -3 输出 -2。",
+          "元素 10001 越界不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 1 2 3\n",
+            "stdout": "6\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1 7\n",
+            "stdout": "7\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3 -1 2 -3\n",
+            "stdout": "-2\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1 10001\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

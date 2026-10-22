@@ -73,35 +73,51 @@
     {
       "id": "python-stdlib-data-queue-c01",
       "type": "code",
-      "prompt": "放入 1 后取出并输出。",
-      "starter_code": "from queue import Queue\n# 放入并取出",
+      "prompt": "读取以空白分隔的任务名，按原顺序全部放入 queue.Queue，再逐个取出并逐行输出。保留重复项，中文有效；空队列不输出内容并正常结束。本题单线程，不启动后台任务。起始代码提供 names 和 Queue。",
+      "starter_code": "import sys\nfrom queue import Queue\nnames = sys.stdin.read().split()\n# 完成本课操作与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'a b'，输出 'a\\nb\\n'，退出码 0。",
+        "输入 'task'，输出 'task\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-stdlib-data-queue-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    from queue import Queue\n    items = Queue(); items.put(1)\n    print(items.get())\n",
+        "reference_solution": "import sys\nfrom queue import Queue\nnames = sys.stdin.read().split()\nitems = Queue()\nfor name in names:\n    items.put(name)\nwhile not items.empty():\n    print(items.get_nowait())\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的正常边界。",
+          "输入、输出和退出状态必须符合题面。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
-            "stdout": "1\n",
+            "stdin": "a b",
+            "stdout": "a\nb\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "task",
+            "stdout": "task\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-stdlib-data-queue-c01\n",
+            "stdin": "",
+            "stdout": "",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
-            "stdout": "",
-            "exit_code": 2
+            "stdin": "z a z",
+            "stdout": "z\na\nz\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "学习 编程",
+            "stdout": "学习\n编程\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1 2 3",
+            "stdout": "1\n2\n3\n",
+            "exit_code": 0
           }
         ]
       }

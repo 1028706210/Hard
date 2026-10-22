@@ -1,0 +1,400 @@
+{
+  "scope": "isolated lesson examples only; not Runner or E2E",
+  "interpreter": "3.13.13 (tags/v3.13.13:01104ce, Apr  7 2026, 19:25:48) [MSC v.1944 64 bit (AMD64)]",
+  "changed_lessons": [
+    {
+      "path": "content/python/python-core-types/conversion.md",
+      "sha256": "b0bb469a2a8fb9720fa8370b4ffad22b00361de25e80ff0b03d6b286ea537027",
+      "body_characters_before": 620,
+      "body_characters_after": 1921
+    },
+    {
+      "path": "content/python/python-core-types/data-types.md",
+      "sha256": "86af950d9847ec26ed68110f7efd62eff1e35750e9264d0e6ba9522bbaa4af89",
+      "body_characters_before": 633,
+      "body_characters_after": 1987
+    },
+    {
+      "path": "content/python/python-flow-collections/data-structures.md",
+      "sha256": "9f0c24f3fc3e154f17e5ea67839eb5c8e97ab87ac102555154a2e4ac93092914",
+      "body_characters_before": 548,
+      "body_characters_after": 2096
+    },
+    {
+      "path": "content/python/python-flow-collections/dictionaries.md",
+      "sha256": "fcecc398b75620374818cf8b87cd3ea154d28b71237439dfabae8325e1393ffd",
+      "body_characters_before": 572,
+      "body_characters_after": 1864
+    },
+    {
+      "path": "content/python/python-flow-collections/lists.md",
+      "sha256": "a2d6ec2c853b2348ad729fa4e6c1bb7da798ff256bc6e5c2471dd32fe3358da5",
+      "body_characters_before": 487,
+      "body_characters_after": 1879
+    },
+    {
+      "path": "content/python/python-flow-collections/sets.md",
+      "sha256": "cc1cdc3f928afac265fac989662da4a264c0c82901f0d25d446d73393df8ee3e",
+      "body_characters_before": 499,
+      "body_characters_after": 1639
+    },
+    {
+      "path": "content/python/python-flow-collections/tuples.md",
+      "sha256": "3b2fc1b5bfc294e0f2865e83e0f2342fea0c75457e869c571a1796ac7df28f07",
+      "body_characters_before": 470,
+      "body_characters_after": 1271
+    },
+    {
+      "path": "content/python/python-functions-iteration/decorators.md",
+      "sha256": "4b59fa148c7599c0c9017755d25f6587b2b9e3d9142f224632649ceba4af4add",
+      "body_characters_before": 673,
+      "body_characters_after": 2063
+    },
+    {
+      "path": "content/python/python-functions-iteration/functions.md",
+      "sha256": "d2bc2e217998b1d78798ea18f0a65ac3ae460b4b0dc2f82adb869c65a1ea5af6",
+      "body_characters_before": 724,
+      "body_characters_after": 2096
+    },
+    {
+      "path": "content/python/python-functions-iteration/iterators.md",
+      "sha256": "d0367cbf7f26643b35cfee65d07610e66eb716fb78af994ddf54c216966827ec",
+      "body_characters_before": 596,
+      "body_characters_after": 2140
+    },
+    {
+      "path": "content/python/python-functions-iteration/scope.md",
+      "sha256": "f995b11b73a6cb9ac1d13f846479d9697f27c73d3d7f38bc65c3550299e71f3e",
+      "body_characters_before": 626,
+      "body_characters_after": 2011
+    },
+    {
+      "path": "content/python/python-modules-io-oop/classes.md",
+      "sha256": "171cebb75d11c8d5bf5beee0c72aaeb2ae53c732f1f70790afc4730e4a5500ee",
+      "body_characters_before": 631,
+      "body_characters_after": 3679
+    },
+    {
+      "path": "content/python/python-modules-io-oop/exceptions.md",
+      "sha256": "df991eb5484dbd4885b1c6391bc0749480749aa8680753eb23e6aceae068ea27",
+      "body_characters_before": 597,
+      "body_characters_after": 2200
+    },
+    {
+      "path": "content/python/python-modules-io-oop/files.md",
+      "sha256": "bbb3725b579fbd9092e67d5051d9427099af32289620fb05761c32601435c7c6",
+      "body_characters_before": 662,
+      "body_characters_after": 2886
+    }
+  ],
+  "protected_nonlesson_files_unchanged": 85,
+  "required_metadata_unchanged": true,
+  "example_checks": [
+    {
+      "lesson": "python-core-types-conversion",
+      "example": 1,
+      "pass": false,
+      "expected_stdout": "3 -3\n2.5 100.0\n5 255\n121 13\n",
+      "actual_stdout": "",
+      "stderr": "  File \"<string>\", line 6\n    转换为字符串常用于组合展示信息；它不会改变原变量，只产生一个新值。\n                   ^\nSyntaxError: invalid character '；' (U+FF1B)\n",
+      "exit_code": 1
+    },
+    {
+      "lesson": "python-core-types-conversion",
+      "example": 2,
+      "pass": true,
+      "expected_stdout": "['a', 'b'] (2, 3)\n[1, 3]\n{'name': 'Lin', 'level': 2}\nTrue False\nbytes 你好\n",
+      "actual_stdout": "['a', 'b'] (2, 3)\n[1, 3]\n{'name': 'Lin', 'level': 2}\nTrue False\nbytes 你好\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "lesson": "python-core-types-data-types",
+      "example": 1,
+      "pass": false,
+      "expected_stdout": "bool True\nFalse\nTrue False\nFalse True\n",
+      "actual_stdout": "",
+      "stderr": "  File \"<string>\", line 6\n    `type` 是观察工具，不是转换工具。它帮助我们验证变量是否拿到了预期的数据。\n                ^\nSyntaxError: invalid character '，' (U+FF0C)\n",
+      "exit_code": 1
+    },
+    {
+      "lesson": "python-core-types-data-types",
+      "example": 2,
+      "pass": true,
+      "expected_stdout": "True False True\n[1, 2] [1]\n",
+      "actual_stdout": "True False True\n[1, 2] [1]\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "lesson": "python-flow-collections-data-structures",
+      "example": 1,
+      "pass": false,
+      "expected_stdout": "second\nfirst ['second', 'third']\n",
+      "actual_stdout": "",
+      "stderr": "  File \"<string>\", line 5\n    组合容器时，命名中间值能减少嵌套访问造成的误读。\n         ^\nSyntaxError: invalid character '，' (U+FF0C)\n",
+      "exit_code": 1
+    },
+    {
+      "lesson": "python-flow-collections-data-structures",
+      "example": 2,
+      "pass": true,
+      "expected_stdout": "1 Lin 2\n2 Mei 1\n{'Lin': 2, 'Mei': 1}\n",
+      "actual_stdout": "1 Lin 2\n2 Mei 1\n{'Lin': 2, 'Mei': 1}\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "lesson": "python-flow-collections-dictionaries",
+      "example": 1,
+      "pass": false,
+      "expected_stdout": "[('Lin', 4), ('Mei', 3), ('Bo', 1)]\n3\nTrue True\n",
+      "actual_stdout": "",
+      "stderr": "  File \"<string>\", line 5\n    `get` 可以提供缺失时的默认值，让可选字段的处理更平稳。\n                     ^\nSyntaxError: invalid character '，' (U+FF0C)\n",
+      "exit_code": 1
+    },
+    {
+      "lesson": "python-flow-collections-dictionaries",
+      "example": 2,
+      "pass": true,
+      "expected_stdout": "read 2\ntest 1\nNone\nunknown\n",
+      "actual_stdout": "read 2\ntest 1\nNone\nunknown\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "lesson": "python-flow-collections-lists",
+      "example": 1,
+      "pass": false,
+      "expected_stdout": "40 [20, 30] [10, 30]\n[10, 25, 35]\n",
+      "actual_stdout": "",
+      "stderr": "  File \"<string>\", line 5\n    `append` 把一个值追加到末尾，修改的是同一份列表。\n                      ^\nSyntaxError: invalid character '，' (U+FF0C)\n",
+      "exit_code": 1
+    },
+    {
+      "lesson": "python-flow-collections-lists",
+      "example": 2,
+      "pass": true,
+      "expected_stdout": "[3, 1, [8, 9]]\n2 [3, 1]\n[1, 3] [3, 1]\nNone [1, 3]\n",
+      "actual_stdout": "[3, 1, [8, 9]]\n2 [3, 1]\n[1, 3] [3, 1]\nNone [1, 3]\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "lesson": "python-flow-collections-lists",
+      "example": 3,
+      "pass": true,
+      "expected_stdout": "[[0, 1], [0, 1]]\n[[0, 2], [0]] [[0, 2], [0]]\n",
+      "actual_stdout": "[[0, 1], [0, 1]]\n[[0, 2], [0]] [[0, 2], [0]]\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "lesson": "python-flow-collections-sets",
+      "example": 1,
+      "pass": false,
+      "expected_stdout": "[1, 2, 3, 4]\n[3]\n[1, 2]\n[1, 2, 4]\nTrue True\n",
+      "actual_stdout": "",
+      "stderr": "  File \"<string>\", line 5\n    成员测试直接回答一个值是否已出现，无需手写循环。\n                    ^\nSyntaxError: invalid character '，' (U+FF0C)\n",
+      "exit_code": 1
+    },
+    {
+      "lesson": "python-flow-collections-sets",
+      "example": 2,
+      "pass": true,
+      "expected_stdout": "['code', 'read', 'test']\nTrue\n1\n",
+      "actual_stdout": "['code', 'read', 'test']\nTrue\n1\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "lesson": "python-flow-collections-tuples",
+      "example": 1,
+      "pass": false,
+      "expected_stdout": "int tuple\n4 3\n1 [2, 3] 4\n",
+      "actual_stdout": "",
+      "stderr": "  File \"<string>\", line 5\n    单元素元组需要尾随逗号，避免与普通括号表达式混淆。\n               ^\nSyntaxError: invalid character '，' (U+FF0C)\n",
+      "exit_code": 1
+    },
+    {
+      "lesson": "python-flow-collections-tuples",
+      "example": 2,
+      "pass": true,
+      "expected_stdout": "('Lin', ['read'])\nseat\n",
+      "actual_stdout": "('Lin', ['read'])\nseat\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "lesson": "python-functions-iteration-decorators",
+      "example": 1,
+      "pass": false,
+      "expected_stdout": "run learn?\ntask\nlearn!\n",
+      "actual_stdout": "",
+      "stderr": "  File \"<string>\", line 7\n    把小包装单独测试，可以确认它没有吞掉返回值。\n            ^\nSyntaxError: invalid character '，' (U+FF0C)\n",
+      "exit_code": 1
+    },
+    {
+      "lesson": "python-functions-iteration-decorators",
+      "example": 2,
+      "pass": true,
+      "expected_stdout": "outer inner task\n",
+      "actual_stdout": "outer inner task\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "lesson": "python-functions-iteration-functions",
+      "example": 1,
+      "pass": false,
+      "expected_stdout": "Lin: 0 pts\nMei: 8 points\n",
+      "actual_stdout": "",
+      "stderr": "  File \"<string>\", line 6\n    明确的参数名比位置猜测更易读。\n                  ^\nSyntaxError: invalid character '。' (U+3002)\n",
+      "exit_code": 1
+    },
+    {
+      "lesson": "python-functions-iteration-functions",
+      "example": 2,
+      "pass": true,
+      "expected_stdout": "15\n",
+      "actual_stdout": "15\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "lesson": "python-functions-iteration-functions",
+      "example": 3,
+      "pass": true,
+      "expected_stdout": "['read']\n['test']\n['code'] ['code']\n",
+      "actual_stdout": "['read']\n['test']\n['code'] ['code']\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "lesson": "python-functions-iteration-iterators",
+      "example": 1,
+      "pass": false,
+      "expected_stdout": "4\n[7]\nend\n[4, 7]\n",
+      "actual_stdout": "",
+      "stderr": "  File \"<string>\", line 5\n    生成器的每次恢复都从上一次 `yield` 后继续。\n                             ^\nSyntaxError: invalid character '。' (U+3002)\n",
+      "exit_code": 1
+    },
+    {
+      "lesson": "python-functions-iteration-iterators",
+      "example": 2,
+      "pass": true,
+      "expected_stdout": "[3, 2, 1]\n[]\n",
+      "actual_stdout": "[3, 2, 1]\n[]\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "lesson": "python-functions-iteration-iterators",
+      "example": 3,
+      "pass": true,
+      "expected_stdout": "created\nproduce 0\n0\nproduce 1\nproduce 2\n[1, 4]\n",
+      "actual_stdout": "created\nproduce 0\n0\nproduce 1\nproduce 2\n[1, 4]\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "lesson": "python-functions-iteration-scope",
+      "example": 1,
+      "pass": false,
+      "expected_stdout": "enclosing\nmodule\n",
+      "actual_stdout": "",
+      "stderr": "  File \"<string>\", line 8\n    同名名称在不同作用域中可以独立存在。\n                     ^\nSyntaxError: invalid character '。' (U+3002)\n",
+      "exit_code": 1
+    },
+    {
+      "lesson": "python-functions-iteration-scope",
+      "example": 2,
+      "pass": true,
+      "expected_stdout": "local name is unbound\n10\n",
+      "actual_stdout": "local name is unbound\n10\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "lesson": "python-functions-iteration-scope",
+      "example": 3,
+      "pass": true,
+      "expected_stdout": "1 2\n",
+      "actual_stdout": "1 2\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "lesson": "python-modules-io-oop-classes",
+      "example": 1,
+      "pass": false,
+      "expected_stdout": "learning ['read'] []\n",
+      "actual_stdout": "",
+      "stderr": "  File \"<string>\", line 6\n    实例调用方法时，行为作用于自己的状态。\n           ^\nSyntaxError: invalid character '，' (U+FF0C)\n",
+      "exit_code": 1
+    },
+    {
+      "lesson": "python-modules-io-oop-classes",
+      "example": 2,
+      "pass": true,
+      "expected_stdout": "Hello, Lin\nHello, Mei (Python)\nTrue\n",
+      "actual_stdout": "Hello, Lin\nHello, Mei (Python)\nTrue\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "lesson": "python-modules-io-oop-classes",
+      "example": 3,
+      "pass": true,
+      "expected_stdout": "['Child', 'Left', 'Right', 'Base', 'object']\n['Left', 'Right', 'Base']\n",
+      "actual_stdout": "['Child', 'Left', 'Right', 'Base', 'object']\n['Left', 'Right', 'Base']\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "lesson": "python-modules-io-oop-classes",
+      "example": 4,
+      "pass": true,
+      "expected_stdout": "5 pts\n",
+      "actual_stdout": "5 pts\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "lesson": "python-modules-io-oop-exceptions",
+      "example": 1,
+      "pass": false,
+      "expected_stdout": "parsed\nfinished\n5\nValueError\nfinished\nNone\n",
+      "actual_stdout": "",
+      "stderr": "  File \"<string>\", line 8\n    `finally` 用于不论成功与否都要执行的有限清理动作。\n                                 ^\nSyntaxError: invalid character '。' (U+3002)\n",
+      "exit_code": 1
+    },
+    {
+      "lesson": "python-modules-io-oop-exceptions",
+      "example": 2,
+      "pass": true,
+      "expected_stdout": "count must be an integer\nValueError\n",
+      "actual_stdout": "count must be an integer\nValueError\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "lesson": "python-modules-io-oop-files",
+      "example": 1,
+      "pass": false,
+      "expected_stdout": "read\n['test', 'code']\nTrue\n",
+      "actual_stdout": "",
+      "stderr": "  File \"<string>\", line 5\n    读取时指定编码并在边界处理异常。\n                   ^\nSyntaxError: invalid character '。' (U+3002)\n",
+      "exit_code": 1
+    },
+    {
+      "lesson": "python-modules-io-oop-files",
+      "example": 2,
+      "pass": true,
+      "expected_stdout": "你\n'好\\n'\n''\n['你好']\n['你好']\n",
+      "actual_stdout": "你\n'好\\n'\n''\n['你好']\n['你好']\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ]
+}

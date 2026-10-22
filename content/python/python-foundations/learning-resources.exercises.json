@@ -73,35 +73,56 @@
     {
       "id": "python-foundations-learning-resources-c01",
       "type": "code",
-      "prompt": "定义 resource 为 docs，并输出“Resource: docs”。",
-      "starter_code": "resource = \"\"\n# 输出资源",
+      "prompt": "整理一份学习资源记录。输入恰好三行，依次为资源名称、用途和适用版本，去掉每行首尾空白但保留内部空格。三项都必须非空。按顺序输出 Resource: 名称、Purpose: 用途、Version: 版本，前缀后各有一个空格。缺项、空字段或多余行时不输出内容，退出码为 1。起始代码提供解析，得到 name、purpose、version。这里只整理文字，不访问资源或判断来源是否可信。",
+      "starter_code": "import sys\nlines = [line.strip() for line in sys.stdin.read().splitlines()]\nif len(lines) != 3 or not all(lines):\n    raise SystemExit(1)\nname, purpose, version = lines\n# 按题面补上结果计算与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'docs\\nlookup API\\n3.13'，输出 'Resource: docs\\nPurpose: lookup API\\nVersion: 3.13'，退出码 0。",
+        "输入 'notes\\nreview\\n1'，输出 'Resource: notes\\nPurpose: review\\nVersion: 1'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-foundations-learning-resources-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    resource = 'docs'\n    print(f'Resource: {resource}')\n",
+        "reference_solution": "import sys\nlines = [line.strip() for line in sys.stdin.read().splitlines()]\nif len(lines) != 3 or not all(lines):\n    raise SystemExit(1)\nname, purpose, version = lines\nprint(f\"Resource: {name}\")\nprint(f\"Purpose: {purpose}\")\nprint(f\"Version: {version}\")\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面声明的有效边界。",
+          "不符合约定的输入不得产生输出，退出码为 1。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
-            "stdout": "Resource: docs\n",
+            "stdin": "docs\nlookup API\n3.13\n",
+            "stdout": "Resource: docs\nPurpose: lookup API\nVersion: 3.13\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "notes\nreview\n1\n",
+            "stdout": "Resource: notes\nPurpose: review\nVersion: 1\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-foundations-learning-resources-c01\n",
+            "stdin": " 本地文档 \n 查  API \n 3.12 \n",
+            "stdout": "Resource: 本地文档\nPurpose: 查  API\nVersion: 3.12\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "docs\n\n3.13\n",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "docs\nlookup\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "docs\nlookup\n3.13\nextra\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }
@@ -109,35 +130,61 @@
     {
       "id": "python-foundations-learning-resources-challenge",
       "type": "challenge",
-      "prompt": "输出三行学习环境摘要：Interpreter: Python、Environment: study-env、Package: demo。",
-      "starter_code": "# 输出三行摘要",
+      "prompt": "根据输入生成学习环境摘要，不查询实际机器。输入恰好三行，依次为解释器标签、环境标签和包名称，每行去掉首尾空白后须以 ASCII 字母或数字开头，后续只含字母、数字、点、下划线或连字符。按顺序输出 Interpreter: 标签、Environment: 标签、Package: 名称，前缀后各有一个空格。缺项、空字段、路径或多余行均不输出内容，退出码为 1。起始代码提供解析与校验；摘要仅表示输入记录，不证明工具或包已安装。",
+      "starter_code": "import sys\nlines = [line.strip() for line in sys.stdin.read().splitlines()]\nimport re\nif len(lines) != 3 or any(re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]*', line) is None for line in lines):\n    raise SystemExit(1)\ninterpreter, environment, package = lines\n# 按题面补上结果计算与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'Python\\nstudy-env\\ndemo'，输出 'Interpreter: Python\\nEnvironment: study-env\\nPackage: demo'，退出码 0。",
+        "输入 'PyPy\\nproject2\\ntest-runner'，输出 'Interpreter: PyPy\\nEnvironment: project2\\nPackage: test-runner'，退出码 0。"
       ],
       "experience_points": 30,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-foundations-learning-resources-challenge')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    interpreter = 'Python'\n    environment = 'study-env'\n    package = 'demo'\n    print(f'Interpreter: {interpreter}')\n    print(f'Environment: {environment}')\n    print(f'Package: {package}')\n",
+        "reference_solution": "import sys\nlines = [line.strip() for line in sys.stdin.read().splitlines()]\nimport re\nif len(lines) != 3 or any(re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]*', line) is None for line in lines):\n    raise SystemExit(1)\ninterpreter, environment, package = lines\nprint(f\"Interpreter: {interpreter}\")\nprint(f\"Environment: {environment}\")\nprint(f\"Package: {package}\")\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面声明的有效边界。",
+          "不符合约定的输入不得产生输出，退出码为 1。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "Python\nstudy-env\ndemo\n",
             "stdout": "Interpreter: Python\nEnvironment: study-env\nPackage: demo\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "PyPy\nproject2\ntest-runner\n",
+            "stdout": "Interpreter: PyPy\nEnvironment: project2\nPackage: test-runner\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-foundations-learning-resources-challenge\n",
+            "stdin": " Python3.13 \n env_1 \n demo2 \n",
+            "stdout": "Interpreter: Python3.13\nEnvironment: env_1\nPackage: demo2\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "Python\n\ndemo\n",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "Python\nenv\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "Python\nenv\ndemo\nextra\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "Python\n../env\ndemo\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

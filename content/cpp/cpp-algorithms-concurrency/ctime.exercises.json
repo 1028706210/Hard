@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-algorithms-concurrency-ctime",
+  "questions": [
+    {
+      "id": "cpp-algorithms-concurrency-ctime-k01",
+      "type": "knowledge",
+      "prompt": "std::time_t 表示的是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "当天的小时数"
+        },
+        {
+          "id": "b",
+          "text": "自 1900 起的年数"
+        },
+        {
+          "id": "c",
+          "text": "自 1970-01-01 UTC 起的秒数"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-ctime-k02",
+      "type": "knowledge",
+      "prompt": "tm 结构的 tm_year 字段从哪一年起计？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "2000"
+        },
+        {
+          "id": "b",
+          "text": "1970"
+        },
+        {
+          "id": "c",
+          "text": "1900"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-ctime-k03",
+      "type": "knowledge",
+      "prompt": "把 time_t 转成 UTC 时间分量的函数是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "std::gmtime"
+        },
+        {
+          "id": "b",
+          "text": "std::clock"
+        },
+        {
+          "id": "c",
+          "text": "std::strftime"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-ctime-c01",
+      "type": "code",
+      "prompt": "读取整数 t（合同范围 0..31536000，含两端，即一年内的秒数），用 std::time_t 与 std::gmtime 转换后输出对应 UTC 时刻的小时（tm_hour，0..23）。t 无法解析或越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <ctime>\n#include <iostream>\n\nint main() {\n    // 读取秒数 t，gmtime 转换后输出 UTC 小时\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3661 时输出 1。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <ctime>\n#include <iostream>\n\nint main() {\n    long long t = 0;\n    if (!(std::cin >> t)) return 1;\n    if (t < 0 || t > 31536000) return 1;\n    std::time_t moment = static_cast<std::time_t>(t);\n    std::tm* utc = std::gmtime(&moment);\n    if (utc == nullptr) return 1;\n    std::cout << utc->tm_hour << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "恰好 3600 秒输出 1。",
+          "一天末尾 86399 秒输出 23。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3661\n",
+            "stdout": "1\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "3600\n",
+            "stdout": "1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "86399\n",
+            "stdout": "23\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

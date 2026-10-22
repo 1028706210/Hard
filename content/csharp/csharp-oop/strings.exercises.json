@@ -1,0 +1,122 @@
+{
+  "lesson_id": "csharp-oop-strings",
+  "questions": [
+    {
+      "id": "csharp-oop-strings-k01",
+      "type": "knowledge",
+      "prompt": "字符串 s 为空字符串时，表达式 `s[0]` 的结果是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "抛出 IndexOutOfRangeException"
+        },
+        {
+          "id": "b",
+          "text": "返回字符 '\\0'"
+        },
+        {
+          "id": "c",
+          "text": "返回 null"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-strings-k02",
+      "type": "knowledge",
+      "prompt": "需要与当前区域无关地转大写时，应使用哪个方法？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "ToUpperInvariant"
+        },
+        {
+          "id": "b",
+          "text": "ToUpper"
+        },
+        {
+          "id": "c",
+          "text": "ToString"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-strings-k03",
+      "type": "knowledge",
+      "prompt": "忽略大小写且不依赖区域地比较两个字符串，最合适的方式是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "first.Equals(second, StringComparison.OrdinalIgnoreCase)"
+        },
+        {
+          "id": "b",
+          "text": "first.CompareTo(second) > 0"
+        },
+        {
+          "id": "c",
+          "text": "first.Contains(second)"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-strings-c01",
+      "type": "code",
+      "prompt": "读取两行文本（可分别为空；读到文件末尾按空字符串处理）。第一行与第二行逐字符完全相同时输出 same；不完全相同但忽略大小写后相同时输出 case；否则输出 different。",
+      "starter_code": "var first = Console.ReadLine() ?? \"\";\nvar second = Console.ReadLine() ?? \"\";\n// 依次判定 same、case 与 different 三种比较结果\n",
+      "visible_tests": [
+        "输入 CSharp 与 csharp 时输出 case。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var first = Console.ReadLine() ?? \"\";\nvar second = Console.ReadLine() ?? \"\";\nif (first == second)\n{\n    Console.WriteLine(\"same\");\n}\nelse if (first.Equals(second, StringComparison.OrdinalIgnoreCase))\n{\n    Console.WriteLine(\"case\");\n}\nelse\n{\n    Console.WriteLine(\"different\");\n}\n",
+        "hidden_tests": [
+          "两行完全一致时输出 same。",
+          "两行完全不同时输出 different。",
+          "第二行为空而第一行非空时输出 different。",
+          "空输入两行都按空字符串处理时输出 same。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "CSharp\ncsharp\n",
+            "stdout": "case\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "abc\nabc\n",
+            "stdout": "same\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "abc\nxyz\n",
+            "stdout": "different\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "abc\n\n",
+            "stdout": "different\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "",
+            "stdout": "same\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

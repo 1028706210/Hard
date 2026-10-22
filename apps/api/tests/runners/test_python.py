@@ -10,7 +10,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 
 from hard_api.content.parser import parse_exercises
-from hard_api.runners.contracts import RunStatus, Submission
+from hard_api.runners.contracts import CompileResult, ExecutableTestCase, RunResult, RunStatus, Submission, TestResult
 from hard_api.runners.manager import RunManager
 from hard_api.runners.python import PythonRunner
 
@@ -68,6 +68,22 @@ def test_python_runner_executes_fixed_isolated_interpreter_with_stdin_and_safe_t
     assert result.stdout == "Hello, Ada!\n"
 
 
+def test_python_runner_preserves_unicode_input_and_utf8_file_contents(tmp_path: Path) -> None:
+    result = _run(
+        tmp_path,
+        "import sys\nfrom pathlib import Path\n"
+        "text = sys.stdin.read().strip()\n"
+        "assert text == '学习🐍'\n"
+        "path = Path('note.txt')\n"
+        "path.write_text(text, encoding='utf-8')\n"
+        "assert path.read_bytes() == '学习🐍'.encode('utf-8')\n"
+        "print(len(text))\n",
+        stdin="学习🐍\n",
+        visible_tests=("3\n",),
+    )
+    assert result.status == RunStatus.SUCCEEDED
+
+
 def test_python_runner_normalizes_syntax_and_assertion_failures_without_workspace_paths(tmp_path: Path) -> None:
     syntax = _run(tmp_path, (FIXTURES / "syntax_error.py").read_text(encoding="utf-8"))
     assertion = _run(tmp_path, "raise AssertionError('visible failure')")
@@ -103,7 +119,7 @@ def test_python_runner_rejects_each_forbidden_import(module: str, tmp_path: Path
     assert forbidden.diagnostics == (f"禁止导入高风险模块：{module}。",)
 
 
-def test_python_runner_hides_hidden_test_content_but_keeps_aggregate_count(tmp_path: Path) -> None:
+def test_python_runner_keeps_hidden_test_content_and_counts_server_only(tmp_path: Path) -> None:
     result = _run(
         tmp_path,
         "print('visible')",
@@ -115,7 +131,58 @@ def test_python_runner_hides_hidden_test_content_but_keeps_aggregate_count(tmp_p
     assert result.tests is not None
     assert result.tests.hidden_passed == 0
     assert result.tests.hidden_total == 1
-    assert "HIDDEN_SENTINEL" not in str(result.public_payload())
+    public = result.public_payload()
+    assert "HIDDEN_SENTINEL" not in str(public)
+    assert "hidden_passed" not in str(public)
+    assert "hidden_total" not in str(public)
+
+
+@pytest.mark.parametrize(
+    ("status", "error_code", "message"),
+    [
+        (RunStatus.SUCCEEDED, None, None),
+        (RunStatus.FAILED, "compile_failed", "编译未通过"),
+        (RunStatus.FAILED, "forbidden_import", "高风险模块"),
+        (RunStatus.TIMED_OUT, "run_timeout", "运行超时"),
+        (RunStatus.OUTPUT_OVERFLOW, "output_limit_exceeded", "输出超过限制"),
+        (RunStatus.CANCELLED, "cancelled", "运行已取消"),
+        (RunStatus.TOOL_MISSING, "tool_missing", "运行工具不可用"),
+        (RunStatus.REJECTED, "source_too_large", "不符合运行要求"),
+        (RunStatus.FAILED, "runtime_failed", "未通过全部测试"),
+    ],
+)
+def test_public_runner_payload_has_only_safe_status_diagnostics_and_visible_aggregate(
+    status: RunStatus, error_code: str | None, message: str | None
+) -> None:
+    public = RunResult(
+        status=status,
+        compile=CompileResult(passed=False, diagnostics=("private compiler output",)),
+        tests=TestResult(visible_passed=1, visible_total=2, hidden_passed=3, hidden_total=4),
+        stdout="private stdout",
+        stderr="private stderr",
+        diagnostics=("private diagnostics",),
+        error_code=error_code,
+    ).public_payload()
+
+    assert set(public) == {"status", "compile", "tests", "diagnostics"}
+    assert public["tests"] == {"visible_passed": 1, "visible_total": 2}
+    assert "private" not in str(public)
+    assert (not public["diagnostics"]) if message is None else message in public["diagnostics"][0]
+
+
+def test_python_runner_uses_one_deadline_for_all_cases_and_cleans_workspace(tmp_path: Path) -> None:
+    result = _run(
+        tmp_path,
+        "import time\ntime.sleep(0.18)\nprint('done')",
+        visible_test_cases=(
+            ExecutableTestCase(stdout="done\n"),
+            ExecutableTestCase(stdout="done\n"),
+        ),
+        runner=PythonRunner(run_timeout_seconds=0.3),
+    )
+
+    assert result.status == RunStatus.TIMED_OUT
+    assert result.error_code == "run_timeout"
 
 
 def test_official_reference_solution_uses_private_structured_cases_not_chinese_descriptions(tmp_path: Path) -> None:

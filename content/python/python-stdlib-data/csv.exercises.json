@@ -73,35 +73,76 @@
     {
       "id": "python-stdlib-data-csv-c01",
       "type": "code",
-      "prompt": "从内嵌 CSV 读取 name 并输出 Hard。",
-      "starter_code": "import csv\nfrom io import StringIO\n# 读取列名",
+      "prompt": "读取标准输入的 CSV，只允许一列，表头必须为 name。逐行输出各数据行的 name，去掉字段首尾空白并保留内部空格；引号内的逗号和换行按 CSV 规则处理。空物理行由 DictReader 忽略，只有表头时不输出内容并成功结束。缺少或错误表头、多列、空名称或格式错误时不输出内容，退出码 1。起始代码已解析并验证 rows。",
+      "starter_code": "import sys, csv\nfrom io import StringIO\ntry:\n    reader = csv.DictReader(StringIO(sys.stdin.read()), strict=True)\n    rows = list(reader)\nexcept csv.Error:\n    raise SystemExit(1)\nif reader.fieldnames != [\"name\"] or any(set(row) != {\"name\"} or row[\"name\"] is None or not row[\"name\"].strip() for row in rows):\n    raise SystemExit(1)\n# 完成本课操作与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'name\\nHard\\n'，输出 'Hard\\n'，退出码 0。",
+        "输入 'name\\nAda\\nBob\\n'，输出 'Ada\\nBob\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-stdlib-data-csv-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    import csv\n    from io import StringIO\n    print(next(csv.DictReader(StringIO('name\\nHard\\n')))['name'])\n",
+        "reference_solution": "import sys, csv\nfrom io import StringIO\ntry:\n    reader = csv.DictReader(StringIO(sys.stdin.read()), strict=True)\n    rows = list(reader)\nexcept csv.Error:\n    raise SystemExit(1)\nif reader.fieldnames != [\"name\"] or any(set(row) != {\"name\"} or row[\"name\"] is None or not row[\"name\"].strip() for row in rows):\n    raise SystemExit(1)\nfor row in rows:\n    print(row[\"name\"].strip())\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的正常边界。",
+          "输入、输出和退出状态必须符合题面。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "name\nHard\n",
             "stdout": "Hard\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "name\nAda\nBob\n",
+            "stdout": "Ada\nBob\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-stdlib-data-csv-c01\n",
+            "stdin": "name\n",
+            "stdout": "",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "name\n\"Li, Ada\"\n",
+            "stdout": "Li, Ada\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "name\n学习\n",
+            "stdout": "学习\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "name\n\"A\nB\"\n",
+            "stdout": "A\nB\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "name\n\"\"\n",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "other\nHard\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "name\na,b\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "name\n\"unclosed",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }
@@ -109,35 +150,76 @@
     {
       "id": "python-stdlib-data-csv-challenge",
       "type": "challenge",
-      "prompt": "读取两行受信 CSV，计算 count 列总和并输出 3。",
-      "starter_code": "import csv\nfrom io import StringIO\n# 计算总和",
+      "prompt": "读取标准输入 CSV，只允许表头 count 的单列，每个数据字段可用 int 转换且须非负。输出所有 count 的总和；仅表头的空表输出 0，空物理行由 DictReader 忽略。错误表头、额外字段、负数、非整数或无效 CSV 不输出内容，退出码 1。起始代码已解析校验 counts，请保留重复行并求和。",
+      "starter_code": "import sys, csv\nfrom io import StringIO\ntry:\n    reader = csv.DictReader(StringIO(sys.stdin.read()), strict=True)\n    rows = list(reader)\nexcept csv.Error:\n    raise SystemExit(1)\nif reader.fieldnames != [\"count\"] or any(set(row) != {\"count\"} or row[\"count\"] is None for row in rows):\n    raise SystemExit(1)\ntry:\n    counts = [int(row[\"count\"]) for row in rows]\nexcept ValueError:\n    raise SystemExit(1)\nif any(value < 0 for value in counts):\n    raise SystemExit(1)\n# 完成本课操作与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'count\\n1\\n2\\n'，输出 '3\\n'，退出码 0。",
+        "输入 'count\\n4\\n'，输出 '4\\n'，退出码 0。"
       ],
       "experience_points": 30,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-stdlib-data-csv-challenge')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    import csv\n    from io import StringIO\n    rows = csv.DictReader(StringIO('count\\n1\\n2\\n'))\n    print(sum(int(row['count']) for row in rows))\n",
+        "reference_solution": "import sys, csv\nfrom io import StringIO\ntry:\n    reader = csv.DictReader(StringIO(sys.stdin.read()), strict=True)\n    rows = list(reader)\nexcept csv.Error:\n    raise SystemExit(1)\nif reader.fieldnames != [\"count\"] or any(set(row) != {\"count\"} or row[\"count\"] is None for row in rows):\n    raise SystemExit(1)\ntry:\n    counts = [int(row[\"count\"]) for row in rows]\nexcept ValueError:\n    raise SystemExit(1)\nif any(value < 0 for value in counts):\n    raise SystemExit(1)\nprint(sum(counts))\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的正常边界。",
+          "输入、输出和退出状态必须符合题面。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "count\n1\n2\n",
             "stdout": "3\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "count\n4\n",
+            "stdout": "4\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-stdlib-data-csv-challenge\n",
+            "stdin": "count\n",
+            "stdout": "0\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "count\n0\n0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "count\n2\n2\n",
+            "stdout": "4\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "count\n\" 3 \"\n",
+            "stdout": "3\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "count\n-1\n",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "count\nx\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "count\n1,2\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "name\n1\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

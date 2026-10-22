@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-foundations-constants",
+  "questions": [
+    {
+      "id": "cpp-foundations-constants-k01",
+      "type": "knowledge",
+      "prompt": "const int 与普通 int 变量的核心区别是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "const 变量占用更少内存"
+        },
+        {
+          "id": "b",
+          "text": "const 变量只能在函数外声明"
+        },
+        {
+          "id": "c",
+          "text": "const 变量初始化后不能再赋值"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-foundations-constants-k02",
+      "type": "knowledge",
+      "prompt": "constexpr 适合用于哪种场景？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "必须依赖运行期输入的变量"
+        },
+        {
+          "id": "b",
+          "text": "编译期即可求值的常量，如数组长度"
+        },
+        {
+          "id": "c",
+          "text": "需要在运行中频繁修改的配置"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-foundations-constants-k03",
+      "type": "knowledge",
+      "prompt": "相对 #define 宏，const 常量的优势是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "拥有类型并参与作用域与类型检查"
+        },
+        {
+          "id": "b",
+          "text": "执行速度一定更快"
+        },
+        {
+          "id": "c",
+          "text": "可以省略分号"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-foundations-constants-c01",
+      "type": "code",
+      "prompt": "用 constexpr 声明整型常量 factor 并初始化为 3，读取整数 n，输出 n 乘以 factor 的结果。",
+      "starter_code": "#include <iostream>\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    // 用 constexpr 定义 factor 并输出 n * factor\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 5 时输出 15。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    constexpr int factor = 3;\n    std::cout << n * factor << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "输入 0 时输出 0。",
+          "输入负数时输出对应的负三倍值。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "5\n",
+            "stdout": "15\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-2\n",
+            "stdout": "-6\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-capstone-typeinfo",
+  "questions": [
+    {
+      "id": "cpp-capstone-typeinfo-k01",
+      "type": "knowledge",
+      "prompt": "typeid 返回的 type_info 对象？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "可以拷贝构造保存"
+        },
+        {
+          "id": "b",
+          "text": "不可拷贝，只能通过引用使用"
+        },
+        {
+          "id": "c",
+          "text": "可以赋值给任意变量"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-capstone-typeinfo-k02",
+      "type": "knowledge",
+      "prompt": "type_info::name() 返回的字符串？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "恒等于源代码类型拼写"
+        },
+        {
+          "id": "b",
+          "text": "跨编译器统一的标准名"
+        },
+        {
+          "id": "c",
+          "text": "实现相关的修饰名，不能当稳定标识"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-typeinfo-k03",
+      "type": "knowledge",
+      "prompt": "typeid 忽略变量上的哪种限定？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "存储期"
+        },
+        {
+          "id": "b",
+          "text": "函数体内的一切属性"
+        },
+        {
+          "id": "c",
+          "text": "顶层 const"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-typeinfo-c01",
+      "type": "code",
+      "prompt": "程序内已有 int 变量与 double 变量。读取整数 n（合同范围 1..20，含两端），随后 n 对标记，每对两个 token（各自只能是 i 或 d），i 表示取 int 变量、d 表示取 double 变量。对每对用 typeid 比较两个变量的类型，相同输出一行 same，不同输出一行 diff。token 非法、n 越界或输入缺失时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cstdio>\n#include <string>\n#include <typeinfo>\n\nint main() {\n    int int_value = 0;\n    double double_value = 0.0;\n    // 读取成对标记，typeid 比较输出 same/diff\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 2 与 i i、i d 时输出 same 与 diff 两行。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <cstdio>\n#include <typeinfo>\n\nint main() {\n    int int_value = 0;\n    double double_value = 0.0;\n    int n = 0;\n    if (std::scanf(\"%d\", &n) != 1) return 1;\n    if (n < 1 || n > 20) return 1;\n    for (int i = 0; i < n; i++) {\n        char first[8];\n        char second[8];\n        if (std::scanf(\"%7s %7s\", first, second) != 2) return 1;\n        if ((first[0] != 'i' && first[0] != 'd') || first[1] != '\\0') return 1;\n        if ((second[0] != 'i' && second[0] != 'd') || second[1] != '\\0') return 1;\n        int* first_as_int = first[0] == 'i' ? &int_value : nullptr;\n        double* first_as_double = first[0] == 'd' ? &double_value : nullptr;\n        int* second_as_int = second[0] == 'i' ? &int_value : nullptr;\n        double* second_as_double = second[0] == 'd' ? &double_value : nullptr;\n        bool same = false;\n        if (first_as_int != nullptr) {\n            same = second_as_int != nullptr && typeid(*first_as_int) == typeid(*second_as_int);\n        } else {\n            same = second_as_double != nullptr && typeid(*first_as_double) == typeid(*second_as_double);\n        }\n        std::printf(\"%s\\n\", same ? \"same\" : \"diff\");\n    }\n    return 0;\n}\n",
+        "hidden_tests": [
+          "d d 表示同为 double 输出 same。",
+          "i 与 d 四种组合顺序输出。",
+          "非法标记 x 不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "2 i i i d\n",
+            "stdout": "same\ndiff\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1 d d\n",
+            "stdout": "same\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2 d i d d\n",
+            "stdout": "diff\nsame\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1 i x\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -73,35 +73,56 @@
     {
       "id": "python-automation-ui-web-crawler-c01",
       "type": "code",
-      "prompt": "从内嵌 h1 fixture 取出标题并输出 Title。",
-      "starter_code": "html = '<h1>Title</h1>'\n# 提取标题",
+      "prompt": "读取至多 4096 字符的本地 HTML fixture，提取第一个有闭合标签的 h1 内的文本（包括内联元素文本），将字符实体解码、去掉结果首尾空白后输出。h1 为空时输出空行；没有完整 h1 或文本超长时无输出，退出码 1。使用已提供的 HeadingParser；只解析本地片段，不抓取网页，不将文本渲染为 HTML。",
+      "starter_code": "import sys\ntext = sys.stdin.read()\nif len(text) > 4096:\n    raise SystemExit(1)\nfrom html.parser import HTMLParser\nclass HeadingParser(HTMLParser):\n    def __init__(self):\n        super().__init__(convert_charrefs=True)\n        self.depth = 0\n        self.parts = []\n        self.done = False\n    def handle_starttag(self, tag, attrs):\n        if tag == \"h1\" and not self.done:\n            self.depth += 1\n    def handle_endtag(self, tag):\n        if tag == \"h1\" and self.depth:\n            self.depth -= 1\n            if not self.depth:\n                self.done = True\n    def handle_data(self, value):\n        if self.depth and not self.done:\n            self.parts.append(value)\n# 按题面实现本课操作\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '<h1>Title</h1>'，输出 'Title\\n'，退出码 0。",
+        "输入 '<h1>学习 <b>Python</b></h1>'，输出 '学习 Python\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-automation-ui-web-crawler-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    html = '<h1>Title</h1>'\n    print(html.removeprefix('<h1>').removesuffix('</h1>'))\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read()\nif len(text) > 4096:\n    raise SystemExit(1)\nfrom html.parser import HTMLParser\nclass HeadingParser(HTMLParser):\n    def __init__(self):\n        super().__init__(convert_charrefs=True)\n        self.depth = 0\n        self.parts = []\n        self.done = False\n    def handle_starttag(self, tag, attrs):\n        if tag == \"h1\" and not self.done:\n            self.depth += 1\n    def handle_endtag(self, tag):\n        if tag == \"h1\" and self.depth:\n            self.depth -= 1\n            if not self.depth:\n                self.done = True\n    def handle_data(self, value):\n        if self.depth and not self.done:\n            self.parts.append(value)\nparser = HeadingParser()\nparser.feed(text)\nparser.close()\nif not parser.done:\n    raise SystemExit(1)\nprint(\"\".join(parser.parts).strip())\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面规定的有效边界和失败行为。",
+          "输出格式、类型和顺序以题面约定为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "<h1>Title</h1>",
             "stdout": "Title\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "<h1>学习 <b>Python</b></h1>",
+            "stdout": "学习 Python\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-automation-ui-web-crawler-c01\n",
+            "stdin": "<h1>A &amp; B</h1>",
+            "stdout": "A & B\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "<h1>first</h1><h1>second</h1>",
+            "stdout": "first\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "<h1></h1>",
+            "stdout": "\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "<h2>x</h2>",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "<h1>x",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

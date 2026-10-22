@@ -40,7 +40,10 @@ def terminate_process_tree(process_id: int) -> None:
             process.terminate()
         except psutil.Error:
             continue
-    _gone, alive = psutil.wait_procs(processes, timeout=0.5)
+    try:
+        _gone, alive = psutil.wait_procs(processes, timeout=0.5)
+    except psutil.Error:
+        alive = processes
     for process in alive:
         try:
             process.kill()

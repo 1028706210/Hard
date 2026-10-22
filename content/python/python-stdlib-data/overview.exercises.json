@@ -73,35 +73,81 @@
     {
       "id": "python-stdlib-data-overview-c01",
       "type": "code",
-      "prompt": "导入 math 并输出 ceil(2.1)。",
-      "starter_code": "# 导入 math",
+      "prompt": "读取一个可用 float 转换的有限数 number，范围为 -1000000 到 1000000（含端点），调用 math.ceil 并输出整数结果。向上取整指不小于原数的最小整数，例如 2.1 输出 3，-2.1 输出 -2。非数字、空输入、NaN、无穷大或越界时不输出内容，退出码为 1。起始代码已导入 math 并解析校验输入。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\nimport math\ntry:\n    number = float(text)\nexcept ValueError:\n    raise SystemExit(1)\nif not math.isfinite(number) or not -1000000 <= number <= 1000000:\n    raise SystemExit(1)\n# 按题面完成计算与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '2.1'，输出 '3\\n'，退出码 0。",
+        "输入 '4.0'，输出 '4\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-stdlib-data-overview-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    import math\n    print(math.ceil(2.1))\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\nimport math\ntry:\n    number = float(text)\nexcept ValueError:\n    raise SystemExit(1)\nif not math.isfinite(number) or not -1000000 <= number <= 1000000:\n    raise SystemExit(1)\nprint(math.ceil(number))\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面声明的正常输入和边界。",
+          "输入有效性及输出格式以题面为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "2.1",
             "stdout": "3\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "4.0",
+            "stdout": "4\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-stdlib-data-overview-c01\n",
+            "stdin": "-2.1",
+            "stdout": "-2\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "0",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-0.1",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1000000",
+            "stdout": "1000000\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-1000000",
+            "stdout": "-1000000\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1000001",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "nan",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "inf",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "x",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

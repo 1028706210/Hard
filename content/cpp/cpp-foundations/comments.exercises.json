@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-foundations-comments",
+  "questions": [
+    {
+      "id": "cpp-foundations-comments-k01",
+      "type": "knowledge",
+      "prompt": "C++ 单行注释以什么开头？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "//"
+        },
+        {
+          "id": "b",
+          "text": "##"
+        },
+        {
+          "id": "c",
+          "text": "<!--"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-foundations-comments-k02",
+      "type": "knowledge",
+      "prompt": "关于 /* */ 块注释，下列说法正确的是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "块注释可以任意嵌套"
+        },
+        {
+          "id": "b",
+          "text": "块注释只能写在一行内"
+        },
+        {
+          "id": "c",
+          "text": "块注释不能嵌套，第一个 */ 就会结束注释"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-foundations-comments-k03",
+      "type": "knowledge",
+      "prompt": "注释在编译过程中会如何处理？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "编译为空指令执行"
+        },
+        {
+          "id": "b",
+          "text": "在词法阶段被剥离，不生成任何代码"
+        },
+        {
+          "id": "c",
+          "text": "保留到运行期由系统读取"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-foundations-comments-c01",
+      "type": "code",
+      "prompt": "读取整数 n，在包含至少一条说明用途注释的代码中输出 n 的两倍。代码中必须出现 // 或 /* */ 形式的注释。",
+      "starter_code": "#include <iostream>\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    // 在此补充注释与计算\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3 时输出 6。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    // 读取 n 后输出其两倍\n    int doubled = n * 2;\n    std::cout << doubled << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "输入 0 时输出 0。",
+          "输入负数时输出对应的负偶数。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3\n",
+            "stdout": "6\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-4\n",
+            "stdout": "-8\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -73,35 +73,61 @@
     {
       "id": "python-stdlib-data-logging-c01",
       "type": "code",
-      "prompt": "输出安全日志消息 retry planned。",
-      "starter_code": "import logging\n# 记录日志",
+      "prompt": "输入一个非负整数重试次数 n（0 到 100，含端点）。配置 logging 将 WARNING 及以上消息写到标准输出，格式仅包含消息。输出一条 WARNING：retry planned: n，其中冒号后一个空格；不输出时间、级别前缀或原始输入。无效整数、空输入或越界时不输出内容，退出码 1。起始代码已验证 n；本题不执行实际重试。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\nimport logging\ntry:\n    n = int(text)\nexcept ValueError:\n    raise SystemExit(1)\nif not 0 <= n <= 100:\n    raise SystemExit(1)\n# 完成本课操作与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '1'，输出 'retry planned: 1\\n'，退出码 0。",
+        "输入 '3'，输出 'retry planned: 3\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-stdlib-data-logging-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    import logging\n    import sys\n    logging.basicConfig(level=logging.WARNING, format='%(message)s', stream=sys.stdout)\n    logging.warning('retry planned')\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\nimport logging\ntry:\n    n = int(text)\nexcept ValueError:\n    raise SystemExit(1)\nif not 0 <= n <= 100:\n    raise SystemExit(1)\nlogging.basicConfig(level=logging.WARNING, format=\"%(message)s\", stream=sys.stdout)\nlogging.warning(\"retry planned: %s\", n)\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的正常边界。",
+          "输入、输出和退出状态必须符合题面。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
-            "stdout": "retry planned\n",
+            "stdin": "1",
+            "stdout": "retry planned: 1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3",
+            "stdout": "retry planned: 3\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-stdlib-data-logging-c01\n",
+            "stdin": "0",
+            "stdout": "retry planned: 0\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "100",
+            "stdout": "retry planned: 100\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-1",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "101",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "token=secret",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

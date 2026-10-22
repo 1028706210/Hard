@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-stl-containers-list",
+  "questions": [
+    {
+      "id": "cpp-stl-containers-list-k01",
+      "type": "knowledge",
+      "prompt": "std::list 的底层结构是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "双向链表"
+        },
+        {
+          "id": "b",
+          "text": "连续数组"
+        },
+        {
+          "id": "c",
+          "text": "哈希表"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-list-k02",
+      "type": "knowledge",
+      "prompt": "对 std::list 排序应使用？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "std::sort(list.begin(), list.end())"
+        },
+        {
+          "id": "b",
+          "text": "成员函数 list.sort()"
+        },
+        {
+          "id": "c",
+          "text": "std::qsort"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-list-k03",
+      "type": "knowledge",
+      "prompt": "list 相对 vector 的关键优势是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "随机访问更快"
+        },
+        {
+          "id": "b",
+          "text": "内存一定连续"
+        },
+        {
+          "id": "c",
+          "text": "任意位置插入删除不搬移其他元素"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-list-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 1..1000，含两端）与 n 个整数（每个合同范围 -10000..10000，含两端），全部 push_back 进 std::list 后调用成员 sort()，按升序输出每个数，各占一行。n 或任一值无法解析或越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <iostream>\n#include <list>\n\nint main() {\n    // 读取 n 与 n 个整数，list sort 后升序输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 n=3 与 3 1 2 时依次输出 1、2、3 各占一行。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <list>\n\nint main() {\n    int n = 0;\n    if (!(std::cin >> n)) return 1;\n    if (n < 1 || n > 1000) return 1;\n    std::list<int> values;\n    for (int i = 0; i < n; i++) {\n        int value = 0;\n        if (!(std::cin >> value)) return 1;\n        if (value < -10000 || value > 10000) return 1;\n        values.push_back(value);\n    }\n    values.sort();\n    for (int value : values) {\n        std::cout << value << \"\\n\";\n    }\n    return 0;\n}\n",
+        "hidden_tests": [
+          "重复元素排序后相邻保留。",
+          "含负数时负数排在前。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 3 1 2\n",
+            "stdout": "1\n2\n3\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "4 2 1 2 1\n",
+            "stdout": "1\n1\n2\n2\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3 0 -5 3\n",
+            "stdout": "-5\n0\n3\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

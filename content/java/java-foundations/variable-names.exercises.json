@@ -1,0 +1,141 @@
+{
+  "lesson_id": "java-foundations-variable-names",
+  "questions": [
+    {
+      "id": "java-foundations-variable-names-k01",
+      "type": "knowledge",
+      "prompt": "Java 变量命名规则最需要先明确什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "合法标识符和语义命名的输入、规则和输出"
+        },
+        {
+          "id": "b",
+          "text": "公开样例的固定输出"
+        },
+        {
+          "id": "c",
+          "text": "在线服务响应"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "java-foundations-variable-names-k02",
+      "type": "knowledge",
+      "prompt": "为什么要保留边界输入？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "让程序忽略错误"
+        },
+        {
+          "id": "b",
+          "text": "验证空值或异常状态下规则仍明确"
+        },
+        {
+          "id": "c",
+          "text": "减少测试"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-foundations-variable-names-k03",
+      "type": "knowledge",
+      "prompt": "哪个做法更可靠？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "只输出公开答案"
+        },
+        {
+          "id": "b",
+          "text": "跳过失败分支"
+        },
+        {
+          "id": "c",
+          "text": "用不同输入断言不同结果或失败状态"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "java-foundations-variable-names-c01",
+      "type": "code",
+      "prompt": "读取并trim一段文本。使用SourceVersion.isIdentifier并排除SourceVersion.isKeyword(text, RELEASE_17)，输出它是否是JDK17可用标识符形状。空文本为false；关键字、字面量true/false/null和单独下划线不允许；Unicode名称可由该API识别。本题不检查名称语义，也不覆盖所有上下文相关限制。",
+      "starter_code": "import java.nio.charset.StandardCharsets;\nimport javax.lang.model.SourceVersion;\npublic class Main {\n    \n    public static void main(String[] args) throws Exception {\n        String text = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        // 按题面完成本课操作与输出\n    }\n}\n",
+      "visible_tests": [
+        "输入 'score'，输出 'true\\n'，退出码 0。",
+        "输入 '2score'，输出 'false\\n'，退出码 0。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\nimport javax.lang.model.SourceVersion;\npublic class Main {\n    \n    public static void main(String[] args) throws Exception {\n        String text = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        boolean valid = SourceVersion.isIdentifier(text) && !SourceVersion.isKeyword(text, SourceVersion.RELEASE_17);\n        System.out.println(valid);\n    }\n}\n",
+        "hidden_tests": [
+          "覆盖真实主题边界，不使用未声明的特殊标记。",
+          "校验输入、输出格式和退出码。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "score",
+            "stdout": "true\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2score",
+            "stdout": "false\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "class",
+            "stdout": "false\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "_",
+            "stdout": "false\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "true",
+            "stdout": "false\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "学习",
+            "stdout": "true\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "firstName",
+            "stdout": "true\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "a-b",
+            "stdout": "false\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "",
+            "stdout": "false\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

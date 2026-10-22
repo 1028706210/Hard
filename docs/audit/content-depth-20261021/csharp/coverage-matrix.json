@@ -1,0 +1,922 @@
+{
+  "language": "csharp",
+  "date": "2026-10-21",
+  "status_definition": "partial means named covered subtopics exist in body; listed remaining subtopics prevent whole-chapter completeness claims. Counts are routing metadata, not depth acceptance.",
+  "route_source": "https://www.runoob.com/csharp/csharp-tutorial.html",
+  "method": "Manual reading of all 42 current lesson bodies and source-route outline; Microsoft Learn used for amended technical facts. Remaining items are explicit follow-up scope, not claims of missing every possible language feature.",
+  "lessons": [
+    {
+      "lesson_id": "csharp-foundations-tutorial",
+      "path": "content/csharp/csharp-foundations/tutorial.md",
+      "title": "C# 教程",
+      "source_url": "https://www.runoob.com/csharp/csharp-tutorial.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "输入→处理→输出",
+        "顶级语句问候程序"
+      ],
+      "partial_subtopics": [
+        "空输入与空白/大小写练习建议"
+      ],
+      "remaining_subtopics": [
+        "命令行运行步骤与编译/运行失败对照"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-foundations-introduction",
+      "path": "content/csharp/csharp-foundations/introduction.md",
+      "title": "C# 简介",
+      "source_url": "https://www.runoob.com/csharp/csharp-intro.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "C#/.NET分工",
+        "静态类型",
+        "编译与执行区别"
+      ],
+      "partial_subtopics": [
+        "程序集到运行时的解释较简短"
+      ],
+      "remaining_subtopics": [
+        "CLR/IL/JIT关系与不同应用类型的具体比较"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-foundations-environment",
+      "path": "content/csharp/csharp-foundations/environment.md",
+      "title": "C# 开发环境",
+      "source_url": "https://www.runoob.com/csharp/csharp-environment-setup.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "SDK/项目/源码",
+        "build/run分工",
+        "离线环境约定"
+      ],
+      "partial_subtopics": [
+        "仅概述固定运行模板"
+      ],
+      "remaining_subtopics": [
+        "最小csproj结构",
+        "SDK与运行时版本诊断"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-foundations-program-structure",
+      "path": "content/csharp/csharp-foundations/program-structure.md",
+      "title": "C# 程序结构",
+      "source_url": "https://www.runoob.com/csharp/csharp-program-structure.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "顶级入口",
+        "语句",
+        "代码块",
+        "顺序执行"
+      ],
+      "partial_subtopics": [
+        "变量生命周期仅提醒"
+      ],
+      "remaining_subtopics": [
+        "传统Main完整结构",
+        "using/type声明顺序对照"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-foundations-basic-syntax",
+      "path": "content/csharp/csharp-foundations/basic-syntax.md",
+      "title": "C# 基本语法",
+      "source_url": "https://www.runoob.com/csharp/csharp-basic-syntax.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "标识符大小写",
+        "字符/字符串",
+        "两类注释",
+        "分号"
+      ],
+      "partial_subtopics": [
+        "编译诊断仅实践建议"
+      ],
+      "remaining_subtopics": [
+        "关键字与转义标识符",
+        "字面量与表达式/语句区别"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-foundations-data-types",
+      "path": "content/csharp/csharp-foundations/data-types.md",
+      "title": "C# 数据类型",
+      "source_url": "https://www.runoob.com/csharp/csharp-data-types.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "int/double/bool/string",
+        "var静态推断"
+      ],
+      "partial_subtopics": [
+        "范围与整数除法仅提醒"
+      ],
+      "remaining_subtopics": [
+        "decimal/float/char",
+        "数值范围",
+        "值/引用分类总览（后续类与结构体已展开）"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-foundations-conversion",
+      "path": "content/csharp/csharp-foundations/conversion.md",
+      "title": "C# 类型转换",
+      "source_url": "https://www.runoob.com/csharp/csharp-type-conversion.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "隐式int→double",
+        "显式转换概念",
+        "TryParse"
+      ],
+      "partial_subtopics": [
+        "精度损失与截断只说明"
+      ],
+      "remaining_subtopics": [
+        "checked转换溢出",
+        "文化相关数值文本与Convert舍入区别"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-foundations-variables",
+      "path": "content/csharp/csharp-foundations/variables.md",
+      "title": "C# 变量",
+      "source_url": "https://www.runoob.com/csharp/csharp-variables.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "声明/赋值",
+        "确定赋值",
+        "临时变量与元组交换"
+      ],
+      "partial_subtopics": [
+        "状态命名建议"
+      ],
+      "remaining_subtopics": [
+        "局部变量与字段默认初始化的区别",
+        "多变量初始化顺序"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-foundations-scope",
+      "path": "content/csharp/csharp-foundations/scope.md",
+      "title": "C# 变量作用域",
+      "source_url": "https://www.runoob.com/csharp/csharp-variable-scope.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "块作用域",
+        "内层可读外层变量"
+      ],
+      "partial_subtopics": [
+        "变量遮蔽只有提醒"
+      ],
+      "remaining_subtopics": [
+        "字段this限定",
+        "局部名称冲突的编译反例"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-foundations-constants",
+      "path": "content/csharp/csharp-foundations/constants.md",
+      "title": "C# 常量",
+      "source_url": "https://www.runoob.com/csharp/csharp-constants.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "const与命名规则",
+        "decimal常量"
+      ],
+      "partial_subtopics": [
+        "const与运行时只读仅简介"
+      ],
+      "remaining_subtopics": [
+        "const与readonly初始化对照",
+        "跨程序集常量内联风险"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-foundations-operators",
+      "path": "content/csharp/csharp-foundations/operators.md",
+      "title": "C# 运算符",
+      "source_url": "https://www.runoob.com/csharp/csharp-operators.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "算术优先级",
+        "比较",
+        "逻辑与/或短路"
+      ],
+      "partial_subtopics": [
+        "除零与整数除法仅提醒"
+      ],
+      "remaining_subtopics": [
+        "位运算",
+        "移位",
+        "赋值与递增",
+        "checked溢出和短路副作用示例"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-foundations-decisions",
+      "path": "content/csharp/csharp-foundations/decisions.md",
+      "title": "C# 判断",
+      "source_url": "https://www.runoob.com/csharp/csharp-decision.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "if/else if/else",
+        "条件为bool",
+        "嵌套条件表达式"
+      ],
+      "partial_subtopics": [
+        "边界与互斥建议"
+      ],
+      "remaining_subtopics": [
+        "switch语句/表达式",
+        "嵌套分支与模式匹配入门"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-foundations-loops",
+      "path": "content/csharp/csharp-foundations/loops.md",
+      "title": "C# 循环",
+      "source_url": "https://www.runoob.com/csharp/csharp-loops.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "for/while",
+        "累计",
+        "终止条件"
+      ],
+      "partial_subtopics": [
+        "有限循环错误提醒"
+      ],
+      "remaining_subtopics": [
+        "do/while",
+        "foreach",
+        "break/continue",
+        "嵌套循环与零次执行对照"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-oop-encapsulation",
+      "path": "content/csharp/csharp-oop/encapsulation.md",
+      "title": "封装",
+      "source_url": "https://www.runoob.com/csharp/csharp-encapsulation.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "private字段",
+        "public方法",
+        "TrySpend状态保护"
+      ],
+      "partial_subtopics": [
+        "访问修饰符仅private/public"
+      ],
+      "remaining_subtopics": [
+        "internal/protected与程序集",
+        "返回可变对象造成的封装泄漏"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-oop-methods",
+      "path": "content/csharp/csharp-oop/methods.md",
+      "title": "方法",
+      "source_url": "https://www.runoob.com/csharp/csharp-methods.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "参数返回",
+        "MaxOfThree",
+        "重载参数匹配"
+      ],
+      "partial_subtopics": [
+        "按值传参在classes章补充"
+      ],
+      "remaining_subtopics": [
+        "ref/out/in",
+        "可选/命名参数",
+        "params与递归终止条件"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-oop-nullable",
+      "path": "content/csharp/csharp-oop/nullable.md",
+      "title": "可空类型",
+      "source_url": "https://www.runoob.com/csharp/csharp-nullable.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "Nullable<T>与string?区别",
+        "HasValue/Value",
+        "??/??=",
+        "?.",
+        "默认值",
+        "null算术/比较",
+        "!仅抑制诊断"
+      ],
+      "partial_subtopics": [
+        "可空引用分析给出上下文但未做诊断练习"
+      ],
+      "remaining_subtopics": [
+        "复杂流分析",
+        "外部API注解与泛型可空约束"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-oop-arrays",
+      "path": "content/csharp/csharp-oop/arrays.md",
+      "title": "数组",
+      "source_url": "https://www.runoob.com/csharp/csharp-array.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "一维数组",
+        "默认元素",
+        "Length/合法索引",
+        "反向遍历"
+      ],
+      "partial_subtopics": [
+        "数组固定长度只文字解释"
+      ],
+      "remaining_subtopics": [
+        "多维/交错数组",
+        "Array方法",
+        "数组引用与浅复制"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-oop-strings",
+      "path": "content/csharp/csharp-oop/strings.md",
+      "title": "字符串",
+      "source_url": "https://www.runoob.com/csharp/csharp-string.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "string不可变",
+        "Length/索引",
+        "序数/忽略大小写比较"
+      ],
+      "partial_subtopics": [
+        "区域规则与拼接成本有解释"
+      ],
+      "remaining_subtopics": [
+        "Split/Substring/Replace",
+        "插值与转义",
+        "UTF-16代码单元与Unicode字符区别"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-oop-structs",
+      "path": "content/csharp/csharp-oop/structs.md",
+      "title": "结构体",
+      "source_url": "https://www.runoob.com/csharp/csharp-struct.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "值复制",
+        "嵌套引用浅复制",
+        "class身份对比",
+        "装箱副本",
+        "default与构造边界"
+      ],
+      "partial_subtopics": [
+        "readonly struct为设计建议"
+      ],
+      "remaining_subtopics": [
+        "可变struct在集合/属性中修改的陷阱",
+        "ref readonly与ref struct"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-oop-enums",
+      "path": "content/csharp/csharp-oop/enums.md",
+      "title": "枚举",
+      "source_url": "https://www.runoob.com/csharp/csharp-enum.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "显式底层值",
+        "默认编号",
+        "整数/名称转换",
+        "TryParse数字陷阱"
+      ],
+      "partial_subtopics": [
+        "安全解析建议未系统比较IsDefined"
+      ],
+      "remaining_subtopics": [
+        "Flags组合与按位判断",
+        "合法零值及底层类型范围"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-oop-classes",
+      "path": "content/csharp/csharp-oop/classes.md",
+      "title": "类",
+      "source_url": "https://www.runoob.com/csharp/csharp-class.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "对象/实例",
+        "构造/this委托",
+        "字段/方法",
+        "static区别",
+        "共享引用",
+        "按值传参/重绑定",
+        "readonly引用边界"
+      ],
+      "partial_subtopics": [
+        "构造校验原则有讲解但旧Book示例未实现校验"
+      ],
+      "remaining_subtopics": [
+        "对象相等与身份比较",
+        "对象初始化顺序",
+        "资源生命周期"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-oop-inheritance",
+      "path": "content/csharp/csharp-oop/inheritance.md",
+      "title": "继承",
+      "source_url": "https://www.runoob.com/csharp/csharp-inheritance.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "单继承/多接口",
+        "基类构造与base",
+        "private/protected/internal边界",
+        "sealed",
+        "virtual覆盖",
+        "构造期间虚调用风险"
+      ],
+      "partial_subtopics": [
+        "受保护成员只描述常用访问"
+      ],
+      "remaining_subtopics": [
+        "protected internal/private protected组合",
+        "设计可替换性的复杂反例"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-oop-polymorphism",
+      "path": "content/csharp/csharp-oop/polymorphism.md",
+      "title": "多态",
+      "source_url": "https://www.runoob.com/csharp/csharp-polymorphism.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "运行期虚分派",
+        "静态重载区别",
+        "new隐藏完整对照",
+        "abstract基类/成员与具体实现",
+        "基类数组"
+      ],
+      "partial_subtopics": [
+        "重载未提供第二套重载分派例题"
+      ],
+      "remaining_subtopics": [
+        "重载与虚分派同时发生的两阶段解析",
+        "协变返回"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-oop-operator-overloading",
+      "path": "content/csharp/csharp-oop/operator-overloading.md",
+      "title": "运算符重载",
+      "source_url": "https://www.runoob.com/csharp/csharp-operator-overloading.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "二元+声明",
+        "分量运算",
+        "至少一参数为所在类型",
+        "==/!=成对"
+      ],
+      "partial_subtopics": [
+        "相等合同只有成对规则"
+      ],
+      "remaining_subtopics": [
+        "Equals/GetHashCode一致性",
+        "转换运算符与支持/不支持的操作符清单"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-oop-interfaces",
+      "path": "content/csharp/csharp-oop/interfaces.md",
+      "title": "接口",
+      "source_url": "https://www.runoob.com/csharp/csharp-interface.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "能力合同",
+        "多实现",
+        "隐式public实现",
+        "显式实现与接口视图",
+        "抽象类选型",
+        "接口无实例字段"
+      ],
+      "partial_subtopics": [
+        "现代默认/静态接口成员仅边界说明"
+      ],
+      "remaining_subtopics": [
+        "默认实现冲突解析",
+        "静态抽象成员与泛型数学"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-oop-namespaces",
+      "path": "content/csharp/csharp-oop/namespaces.md",
+      "title": "命名空间",
+      "source_url": "https://www.runoob.com/csharp/csharp-namespace.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "全限定名",
+        "using",
+        "文件范围namespace",
+        "全局命名空间",
+        "程序集区别"
+      ],
+      "partial_subtopics": [
+        "名称解析练习与实际类型查找区别未展开"
+      ],
+      "remaining_subtopics": [
+        "using别名",
+        "using static",
+        "global using与名称冲突对照"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-io-metadata-preprocessor-directives",
+      "path": "content/csharp/csharp-io-metadata/preprocessor-directives.md",
+      "title": "预处理器指令",
+      "source_url": "https://www.runoob.com/csharp/csharp-preprocessor-directives.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "#define文件内作用域",
+        "#if嵌套",
+        "#region",
+        "编译期/运行期区别",
+        "修正define应在using之前"
+      ],
+      "partial_subtopics": [
+        "嵌套裁剪以模拟练习为主"
+      ],
+      "remaining_subtopics": [
+        "#elif/#undef",
+        "#warning/#error",
+        "#line/#pragma与可空指令"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-io-metadata-regular-expressions",
+      "path": "content/csharp/csharp-io-metadata/regular-expressions.md",
+      "title": "正则表达式",
+      "source_url": "https://www.runoob.com/csharp/csharp-regular-expressions.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "字符类",
+        "捕获",
+        "量词",
+        "Matches不重叠",
+        "Unicode数字",
+        "贪婪/懒惰",
+        "Regex.Escape"
+      ],
+      "partial_subtopics": [
+        "格式与语义校验边界"
+      ],
+      "remaining_subtopics": [
+        "锚点/整串校验",
+        "替换",
+        "匹配超时与回溯成本"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-io-metadata-exception-handling",
+      "path": "content/csharp/csharp-io-metadata/exception-handling.md",
+      "title": "异常处理",
+      "source_url": "https://www.runoob.com/csharp/csharp-exception-handling.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "try/catch/finally",
+        "具体异常顺序",
+        "checked",
+        "TryParse优先",
+        "避免泄露堆栈"
+      ],
+      "partial_subtopics": [
+        "资源清理只文字提醒"
+      ],
+      "remaining_subtopics": [
+        "using/Dispose实作",
+        "自定义异常",
+        "throw保留堆栈",
+        "异常过滤"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-io-metadata-file-io",
+      "path": "content/csharp/csharp-io-metadata/file-io.md",
+      "title": "文件输入输出",
+      "source_url": "https://www.runoob.com/csharp/csharp-file-io.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "读写/追加",
+        "全量/惰性",
+        "换行",
+        "相对路径及可信本地运行边界"
+      ],
+      "partial_subtopics": [
+        "using/Dispose只有建议"
+      ],
+      "remaining_subtopics": [
+        "Stream读写闭环",
+        "编码",
+        "目录与文件异常分类"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-io-metadata-attributes",
+      "path": "content/csharp/csharp-io-metadata/attributes.md",
+      "title": "特性（Attribute）",
+      "source_url": "https://www.runoob.com/csharp/csharp-attribute.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "自定义Attribute",
+        "AttributeUsage",
+        "属性参数",
+        "运行期读取",
+        "元数据与行为区别"
+      ],
+      "partial_subtopics": [
+        "多次应用与参数类型仅文字说明"
+      ],
+      "remaining_subtopics": [
+        "标准特性的编译器消费",
+        "构造参数对比",
+        "Inherited与AllowMultiple实作"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-io-metadata-reflection",
+      "path": "content/csharp/csharp-io-metadata/reflection.md",
+      "title": "反射（Reflection）",
+      "source_url": "https://www.runoob.com/csharp/csharp-reflection.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "typeof/GetType",
+        "BindingFlags",
+        "DeclaredOnly",
+        "属性访问器过滤",
+        "修正反射非唯一特性分析途径"
+      ],
+      "partial_subtopics": [
+        "仅检查本程序集元数据"
+      ],
+      "remaining_subtopics": [
+        "特性数据免实例化读取",
+        "Invoke/创建实例的失败边界及裁剪兼容性"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-language-features-properties",
+      "path": "content/csharp/csharp-language-features/properties.md",
+      "title": "属性（Property）",
+      "source_url": "https://www.runoob.com/csharp/csharp-property.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "自动/完整/计算属性",
+        "get/private set/init边界",
+        "value后备字段与递归陷阱",
+        "浅只读",
+        "源代码/二进制兼容区别"
+      ],
+      "partial_subtopics": [
+        "旧Account示例未完整校验输入但已有说明"
+      ],
+      "remaining_subtopics": [
+        "required/初始化合同",
+        "虚属性与接口属性的组合"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-language-features-indexer",
+      "path": "content/csharp/csharp-language-features/indexer.md",
+      "title": "索引器（Indexer）",
+      "source_url": "https://www.runoob.com/csharp/csharp-indexer.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "this[int]只读",
+        "二维读写/set value",
+        "字符串键及重载",
+        "越界合同",
+        "浅复制隔离"
+      ],
+      "partial_subtopics": [
+        "字符串索引器只有语法说明"
+      ],
+      "remaining_subtopics": [
+        "多参数重载冲突",
+        "ref返回与接口索引器实现"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-language-features-delegates",
+      "path": "content/csharp/csharp-language-features/delegates.md",
+      "title": "委托（Delegate）",
+      "source_url": "https://www.runoob.com/csharp/csharp-delegate.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "委托声明绑定/调用",
+        "多播与管道输出对照",
+        "Func/Action",
+        "同步异常",
+        "null/不可变调用链"
+      ],
+      "partial_subtopics": [
+        "兼容返回类型仅提及"
+      ],
+      "remaining_subtopics": [
+        "协变/逆变具体规则",
+        "实例目标生命周期与Task回调异常"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-language-features-events",
+      "path": "content/csharp/csharp-language-features/events.md",
+      "title": "事件（Event）",
+      "source_url": "https://www.runoob.com/csharp/csharp-event.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "发布/订阅",
+        "event封装",
+        "EventHandler参数",
+        "阈值",
+        "退订实例",
+        "同步异常",
+        "委托快照竞态边界"
+      ],
+      "partial_subtopics": [
+        "基类protected触发仅描述"
+      ],
+      "remaining_subtopics": [
+        "自定义add/remove",
+        "接口事件与完整生命周期设计"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-language-features-collections",
+      "path": "content/csharp/csharp-language-features/collections.md",
+      "title": "集合（Collection）",
+      "source_url": "https://www.runoob.com/csharp/csharp-collection.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "List/Dictionary操作",
+        "保序词频",
+        "HashSet/Queue/Stack操作对照",
+        "Count/Capacity",
+        "比较规则",
+        "哈希键可变风险",
+        "枚举失效"
+      ],
+      "partial_subtopics": [
+        "SortedDictionary与旧ArrayList/Hashtable仅选型说明"
+      ],
+      "remaining_subtopics": [
+        "排序映射操作实作",
+        "只读包装与不可变集合区别",
+        "线程安全集合"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-language-features-generics",
+      "path": "content/csharp/csharp-language-features/generics.md",
+      "title": "泛型（Generic）",
+      "source_url": "https://www.runoob.com/csharp/csharp-generic.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "泛型类/方法",
+        "类型推断/约束",
+        "Default相等比较",
+        "运行期类型",
+        "装箱限定",
+        "List不变性",
+        "标准Stack复用"
+      ],
+      "partial_subtopics": [
+        "方差与常用约束只入门"
+      ],
+      "remaining_subtopics": [
+        "in/out方差声明",
+        "泛型约束组合与nullable/notnull",
+        "泛型静态字段"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-language-features-anonymous-methods",
+      "path": "content/csharp/csharp-language-features/anonymous-methods.md",
+      "title": "匿名方法（Anonymous Method）",
+      "source_url": "https://www.runoob.com/csharp/csharp-anonymous-methods.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "delegate/lambda",
+        "FindAll立即新列表",
+        "ConvertAll",
+        "闭包变量捕获",
+        "for/foreach差异",
+        "static lambda"
+      ],
+      "partial_subtopics": [
+        "表达式树只说明转换边界"
+      ],
+      "remaining_subtopics": [
+        "捕获对象生命周期",
+        "异步lambda与表达式树执行限制"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-capstone-unsafe-code",
+      "path": "content/csharp/csharp-capstone/unsafe-code.md",
+      "title": "不安全代码与指针边界",
+      "source_url": "https://www.runoob.com/csharp/csharp-unsafe-codes.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "unsafe/指针/取址/解引用",
+        "fixed数组",
+        "地址生命周期",
+        "平台白名单边界"
+      ],
+      "partial_subtopics": [
+        "替代Span仅建议"
+      ],
+      "remaining_subtopics": [
+        "stackalloc/sizeof",
+        "固定缓冲区",
+        "指针运算溢出与互操作布局"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-capstone-multithreading",
+      "path": "content/csharp/csharp-capstone/multithreading.md",
+      "title": "多线程与确定性汇总",
+      "source_url": "https://www.runoob.com/csharp/csharp-multithreading.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "Thread Start/Join",
+        "共享写入风险",
+        "独占结果槽",
+        "调度无关汇总"
+      ],
+      "partial_subtopics": [
+        "lock/Interlocked只点名"
+      ],
+      "remaining_subtopics": [
+        "锁与原子操作实例",
+        "取消/异常传播",
+        "任务与线程的区别"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    },
+    {
+      "lesson_id": "csharp-capstone-language-quiz",
+      "path": "content/csharp/csharp-capstone/language-quiz.md",
+      "title": "C# 语言测验与结业实践",
+      "source_url": "https://www.runoob.com/csharp/csharp-quiz.html",
+      "status": "partial",
+      "covered_subtopics": [
+        "类型/错误/集合组合",
+        "两个线程独占局部结果并确定性合并"
+      ],
+      "partial_subtopics": [
+        "综合挑战只涵盖选定主线"
+      ],
+      "remaining_subtopics": [
+        "不能替代42章全部子题的逐项验收；现代异步与更大应用设计不在此挑战"
+      ],
+      "exercise_scope": "保留现有题目合同；本课练习只检验其中选定的输入/输出与知识点，不能代表整章全部子题。"
+    }
+  ]
+}

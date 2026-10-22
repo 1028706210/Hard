@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-collections-generics-reflection",
+  "questions": [
+    {
+      "id": "java-collections-generics-reflection-k01",
+      "type": "knowledge",
+      "prompt": "Class.forName 的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "创建实例"
+        },
+        {
+          "id": "b",
+          "text": "按名加载类"
+        },
+        {
+          "id": "c",
+          "text": "获取字段"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-collections-generics-reflection-k02",
+      "type": "knowledge",
+      "prompt": "getSimpleName 返回什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "全限定名"
+        },
+        {
+          "id": "b",
+          "text": "不含包名的类名"
+        },
+        {
+          "id": "c",
+          "text": "包名"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-collections-generics-reflection-k03",
+      "type": "knowledge",
+      "prompt": "反射的性能相比直接调用？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "更快"
+        },
+        {
+          "id": "b",
+          "text": "更慢"
+        },
+        {
+          "id": "c",
+          "text": "相同"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-collections-generics-reflection-c01",
+      "type": "code",
+      "prompt": "从标准输入读取全限定类名，输出其简单类名。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        System.out.println(Class.forName(input).getSimpleName());\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "java.lang.String\n",
+            "stdout": "String\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "java.lang.Integer\n",
+            "stdout": "Integer\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

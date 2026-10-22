@@ -73,35 +73,61 @@
     {
       "id": "python-flow-collections-lists-c01",
       "type": "code",
-      "prompt": "创建含 read 和 code 的列表，输出第一个元素。",
-      "starter_code": "tasks = []\n# 输出第一个元素",
+      "prompt": "读取以空白分隔的任务名称，按输入顺序保存到列表 tasks，输出第一个名称。至少需要一个名称；空输入不输出内容，退出码为 1。名称按完整单词处理，中文有效，不能排序后再取首项。起始代码提供读取和空列表检查。",
+      "starter_code": "import sys\nitems = sys.stdin.read().split()\nif not items:\n    raise SystemExit(1)\ntasks = items\n# 按题面完成本课操作与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'read code\\n'，输出 'read\\n'，退出码 0。",
+        "输入 'test learn\\n'，输出 'test\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-flow-collections-lists-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    tasks = ['read', 'code']\n    print(tasks[0])\n",
+        "reference_solution": "import sys\nitems = sys.stdin.read().split()\nif not items:\n    raise SystemExit(1)\ntasks = items\nprint(tasks[0])\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的边界、顺序和重复项处理。",
+          "输入有效性与退出码按题面约定检查。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "read code\n",
             "stdout": "read\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "test learn\n",
+            "stdout": "test\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-flow-collections-lists-c01\n",
+            "stdin": "solo\n",
+            "stdout": "solo\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "z a\n",
+            "stdout": "z\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "学习 编程\n",
+            "stdout": "学习\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "  read\tcode  \n",
+            "stdout": "read\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": " \n",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

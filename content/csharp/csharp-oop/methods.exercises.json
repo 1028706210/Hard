@@ -1,0 +1,128 @@
+{
+  "lesson_id": "csharp-oop-methods",
+  "questions": [
+    {
+      "id": "csharp-oop-methods-k01",
+      "type": "knowledge",
+      "prompt": "编译器在重载解析时主要依据什么挑选被调用的方法？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "方法名与实参匹配的参数列表"
+        },
+        {
+          "id": "b",
+          "text": "方法的返回值类型"
+        },
+        {
+          "id": "c",
+          "text": "方法在源代码中出现的先后顺序"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-methods-k02",
+      "type": "knowledge",
+      "prompt": "同一个类里两个同名方法只有返回值类型不同，会发生什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "构成合法重载，调用时按返回值区分"
+        },
+        {
+          "id": "b",
+          "text": "编译错误：仅返回值不同不构成重载"
+        },
+        {
+          "id": "c",
+          "text": "后声明的方法覆盖先声明的"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-oop-methods-k03",
+      "type": "knowledge",
+      "prompt": "在同一个类中调用 static 方法的方式是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "必须先 new 出对象再通过对象调用"
+        },
+        {
+          "id": "b",
+          "text": "直接写方法名调用，不需要实例"
+        },
+        {
+          "id": "c",
+          "text": "只能通过反射机制调用"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-oop-methods-c01",
+      "type": "code",
+      "prompt": "读取一个整数 n（0..90 含两端），用迭代实现的静态方法计算第 n 个斐波那契数（Fib(0)=0、Fib(1)=1）并以 long 输出。无法解析或越界时不输出并以退出码 1 结束。",
+      "starter_code": "var input = Console.ReadLine();\n// 校验 n 的范围，再用静态方法计算斐波那契数并输出\n",
+      "visible_tests": [
+        "输入 10 时输出 55。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "if (!long.TryParse(Console.ReadLine(), out var n) || n < 0 || n > 90) Environment.Exit(1);\nConsole.WriteLine(Fib(n));\n\nstatic long Fib(long n)\n{\n    long previous = 0;\n    long current = 1;\n    for (long i = 0; i < n; i++)\n    {\n        var next = previous + current;\n        previous = current;\n        current = next;\n    }\n    return previous;\n}\n",
+        "hidden_tests": [
+          "输入下边界 0 时输出 0。",
+          "输入上边界 90 时精确输出 2880067194370816120。",
+          "输入 -1 时无输出并以退出码 1 结束。",
+          "输入 91 时无输出并以退出码 1 结束。",
+          "输入非整数文本时无输出并以退出码 1 结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "10\n",
+            "stdout": "55\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "90\n",
+            "stdout": "2880067194370816120\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-1\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "91\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "ten\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+RED: pnpm --filter @hard/web exec vitest run tests/compare/compare-page.spec.ts
+[ERR_PNPM_UNSUPPORTED_ENGINE] Unsupported environment (bad pnpm and/or Node.js version)
+
+Your pnpm version is incompatible with "D:\projects\1\Hard-trial-clean-20260910".
+
+Expected version: 11.19.0
+Got: 11.25.0
+
+This is happening because the package's manifest has an engines.pnpm field specified.
+To fix this issue, install the required pnpm version globally.
+
+To install the latest version of pnpm, run "pnpm i -g pnpm".
+To check your pnpm version, run "pnpm -v".
+
+Your Node version is incompatible with "D:\projects\1\Hard-trial-clean-20260910".
+
+Expected version: 24.17.0
+Got: v24.19.0
+
+This is happening because the package's manifest has an engines.node field specified.
+To fix this issue, install the required Node version.
+RED_EXIT_CODE=1
+
+RED (installed tools, Node v24.19.0): node node_modules/vitest/vitest.mjs run tests/compare/compare-page.spec.ts
+
+ RUN  v4.1.11 D:/projects/1/Hard-trial-clean-20260910/apps/web
+
+ ❯ tests/compare/compare-page.spec.ts (16 tests | 4 failed) 303ms
+     × restores the filtered concept after returning from a lesson 78ms
+     × restores the selected page after returning from a lesson 73ms
+     × reads the filter and page from the URL and resets only the page when filtering 10ms
+     × bounds a bookmarked page to the available filtered results 8ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/compare/compare-page.spec.ts > compare page > restores the filtered concept after returning from a lesson
+AssertionError: expected '' to be 'loops' // Object.is equality
+
+- Expected
++ Received
+
+- loops
+
+ ❯ tests/compare/compare-page.spec.ts:130:86
+    128|     router.back();
+    129|     await vi.waitFor(() => expect(wrapper.find("[data-concept-filter]"…
+    130|     expect((wrapper.get("[data-concept-filter]").element as HTMLInputE…
+       |                                                                                      ^
+    131|     expect(wrapper.findAll("[data-concept-card]")).toHaveLength(1);
+    132|     expect(wrapper.find("[data-concept-card='loops']").exists()).toBe(…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/compare/compare-page.spec.ts > compare page > restores the selected page after returning from a lesson
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/compare/compare-page.spec.ts:144:70
+    142|     router.back();
+    143|     await vi.waitFor(() => expect(wrapper.find("[data-concept-filter]"…
+    144|     expect(wrapper.find("[data-concept-card='concept-4']").exists()).t…
+       |                                                                      ^
+    145|     expect(wrapper.find("[data-concept-card='concept-0']").exists()).t…
+    146|     expect(wrapper.text()).toContain("第 2 / 3 页");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/compare/compare-page.spec.ts > compare page > reads the filter and page from the URL and resets only the page when filtering
+AssertionError: expected '' to be 'concept' // Object.is equality
+
+- Expected
++ Received
+
+- concept
+
+ ❯ tests/compare/compare-page.spec.ts:152:86
+    150|     vi.stubGlobal("fetch", vi.fn(async () => response({ concepts: Arra…
+    151|     const { wrapper, router } = await renderComparison("/compare?filte…
+    152|     expect((wrapper.get("[data-concept-filter]").element as HTMLInputE…
+       |                                                                                      ^
+    153|     expect(wrapper.find("[data-concept-card='concept-4']").exists()).t…
+    154|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/compare/compare-page.spec.ts > compare page > bounds a bookmarked page to the available filtered results
+AssertionError: expected [ DOMWrapper{ …(3) }, …(1) ] to have a length of 1 but got 2
+
+- Expected
++ Received
+
+- 1
++ 2
+
+ ❯ tests/compare/compare-page.spec.ts:176:52
+    174|     const { wrapper } = await renderComparison("/compare?filter=loops&…
+    175|     expect(wrapper.find("[data-concept-card='loops']").exists()).toBe(…
+    176|     expect(wrapper.findAll("[data-concept-card]")).toHaveLength(1);
+       |                                                    ^
+    177|   });
+    178|   it("renders four language slots per concept with lesson links and ex…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 12 passed (16)
+   Start at  05:48:58
+   Duration  2.17s (transform 130ms, setup 0ms, import 301ms, tests 303ms, environment 1.22s)
+
+RED_DIRECT_EXIT_CODE=1
+
+GREEN: node node_modules/vitest/vitest.mjs run tests/compare/compare-page.spec.ts
+
+ RUN  v4.1.11 D:/projects/1/Hard-trial-clean-20260910/apps/web
+
+
+ Test Files  1 passed (1)
+      Tests  16 passed (16)
+   Start at  05:49:27
+   Duration  1.95s (transform 101ms, setup 0ms, import 229ms, tests 268ms, environment 1.21s)
+
+GREEN_EXIT_CODE=0
+
+FULL_VITEST: node node_modules/vitest/vitest.mjs run
+
+ RUN  v4.1.11 D:/projects/1/Hard-trial-clean-20260910/apps/web
+
+
+ Test Files  19 passed (19)
+      Tests  117 passed (117)
+   Start at  05:49:58
+   Duration  6.02s (transform 9.30s, setup 0ms, import 14.19s, tests 2.94s, environment 46.12s)
+
+FULL_VITEST_EXIT_CODE=0
+
+TYPECHECK: node node_modules/vue-tsc/bin/vue-tsc.js --noEmit
+tests/compare/compare-page.spec.ts(125,23): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string | RouteLocationAsRelativeGeneric | RouteLocationAsPathGeneric'.
+  Type 'undefined' is not assignable to type 'string | RouteLocationAsRelativeGeneric | RouteLocationAsPathGeneric'.
+tests/compare/compare-page.spec.ts(140,23): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string | RouteLocationAsRelativeGeneric | RouteLocationAsPathGeneric'.
+  Type 'undefined' is not assignable to type 'string | RouteLocationAsRelativeGeneric | RouteLocationAsPathGeneric'.
+TYPECHECK_EXIT_CODE=2
+
+FINAL_FULL_VITEST (test href narrowing corrected): node node_modules/vitest/vitest.mjs run
+
+ RUN  v4.1.11 D:/projects/1/Hard-trial-clean-20260910/apps/web
+
+
+ Test Files  19 passed (19)
+      Tests  117 passed (117)
+   Start at  05:50:38
+   Duration  6.39s (transform 8.52s, setup 0ms, import 13.67s, tests 3.00s, environment 46.81s)
+
+FINAL_FULL_VITEST_EXIT_CODE=0
+
+FINAL_TYPECHECK: node node_modules/vue-tsc/bin/vue-tsc.js --noEmit
+FINAL_TYPECHECK_EXIT_CODE=0
+
+DIFF_CHECK: git diff --check -- apps/web/src/features/compare/ComparePage.vue apps/web/tests/compare/compare-page.spec.ts
+warning: in the working copy of 'apps/web/src/features/compare/ComparePage.vue', LF will be replaced by CRLF the next time Git touches it
+DIFF_CHECK_EXIT_CODE=0
+
+Algorithm : SHA256
+Hash      : 8E167701C3CAA270D0410A10F85CA607E3EEBB8C638682E9D42BC8F6A1A592C6
+Path      : D:\projects\1\Hard-trial-clean-20260910\apps\web\src\features\compare\ComparePage.vue
+
+Algorithm : SHA256
+Hash      : 6EB241BB244B357E1C6F0EB4306193722D6123C23F432CF9548AD9CA0F2E94B6
+Path      : D:\projects\1\Hard-trial-clean-20260910\apps\web\tests\compare\compare-page.spec.ts
+
+

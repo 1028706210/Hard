@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-algorithms-concurrency-string",
+  "questions": [
+    {
+      "id": "cpp-algorithms-concurrency-string-k01",
+      "type": "knowledge",
+      "prompt": "std::string::find 找不到目标时返回？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "std::string::npos"
+        },
+        {
+          "id": "b",
+          "text": "-1"
+        },
+        {
+          "id": "c",
+          "text": "空字符串"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-string-k02",
+      "type": "knowledge",
+      "prompt": "带边界检查、越界抛异常的下标访问是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "operator[]"
+        },
+        {
+          "id": "b",
+          "text": "at()"
+        },
+        {
+          "id": "c",
+          "text": "data()"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-string-k03",
+      "type": "knowledge",
+      "prompt": "读取含空格的一行文本应使用？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "std::getline(std::cin, s)"
+        },
+        {
+          "id": "b",
+          "text": "std::cin >> s"
+        },
+        {
+          "id": "c",
+          "text": "scanf(\"%s\", s)"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-string-c01",
+      "type": "code",
+      "prompt": "先读取一行文本（可能为空，长度 0..1000，含两端），再读取一个字符 c（非空白字符），输出 c 在该行中的出现次数。无输入行、字符缺失、或长度越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <iostream>\n#include <string>\n\nint main() {\n    // 读取一行与一个字符，统计出现次数\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 banana 与 a 时输出 3。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string line;\n    if (!std::getline(std::cin, line)) return 1;\n    if (line.size() > 1000) return 1;\n    char c = 0;\n    if (!(std::cin >> c)) return 1;\n    int count = 0;\n    for (char ch : line) {\n        if (ch == c) count++;\n    }\n    std::cout << count << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "空行时任意字符计数为 0。",
+          "字符不出现输出 0。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "banana\na\n",
+            "stdout": "3\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "\nz\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "hello\nx\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

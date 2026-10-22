@@ -1,0 +1,1564 @@
+{
+  "date": "2026-10-21",
+  "language": "java",
+  "lesson_count": 57,
+  "source_registry_java_rows": 57,
+  "scope": "full-route local-body review; 20 depth passes plus 3 factual fixes; all lessons have stated remaining subtopics",
+  "status_definitions": {
+    "covered": "listed individual subtopic is explicitly explained; not a complete-lesson certification",
+    "partial": "some teaching exists, with stated missing depth or examples",
+    "remaining": "named subtopic lacks adequate teaching; documentation is remaining overall because its examples are unrelated"
+  },
+  "counts": {
+    "depth_pass": 20,
+    "factual_correction": 3,
+    "not_changed": 34,
+    "route_partial": 57,
+    "route_remaining": 0
+  },
+  "lessons": [
+    {
+      "id": "java-foundations-tutorial",
+      "title": "Java 教程",
+      "path": "content/java/java-foundations/tutorial.md",
+      "source_url": "https://www.runoob.com/java/java-tutorial.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "Main/字节码/问候输入输出"
+      ],
+      "partial": [
+        "编译运行链仅简述"
+      ],
+      "remaining": [
+        "命令行编译诊断",
+        "源文件与类路径",
+        "最小程序分步导读"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "c53d525a4c1d651907daddb57156751e4d9a833ce4991b0a28365033ea28d3e7"
+    },
+    {
+      "id": "java-foundations-introduction",
+      "title": "Java 简介",
+      "path": "content/java/java-foundations/introduction.md",
+      "source_url": "https://www.runoob.com/java/java-intro.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "静态类型",
+        "long 边界",
+        "JVM 简述"
+      ],
+      "partial": [
+        "Java 平台概况只点到为止"
+      ],
+      "remaining": [
+        "JDK/JRE/JVM 区别",
+        "用途与限制",
+        "编译执行流程"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "2bf24556a4ea7f9f91a164c8b76e3a8e997120d2e221685229c1cfaeb1674054"
+    },
+    {
+      "id": "java-foundations-environment",
+      "title": "Java 开发环境配置",
+      "path": "content/java/java-foundations/environment.md",
+      "source_url": "https://www.runoob.com/java/java-environment-setup.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "javac/java 分工",
+        "版本记录不是本机证据"
+      ],
+      "partial": [
+        "练习仅比较版本号"
+      ],
+      "remaining": [
+        "安装与工具链路径检查",
+        "JAVA_HOME/PATH",
+        "编译运行排错"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "9e5915a5fbeac57f0ee07563298490cf7e5e7cc1ef4627faac4cb3ec73e50ddd"
+    },
+    {
+      "id": "java-foundations-basic-syntax",
+      "title": "Java 基础语法",
+      "path": "content/java/java-foundations/basic-syntax.md",
+      "source_url": "https://www.runoob.com/java/java-basic-syntax.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "main 框架",
+        "类型声明",
+        "分号",
+        "局部初始化"
+      ],
+      "partial": [
+        "示例集中于 n+1"
+      ],
+      "remaining": [
+        "标识符与关键字",
+        "大小写",
+        "语句/代码块",
+        "类/文件组织"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "318fb73c89e9c5fcbab7c80ed584278410e959ad27e3be15ac9cda03fe73901c"
+    },
+    {
+      "id": "java-foundations-comments",
+      "title": "Java 注释",
+      "path": "content/java/java-foundations/comments.md",
+      "source_url": "https://www.runoob.com/java/java-comments.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "行/块/文档注释用途",
+        "单位约束"
+      ],
+      "partial": [
+        "代码主要展示行注释"
+      ],
+      "remaining": [
+        "三类注释真实语法",
+        "块注释不能嵌套",
+        "注释与代码同步"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "2960965f9ef1c8a92d95cef10a3644d4ca154a9058be38af1f4624e4888619eb"
+    },
+    {
+      "id": "java-foundations-objects-classes",
+      "title": "Java 对象和类",
+      "path": "content/java/java-foundations/objects-classes.md",
+      "source_url": "https://www.runoob.com/java/java-object-classes.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "depth_pass",
+      "covered": [
+        "类/对象/引用",
+        "实例与 static",
+        "this",
+        "构造",
+        "别名",
+        "null",
+        "引用按值传递"
+      ],
+      "partial": [
+        "练习只验证两实例姓名"
+      ],
+      "remaining": [
+        "成员/局部/匿名类",
+        "详细可达性与 GC",
+        "对象建模练习"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "28bf3cf8e94e73498afac87678febb1a2c329ad67b8e98400870cb0a59c17a26"
+    },
+    {
+      "id": "java-foundations-basic-data-types",
+      "title": "Java 基本数据类型",
+      "path": "content/java/java-foundations/basic-data-types.md",
+      "source_url": "https://www.runoob.com/java/java-basic-datatypes.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "depth_pass",
+      "covered": [
+        "八种基本类型",
+        "位宽值域",
+        "引用类型",
+        "扩/缩转换",
+        "精度",
+        "提升",
+        "溢出",
+        "装/拆箱"
+      ],
+      "partial": [
+        "浮点特殊值仅概述"
+      ],
+      "remaining": [
+        "NaN/无穷运算",
+        "浮点转整数极值规则",
+        "BigDecimal 实用"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "09456ed533aa708d331d0480f59e00b9a93914fd49712325cdbdf78d5283851e"
+    },
+    {
+      "id": "java-foundations-variable-types",
+      "title": "Java 变量类型",
+      "path": "content/java/java-foundations/variable-types.md",
+      "source_url": "https://www.runoob.com/java/java-variable-types.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "depth_pass",
+      "covered": [
+        "字段/局部/形参/static",
+        "默认值",
+        "this",
+        "作用域",
+        "final 可变对象",
+        "var 静态推断"
+      ],
+      "partial": [
+        "练习主要观察局部与字段"
+      ],
+      "remaining": [
+        "捕获变量 effectively final",
+        "复杂 definite-assignment 分支"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "7e7dd35cbde4a02ec693f2fdb82d1b6a8d0063664490d709f7a414582cd0de44"
+    },
+    {
+      "id": "java-foundations-variable-names",
+      "title": "Java 变量命名规则",
+      "path": "content/java/java-foundations/variable-names.md",
+      "source_url": "https://www.runoob.com/java/java-variable-naming-rules.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "标识符 API",
+        "关键字排除",
+        "Unicode",
+        "上下文限制提示"
+      ],
+      "partial": [
+        "语义命名仅提示"
+      ],
+      "remaining": [
+        "大小写约定与常量/类/包命名",
+        "上下文关键字实例"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "1d133296ffe8cf0f4e82763d4557efa4450968ced4f3d56d833fa286cb80f983"
+    },
+    {
+      "id": "java-foundations-modifiers",
+      "title": "Java 修饰符",
+      "path": "content/java/java-foundations/modifiers.md",
+      "source_url": "https://www.runoob.com/java/java-modifier-types.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "private/public/final/static",
+        "getter",
+        "线程安全边界提示"
+      ],
+      "partial": [
+        "访问控制未形成完整矩阵"
+      ],
+      "remaining": [
+        "包级/protected",
+        "跨包接收者规则",
+        "abstract/synchronized/transient/volatile"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "64fc4f3272910822c7e3c4cfd7e668668e4ea162f4cdf7ac1cb746798fed4c33"
+    },
+    {
+      "id": "java-foundations-operators",
+      "title": "Java 运算符",
+      "path": "content/java/java-foundations/operators.md",
+      "source_url": "https://www.runoob.com/java/java-operators.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "余数符号",
+        "除零检查",
+        "短路简述"
+      ],
+      "partial": [
+        "题目聚焦余数"
+      ],
+      "remaining": [
+        "算术/关系/逻辑/位运算",
+        "移位",
+        "优先级",
+        "自增",
+        "三元",
+        "复合赋值"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "bc528b838acebe93dd197d7a1e06f5a68df3b69c678a66603553fe8eec052996"
+    },
+    {
+      "id": "java-foundations-loops",
+      "title": "Java 循环结构",
+      "path": "content/java/java-foundations/loops.md",
+      "source_url": "https://www.runoob.com/java/java-loop.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "for/while",
+        "边界",
+        "累加",
+        "防止空循环"
+      ],
+      "partial": [
+        "仅两类循环演示"
+      ],
+      "remaining": [
+        "do-while",
+        "break/continue",
+        "嵌套循环",
+        "增强 for",
+        "带标签跳转"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "64c077b1f830b3ab6f20a8d506340dd9f8ec8c5e6ef319c0546052961da3c1f2"
+    },
+    {
+      "id": "java-foundations-conditions",
+      "title": "Java 条件语句",
+      "path": "content/java/java-foundations/conditions.md",
+      "source_url": "https://www.runoob.com/java/java-if-else-switch.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "if/else",
+        "阈值归属",
+        "合法未通过与非法区分"
+      ],
+      "partial": [
+        "单一成绩分支"
+      ],
+      "remaining": [
+        "else-if",
+        "嵌套",
+        "复合布尔条件",
+        "分支穷尽与可读性"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "36abdf38b077df871e66273c21b5908d2bdc7ac5e4d6e43a5b815f7798332444"
+    },
+    {
+      "id": "java-foundations-switch",
+      "title": "Java switch case",
+      "path": "content/java/java-foundations/switch.md",
+      "source_url": "https://www.runoob.com/java/java-switch-case.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "switch 表达式",
+        "箭头",
+        "default",
+        "整数映射"
+      ],
+      "partial": [
+        "传统贯穿仅一句对比"
+      ],
+      "remaining": [
+        "冒号/break",
+        "String/enum 分支",
+        "yield",
+        "null 行为与类型限制"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "bb29806292d55b8a2e69b59449d91a928492a58b8184981a728e83b511163e71"
+    },
+    {
+      "id": "java-foundations-documentation",
+      "title": "Java 文档注释",
+      "path": "content/java/java-foundations/documentation.md",
+      "source_url": "https://www.runoob.com/java/java-documentation.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "depth_pass",
+      "covered": [
+        "真实 /** */ 位置与用途",
+        "@param/@return/@throws 与公开契约",
+        "独立示例与异常边界",
+        "javadoc 生成命令与编码选项",
+        "HTML 实体、code/literal/link 和注释结束符边界",
+        "doclint 与语义验证区别"
+      ],
+      "partial": [
+        "生成文档与页面阅读尚未由本代理执行",
+        "原输出练习不能评价注释质量"
+      ],
+      "remaining": [
+        "继承文档与 inheritDoc",
+        "包/模块文档",
+        "链接失效检查与大型 API 文档组织"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "5ed978c527587ada1c26d46402baaeaddd0ede171873fc654df13516b80ffd82"
+    },
+    {
+      "id": "java-core-api-number-math",
+      "title": "Number 与 Math 类",
+      "path": "content/java/java-core-api/number-math.md",
+      "source_url": "https://www.runoob.com/java/java-number.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "Math.max/abs/PI/round",
+        "整数与浮点除法"
+      ],
+      "partial": [
+        "Number 层次仅概述"
+      ],
+      "remaining": [
+        "包装 API/parse/valueOf",
+        "Number 转换",
+        "abs 最小值",
+        "round 负半数/NaN 边界"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "4b433b4fe25d76c14dc27347900c31ab5ca7f07cda47961d32f34781cfc5bad2"
+    },
+    {
+      "id": "java-core-api-character",
+      "title": "Character 类",
+      "path": "content/java/java-core-api/character.md",
+      "source_url": "https://www.runoob.com/java/java-character.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "char 包装",
+        "isDigit/isLetter",
+        "toUpperCase",
+        "数值转换"
+      ],
+      "partial": [
+        "只演示 BMP 中简单字符"
+      ],
+      "remaining": [
+        "码点与代理对",
+        "int 重载",
+        "大小写映射限制",
+        "非 ASCII 数字"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "70a59da997bd102f65a388c7ed50f733281db73f6ef74738a4636eb4016aafcf"
+    },
+    {
+      "id": "java-core-api-string",
+      "title": "String 类",
+      "path": "content/java/java-core-api/string.md",
+      "source_url": "https://www.runoob.com/java/java-string.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "factual_correction",
+      "covered": [
+        "不可变",
+        "equals/==",
+        "substring",
+        "length 已纠正为 UTF-16 单元"
+      ],
+      "partial": [
+        "字符与码点边界尚无实例"
+      ],
+      "remaining": [
+        "码点操作",
+        "编码",
+        "split 正则与空字段",
+        "查找/替换/连接",
+        "常量池边界"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "63169a012ec5cb308e9bf7f6cbd09104e2d871d2fd83ae6299ddd12c2f14b1db"
+    },
+    {
+      "id": "java-core-api-stringbuffer",
+      "title": "StringBuffer 类",
+      "path": "content/java/java-core-api/stringbuffer.md",
+      "source_url": "https://www.runoob.com/java/java-stringbuffer.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "可变序列",
+        "append/reverse",
+        "charAt",
+        "StringBuilder 对照"
+      ],
+      "partial": [
+        "线程安全表述未解释复合操作"
+      ],
+      "remaining": [
+        "capacity/length",
+        "insert/delete/setCharAt",
+        "链式调用",
+        "复合操作同步边界"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "352c1956086f915bf6c064cda7e96f686e51603984af1b555ef9627fce844a60"
+    },
+    {
+      "id": "java-core-api-arrays",
+      "title": "数组",
+      "path": "content/java/java-core-api/arrays.md",
+      "source_url": "https://www.runoob.com/java/java-array.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "固定长度",
+        "0 基索引",
+        "遍历",
+        "Arrays.sort/toString"
+      ],
+      "partial": [
+        "只展示一维数组"
+      ],
+      "remaining": [
+        "默认值",
+        "别名/复制",
+        "多维/不规则数组",
+        "Arrays.equals",
+        "引用数组协变风险"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "48096e3c709a406bb74a1726e44f608a3d7882019e87ebf156faa62d65fe2f9e"
+    },
+    {
+      "id": "java-core-api-date-time",
+      "title": "日期时间",
+      "path": "content/java/java-core-api/date-time.md",
+      "source_url": "https://www.runoob.com/java/java-date-time.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "factual_correction",
+      "covered": [
+        "LocalDate parse/of/plusDays",
+        "不可变",
+        "跨年",
+        "纠正旧类弃用说法"
+      ],
+      "partial": [
+        "LocalTime/LocalDateTime 只列名称"
+      ],
+      "remaining": [
+        "Instant/ZonedDateTime",
+        "时区/夏令时",
+        "Period/Duration",
+        "格式化/严格解析"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "9a63eeaab9672939a2a0c434f8a01e6fc431b81d8c9cf612db8be6280780450b"
+    },
+    {
+      "id": "java-core-api-regex",
+      "title": "正则表达式",
+      "path": "content/java/java-core-api/regex.md",
+      "source_url": "https://www.runoob.com/java/java-regular-expressions.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "Pattern/Matcher",
+        "find 与 matches",
+        "Java 双重转义提示"
+      ],
+      "partial": [
+        "分组仅列名称"
+      ],
+      "remaining": [
+        "量词/锚点/字符类",
+        "group",
+        "replaceAll",
+        "Pattern.quote",
+        "回溯成本"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "1dbd90bee0dbbf3a115f082092be4775e7b0475f3d310c9a4e441ffc3477c9f9"
+    },
+    {
+      "id": "java-core-api-methods",
+      "title": "方法",
+      "path": "content/java/java-core-api/methods.md",
+      "source_url": "https://www.runoob.com/java/java-methods.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "static 方法",
+        "参数/返回",
+        "递归和终止条件"
+      ],
+      "partial": [
+        "按值传递仅一句话"
+      ],
+      "remaining": [
+        "引用参数重绑与对象修改",
+        "可变参数",
+        "实例/static 对比",
+        "方法签名/重载流程"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "64db566f06fd165459da7506e4a69eda43eff05bf72b05b65a2ddd42a0b47d0a"
+    },
+    {
+      "id": "java-core-api-constructors",
+      "title": "构造方法",
+      "path": "content/java/java-core-api/constructors.md",
+      "source_url": "https://www.runoob.com/java/java-constructor.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "depth_pass",
+      "covered": [
+        "同名无返回类型",
+        "默认构造条件",
+        "重载/this/super",
+        "初始化顺序",
+        "失败",
+        "return 边界"
+      ],
+      "partial": [
+        "练习主要初始化字段并格式化"
+      ],
+      "remaining": [
+        "类初始化完整顺序",
+        "复杂继承构造诊断",
+        "静态工厂取舍"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "bd0be5fc890b6be75257b05989c35a4fdc7ed1594071eef49a4fe007cd46319c"
+    },
+    {
+      "id": "java-core-api-scanner",
+      "title": "Scanner 类",
+      "path": "content/java/java-core-api/scanner.md",
+      "source_url": "https://www.runoob.com/java/java-scanner-class.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "token",
+        "hasNextInt/nextInt",
+        "next",
+        "资源提醒"
+      ],
+      "partial": [
+        "多行与混合类型未完整演示"
+      ],
+      "remaining": [
+        "nextLine 混读",
+        "分隔符/Locale",
+        "非法 token 消费",
+        "关闭 System.in 所有权"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "9a64de8c61eccee2a5a850499ca91de5a66133cdf666f203dd850b83295632e0"
+    },
+    {
+      "id": "java-oop-io-files-io",
+      "title": "Stream/File/IO",
+      "path": "content/java/java-oop-io/files-io.md",
+      "source_url": "https://www.runoob.com/java/java-files-io.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "Path.of",
+        "文件名/父目录/组件数"
+      ],
+      "partial": [
+        "没有实际流读取或文件内容读写"
+      ],
+      "remaining": [
+        "字节流/字符流",
+        "UTF-8",
+        "缓冲",
+        "资源关闭",
+        "Files 实读写",
+        "IO 错误"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "51652c757f28ed2235c230763a7b1d760733b3c038e46f05d1eb13902bf7d445"
+    },
+    {
+      "id": "java-oop-io-exceptions",
+      "title": "异常处理",
+      "path": "content/java/java-oop-io/exceptions.md",
+      "source_url": "https://www.runoob.com/java/java-exceptions.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "depth_pass",
+      "covered": [
+        "Throwable 分层",
+        "受检/非受检",
+        "throw/throws",
+        "传播",
+        "catch 顺序",
+        "finally 限制",
+        "资源关闭/抑制异常"
+      ],
+      "partial": [
+        "受检异常与 suppressed 仅解释，未真实失败双异常示范"
+      ],
+      "remaining": [
+        "自定义异常",
+        "复杂异常链",
+        "受检声明编译反例",
+        "真实 IO 恢复策略"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "49c04fa029f1f335ee6823ad1d7deaf8cc323f54ea626d5eef06db852a0e062d"
+    },
+    {
+      "id": "java-oop-io-inheritance",
+      "title": "继承",
+      "path": "content/java/java-oop-io/inheritance.md",
+      "source_url": "https://www.runoob.com/java/java-inheritance.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "depth_pass",
+      "covered": [
+        "is-a/组合",
+        "单类多接口",
+        "访问边界",
+        "super 构造/方法",
+        "final/private",
+        "字段隐藏"
+      ],
+      "partial": [
+        "跨包 protected 接收者限制仅提示"
+      ],
+      "remaining": [
+        "跨包多文件实例",
+        "sealed 类型层次",
+        "替换原则系统练习"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "323615d29029e816c0287d916116e54479e5a62978921bf9d798cb9ef0d82e44"
+    },
+    {
+      "id": "java-oop-io-override-overload",
+      "title": "Override 与 Overload",
+      "path": "content/java/java-oop-io/override-overload.md",
+      "source_url": "https://www.runoob.com/java/java-override-overload.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "depth_pass",
+      "covered": [
+        "编译期重载/运行期重写",
+        "签名",
+        "协变",
+        "权限/受检异常约束",
+        "装箱优先级",
+        "null 歧义"
+      ],
+      "partial": [
+        "复杂重载规则未穷尽"
+      ],
+      "remaining": [
+        "可变参数重载",
+        "泛型桥接",
+        "受检异常和协变返回编译反例"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "1b91a03057e8cd58fdfd07df5ac8934dc1473eba0e0373f15f56729af4a43e62"
+    },
+    {
+      "id": "java-oop-io-polymorphism",
+      "title": "多态",
+      "path": "content/java/java-oop-io/polymorphism.md",
+      "source_url": "https://www.runoob.com/java/java-polymorphism.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "depth_pass",
+      "covered": [
+        "声明/实际类型",
+        "多实现循环",
+        "向上/下转换",
+        "instanceof 模式",
+        "null",
+        "字段/static 边界"
+      ],
+      "partial": [
+        "练习仅面积计算"
+      ],
+      "remaining": [
+        "替换契约设计",
+        "多层分派诊断",
+        "接口组合进阶"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "3d071ee6f2e945d18644eae2cad891938fc8b08487e593b1fa08d82c2f45cc02"
+    },
+    {
+      "id": "java-oop-io-abstraction",
+      "title": "抽象类",
+      "path": "content/java/java-oop-io/abstraction.md",
+      "source_url": "https://www.runoob.com/java/java-abstraction.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "depth_pass",
+      "covered": [
+        "不能直接实例化",
+        "共享状态/构造/实现",
+        "可无抽象方法",
+        "具体/抽象中间层",
+        "修饰符冲突",
+        "接口取舍"
+      ],
+      "partial": [
+        "几何练习验证范围窄"
+      ],
+      "remaining": [
+        "多层模板方法设计",
+        "抽象类演化兼容性",
+        "sealed 组合"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "ca51caa8fa620178d32488fb48de0bd6cb95aad9284e670ac1372778a8cc9347"
+    },
+    {
+      "id": "java-oop-io-encapsulation",
+      "title": "封装",
+      "path": "content/java/java-oop-io/encapsulation.md",
+      "source_url": "https://www.runoob.com/java/java-encapsulation.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "depth_pass",
+      "covered": [
+        "状态约束",
+        "行为优于机械 setter",
+        "先校验后修改",
+        "复制/快照",
+        "浅复制边界",
+        "final 非深冻结"
+      ],
+      "partial": [
+        "实际业务权限/并发只说明边界"
+      ],
+      "remaining": [
+        "可变嵌套对象深复制取舍",
+        "并发状态维护",
+        "领域失败策略"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "83c07e5f02fb35e6a0abb2c95d82105e5c84956dbffa53d056e7143ef9e60a57"
+    },
+    {
+      "id": "java-oop-io-interfaces",
+      "title": "接口",
+      "path": "content/java/java-oop-io/interfaces.md",
+      "source_url": "https://www.runoob.com/java/java-interfaces.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "depth_pass",
+      "covered": [
+        "implements/extends",
+        "隐含 public/字段常量",
+        "default/static/private",
+        "冲突",
+        "函数式接口条件"
+      ],
+      "partial": [
+        "冲突解决与 Lambda 仅解释"
+      ],
+      "remaining": [
+        "多接口 default 冲突编译练习",
+        "函数式接口适配",
+        "接口演化"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "86fe54f1b84de1ab035c47e05ca382477d958abb721d62a9ded57f98018a2f43"
+    },
+    {
+      "id": "java-oop-io-enums",
+      "title": "枚举",
+      "path": "content/java/java-oop-io/enums.md",
+      "source_url": "https://www.runoob.com/java/java-enum.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "常量",
+        "构造字段",
+        "values/valueOf",
+        "ordinal"
+      ],
+      "partial": [
+        "稳定业务编码与 ordinal 尚未区分"
+      ],
+      "remaining": [
+        "显式编码持久化",
+        "enum 方法覆写",
+        "EnumSet/EnumMap",
+        "valueOf 异常"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "5b4d7cfaa248929dff0e33791730a5e8cec96b17f50b94c40ffed90aab1eefc0"
+    },
+    {
+      "id": "java-oop-io-packages",
+      "title": "Package",
+      "path": "content/java/java-oop-io/packages.md",
+      "source_url": "https://www.runoob.com/java/java-package.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "package",
+        "import",
+        "全限定名",
+        "包名提取"
+      ],
+      "partial": [
+        "练习仅字符串截取包名"
+      ],
+      "remaining": [
+        "目录/编译类路径",
+        "包级访问",
+        "static import",
+        "同名冲突",
+        "模块与包区别"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "e1debdc5ce49cd0a19ae90992652b1ab7ea5eac60d252626843f5a5b3b556635"
+    },
+    {
+      "id": "java-oop-io-nio-files",
+      "title": "NIO Files",
+      "path": "content/java/java-oop-io/nio-files.md",
+      "source_url": "https://www.runoob.com/java/java-nio-file.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "Path/Paths",
+        "文件名扩展名提取"
+      ],
+      "partial": [
+        "标题 Files，实际没有 Files 操作"
+      ],
+      "remaining": [
+        "Files.readString/writeString",
+        "exists/属性",
+        "walk 关闭",
+        "normalize/resolve",
+        "IO 边界"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "1ee398445319760893bfce9cca7d758b19bb23a408f7ec26bdf29a7b2899a6fd"
+    },
+    {
+      "id": "java-collections-generics-reflection",
+      "title": "反射",
+      "path": "content/java/java-collections-generics/reflection.md",
+      "source_url": "https://www.runoob.com/java/java-reflection.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "Class.forName",
+        "getSimpleName",
+        "getMethods"
+      ],
+      "partial": [
+        "无动态构造/调用示例"
+      ],
+      "remaining": [
+        "getDeclared* 对照",
+        "Constructor/Method.invoke",
+        "异常包装",
+        "模块访问边界"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "70249779180f28155cc1f563abd505083148adfd2f2b19c9d479df730ce70b86"
+    },
+    {
+      "id": "java-collections-generics-data-structures",
+      "title": "数据结构",
+      "path": "content/java/java-collections-generics/data-structures.md",
+      "source_url": "https://www.runoob.com/java/java-data-structures.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "factual_correction",
+      "covered": [
+        "Stack push/pop",
+        "Deque 队列",
+        "已纠正 Stack 整类弃用说法"
+      ],
+      "partial": [
+        "结构取舍仍简略"
+      ],
+      "remaining": [
+        "ArrayDeque 栈",
+        "空栈/队列契约",
+        "优先队列",
+        "复杂度",
+        "旧容器背景"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "a49d757da64ed4ca473268c537ec5dcd1a84ebe8ad97cb774bd1b7f511a3f890"
+    },
+    {
+      "id": "java-collections-generics-collections-framework",
+      "title": "集合框架",
+      "path": "content/java/java-collections-generics/collections-framework.md",
+      "source_url": "https://www.runoob.com/java/java-collections.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "depth_pass",
+      "covered": [
+        "Collection 与 Map 分立",
+        "接口/实现",
+        "顺序/重复",
+        "TreeSet",
+        "可变/不可修改",
+        "快照/视图",
+        "比较契约"
+      ],
+      "partial": [
+        "高级容器只定位用途"
+      ],
+      "remaining": [
+        "Comparator 代码",
+        "Navigable/Sorted",
+        "集合批量操作",
+        "并发容器实践"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "989edf09ef76187370d7397bb9628ce347fe27ca41482a1bf602b452ffe6bd96"
+    },
+    {
+      "id": "java-collections-generics-arraylist",
+      "title": "ArrayList",
+      "path": "content/java/java-collections-generics/arraylist.md",
+      "source_url": "https://www.runoob.com/java/java-arraylist.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "depth_pass",
+      "covered": [
+        "size/capacity",
+        "复杂度",
+        "索引",
+        "add/get/set",
+        "remove 重载",
+        "复制",
+        "真实访问模式选型"
+      ],
+      "partial": [
+        "性能未做测量，线程安全仅边界"
+      ],
+      "remaining": [
+        "subList 关联视图",
+        "批量操作",
+        "容量增长实现细节不作为契约"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "f1cd985703720280c914cad712d40500962e5c3e51dc9b6d486dcf419bd18486"
+    },
+    {
+      "id": "java-collections-generics-linkedlist",
+      "title": "LinkedList",
+      "path": "content/java/java-collections-generics/linkedlist.md",
+      "source_url": "https://www.runoob.com/java/java-linkedlist.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "depth_pass",
+      "covered": [
+        "双向链表",
+        "List/Deque",
+        "两端/索引成本",
+        "避免 get(i) 遍历",
+        "poll/peek 与 remove/get",
+        "null"
+      ],
+      "partial": [
+        "ListIterator 已定位修改未演示"
+      ],
+      "remaining": [
+        "ListIterator 修改",
+        "ArrayDeque 对照实测",
+        "集合视图"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "a33ea5cea7a42babd533cbf9680d443b4ff6d6845bae3bb64eff57ac7651e462"
+    },
+    {
+      "id": "java-collections-generics-hashset",
+      "title": "HashSet",
+      "path": "content/java/java-collections-generics/hashset.md",
+      "source_url": "https://www.runoob.com/java/java-hashset.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "depth_pass",
+      "covered": [
+        "唯一性",
+        "add/remove 返回",
+        "哈希碰撞",
+        "equals/hashCode",
+        "null",
+        "顺序",
+        "可变键风险"
+      ],
+      "partial": [
+        "自定义值对象示例在 Object 课"
+      ],
+      "remaining": [
+        "自定义键变更反例",
+        "容量/负载",
+        "批量集合代数操作"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "9317e8bbae44c34b477fcab44578ed897ef3696295bb3c9baff39c9f57183277"
+    },
+    {
+      "id": "java-collections-generics-hashmap",
+      "title": "HashMap",
+      "path": "content/java/java-collections-generics/hashmap.md",
+      "source_url": "https://www.runoob.com/java/java-hashmap.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "depth_pass",
+      "covered": [
+        "键唯一值可重复",
+        "put 旧值",
+        "null/containsKey/getOrDefault",
+        "词频",
+        "视图",
+        "顺序",
+        "并发非原子边界"
+      ],
+      "partial": [
+        "entrySet 只解释未示范"
+      ],
+      "remaining": [
+        "merge/compute",
+        "可变键反例",
+        "排序/插入序 Map 实例"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "6de3dbdad9e64825953c2ac92c58c01654d4cab9a97397d7ddaebb5b902ce8f0"
+    },
+    {
+      "id": "java-collections-generics-iterator",
+      "title": "Iterator",
+      "path": "content/java/java-collections-generics/iterator.md",
+      "source_url": "https://www.runoob.com/java/java-iterator.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "depth_pass",
+      "covered": [
+        "游标消费",
+        "hasNext/next",
+        "异常",
+        "remove 次数/可选",
+        "增强 for 数组区别",
+        "fail-fast 不能当同步"
+      ],
+      "partial": [
+        "并发容器仅边界提醒"
+      ],
+      "remaining": [
+        "ListIterator 双向",
+        "forEachRemaining",
+        "不同一致性模型对照"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "c31cb0ad227895812224d03a5daf3e2e1f73640b5bf9074ab6182331d1b2cf09"
+    },
+    {
+      "id": "java-collections-generics-object-class",
+      "title": "Object 类",
+      "path": "content/java/java-collections-generics/object-class.md",
+      "source_url": "https://www.runoob.com/java/java-object-class.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "depth_pass",
+      "covered": [
+        "Object 与装箱",
+        "身份/值相等",
+        "equals 五条",
+        "hashCode",
+        "自定义不可变键",
+        "toString/getClass",
+        "clone/监视器边界"
+      ],
+      "partial": [
+        "clone/监视器仅定位，未教授完整协议"
+      ],
+      "remaining": [
+        "深/浅复制实例",
+        "wait/notify 需并发课",
+        "继承值相等策略"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "54f7b90d3c45032f8b73c8bd87b7c93ddbff3a2d02316257a480a76bf8d9a224"
+    },
+    {
+      "id": "java-collections-generics-generics",
+      "title": "泛型",
+      "path": "content/java/java-collections-generics/generics.md",
+      "source_url": "https://www.runoob.com/java/java-generics.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "depth_pass",
+      "covered": [
+        "泛型类/方法",
+        "上界",
+        "类型安全限制",
+        "包装类型",
+        "不变性",
+        "extends/super",
+        "擦除/限制",
+        "重载冲突"
+      ],
+      "partial": [
+        "复杂捕获/桥接只留边界"
+      ],
+      "remaining": [
+        "通配符捕获",
+        "交叉上界",
+        "堆污染与安全可变参数",
+        "桥接方法"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "f821c3d3dfe3d73d688a8f9b0ed2c68db0bec30fad647fa5106884cdf010b147"
+    },
+    {
+      "id": "java-network-concurrency-serialization",
+      "title": "序列化",
+      "path": "content/java/java-network-concurrency/serialization.md",
+      "source_url": "https://www.runoob.com/java/java-serialization.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "Serializable",
+        "内存对象流写入/恢复",
+        "transient/UID 提示"
+      ],
+      "partial": [
+        "代码练习仅文本模拟 Person 格式"
+      ],
+      "remaining": [
+        "不可信反序列化风险与过滤",
+        "对象图",
+        "UID 兼容",
+        "资源关闭",
+        "transient 非加密"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "127a2b2798b4fda3064e73ac527a1532795d2481ae0f88141f4313957599a0d8"
+    },
+    {
+      "id": "java-network-concurrency-networking",
+      "title": "网络编程",
+      "path": "content/java/java-network-concurrency/networking.md",
+      "source_url": "https://www.runoob.com/java/java-networking.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "URL 主机/路径",
+        "InetAddress loopback",
+        "Socket 名称"
+      ],
+      "partial": [
+        "代码练习是 URL 本地解析，不是网络通信 mock"
+      ],
+      "remaining": [
+        "TCP/HTTP 真正协议流程",
+        "超时/关闭",
+        "编码",
+        "离线可验证本地通信设计"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "da9d3a7ba4f01e407eb1cee655ca41ebe3ac15de686d3ff466f4b3749775f0c7"
+    },
+    {
+      "id": "java-network-concurrency-sending-email",
+      "title": "发送邮件",
+      "path": "content/java/java-network-concurrency/sending-email.md",
+      "source_url": "https://www.runoob.com/java/java-sending-email.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "简化地址正则",
+        "字符串拆分",
+        "SMTP 角色提示"
+      ],
+      "partial": [
+        "只验证简化格式，不代表邮件格式标准或可达性"
+      ],
+      "remaining": [
+        "邮件 API/依赖",
+        "身份验证/TLS",
+        "发件与收件模型",
+        "失败与重试"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "6b764f4d05ef84e862fab09924a8cd09d4415dad296cdc3466145e53a6b4e3ed"
+    },
+    {
+      "id": "java-network-concurrency-multithreading",
+      "title": "多线程",
+      "path": "content/java/java-network-concurrency/multithreading.md",
+      "source_url": "https://www.runoob.com/java/java-multithreading.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "Thread/Runnable",
+        "start/join",
+        "共享状态需要同步提示"
+      ],
+      "partial": [
+        "原题串行求和不能证明并发正确"
+      ],
+      "remaining": [
+        "竞态实际例子",
+        "synchronized/Lock",
+        "可见性",
+        "中断",
+        "执行器",
+        "死锁"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "57a8fd0e2382417ae0111c24a9d573de8cdffbf925bc40637bdb81e968211907"
+    },
+    {
+      "id": "java-network-concurrency-applet-basics",
+      "title": "Applet 基础",
+      "path": "content/java/java-network-concurrency/applet-basics.md",
+      "source_url": "https://www.runoob.com/java/java-applet-basics.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "历史技术提示",
+        "模拟 init/start/stop/destroy"
+      ],
+      "partial": [
+        "固定模拟序列不等于实际回调保证"
+      ],
+      "remaining": [
+        "生命周期可多次 start/stop 的历史行为",
+        "JDK17 弃用移除标记",
+        "迁移方向"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "4b03f4b43bdd0e967304a4fc4b06c5c8f7c6b45813150682a494946be602fabb"
+    },
+    {
+      "id": "java-modern-ecosystem-java8-features",
+      "title": "Java 8 新特性",
+      "path": "content/java/java-modern-ecosystem/java8-features.md",
+      "source_url": "https://www.runoob.com/java/java8-new-features.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "Lambda",
+        "Stream filter/sorted/mapToInt",
+        "方法引用"
+      ],
+      "partial": [
+        "Optional 仅列名",
+        "示例含 Java9 List.of"
+      ],
+      "remaining": [
+        "函数式接口",
+        "Optional",
+        "惰性/终端",
+        "Collector",
+        "版本来源说明"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "87499227abfc1786dde9aa852986e4dc3087bd072f54cb56a3cf2387dce6bea9"
+    },
+    {
+      "id": "java-modern-ecosystem-java9-features",
+      "title": "Java 9 新特性",
+      "path": "content/java/java-modern-ecosystem/java9-features.md",
+      "source_url": "https://www.runoob.com/java/java9-new-features.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "List.of/Map.of",
+        "模块与私有接口方法名称"
+      ],
+      "partial": [
+        "模块没有声明实例",
+        "不可修改与深不可变未区分"
+      ],
+      "remaining": [
+        "module-info requires/exports",
+        "Set/Map 重复/null",
+        "Map.ofEntries",
+        "JShell"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "04f6ee859d96b6749b98b41eb6b61e80fcd892a09367160dcd7d773e4cddbf8f"
+    },
+    {
+      "id": "java-modern-ecosystem-mysql-connect",
+      "title": "MySQL 连接",
+      "path": "content/java/java-modern-ecosystem/mysql-connect.md",
+      "source_url": "https://www.runoob.com/java/java-mysql-connect.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "JDBC URL 前缀",
+        "SQL ? 字面占位说明"
+      ],
+      "partial": [
+        "字符串检查没有真实 JDBC 与注入防护执行"
+      ],
+      "remaining": [
+        "Connection/PreparedStatement/ResultSet",
+        "绑定参数",
+        "事务/资源",
+        "驱动与机密管理"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "2630e194753d3ccabb93e5292f2e5fe772ccd0d46437c3166a3906ddb5ce0973"
+    },
+    {
+      "id": "java-modern-ecosystem-libraries",
+      "title": "常用类库",
+      "path": "content/java/java-modern-ecosystem/libraries.md",
+      "source_url": "https://www.runoob.com/java/java-libs.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "库用途分类",
+        "依赖成本/许可证提示"
+      ],
+      "partial": [
+        "只输出库名和 switch 分类"
+      ],
+      "remaining": [
+        "依赖管理",
+        "版本/来源验证",
+        "最小真实库调用",
+        "标准库替代判断"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "f7191de06c9c1548106292ce6b35f5919b4a569655bb8bbe5a6a2dba6e54536b"
+    },
+    {
+      "id": "java-capstone-examples",
+      "title": "Java 实例",
+      "path": "content/java/java-capstone/examples.md",
+      "source_url": "https://www.runoob.com/java/java-examples.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "数组偶数计数",
+        "文本命令解析"
+      ],
+      "partial": [
+        "单次小题不能代替项目集成"
+      ],
+      "remaining": [
+        "组合类型/集合/异常小项目",
+        "输入契约",
+        "模块边界",
+        "可解释测试"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "eaaf0ac4e5d30deb0e6a6bff7b6c0153ce3fadc2ffbecfbf223f8ea606e2ad27"
+    },
+    {
+      "id": "java-capstone-quiz",
+      "title": "Java 测验",
+      "path": "content/java/java-capstone/quiz.md",
+      "source_url": "https://www.runoob.com/quiz/java-quiz.html",
+      "source_snapshot_date": "2026-08-23",
+      "source_registry_matches": 1,
+      "status": "partial",
+      "change": "not_changed",
+      "covered": [
+        "T/F 数量统计",
+        "题目序号展示"
+      ],
+      "partial": [
+        "代码题偏计数，不能代表全部 Java 能力"
+      ],
+      "remaining": [
+        "多主题迁移题",
+        "编译错误分析",
+        "解释型问题",
+        "实践能力分层评估"
+      ],
+      "assessment": "manual local-body review; technical depth baseline Java SE 17, not source-text equivalence",
+      "sha256": "c9438328ac28944eb96af924e90d0b28ec1025a27e1b4dc3ad4673b678002d2f"
+    }
+  ]
+}

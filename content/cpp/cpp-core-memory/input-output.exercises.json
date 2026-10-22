@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-core-memory-input-output",
+  "questions": [
+    {
+      "id": "cpp-core-memory-input-output-k01",
+      "type": "knowledge",
+      "prompt": "std::cin >> 连续读取多个数值时，分隔符可以是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "任意空白（空格、制表符、换行）"
+        },
+        {
+          "id": "b",
+          "text": "只能是逗号"
+        },
+        {
+          "id": "c",
+          "text": "必须是分号"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-core-memory-input-output-k02",
+      "type": "knowledge",
+      "prompt": "std::setw(5) 输出整数 42 的结果是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "\"   42\"（右对齐，左侧补空格）"
+        },
+        {
+          "id": "b",
+          "text": "\"42   \"（左对齐，右侧补空格）"
+        },
+        {
+          "id": "c",
+          "text": "\"42000\"（右侧补零）"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-core-memory-input-output-k03",
+      "type": "knowledge",
+      "prompt": "std::cin 读取到类型不符的输入后会？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "自动跳过并继续读取下一个值"
+        },
+        {
+          "id": "b",
+          "text": "进入失败态，后续读取全部失效"
+        },
+        {
+          "id": "c",
+          "text": "立即终止程序"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-core-memory-input-output-c01",
+      "type": "code",
+      "prompt": "读取整数 n 与宽度 w（1 ≤ w ≤ 20），使用 std::setw(w) 右对齐输出 n（不足宽度左侧补空格，超出宽度原样输出）。",
+      "starter_code": "#include <iomanip>\n#include <iostream>\n\nint main() {\n    int n = 0;\n    int w = 0;\n    std::cin >> n >> w;\n    // 用 setw 定宽输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 42 5 时输出三个空格加 42。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iomanip>\n#include <iostream>\n\nint main() {\n    int n = 0;\n    int w = 0;\n    std::cin >> n >> w;\n    std::cout << std::setw(w) << n << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "宽度等于位数时原样输出。",
+          "负数按总宽度（含负号）右对齐。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "42 5\n",
+            "stdout": "   42\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "123 3\n",
+            "stdout": "123\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-7 4\n",
+            "stdout": "  -7\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

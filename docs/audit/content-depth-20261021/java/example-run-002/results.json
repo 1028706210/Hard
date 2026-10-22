@@ -1,0 +1,19 @@
+{
+  "javac": "C:/Program Files/Common Files/Oracle/Java/javapath/javac.exe",
+  "java": "C:/Program Files/Common Files/Oracle/Java/javapath/java.exe",
+  "results": [
+    {
+      "lesson_path": "content/java/java-foundations/documentation.md",
+      "example_index": 1,
+      "code_sha256": "984b9ce25fa2de9d196ef74c241c212909458c08c5f0dc34057907582b572742",
+      "status": "pass",
+      "compile_exit_code": 0,
+      "compile_stdout": "",
+      "compile_stderr": "",
+      "exit_code": 0,
+      "stdout": "9\nrejected\n",
+      "stderr": "",
+      "expected_stdout": "9\nrejected\n"
+    }
+  ]
+}

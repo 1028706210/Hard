@@ -1,0 +1,278 @@
+[
+  {
+    "label": "csharp-oop-classes-1",
+    "source_lesson": "csharp-oop/classes.md",
+    "compiler_exit": 0,
+    "compiler_output": "warning CS2023: /noconfig 选项是在响应文件中指定的，因此被忽略\n",
+    "runtime_exit": 0,
+    "actual_stdout": [
+      "8",
+      "True"
+    ],
+    "expected_stdout": [
+      "8",
+      "True"
+    ],
+    "passed": true
+  },
+  {
+    "label": "csharp-oop-structs-1",
+    "source_lesson": "csharp-oop/structs.md",
+    "compiler_exit": 0,
+    "compiler_output": "warning CS2023: /noconfig 选项是在响应文件中指定的，因此被忽略\n",
+    "runtime_exit": 0,
+    "actual_stdout": [
+      "1",
+      "2"
+    ],
+    "expected_stdout": [
+      "1",
+      "2"
+    ],
+    "passed": true
+  },
+  {
+    "label": "csharp-oop-structs-2",
+    "source_lesson": "csharp-oop/structs.md",
+    "compiler_exit": 0,
+    "compiler_output": "warning CS2023: /noconfig 选项是在响应文件中指定的，因此被忽略\n",
+    "runtime_exit": 0,
+    "actual_stdout": [
+      "3"
+    ],
+    "expected_stdout": [
+      "3"
+    ],
+    "passed": true
+  },
+  {
+    "label": "csharp-oop-inheritance-1",
+    "source_lesson": "csharp-oop/inheritance.md",
+    "compiler_exit": 0,
+    "compiler_output": "warning CS2023: /noconfig 选项是在响应文件中指定的，因此被忽略\n",
+    "runtime_exit": 0,
+    "actual_stdout": [
+      "base:pen",
+      "derived"
+    ],
+    "expected_stdout": [
+      "base:pen",
+      "derived"
+    ],
+    "passed": true
+  },
+  {
+    "label": "csharp-oop-polymorphism-1",
+    "source_lesson": "csharp-oop/polymorphism.md",
+    "compiler_exit": 0,
+    "compiler_output": "warning CS2023: /noconfig 选项是在响应文件中指定的，因此被忽略\n",
+    "runtime_exit": 0,
+    "actual_stdout": [
+      "meow",
+      "animal",
+      "cat"
+    ],
+    "expected_stdout": [
+      "meow",
+      "animal",
+      "cat"
+    ],
+    "passed": true
+  },
+  {
+    "label": "csharp-oop-polymorphism-2",
+    "source_lesson": "csharp-oop/polymorphism.md",
+    "compiler_exit": 0,
+    "compiler_output": "warning CS2023: /noconfig 选项是在响应文件中指定的，因此被忽略\n",
+    "runtime_exit": 0,
+    "actual_stdout": [
+      "1"
+    ],
+    "expected_stdout": [
+      "1"
+    ],
+    "passed": true
+  },
+  {
+    "label": "csharp-oop-interfaces-1",
+    "source_lesson": "csharp-oop/interfaces.md",
+    "compiler_exit": 0,
+    "compiler_output": "warning CS2023: /noconfig 选项是在响应文件中指定的，因此被忽略\n",
+    "runtime_exit": 0,
+    "actual_stdout": [
+      "report"
+    ],
+    "expected_stdout": [
+      "report"
+    ],
+    "passed": true
+  },
+  {
+    "label": "csharp-oop-nullable-1",
+    "source_lesson": "csharp-oop/nullable.md",
+    "compiler_exit": 0,
+    "compiler_output": "warning CS2023: /noconfig 选项是在响应文件中指定的，因此被忽略\n",
+    "runtime_exit": 0,
+    "actual_stdout": [
+      "-1",
+      "0",
+      "True",
+      "False",
+      "0"
+    ],
+    "expected_stdout": [
+      "-1",
+      "0",
+      "True",
+      "False",
+      "0"
+    ],
+    "passed": true
+  },
+  {
+    "label": "csharp-oop-nullable-2",
+    "source_lesson": "csharp-oop/nullable.md",
+    "compiler_exit": 0,
+    "compiler_output": "warning CS2023: /noconfig 选项是在响应文件中指定的，因此被忽略\n",
+    "runtime_exit": 0,
+    "actual_stdout": [
+      "-1",
+      "2"
+    ],
+    "expected_stdout": [
+      "-1",
+      "2"
+    ],
+    "passed": true
+  },
+  {
+    "label": "csharp-language-features-properties-1",
+    "source_lesson": "csharp-language-features/properties.md",
+    "compiler_exit": 0,
+    "compiler_output": "warning CS2023: /noconfig 选项是在响应文件中指定的，因此被忽略\n",
+    "runtime_exit": 0,
+    "actual_stdout": [
+      "Hello, Lin"
+    ],
+    "expected_stdout": [
+      "Hello, Lin"
+    ],
+    "passed": true
+  },
+  {
+    "label": "csharp-language-features-indexer-1",
+    "source_lesson": "csharp-language-features/indexer.md",
+    "compiler_exit": 0,
+    "compiler_output": "warning CS2023: /noconfig 选项是在响应文件中指定的，因此被忽略\n",
+    "runtime_exit": 0,
+    "actual_stdout": [
+      "7",
+      "0"
+    ],
+    "expected_stdout": [
+      "7",
+      "0"
+    ],
+    "passed": true
+  },
+  {
+    "label": "csharp-language-features-delegates-1",
+    "source_lesson": "csharp-language-features/delegates.md",
+    "compiler_exit": 0,
+    "compiler_output": "warning CS2023: /noconfig 选项是在响应文件中指定的，因此被忽略\n",
+    "runtime_exit": 0,
+    "actual_stdout": [
+      "-4",
+      "-16"
+    ],
+    "expected_stdout": [
+      "-4",
+      "-16"
+    ],
+    "passed": true
+  },
+  {
+    "label": "csharp-language-features-delegates-2",
+    "source_lesson": "csharp-language-features/delegates.md",
+    "compiler_exit": 0,
+    "compiler_output": "warning CS2023: /noconfig 选项是在响应文件中指定的，因此被忽略\n",
+    "runtime_exit": 0,
+    "actual_stdout": [
+      "6"
+    ],
+    "expected_stdout": [
+      "6"
+    ],
+    "passed": true
+  },
+  {
+    "label": "csharp-language-features-events-1",
+    "source_lesson": "csharp-language-features/events.md",
+    "compiler_exit": 0,
+    "compiler_output": "warning CS2023: /noconfig 选项是在响应文件中指定的，因此被忽略\n",
+    "runtime_exit": 0,
+    "actual_stdout": [
+      "31"
+    ],
+    "expected_stdout": [
+      "31"
+    ],
+    "passed": true
+  },
+  {
+    "label": "csharp-language-features-generics-1",
+    "source_lesson": "csharp-language-features/generics.md",
+    "compiler_exit": 0,
+    "compiler_output": "warning CS2023: /noconfig 选项是在响应文件中指定的，因此被忽略\n",
+    "runtime_exit": 0,
+    "actual_stdout": [
+      "9",
+      "True",
+      "False"
+    ],
+    "expected_stdout": [
+      "9",
+      "True",
+      "False"
+    ],
+    "passed": true
+  },
+  {
+    "label": "csharp-language-features-collections-1",
+    "source_lesson": "csharp-language-features/collections.md",
+    "compiler_exit": 0,
+    "compiler_output": "warning CS2023: /noconfig 选项是在响应文件中指定的，因此被忽略\n",
+    "runtime_exit": 0,
+    "actual_stdout": [
+      "True",
+      "False",
+      "2",
+      "5"
+    ],
+    "expected_stdout": [
+      "True",
+      "False",
+      "2",
+      "5"
+    ],
+    "passed": true
+  },
+  {
+    "label": "csharp-language-features-anonymous-methods-1",
+    "source_lesson": "csharp-language-features/anonymous-methods.md",
+    "compiler_exit": 0,
+    "compiler_output": "warning CS2023: /noconfig 选项是在响应文件中指定的，因此被忽略\n",
+    "runtime_exit": 0,
+    "actual_stdout": [
+      "12",
+      "0",
+      "1"
+    ],
+    "expected_stdout": [
+      "12",
+      "0",
+      "1"
+    ],
+    "passed": true
+  }
+]

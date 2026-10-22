@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-stl-containers-iomanip",
+  "questions": [
+    {
+      "id": "cpp-stl-containers-iomanip-k01",
+      "type": "knowledge",
+      "prompt": "std::setw(8) 对后续输出的影响范围是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "只对字符串生效"
+        },
+        {
+          "id": "b",
+          "text": "之后所有输出都生效"
+        },
+        {
+          "id": "c",
+          "text": "只对紧随其后的一个输出生效"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-iomanip-k02",
+      "type": "knowledge",
+      "prompt": "输出固定两位小数应组合使用？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "%.2f 的 printf 格式"
+        },
+        {
+          "id": "b",
+          "text": "std::setw(2) 与 std::left"
+        },
+        {
+          "id": "c",
+          "text": "std::fixed 与 std::setprecision(2)"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-iomanip-k03",
+      "type": "knowledge",
+      "prompt": "设置的宽度小于实际内容长度时会？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "截断内容"
+        },
+        {
+          "id": "b",
+          "text": "输出报错"
+        },
+        {
+          "id": "c",
+          "text": "自动扩展宽度完整输出"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-iomanip-c01",
+      "type": "code",
+      "prompt": "读取一个浮点数 x 与整数宽度 w（合同范围：x 绝对值不超过 1000，w 3..20，含两端），用 fixed 与 setprecision(2) 保留两位小数，再用 setw(w) 右对齐输出该数（宽度不足左侧补空格）并换行。输入无法解析或越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <iomanip>\n#include <iostream>\n\nint main() {\n    // 读取 x 与 w，按宽度和两位小数输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3.14159 与 8 时输出四个空格加 3.14（即「    3.14」）。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iomanip>\n#include <iostream>\n\nint main() {\n    double x = 0.0;\n    int w = 0;\n    if (!(std::cin >> x >> w)) return 1;\n    if (x < -1000 || x > 1000) return 1;\n    if (w < 3 || w > 20) return 1;\n    std::cout << std::setw(w) << std::fixed << std::setprecision(2) << x << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "宽度刚好等于内容长度时不补空格。",
+          "负数按两位小数右对齐输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3.14159 8\n",
+            "stdout": "    3.14\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "2.5 4\n",
+            "stdout": "2.50\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-1.236 9\n",
+            "stdout": "    -1.24\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

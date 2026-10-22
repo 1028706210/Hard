@@ -73,35 +73,71 @@
     {
       "id": "python-foundations-interpreter-c01",
       "type": "code",
-      "prompt": "计算 7 加 8，并输出结果。",
-      "starter_code": "# 输出计算结果",
+      "prompt": "把交互式计算保存为可重复运行的小程序：读取两个以空白分隔的整数并输出它们的和。例如 7 8 输出 15。零和负数有效；空输入、非整数或不是恰好两个数时不输出内容，退出码为 1。起始代码负责读取校验，得到 left 和 right，只需补上求和输出。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    left, right = map(int, text.split())\nexcept ValueError:\n    raise SystemExit(1)\n# 按题面补上结果计算与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '7 8'，输出 '15'，退出码 0。",
+        "输入 '2 3'，输出 '5'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-foundations-interpreter-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    print(7 + 8)\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    left, right = map(int, text.split())\nexcept ValueError:\n    raise SystemExit(1)\nprint(left + right)\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面声明的有效边界。",
+          "不符合约定的输入不得产生输出，退出码为 1。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "7 8\n",
             "stdout": "15\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2 3\n",
+            "stdout": "5\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-foundations-interpreter-c01\n",
+            "stdin": "0 0\n",
+            "stdout": "0\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "-7 8\n",
+            "stdout": "1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-7 -8\n",
+            "stdout": "-15\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": " 100\t200 \n",
+            "stdout": "300\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "7\n",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "7 8 9\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "7 x\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-capstone-random",
+  "questions": [
+    {
+      "id": "cpp-capstone-random-k01",
+      "type": "knowledge",
+      "prompt": "std::mt19937 用相同种子构造后生成的序列？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "每次运行都不同"
+        },
+        {
+          "id": "b",
+          "text": "完全相同（确定性引擎）"
+        },
+        {
+          "id": "c",
+          "text": "长度不同"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-capstone-random-k02",
+      "type": "knowledge",
+      "prompt": "mt19937 产生的随机数不适合用作？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "测试夹具的可复现数据"
+        },
+        {
+          "id": "b",
+          "text": "模拟抽样的伪随机源"
+        },
+        {
+          "id": "c",
+          "text": "令牌、密钥等安全用途"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-random-k03",
+      "type": "knowledge",
+      "prompt": "uniform_int_distribution<int>(1, 100) 的取值范围是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "半开区间 [1, 100)"
+        },
+        {
+          "id": "b",
+          "text": "开区间 (1, 100)"
+        },
+        {
+          "id": "c",
+          "text": "闭区间 [1, 100]"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-random-c01",
+      "type": "code",
+      "prompt": "读取无符号种子 s（合同范围 0..10000，含两端）。用 std::mt19937 以该种子构造引擎，配合 std::uniform_int_distribution<int> 分布（闭区间 1..100），输出前三个随机数（以单个空格分隔）一行。种子越界、无法解析或缺失时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cstdio>\n#include <random>\n\nint main() {\n    // 读取种子，mt19937 + uniform_int_distribution 输出前三个数\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入种子 42 时输出 96 80 38。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <cstdio>\n#include <random>\n\nint main() {\n    unsigned seed = 0;\n    if (std::scanf(\"%u\", &seed) != 1) return 1;\n    if (seed > 10000) return 1;\n    std::mt19937 engine(seed);\n    std::uniform_int_distribution<int> spread(1, 100);\n    std::printf(\"%d %d %d\\n\", spread(engine), spread(engine), spread(engine));\n    return 0;\n}\n",
+        "hidden_tests": [
+          "种子 7 输出 78 23 8。",
+          "种子 0 输出 72 60 55。",
+          "种子 10001 越界不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "42\n",
+            "stdout": "96 80 38\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "7\n",
+            "stdout": "78 23 8\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "0\n",
+            "stdout": "72 60 55\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "10001\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

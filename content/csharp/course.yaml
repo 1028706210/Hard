@@ -1,0 +1,156 @@
+language: csharp
+title: C#
+growth:
+  review_milestone_points: 15
+  badge_points:
+    first_lesson: 20
+    first_module_mastery: 30
+    seven_day_streak: 40
+placement_tests:
+  - id: csharp-foundations-placement
+    module_id: csharp-foundations
+    question_ids:
+      - csharp-foundations-tutorial-k01
+      - csharp-foundations-data-types-k02
+      - csharp-foundations-loops-k03
+    passing_score: 85
+  - id: csharp-oop-placement
+    module_id: csharp-oop
+    question_ids:
+      - csharp-oop-encapsulation-k01
+      - csharp-oop-arrays-k02
+      - csharp-oop-polymorphism-k01
+    passing_score: 85
+  - id: csharp-io-metadata-placement
+    module_id: csharp-io-metadata
+    question_ids:
+      - csharp-io-metadata-preprocessor-directives-k01
+      - csharp-io-metadata-exception-handling-k02
+      - csharp-io-metadata-reflection-k03
+    passing_score: 85
+  - id: csharp-language-features-placement
+    module_id: csharp-language-features
+    question_ids:
+      - csharp-language-features-properties-k01
+      - csharp-language-features-delegates-k02
+      - csharp-language-features-generics-k03
+    passing_score: 85
+  - id: csharp-capstone-placement
+    module_id: csharp-capstone
+    question_ids:
+      - csharp-foundations-tutorial-k01
+      - csharp-oop-classes-k01
+      - csharp-io-metadata-exception-handling-k01
+      - csharp-language-features-generics-k01
+      - csharp-capstone-language-quiz-k01
+    passing_score: 85
+modules:
+  - id: csharp-foundations
+    title: C# 入门、类型与控制流
+    prerequisites: []
+    source_coverage:
+      - {source_id: csharp-tutorial, lesson_id: csharp-foundations-tutorial}
+      - {source_id: csharp-intro, lesson_id: csharp-foundations-introduction}
+      - {source_id: csharp-environment-setup, lesson_id: csharp-foundations-environment}
+      - {source_id: csharp-program-structure, lesson_id: csharp-foundations-program-structure}
+      - {source_id: csharp-basic-syntax, lesson_id: csharp-foundations-basic-syntax}
+      - {source_id: csharp-data-types, lesson_id: csharp-foundations-data-types}
+      - {source_id: csharp-type-conversion, lesson_id: csharp-foundations-conversion}
+      - {source_id: csharp-variables, lesson_id: csharp-foundations-variables}
+      - {source_id: csharp-variable-scope, lesson_id: csharp-foundations-scope}
+      - {source_id: csharp-constants, lesson_id: csharp-foundations-constants}
+      - {source_id: csharp-operators, lesson_id: csharp-foundations-operators}
+      - {source_id: csharp-decision, lesson_id: csharp-foundations-decisions}
+      - {source_id: csharp-loops, lesson_id: csharp-foundations-loops}
+    lessons:
+      - {id: csharp-foundations-tutorial, path: csharp-foundations/tutorial.md}
+      - {id: csharp-foundations-introduction, path: csharp-foundations/introduction.md}
+      - {id: csharp-foundations-environment, path: csharp-foundations/environment.md}
+      - {id: csharp-foundations-program-structure, path: csharp-foundations/program-structure.md}
+      - {id: csharp-foundations-basic-syntax, path: csharp-foundations/basic-syntax.md}
+      - {id: csharp-foundations-data-types, path: csharp-foundations/data-types.md}
+      - {id: csharp-foundations-conversion, path: csharp-foundations/conversion.md}
+      - {id: csharp-foundations-variables, path: csharp-foundations/variables.md}
+      - {id: csharp-foundations-scope, path: csharp-foundations/scope.md}
+      - {id: csharp-foundations-constants, path: csharp-foundations/constants.md}
+      - {id: csharp-foundations-operators, path: csharp-foundations/operators.md}
+      - {id: csharp-foundations-decisions, path: csharp-foundations/decisions.md}
+      - {id: csharp-foundations-loops, path: csharp-foundations/loops.md}
+  - id: csharp-oop
+    title: C# 数据结构与面向对象
+    prerequisites: [csharp-foundations]
+    source_coverage:
+      - {source_id: csharp-encapsulation, lesson_id: csharp-oop-encapsulation}
+      - {source_id: csharp-methods, lesson_id: csharp-oop-methods}
+      - {source_id: csharp-nullable, lesson_id: csharp-oop-nullable}
+      - {source_id: csharp-array, lesson_id: csharp-oop-arrays}
+      - {source_id: csharp-string, lesson_id: csharp-oop-strings}
+      - {source_id: csharp-struct, lesson_id: csharp-oop-structs}
+      - {source_id: csharp-enum, lesson_id: csharp-oop-enums}
+      - {source_id: csharp-class, lesson_id: csharp-oop-classes}
+      - {source_id: csharp-inheritance, lesson_id: csharp-oop-inheritance}
+      - {source_id: csharp-polymorphism, lesson_id: csharp-oop-polymorphism}
+      - {source_id: csharp-operator-overloading, lesson_id: csharp-oop-operator-overloading}
+      - {source_id: csharp-interface, lesson_id: csharp-oop-interfaces}
+      - {source_id: csharp-namespace, lesson_id: csharp-oop-namespaces}
+    lessons:
+      - {id: csharp-oop-encapsulation, path: csharp-oop/encapsulation.md}
+      - {id: csharp-oop-methods, path: csharp-oop/methods.md}
+      - {id: csharp-oop-nullable, path: csharp-oop/nullable.md}
+      - {id: csharp-oop-arrays, path: csharp-oop/arrays.md}
+      - {id: csharp-oop-strings, path: csharp-oop/strings.md}
+      - {id: csharp-oop-structs, path: csharp-oop/structs.md}
+      - {id: csharp-oop-enums, path: csharp-oop/enums.md}
+      - {id: csharp-oop-classes, path: csharp-oop/classes.md}
+      - {id: csharp-oop-inheritance, path: csharp-oop/inheritance.md}
+      - {id: csharp-oop-polymorphism, path: csharp-oop/polymorphism.md}
+      - {id: csharp-oop-operator-overloading, path: csharp-oop/operator-overloading.md}
+      - {id: csharp-oop-interfaces, path: csharp-oop/interfaces.md}
+      - {id: csharp-oop-namespaces, path: csharp-oop/namespaces.md}
+  - id: csharp-io-metadata
+    title: C# IO、异常与元数据
+    prerequisites: [csharp-oop]
+    source_coverage:
+      - {source_id: csharp-preprocessor-directives, lesson_id: csharp-io-metadata-preprocessor-directives}
+      - {source_id: csharp-regular-expressions, lesson_id: csharp-io-metadata-regular-expressions}
+      - {source_id: csharp-exception-handling, lesson_id: csharp-io-metadata-exception-handling}
+      - {source_id: csharp-file-io, lesson_id: csharp-io-metadata-file-io}
+      - {source_id: csharp-attribute, lesson_id: csharp-io-metadata-attributes}
+      - {source_id: csharp-reflection, lesson_id: csharp-io-metadata-reflection}
+    lessons:
+      - {id: csharp-io-metadata-preprocessor-directives, path: csharp-io-metadata/preprocessor-directives.md}
+      - {id: csharp-io-metadata-regular-expressions, path: csharp-io-metadata/regular-expressions.md}
+      - {id: csharp-io-metadata-exception-handling, path: csharp-io-metadata/exception-handling.md}
+      - {id: csharp-io-metadata-file-io, path: csharp-io-metadata/file-io.md}
+      - {id: csharp-io-metadata-attributes, path: csharp-io-metadata/attributes.md}
+      - {id: csharp-io-metadata-reflection, path: csharp-io-metadata/reflection.md}
+  - id: csharp-language-features
+    title: C# 属性、委托与集合
+    prerequisites: [csharp-io-metadata]
+    source_coverage:
+      - {source_id: csharp-property, lesson_id: csharp-language-features-properties}
+      - {source_id: csharp-indexer, lesson_id: csharp-language-features-indexer}
+      - {source_id: csharp-delegate, lesson_id: csharp-language-features-delegates}
+      - {source_id: csharp-event, lesson_id: csharp-language-features-events}
+      - {source_id: csharp-collection, lesson_id: csharp-language-features-collections}
+      - {source_id: csharp-generic, lesson_id: csharp-language-features-generics}
+      - {source_id: csharp-anonymous-methods, lesson_id: csharp-language-features-anonymous-methods}
+    lessons:
+      - {id: csharp-language-features-properties, path: csharp-language-features/properties.md}
+      - {id: csharp-language-features-indexer, path: csharp-language-features/indexer.md}
+      - {id: csharp-language-features-delegates, path: csharp-language-features/delegates.md}
+      - {id: csharp-language-features-events, path: csharp-language-features/events.md}
+      - {id: csharp-language-features-collections, path: csharp-language-features/collections.md}
+      - {id: csharp-language-features-generics, path: csharp-language-features/generics.md}
+      - {id: csharp-language-features-anonymous-methods, path: csharp-language-features/anonymous-methods.md}
+  - id: csharp-capstone
+    title: C# 不安全代码、并发、测验与结业
+    prerequisites: [csharp-language-features]
+    source_coverage:
+      - {source_id: csharp-unsafe-codes, lesson_id: csharp-capstone-unsafe-code}
+      - {source_id: csharp-multithreading, lesson_id: csharp-capstone-multithreading}
+      - {source_id: csharp-quiz, lesson_id: csharp-capstone-language-quiz}
+    lessons:
+      - {id: csharp-capstone-unsafe-code, path: csharp-capstone/unsafe-code.md}
+      - {id: csharp-capstone-multithreading, path: csharp-capstone/multithreading.md}
+      - {id: csharp-capstone-language-quiz, path: csharp-capstone/language-quiz.md}

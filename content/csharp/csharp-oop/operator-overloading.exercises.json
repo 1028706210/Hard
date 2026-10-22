@@ -1,0 +1,122 @@
+{
+  "lesson_id": "csharp-oop-operator-overloading",
+  "questions": [
+    {
+      "id": "csharp-oop-operator-overloading-k01",
+      "type": "knowledge",
+      "prompt": "定义运算符重载时，方法必须声明为什么形式？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "public static，并用 operator 关键字后跟运算符"
+        },
+        {
+          "id": "b",
+          "text": "普通的公开实例方法"
+        },
+        {
+          "id": "c",
+          "text": "private 静态函数即可"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-operator-overloading-k02",
+      "type": "knowledge",
+      "prompt": "运算符重载与方法重载的共同点是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "都在编译期按操作数或参数的静态类型选择实现"
+        },
+        {
+          "id": "b",
+          "text": "都在运行期按对象实际类型分派"
+        },
+        {
+          "id": "c",
+          "text": "都要求标记 virtual"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-operator-overloading-k03",
+      "type": "knowledge",
+      "prompt": "为一个类型定义 operator == 时，编译器还要求什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "同时定义 operator !="
+        },
+        {
+          "id": "b",
+          "text": "同时定义 operator +"
+        },
+        {
+          "id": "c",
+          "text": "不需要任何配套成员"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-operator-overloading-c01",
+      "type": "code",
+      "prompt": "读取一行，用空格分隔四个 long 整数 x1 y1 x2 y2（每个分量绝对值不超过 1000000000）。定义含 X、Y 字段的 struct Vector 并重载 + 运算符，输出两个向量相加后的结果，格式为 `sx sy`（空格分隔）。解析失败或字段数不对时不输出并以退出码 1 结束。",
+      "starter_code": "var tokens = (Console.ReadLine() ?? \"\").Split(' ', StringSplitOptions.RemoveEmptyEntries);\n// 解析两个向量，用重载的 + 求和并输出 sx sy\n",
+      "visible_tests": [
+        "输入 1 2 3 4 时输出 4 6。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var tokens = (Console.ReadLine() ?? \"\").Split(' ', StringSplitOptions.RemoveEmptyEntries);\nif (tokens.Length != 4) Environment.Exit(1);\nif (!long.TryParse(tokens[0], out var x1)) Environment.Exit(1);\nif (!long.TryParse(tokens[1], out var y1)) Environment.Exit(1);\nif (!long.TryParse(tokens[2], out var x2)) Environment.Exit(1);\nif (!long.TryParse(tokens[3], out var y2)) Environment.Exit(1);\nvar sum = new Vector(x1, y1) + new Vector(x2, y2);\nConsole.WriteLine(sum.X + \" \" + sum.Y);\n\nstruct Vector\n{\n    public long X;\n    public long Y;\n\n    public Vector(long x, long y)\n    {\n        X = x;\n        Y = y;\n    }\n\n    public static Vector operator +(Vector left, Vector right)\n    {\n        return new Vector(left.X + right.X, left.Y + right.Y);\n    }\n}\n",
+        "hidden_tests": [
+          "互为相反向量时输出 0 0。",
+          "分量达到 1000000000 量级时精确输出，不发生溢出。",
+          "只有三个字段时无输出并以退出码 1 结束。",
+          "第一个字段不是整数时无输出并以退出码 1 结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1 2 3 4\n",
+            "stdout": "4 6\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "-1 -1 1 1\n",
+            "stdout": "0 0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1000000000 0 1000000000 0\n",
+            "stdout": "2000000000 0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1 2 3\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "a 2 3 4\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

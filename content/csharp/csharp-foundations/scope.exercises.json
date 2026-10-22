@@ -1,0 +1,110 @@
+{
+  "lesson_id": "csharp-foundations-scope",
+  "questions": [
+    {
+      "id": "csharp-foundations-scope-k01",
+      "type": "knowledge",
+      "prompt": "在方法内部声明的局部变量通常在哪些位置可见？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "整个程序集所有文件"
+        },
+        {
+          "id": "b",
+          "text": "声明之前的任意位置"
+        },
+        {
+          "id": "c",
+          "text": "从声明点开始的所属代码块及其允许访问的嵌套块"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "csharp-foundations-scope-k02",
+      "type": "knowledge",
+      "prompt": "哪种写法可以在两个互不嵌套的块中重复使用临时变量名 temp？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "{ int temp = 1; } { int temp = 2; }"
+        },
+        {
+          "id": "b",
+          "text": "{ int temp = 1; { int temp = 2; } }"
+        },
+        {
+          "id": "c",
+          "text": "int temp = 1; int temp = 2;"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-foundations-scope-k03",
+      "type": "knowledge",
+      "prompt": "在花括号块内声明 temp，离开该块后再读取 temp 会怎样？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "temp 自动提升为字段"
+        },
+        {
+          "id": "b",
+          "text": "因超出作用域而编译失败"
+        },
+        {
+          "id": "c",
+          "text": "temp 自动变成全局变量"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-foundations-scope-c01",
+      "type": "code",
+      "prompt": "依次读取三个整数。用外层 total 保存总和，并在三个相邻代码块中重复声明块内变量 value、把它加入 total，最后输出 total。",
+      "starter_code": "var total = 0;\n// 建立三个相邻代码块，每块读取自己的 value 并累计\n\nConsole.WriteLine(total);\n",
+      "visible_tests": [
+        "输入 2、3、4 时输出 9。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var total = 0;\n{\n    var value = int.Parse(Console.ReadLine() ?? \"\");\n    total += value;\n}\n{\n    var value = int.Parse(Console.ReadLine() ?? \"\");\n    total += value;\n}\n{\n    var value = int.Parse(Console.ReadLine() ?? \"\");\n    total += value;\n}\nConsole.WriteLine(total);\n",
+        "hidden_tests": [
+          "负数仍由块内临时变量累计。",
+          "三个零的总和为零。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "2\n3\n4\n",
+            "stdout": "9\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "-2\n5\n-1\n",
+            "stdout": "2\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "0\n0\n0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -73,35 +73,66 @@
     {
       "id": "python-flow-collections-tuples-c01",
       "type": "code",
-      "prompt": "创建 (3, 4) 并输出第二项。",
-      "starter_code": "point = ()\n# 输出第二项",
+      "prompt": "读取恰好两个以空白分隔的整数 x 和 y，创建坐标元组 point = (x, y)，输出第二项。零和负数有效；非整数或字段数量不为二时不输出内容，退出码为 1。起始代码已解析 x、y。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    x, y = map(int, text.split())\nexcept ValueError:\n    raise SystemExit(1)\n# 按题面完成本课操作与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '3 4\\n'，输出 '4\\n'，退出码 0。",
+        "输入 '8 2\\n'，输出 '2\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-flow-collections-tuples-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    point = (3, 4)\n    print(point[1])\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    x, y = map(int, text.split())\nexcept ValueError:\n    raise SystemExit(1)\npoint = (x, y)\nprint(point[1])\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的边界、顺序和重复项处理。",
+          "输入有效性与退出码按题面约定检查。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "3 4\n",
             "stdout": "4\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "8 2\n",
+            "stdout": "2\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-flow-collections-tuples-c01\n",
+            "stdin": "0 0\n",
+            "stdout": "0\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "-3 -4\n",
+            "stdout": "-4\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": " 9\t-2 \n",
+            "stdout": "-2\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1\n",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "1 2 3\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "1 a\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-core-api-methods",
+  "questions": [
+    {
+      "id": "java-core-api-methods-k01",
+      "type": "knowledge",
+      "prompt": "static 方法有什么特点？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "需要实例化"
+        },
+        {
+          "id": "b",
+          "text": "可直接通过类名调用"
+        },
+        {
+          "id": "c",
+          "text": "不能有返回值"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-methods-k02",
+      "type": "knowledge",
+      "prompt": "方法重载要求什么不同？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "返回类型"
+        },
+        {
+          "id": "b",
+          "text": "参数列表"
+        },
+        {
+          "id": "c",
+          "text": "方法名"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-methods-k03",
+      "type": "knowledge",
+      "prompt": "递归方法必须有什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "循环"
+        },
+        {
+          "id": "b",
+          "text": "终止条件"
+        },
+        {
+          "id": "c",
+          "text": "static 修饰"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-methods-c01",
+      "type": "code",
+      "prompt": "从标准输入读取两个空格分隔整数，用递归方法计算最大公约数并输出。",
+      "starter_code": "public class Main {\n    static int gcd(int a, int b) {\n        // 递归计算GCD\n        return 0;\n    }\n    public static void main(String[] args) throws Exception {\n        // 读取输入，调用gcd，输出结果\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\npublic class Main {\n    static int gcd(int a, int b) {\n        if (b == 0) return a;\n        return gcd(b, a % b);\n    }\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        String[] parts = input.split(\"\\\\s+\");\n        int a = Integer.parseInt(parts[0]);\n        int b = Integer.parseInt(parts[1]);\n        System.out.println(gcd(a, b));\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "12 18\n",
+            "stdout": "6\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "7 13\n",
+            "stdout": "1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

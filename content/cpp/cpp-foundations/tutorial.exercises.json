@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-foundations-tutorial",
+  "questions": [
+    {
+      "id": "cpp-foundations-tutorial-k01",
+      "type": "knowledge",
+      "prompt": "关于 C++ 语言的定位，下列说法正确的是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "只能编写网页脚本的解释型语言"
+        },
+        {
+          "id": "b",
+          "text": "静态类型、编译执行并支持多种编程范式的通用语言"
+        },
+        {
+          "id": "c",
+          "text": "只能在图形界面里拖拽生成代码的工具"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-foundations-tutorial-k02",
+      "type": "knowledge",
+      "prompt": "合理的 C++ 学习顺序通常是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "先学基础语法，再进入函数、内存、面向对象与标准库"
+        },
+        {
+          "id": "b",
+          "text": "直接从模板元编程开始，跳过所有基础内容"
+        },
+        {
+          "id": "c",
+          "text": "只需要背诵标准库头文件名即可"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-foundations-tutorial-k03",
+      "type": "knowledge",
+      "prompt": "本课程的代码题如何判定通过？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "由真实 C++ 编译运行环境按输入输出合同判定"
+        },
+        {
+          "id": "b",
+          "text": "由助教人工阅读代码后打分"
+        },
+        {
+          "id": "c",
+          "text": "只要提交任意文本就算通过"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-foundations-tutorial-c01",
+      "type": "code",
+      "prompt": "读取一行名字 name，输出问候语 Hello, <name>!，其中 <name> 为输入内容。",
+      "starter_code": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string name;\n    std::getline(std::cin, name);\n    // 输出问候语\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 Ada 时输出 Hello, Ada!"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string name;\n    std::getline(std::cin, name);\n    std::cout << \"Hello, \" << name << \"!\" << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "中文名字完整保留并输出。",
+          "空名字时输出 Hello, !。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "Ada\n",
+            "stdout": "Hello, Ada!\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "小明\n",
+            "stdout": "Hello, 小明!\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "\n",
+            "stdout": "Hello, !\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

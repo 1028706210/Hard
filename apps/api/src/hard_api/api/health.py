@@ -4,9 +4,10 @@ import json
 from pathlib import Path
 from typing import Any
 
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Response
 
 from hard_api.core.config import Settings
+from hard_api.core.readiness import database_checks
 
 router = APIRouter(prefix="/api/v1/health", tags=["health"])
 
@@ -53,17 +54,17 @@ def live() -> dict[str, str]:
 
 
 @router.get("/ready")
-def ready(request: Request) -> dict[str, Any]:
+def ready(request: Request, response: Response) -> dict[str, Any]:
     settings: Settings = request.app.state.settings
     checks: dict[str, dict[str, Any]] = {
-        "database": {"healthy": True, "path": str(settings.database_path)},
+        **database_checks(settings.database_path),
         "content": {
             "healthy": settings.content_dir.is_dir(),
             "path": str(settings.content_dir),
         },
     }
     checks.update(_runner_checks(settings.toolchain_lock_path))
-    return {
-        "status": "ok" if all(check["healthy"] for check in checks.values()) else "degraded",
-        "checks": checks,
-    }
+    healthy = all(check["healthy"] for check in checks.values())
+    if not healthy:
+        response.status_code = 503
+    return {"status": "ok" if healthy else "degraded", "checks": checks}

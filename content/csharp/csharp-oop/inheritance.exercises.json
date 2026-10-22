@@ -1,0 +1,128 @@
+{
+  "lesson_id": "csharp-oop-inheritance",
+  "questions": [
+    {
+      "id": "csharp-oop-inheritance-k01",
+      "type": "knowledge",
+      "prompt": "关于 C# 类的继承，下列说法正确的是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "一个类只能继承一个基类，但可以形成多层继承链"
+        },
+        {
+          "id": "b",
+          "text": "一个类可以同时继承多个基类"
+        },
+        {
+          "id": "c",
+          "text": "类之间不存在继承机制"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-inheritance-k02",
+      "type": "knowledge",
+      "prompt": "派生类要用 override 改写基类方法，前提是基类方法被标记为？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "virtual、abstract 或 override 之一"
+        },
+        {
+          "id": "b",
+          "text": "任意方法都可以直接 override"
+        },
+        {
+          "id": "c",
+          "text": "private"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-inheritance-k03",
+      "type": "knowledge",
+      "prompt": "派生类构造函数如何初始化继承来的基类部分？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "通过 base(...) 调用基类构造函数"
+        },
+        {
+          "id": "b",
+          "text": "自动复制基类的所有字段值"
+        },
+        {
+          "id": "c",
+          "text": "无法控制，只能使用默认值"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-inheritance-c01",
+      "type": "code",
+      "prompt": "读取一行：以 r 开头后跟两个非负整数 w h 表示矩形（`r w h`），以 s 开头后跟一个非负整数 side 表示正方形（`s side`）。用基类 Shape 的 virtual 方法 Area 与派生类 override 计算并输出面积（用 long）。格式不对、数值为负或类型未知时不输出并以退出码 1 结束。整数范围 0..1000000。",
+      "starter_code": "var tokens = (Console.ReadLine() ?? \"\").Split(' ', StringSplitOptions.RemoveEmptyEntries);\n// 校验后构造 Rectangle 或 Square，通过基类引用调用 Area 输出\n",
+      "visible_tests": [
+        "输入 r 3 4 时输出 12。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var tokens = (Console.ReadLine() ?? \"\").Split(' ', StringSplitOptions.RemoveEmptyEntries);\nif (tokens.Length == 0) Environment.Exit(1);\nShape? shape = null;\nif (tokens.Length == 3 && tokens[0] == \"r\"\n    && int.TryParse(tokens[1], out var width) && int.TryParse(tokens[2], out var height)\n    && width >= 0 && height >= 0)\n{\n    shape = new Rectangle(width, height);\n}\nelse if (tokens.Length == 2 && tokens[0] == \"s\"\n    && int.TryParse(tokens[1], out var side) && side >= 0)\n{\n    shape = new Square(side);\n}\nif (shape is null) Environment.Exit(1);\nConsole.WriteLine(shape.Area());\n\nclass Shape\n{\n    public virtual long Area() => 0;\n}\n\nclass Rectangle : Shape\n{\n    private readonly long _width;\n    private readonly long _height;\n\n    public Rectangle(long width, long height)\n    {\n        _width = width;\n        _height = height;\n    }\n\n    public override long Area() => _width * _height;\n}\n\nclass Square : Rectangle\n{\n    public Square(long side) : base(side, side)\n    {\n    }\n}\n",
+        "hidden_tests": [
+          "输入 s 5 时输出 25。",
+          "输入 r 0 7 时输出 0。",
+          "宽度为负数时无输出并以退出码 1 结束。",
+          "类型未知（如 t 1 2）时无输出并以退出码 1 结束。",
+          "参数个数不足（如 r 1）时无输出并以退出码 1 结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "r 3 4\n",
+            "stdout": "12\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "s 5\n",
+            "stdout": "25\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "r 0 7\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "r -1 2\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "t 1 2\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "r 1\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

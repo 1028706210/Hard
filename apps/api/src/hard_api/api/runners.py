@@ -11,10 +11,6 @@ from hard_api.runners.contracts import ExecutableTestCase, Submission
 router = APIRouter(prefix="/api/runners", tags=["runners"])
 
 
-def _response(title: str) -> dict[int, dict[str, object]]:
-    return {200: {"content": {"application/json": {"schema": {"type": "object", "title": title, "additionalProperties": True}}}}}
-
-
 class RunnerSubmissionRequest(BaseModel):
     lesson_id: str = Field(min_length=1, max_length=160)
     exercise_id: str = Field(min_length=1, max_length=192)
@@ -22,10 +18,26 @@ class RunnerSubmissionRequest(BaseModel):
     stdin: str = ""
 
 
+class PublicCompileResult(BaseModel):
+    passed: bool
+
+
+class PublicTestResult(BaseModel):
+    visible_passed: int
+    visible_total: int
+
+
+class PublicRunResult(BaseModel):
+    status: str
+    compile: PublicCompileResult | None = None
+    tests: PublicTestResult | None = None
+    diagnostics: list[str]
+
+
 class RunnerJobResponse(BaseModel):
     id: str
     status: str
-    result: dict[str, object] | None
+    result: PublicRunResult | None
 
 
 def _job_payload(request: Request, job_id: str) -> dict[str, object]:
@@ -35,7 +47,7 @@ def _job_payload(request: Request, job_id: str) -> dict[str, object]:
     return job.public_payload()
 
 
-@router.post("/submissions", response_model=RunnerJobResponse, responses=_response("RunnerSubmissionResponse"))
+@router.post("/submissions", response_model=RunnerJobResponse)
 def submit(
     payload: RunnerSubmissionRequest,
     request: Request,
@@ -67,12 +79,12 @@ def submit(
     return job.public_payload()
 
 
-@router.get("/jobs/{job_id}", response_model=RunnerJobResponse, responses=_response("RunnerJobStatusResponse"))
+@router.get("/jobs/{job_id}", response_model=RunnerJobResponse)
 def status(job_id: str, request: Request) -> dict[str, object]:
     return _job_payload(request, job_id)
 
 
-@router.delete("/jobs/{job_id}", response_model=RunnerJobResponse, responses=_response("RunnerJobCancelResponse"))
+@router.delete("/jobs/{job_id}", response_model=RunnerJobResponse)
 def cancel(job_id: str, request: Request) -> dict[str, object]:
     job = request.app.state.runner_manager.cancel(job_id)
     if job is None:

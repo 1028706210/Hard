@@ -1,0 +1,131 @@
+{
+  "lesson_id": "csharp-foundations-decisions",
+  "questions": [
+    {
+      "id": "csharp-foundations-decisions-k01",
+      "type": "knowledge",
+      "prompt": "一条 if / else if / else 链满足多个条件时，哪一分支执行？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "所有满足条件的分支"
+        },
+        {
+          "id": "b",
+          "text": "最后一个满足条件的分支"
+        },
+        {
+          "id": "c",
+          "text": "按顺序遇到的第一个满足条件分支"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "csharp-foundations-decisions-k02",
+      "type": "knowledge",
+      "prompt": "哪一条件准确表示 score 位于闭区间 60 到 100？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "score >= 60 && score <= 100"
+        },
+        {
+          "id": "b",
+          "text": "score >= 60 || score <= 100"
+        },
+        {
+          "id": "c",
+          "text": "60 <= score <= 100"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-foundations-decisions-k03",
+      "type": "knowledge",
+      "prompt": "先判断 score >= 60，再在 else if 判断 score >= 80，会造成什么问题？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "80 以上会执行两个分支"
+        },
+        {
+          "id": "b",
+          "text": "80 以上已被前一宽泛条件捕获，后一分支到不了"
+        },
+        {
+          "id": "c",
+          "text": "编译器会自动交换两个条件"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-foundations-decisions-c01",
+      "type": "code",
+      "prompt": "读取整数 score：小于 0 或大于 100 输出 INVALID；0..59 输出 FAIL；60..79 输出 PASS；80..100 输出 EXCELLENT。",
+      "starter_code": "var score = int.Parse(Console.ReadLine() ?? \"\");\n// 按区间顺序完成分支\n",
+      "visible_tests": [
+        "输入 85 时输出 EXCELLENT。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var score = int.Parse(Console.ReadLine() ?? \"\");\nif (score < 0 || score > 100)\n{\n    Console.WriteLine(\"INVALID\");\n}\nelse if (score < 60)\n{\n    Console.WriteLine(\"FAIL\");\n}\nelse if (score < 80)\n{\n    Console.WriteLine(\"PASS\");\n}\nelse\n{\n    Console.WriteLine(\"EXCELLENT\");\n}\n",
+        "hidden_tests": [
+          "覆盖 59/60 分界。",
+          "覆盖 79/80 分界。",
+          "覆盖区间外输入。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "85\n",
+            "stdout": "EXCELLENT\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "59\n",
+            "stdout": "FAIL\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "60\n",
+            "stdout": "PASS\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "79\n",
+            "stdout": "PASS\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "80\n",
+            "stdout": "EXCELLENT\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-1\n",
+            "stdout": "INVALID\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "101\n",
+            "stdout": "INVALID\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

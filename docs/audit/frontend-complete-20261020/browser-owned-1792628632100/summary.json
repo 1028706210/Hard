@@ -1,0 +1,110 @@
+[
+  {
+    "phase": "python",
+    "run_id": "run-1792628632100",
+    "files": [
+      "tests/e2e/python-journey.spec.ts"
+    ],
+    "exit_code": 0,
+    "stats": {
+      "startTime": "2026-10-22T00:23:56.486Z",
+      "duration": 7658.299000000001,
+      "expected": 2,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "processes": [
+      {
+        "label": "api",
+        "pid": 25800,
+        "create_time": 1792628632.1015432,
+        "command": [
+          "D:\\projects\\1\\Hard-trial-clean-20260910\\.venv\\Scripts\\python.exe",
+          "D:\\projects\\1\\Hard-trial-clean-20260910\\apps\\api\\tests\\e2e_server.py"
+        ]
+      },
+      {
+        "label": "web",
+        "pid": 19048,
+        "create_time": 1792628632.1057863,
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "D:\\projects\\1\\Hard-trial-clean-20260910\\apps\\web\\node_modules\\vite\\bin\\vite.js",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "4173",
+          "--strictPort"
+        ]
+      }
+    ],
+    "cleanup_errors": []
+  },
+  {
+    "phase": "battery",
+    "run_id": "run-1792628644225",
+    "files": [
+      "tests/e2e/assessment.spec.ts",
+      "tests/e2e/backup.spec.ts",
+      "tests/e2e/comparison.spec.ts",
+      "tests/e2e/constellations.spec.ts",
+      "tests/e2e/core-types-contract.spec.ts",
+      "tests/e2e/cpp-journey.spec.ts",
+      "tests/e2e/csharp-final-audit.spec.ts",
+      "tests/e2e/final-content-contract.spec.ts",
+      "tests/e2e/flow-collections-contract.spec.ts",
+      "tests/e2e/foundations-contract.spec.ts",
+      "tests/e2e/frontend-refinement.spec.ts",
+      "tests/e2e/functions-contract.spec.ts",
+      "tests/e2e/java-final-audit.spec.ts",
+      "tests/e2e/knowledge-groups.spec.ts",
+      "tests/e2e/lan.spec.ts",
+      "tests/e2e/learning-constellation.spec.ts",
+      "tests/e2e/lesson.spec.ts",
+      "tests/e2e/lifecycle.spec.ts",
+      "tests/e2e/map.spec.ts",
+      "tests/e2e/modules-contract.spec.ts",
+      "tests/e2e/navigation.spec.ts",
+      "tests/e2e/release.spec.ts",
+      "tests/e2e/secondary-flows.spec.ts",
+      "tests/e2e/stdlib-numeric-contract.spec.ts",
+      "tests/e2e/vertical-live.spec.ts"
+    ],
+    "exit_code": 0,
+    "stats": {
+      "startTime": "2026-10-22T00:24:08.539Z",
+      "duration": 159420.818,
+      "expected": 51,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "processes": [
+      {
+        "label": "api",
+        "pid": 2000,
+        "create_time": 1792628644.2260163,
+        "command": [
+          "D:\\projects\\1\\Hard-trial-clean-20260910\\.venv\\Scripts\\python.exe",
+          "D:\\projects\\1\\Hard-trial-clean-20260910\\apps\\api\\tests\\e2e_server.py"
+        ]
+      },
+      {
+        "label": "web",
+        "pid": 26316,
+        "create_time": 1792628644.2289882,
+        "command": [
+          "C:\\Program Files\\nodejs\\node.exe",
+          "D:\\projects\\1\\Hard-trial-clean-20260910\\apps\\web\\node_modules\\vite\\bin\\vite.js",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "4173",
+          "--strictPort"
+        ]
+      }
+    ],
+    "cleanup_errors": []
+  }
+]

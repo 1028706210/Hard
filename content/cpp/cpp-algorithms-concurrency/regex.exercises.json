@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-algorithms-concurrency-regex",
+  "questions": [
+    {
+      "id": "cpp-algorithms-concurrency-regex-k01",
+      "type": "knowledge",
+      "prompt": "std::regex_match 的匹配语义是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "整个字符串完全匹配"
+        },
+        {
+          "id": "b",
+          "text": "只要包含匹配子串即可"
+        },
+        {
+          "id": "c",
+          "text": "只匹配第一个字符"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-regex-k02",
+      "type": "knowledge",
+      "prompt": "在字符串中查找任意位置匹配子串应使用？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "std::regex_search"
+        },
+        {
+          "id": "b",
+          "text": "std::regex_match"
+        },
+        {
+          "id": "c",
+          "text": "std::regex_replace"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-regex-k03",
+      "type": "knowledge",
+      "prompt": "量词 [0-9]{1,3} 的含义是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "恰好 13 位数字"
+        },
+        {
+          "id": "b",
+          "text": "1 到 3 位数字"
+        },
+        {
+          "id": "c",
+          "text": "0 位数字"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-regex-c01",
+      "type": "code",
+      "prompt": "读取一行文本（长度 0..100，含两端），用 std::regex 与 std::regex_match 判断其是否匹配格式 \"CPP-\" 后跟 1 到 3 位数字（如 CPP-7、CPP-42、CPP-999）：匹配输出 yes，否则输出 no。无输入行或长度越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <iostream>\n#include <regex>\n#include <string>\n\nint main() {\n    // 读取一行，regex_match 校验编号格式\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 CPP-42 时输出 yes。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <regex>\n#include <string>\n\nint main() {\n    std::string line;\n    if (!std::getline(std::cin, line)) return 1;\n    if (line.size() > 100) return 1;\n    std::regex pattern(\"CPP-[0-9]{1,3}\");\n    bool valid = std::regex_match(line, pattern);\n    std::cout << (valid ? \"yes\" : \"no\") << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "小写前缀输出 no。",
+          "四位数字输出 no。",
+          "三位数字上边界输出 yes。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "CPP-42\n",
+            "stdout": "yes\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "cpp-42\n",
+            "stdout": "no\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "CPP-1234\n",
+            "stdout": "no\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "CPP-999\n",
+            "stdout": "yes\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

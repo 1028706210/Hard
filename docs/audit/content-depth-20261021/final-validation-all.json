@@ -1,0 +1,22 @@
+{
+  "command": [
+    "D:\\projects\\1\\Hard-trial-clean-20260910\\.venv\\Scripts\\python.exe",
+    "tools/content/validate.py",
+    "--require-complete"
+  ],
+  "cwd": "D:\\projects\\1\\Hard-trial-clean-20260910",
+  "started_utc": "2026-10-21T12:44:33.590211+00:00",
+  "finished_utc": "2026-10-21T12:44:37.238737+00:00",
+  "exit_code": 0,
+  "stdout_path": "docs/audit/content-depth-20261021/final-validation-all.stdout.txt",
+  "stderr_path": "docs/audit/content-depth-20261021/final-validation-all.stderr.txt",
+  "result": {
+    "valid": true,
+    "counts": {
+      "courses": 4,
+      "lessons": 282,
+      "exercises": 282
+    },
+    "errors": []
+  }
+}

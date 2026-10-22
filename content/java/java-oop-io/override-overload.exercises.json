@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-oop-io-override-overload",
+  "questions": [
+    {
+      "id": "java-oop-io-override-overload-k01",
+      "type": "knowledge",
+      "prompt": "方法重载要求什么不同？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "方法名"
+        },
+        {
+          "id": "b",
+          "text": "参数列表"
+        },
+        {
+          "id": "c",
+          "text": "返回类型"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-oop-io-override-overload-k02",
+      "type": "knowledge",
+      "prompt": "方法重写发生在哪里？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "同类中"
+        },
+        {
+          "id": "b",
+          "text": "父子类间"
+        },
+        {
+          "id": "c",
+          "text": "不同包中"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-oop-io-override-overload-k03",
+      "type": "knowledge",
+      "prompt": "重载方法的返回类型必须相同吗？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "必须相同"
+        },
+        {
+          "id": "b",
+          "text": "可以不同"
+        },
+        {
+          "id": "c",
+          "text": "必须不同"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-oop-io-override-overload-c01",
+      "type": "code",
+      "prompt": "从标准输入读取 \"类型 值\"，类型为 int 时输出 number:值，为 str 时输出 text:值。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\nclass Printer {\n    void print(int v) { System.out.println(\"number:\" + v); }\n    void print(String v) { System.out.println(\"text:\" + v); }\n}\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        String[] parts = input.split(\"\\\\s+\", 2);\n        Printer p = new Printer();\n        if (parts[0].equals(\"int\")) p.print(Integer.parseInt(parts[1]));\n        else p.print(parts[1]);\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "int 5\n",
+            "stdout": "number:5\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "str hi\n",
+            "stdout": "text:hi\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

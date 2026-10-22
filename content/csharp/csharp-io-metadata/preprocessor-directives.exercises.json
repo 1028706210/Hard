@@ -1,0 +1,140 @@
+{
+  "lesson_id": "csharp-io-metadata-preprocessor-directives",
+  "questions": [
+    {
+      "id": "csharp-io-metadata-preprocessor-directives-k01",
+      "type": "knowledge",
+      "prompt": "在源文件中用 #define 定义的符号，其有效范围是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "整个项目的所有源文件"
+        },
+        {
+          "id": "b",
+          "text": "仅当前源文件（当前编译单元）"
+        },
+        {
+          "id": "c",
+          "text": "仅在定义之后的那一个方法内"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-io-metadata-preprocessor-directives-k02",
+      "type": "knowledge",
+      "prompt": "#if/#endif 条件编译与运行期 if 语句的核心区别是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "条件编译在编译期决定哪些代码进入程序，被裁剪的分支根本不存在于编译结果中"
+        },
+        {
+          "id": "b",
+          "text": "两者没有区别，条件编译只是 if 的另一种写法"
+        },
+        {
+          "id": "c",
+          "text": "条件编译在运行期判断，只是速度更快"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-io-metadata-preprocessor-directives-k03",
+      "type": "knowledge",
+      "prompt": "#region / #endregion 对编译结果的影响是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "会让其中的代码只在调试构建中编译"
+        },
+        {
+          "id": "b",
+          "text": "会改变代码的执行顺序"
+        },
+        {
+          "id": "c",
+          "text": "没有任何影响，只用于编辑器代码折叠"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "csharp-io-metadata-preprocessor-directives-c01",
+      "type": "code",
+      "prompt": "模拟条件编译的展开结果。第一行输入是用空格分隔的已定义符号列表（可以为空）；其后每行是源代码行。指令行规则：整行（允许首尾空白）恰为 #else、#endif，或形如 #if 符号（符号须满足 [A-Za-z_][A-Za-z0-9_]*），或为 #region/#endregion（两者都可再带标签文本，如 #region Core）时是指令；其余行（包括其他 # 开头的行）都是普通代码行。#region/#endregion 永远只是被移除；#if 按\"第一行定义列表中是否包含该符号\"决定是否保留对应分支，#else 反转最近一层；支持嵌套。输出所有处于激活层的普通代码行（保持原顺序、指令行全部消失）。任何 #else/#endif 无配对 #if、文件结束时仍有未闭合 #if、或 #if 符号缺失/非法的情况：不输出任何内容并以退出码 1 结束。",
+      "starter_code": "var input = Console.In.ReadToEnd();\n// 第一行为定义符号列表，其后逐行判断指令与激活状态，先缓冲输出再统一写出\n",
+      "visible_tests": [
+        "定义 DEBUG，输入含 #region 包裹的代码行与 #if DEBUG 块时，输出未包裹代码行与块内代码行，指令行全部消失。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "using System.Text.RegularExpressions;\n\nvar input = Console.In.ReadToEnd().Replace(\"\\r\\n\", \"\\n\");\nvar newlineIndex = input.IndexOf('\\n');\nvar definesLine = newlineIndex < 0 ? input : input[..newlineIndex];\nvar rest = newlineIndex < 0 ? \"\" : input[(newlineIndex + 1)..];\nvar defines = definesLine.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToHashSet();\nvar sourceLines = rest.Split('\\n');\nif (sourceLines.Length > 0 && sourceLines[^1].Length == 0) sourceLines = sourceLines[..^1];\n\nvar output = new List<string>();\nvar branches = new List<bool>();\nvar error = false;\nbool IsActive() => branches.All(active => active);\n\nforeach (var raw in sourceLines)\n{\n    var line = raw.Trim();\n    var isIf = line == \"#if\" || line.StartsWith(\"#if \", StringComparison.Ordinal);\n    if (isIf)\n    {\n        var symbol = line[3..].Trim();\n        if (symbol.Length == 0 || !Regex.IsMatch(symbol, \"^[A-Za-z_][A-Za-z0-9_]*$\"))\n        {\n            error = true;\n            break;\n        }\n        branches.Add(defines.Contains(symbol));\n        continue;\n    }\n    if (line == \"#else\")\n    {\n        if (branches.Count == 0) { error = true; break; }\n        branches[^1] = !branches[^1];\n        continue;\n    }\n    if (line == \"#endif\")\n    {\n        if (branches.Count == 0) { error = true; break; }\n        branches.RemoveAt(branches.Count - 1);\n        continue;\n    }\n    if (line == \"#region\" || line.StartsWith(\"#region \", StringComparison.Ordinal)\n        || line == \"#endregion\" || line.StartsWith(\"#endregion \", StringComparison.Ordinal)) continue;\n    if (IsActive()) output.Add(raw);\n}\n\nif (error || branches.Count > 0) Environment.Exit(1);\nvar builder = new System.Text.StringBuilder();\nforeach (var line in output) builder.Append(line).Append('\\n');\nConsole.Write(builder.ToString());\n",
+        "hidden_tests": [
+          "定义列表为空时，#if 块内容被裁剪，块外代码正常输出。",
+          "嵌套 #if：外层符号已定义、内层符号未定义时，只输出外层激活且位于内层块外的代码行。",
+          "#else 分支在符号未定义时被保留输出。",
+          "出现没有配对 #if 的 #endif 时无输出并以退出码 1 结束。",
+          "文件结束时仍有未闭合的 #if 时无输出并以退出码 1 结束。",
+          "#if 后符号为数字开头（如 1BAD）时无输出并以退出码 1 结束。",
+          "完全不含指令的普通代码行原样输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "DEBUG\n#region Core\nint value = 1;\n#endregion\n#if DEBUG\nLog(value);\n#endif\n",
+            "stdout": "int value = 1;\nLog(value);\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "\n#if DEBUG\nA\n#endif\nB\n",
+            "stdout": "B\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "A\n#if A\nX\n#if B\nY\n#endif\nZ\n#endif\n",
+            "stdout": "X\nZ\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "\n#if A\nX\n#else\nY\n#endif\n",
+            "stdout": "Y\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "A\nB\n#endif\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "A\n#if A\nX\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "A\n#if 1BAD\nX\n#endif\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "A\nP\nQ\n",
+            "stdout": "P\nQ\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

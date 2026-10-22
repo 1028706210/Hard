@@ -1,0 +1,122 @@
+{
+  "lesson_id": "csharp-oop-structs",
+  "questions": [
+    {
+      "id": "csharp-oop-structs-k01",
+      "type": "knowledge",
+      "prompt": "把一个 struct 变量赋给另一个变量时会发生什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "复制整个值，两个变量此后互不影响"
+        },
+        {
+          "id": "b",
+          "text": "两个变量指向同一份数据"
+        },
+        {
+          "id": "c",
+          "text": "编译错误，struct 不能赋值"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-structs-k02",
+      "type": "knowledge",
+      "prompt": "关于 struct 的继承规则，正确的是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "不能继承 struct 或 class，但可以实现接口"
+        },
+        {
+          "id": "b",
+          "text": "可以继承一个基类，和其他类一样"
+        },
+        {
+          "id": "c",
+          "text": "可以同时继承多个类型"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-structs-k03",
+      "type": "knowledge",
+      "prompt": "下列哪种数据最适合建模为 struct？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "小而固定的二维坐标点"
+        },
+        {
+          "id": "b",
+          "text": "会不断追加节点的大文档树"
+        },
+        {
+          "id": "c",
+          "text": "需要全局唯一标识的用户实体"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-structs-c01",
+      "type": "code",
+      "prompt": "读取两行，每行是用空格分隔的两个整数 x y，表示两个平面上的点。定义含 X、Y 字段和 DistanceTo 方法的 struct，方法内用 long 计算，输出两点间的曼哈顿距离 |x1-x2|+|y1-y2|。任一行无法解析出两个整数时不输出并以退出码 1 结束。",
+      "starter_code": "// 读取两行坐标，用 struct 的方法计算曼哈顿距离并输出\n",
+      "visible_tests": [
+        "输入 1 2 与 4 6 时输出 7。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var firstTokens = (Console.ReadLine() ?? \"\").Split(' ', StringSplitOptions.RemoveEmptyEntries);\nvar secondTokens = (Console.ReadLine() ?? \"\").Split(' ', StringSplitOptions.RemoveEmptyEntries);\nif (firstTokens.Length != 2 || secondTokens.Length != 2) Environment.Exit(1);\nif (!int.TryParse(firstTokens[0], out var x1)) Environment.Exit(1);\nif (!int.TryParse(firstTokens[1], out var y1)) Environment.Exit(1);\nif (!int.TryParse(secondTokens[0], out var x2)) Environment.Exit(1);\nif (!int.TryParse(secondTokens[1], out var y2)) Environment.Exit(1);\nvar from = new Point(x1, y1);\nConsole.WriteLine(from.DistanceTo(new Point(x2, y2)));\n\nstruct Point\n{\n    public int X;\n    public int Y;\n\n    public Point(int x, int y)\n    {\n        X = x;\n        Y = y;\n    }\n\n    public long DistanceTo(Point other)\n    {\n        var dx = Math.Abs((long)X - other.X);\n        var dy = Math.Abs((long)Y - other.Y);\n        return dx + dy;\n    }\n}\n",
+        "hidden_tests": [
+          "两个点相同（含负坐标）时输出 0。",
+          "坐标跨正负且距离较大时精确输出。",
+          "坐标接近 int 极限时仍用 long 精确输出，不发生溢出。",
+          "第二行只有一个整数时无输出并以退出码 1 结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1 2\n4 6\n",
+            "stdout": "7\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "-3 -4\n-3 -4\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-3 -4\n3 4\n",
+            "stdout": "14\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2000000000 0\n-2000000000 0\n",
+            "stdout": "4000000000\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1 2\n3\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

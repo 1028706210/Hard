@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-capstone-new",
+  "questions": [
+    {
+      "id": "cpp-capstone-new-k01",
+      "type": "knowledge",
+      "prompt": "new int[n] 分配的数组必须用哪个释放？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "delete（单对象形式）"
+        },
+        {
+          "id": "b",
+          "text": "delete[]（数组形式）"
+        },
+        {
+          "id": "c",
+          "text": "free"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-capstone-new-k02",
+      "type": "knowledge",
+      "prompt": "默认 new 分配失败时的行为是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "返回 nullptr"
+        },
+        {
+          "id": "b",
+          "text": "抛出 std::bad_alloc"
+        },
+        {
+          "id": "c",
+          "text": "静默重试"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-capstone-new-k03",
+      "type": "knowledge",
+      "prompt": "new (std::nothrow) int[8] 失败时返回？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "抛出异常"
+        },
+        {
+          "id": "b",
+          "text": "nullptr"
+        },
+        {
+          "id": "c",
+          "text": "0"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-capstone-new-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 1..1000，含两端）与 n 个整数（每个合同范围 -100..100，含两端），用 new int[n] 建立动态数组，计算每个元素平方（用 long long 中间量）之和，delete[] 释放后输出一行平方和。任一输入无法解析、越界或缺失时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cstdio>\n\nint main() {\n    // 读取 n 与整数，new[] 存储、求平方和、delete[]\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3 与 1 2 3 时输出 14（1+4+9）。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <cstdio>\n\nint main() {\n    int n = 0;\n    if (std::scanf(\"%d\", &n) != 1) return 1;\n    if (n < 1 || n > 1000) return 1;\n    int* items = new int[n];\n    for (int i = 0; i < n; i++) {\n        if (std::scanf(\"%d\", &items[i]) != 1) {\n            delete[] items;\n            return 1;\n        }\n        if (items[i] < -100 || items[i] > 100) {\n            delete[] items;\n            return 1;\n        }\n    }\n    long long total = 0;\n    for (int i = 0; i < n; i++) {\n        long long value = items[i];\n        total += value * value;\n    }\n    delete[] items;\n    std::printf(\"%lld\\n\", total);\n    return 0;\n}\n",
+        "hidden_tests": [
+          "单个 0 输出 0。",
+          "负数 -3 平方为 9 参与求和。",
+          "n=0 越界不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 1 2 3\n",
+            "stdout": "14\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1 0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2 -3 4\n",
+            "stdout": "25\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "0\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

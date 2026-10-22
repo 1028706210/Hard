@@ -6,10 +6,12 @@ import time
 from pathlib import Path
 
 import psutil
+import pytest
 
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 
+import hard_api.runners.processes as processes
 from hard_api.runners.processes import ProcessStatus, execute_process
 
 
@@ -91,3 +93,74 @@ def test_output_limit_and_cancellation_have_stable_statuses(tmp_path: Path) -> N
     thread.join(timeout=5)
 
     assert holder["result"].status == ProcessStatus.CANCELLED
+
+
+def test_process_helpers_fail_closed_for_missing_processes_and_strip_path(monkeypatch, tmp_path: Path) -> None:
+    monkeypatch.setattr(processes.psutil, "Process", lambda _pid: (_ for _ in ()).throw(psutil.NoSuchProcess(1)))
+    processes.terminate_process_tree(1)
+
+    environment = processes._minimal_environment({"PATH": "unsafe", "CUSTOM": "value"}, tmp_path)
+    assert "PATH" not in environment
+    assert environment["CUSTOM"] == "value"
+
+    with pytest.raises(ValueError, match="invalid_process_arguments"):
+        execute_process([], cwd=tmp_path, environment={}, stdin="", timeout_seconds=1, output_limit_bytes=1)
+
+
+def test_process_tree_kills_survivors_after_termination(monkeypatch) -> None:
+    calls: list[str] = []
+
+    class Child:
+        def __init__(self, *, fails: bool = False) -> None:
+            self.fails = fails
+
+        def terminate(self) -> None:
+            calls.append("terminate-child")
+            if self.fails:
+                raise psutil.AccessDenied(123)
+
+        def kill(self) -> None:
+            calls.append("kill-child")
+            if self.fails:
+                raise psutil.AccessDenied(123)
+
+    class Parent(Child):
+        def children(self, recursive: bool) -> list[Child]:
+            assert recursive is True
+            return [child]
+
+    child = Child(fails=True)
+    parent = Parent()
+    monkeypatch.setattr(processes.psutil, "Process", lambda _pid: parent)
+    monkeypatch.setattr(processes.psutil, "wait_procs", lambda _items, timeout: ([], [child]))
+
+    processes.terminate_process_tree(123)
+
+    assert calls == ["terminate-child", "terminate-child", "kill-child"]
+
+
+def test_process_tree_handles_wait_access_denied_without_escaping(monkeypatch) -> None:
+    calls: list[str] = []
+
+    class Process:
+        def children(self, recursive: bool) -> list["Process"]:
+            assert recursive is True
+            return []
+
+        def terminate(self) -> None:
+            calls.append("terminate")
+
+        def kill(self) -> None:
+            calls.append("kill")
+
+    process = Process()
+    monkeypatch.setattr(processes.psutil, "Process", lambda _pid: process)
+    monkeypatch.setattr(
+        processes.psutil,
+        "wait_procs",
+        lambda _items, timeout: (_ for _ in ()).throw(psutil.AccessDenied(123)),
+    )
+
+    processes.terminate_process_tree(123)
+
+    assert calls == ["terminate", "kill"]

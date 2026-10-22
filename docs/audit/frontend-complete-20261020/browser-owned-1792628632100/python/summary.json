@@ -1,0 +1,42 @@
+{
+  "phase": "python",
+  "run_id": "run-1792628632100",
+  "files": [
+    "tests/e2e/python-journey.spec.ts"
+  ],
+  "exit_code": 0,
+  "stats": {
+    "startTime": "2026-10-22T00:23:56.486Z",
+    "duration": 7658.299000000001,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "processes": [
+    {
+      "label": "api",
+      "pid": 25800,
+      "create_time": 1792628632.1015432,
+      "command": [
+        "D:\\projects\\1\\Hard-trial-clean-20260910\\.venv\\Scripts\\python.exe",
+        "D:\\projects\\1\\Hard-trial-clean-20260910\\apps\\api\\tests\\e2e_server.py"
+      ]
+    },
+    {
+      "label": "web",
+      "pid": 19048,
+      "create_time": 1792628632.1057863,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "D:\\projects\\1\\Hard-trial-clean-20260910\\apps\\web\\node_modules\\vite\\bin\\vite.js",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "4173",
+        "--strictPort"
+      ]
+    }
+  ],
+  "cleanup_errors": []
+}

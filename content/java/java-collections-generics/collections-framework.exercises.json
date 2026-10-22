@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-collections-generics-collections-framework",
+  "questions": [
+    {
+      "id": "java-collections-generics-collections-framework-k01",
+      "type": "knowledge",
+      "prompt": "List 允许重复元素吗？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "否"
+        },
+        {
+          "id": "b",
+          "text": "是"
+        },
+        {
+          "id": "c",
+          "text": "仅字符串"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-collections-generics-collections-framework-k02",
+      "type": "knowledge",
+      "prompt": "TreeSet 的特点是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "允许重复"
+        },
+        {
+          "id": "b",
+          "text": "自动排序"
+        },
+        {
+          "id": "c",
+          "text": "无序存储"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-collections-generics-collections-framework-k03",
+      "type": "knowledge",
+      "prompt": "Collections.sort 的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "创建新列表"
+        },
+        {
+          "id": "b",
+          "text": "就地排序"
+        },
+        {
+          "id": "c",
+          "text": "反转列表"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-collections-generics-collections-framework-c01",
+      "type": "code",
+      "prompt": "从标准输入读取逗号分隔字符串，用 TreeSet 去重排序后空格分隔输出。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\nimport java.util.TreeSet;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        TreeSet<String> set = new TreeSet<>();\n        for (String p : input.split(\",\")) set.add(p.trim());\n        StringBuilder sb = new StringBuilder();\n        for (String s : set) { if (sb.length() > 0) sb.append(\" \"); sb.append(s); }\n        System.out.println(sb);\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "b,a,c\n",
+            "stdout": "a b c\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "x,x,y\n",
+            "stdout": "x y\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

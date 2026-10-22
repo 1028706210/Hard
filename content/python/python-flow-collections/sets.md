@@ -26,15 +26,66 @@ allowed = {"read", "write"}
 print("read" in allowed)
 ```
 
+## 集合运算与成员约束
+
+集合中的元素必须可哈希，不能直接放列表或另一个可变集合。集合没有下标，不支持 `tags[0]`；需要稳定展示时显式排序，而不是依赖某次运行的输出顺序。`set("aba")` 处理的是字符，`{"aba"}` 则只有一个完整字符串元素。
+
+```python
+left, right = {1, 2, 3}, {3, 4}
+print(sorted(left | right))
+print(sorted(left & right))
+print(sorted(left - right))
+print(sorted(left ^ right))
+print({1, 2} <= left, left.isdisjoint({8}))
+```
+
+预期输出：
+
+```text
+[1, 2, 3, 4]
+[3]
+[1, 2]
+[1, 2, 4]
+True True
+```
+
+`|`、`&`、`-`、`^` 分别是并、交、差和对称差，以上运算返回新集合。`<=` 表示子集，`<` 表示真子集，不是比较成员数量。差集有方向，`left - right` 与 `right - left` 不同。
+
+## 原地更新与不可变集合
+
+`add` 加入单个元素，`update` 加入可迭代对象里的元素。`remove` 删除不存在的值会抛出 `KeyError`，`discard` 则允许其不存在；`pop` 取走某个元素，但不保证取出哪一个。
+
+```python
+tags = {"read"}
+tags.add("read")
+tags.update(["test", "code"])
+tags.discard("missing")
+print(sorted(tags))
+group = frozenset({"read", "test"})
+print(group in {group})
+print(len({True, 1, 1.0}))
+```
+
+预期输出：
+
+```text
+['code', 'read', 'test']
+True
+1
+```
+
+`frozenset` 不可变且可哈希，适合把一个成员集合当作字典键或另一集合的元素。集合依赖相等和哈希去重，布尔、整数与浮点数中某些值会相等；不能把集合当作保留原类型差异的通用去重器。若要求去重并保留首次出现顺序，可对可哈希元素使用 `list(dict.fromkeys(items))`。
+
+技术参考：[官方集合类型](https://docs.python.org/3.14/library/stdtypes.html#set-types-set-frozenset)。现有练习仅对字符串标签计数，不增加排序输出或其他集合运算要求。
 
 ## 概念定义与适用场景
 
-Python 集合解决的是把明确输入转换为可核验结果的问题。先识别数据的来源、所有权和生命周期，再选择最小的 Python API；这比先堆叠库调用更容易排错，也更容易在测试中复现。
+集合按相等关系去重，适合统计唯一标签或检查成员是否存在。它不保证展示顺序，所以这道题只输出数量，不比较集合的打印顺序。
 
 ## 语法、API 与边界
 
-示例中的调用应只承担一个职责：准备输入、执行主题操作、检查输出。外部数据、空值、编码、资源关闭和异常路径都属于接口合同；不要把它们藏在偶然成功的默认行为里。
+set(items) 创建集合，len 读取成员数，value in tags 检查成员关系。空集合应写 set()；{} 是空字典。字符串标签按大小写敏感的原文比较。
 
 ## 常见错误与实践建议
 
-常见错误是把演示环境当成生产环境、跳过返回值检查，或用固定输出掩盖未处理的分支。实践时应使用小而可重复的输入，为失败路径写断言，并把网络、文件、GUI 或服务端依赖限制在可替换的边界之后。
+len(items) 会把重复项都算进去；把输入先转小写也会改变本题定义。空输入合法，没有理由为集合计数人为增加失败分支。

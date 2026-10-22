@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-advanced-namespaces",
+  "questions": [
+    {
+      "id": "cpp-advanced-namespaces-k01",
+      "type": "knowledge",
+      "prompt": "命名空间的主要作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "加速程序的运行"
+        },
+        {
+          "id": "b",
+          "text": "把名称组织进具名作用域，避免同名冲突"
+        },
+        {
+          "id": "c",
+          "text": "为变量自动分配内存"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-advanced-namespaces-k02",
+      "type": "knowledge",
+      "prompt": "在头文件中使用 using namespace std 的问题是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "std 会被重命名为自定义空间"
+        },
+        {
+          "id": "b",
+          "text": "头文件将无法被多次包含"
+        },
+        {
+          "id": "c",
+          "text": "把 std 的全部名字强加给所有包含方，易引发冲突"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-advanced-namespaces-k03",
+      "type": "knowledge",
+      "prompt": "calc::transform(3) 中的 :: 表示？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "成员指针取值"
+        },
+        {
+          "id": "b",
+          "text": "作用域运算符，限定访问命名空间 calc 中的 transform"
+        },
+        {
+          "id": "c",
+          "text": "全局位运算"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-advanced-namespaces-c01",
+      "type": "code",
+      "prompt": "定义命名空间 calc，其中函数 transform(v) 返回 v*2+1。读取整数 n，通过 calc::transform 调用并输出结果。",
+      "starter_code": "#include <iostream>\n\n// 定义命名空间 calc 与 transform\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    // 经命名空间限定调用并输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3 时输出 7。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n\nnamespace calc {\nint transform(int value) {\n    return value * 2 + 1;\n}\n}\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    std::cout << calc::transform(n) << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "零输入按公式输出 1。",
+          "负数输入保持符号语义。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3\n",
+            "stdout": "7\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-2\n",
+            "stdout": "-3\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

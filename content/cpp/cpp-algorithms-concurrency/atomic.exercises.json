@@ -1,0 +1,158 @@
+{
+  "lesson_id": "cpp-algorithms-concurrency-atomic",
+  "questions": [
+    {
+      "id": "cpp-algorithms-concurrency-atomic-k01",
+      "type": "knowledge",
+      "prompt": "两个线程对同一个 std::atomic<int> 各执行 1000 次 fetch_add(1)，最终值是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "不确定，取决于调度"
+        },
+        {
+          "id": "b",
+          "text": "一定是 2000"
+        },
+        {
+          "id": "c",
+          "text": "一定是 1000"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-atomic-k02",
+      "type": "knowledge",
+      "prompt": "整型 std::atomic 变量上的 ++ 操作是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "编译错误，必须用 store"
+        },
+        {
+          "id": "b",
+          "text": "等价于原子 fetch_add(1)"
+        },
+        {
+          "id": "c",
+          "text": "非原子操作，需另加锁"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-atomic-k03",
+      "type": "knowledge",
+      "prompt": "std::atomic 直接保证的是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "所有线程的执行顺序完全串行"
+        },
+        {
+          "id": "b",
+          "text": "多条语句组成的临界区"
+        },
+        {
+          "id": "c",
+          "text": "单变量上单次操作的原子性"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-atomic-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 1..1000，含两端）与 n 个整数（每个合同范围 -10000..10000，含两端）存入 vector。创建一个 worker 线程用 fetch_add 把前一半元素累加进共享的 std::atomic<long long>，主线程同时用 fetch_add 累加后一半元素，join 后输出总和。任一输入无法解析或越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <atomic>\n#include <iostream>\n#include <thread>\n#include <vector>\n\nint main() {\n    // 读取 n 与 n 个整数，双线程 fetch_add 累加共享 atomic\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 n=4 与 1 2 3 4 时输出 10。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <atomic>\n#include <iostream>\n#include <thread>\n#include <vector>\n\nint main() {\n    int n = 0;\n    if (!(std::cin >> n)) return 1;\n    if (n < 1 || n > 1000) return 1;\n    std::vector<long long> values;\n    for (int i = 0; i < n; i++) {\n        long long value = 0;\n        if (!(std::cin >> value)) return 1;\n        if (value < -10000 || value > 10000) return 1;\n        values.push_back(value);\n    }\n    std::atomic<long long> total{0};\n    int half = n / 2;\n    std::thread worker([&values, half, &total]() {\n        for (int i = 0; i < half; i++) {\n            total.fetch_add(values[static_cast<std::size_t>(i)]);\n        }\n    });\n    for (int i = half; i < n; i++) {\n        total.fetch_add(values[static_cast<std::size_t>(i)]);\n    }\n    worker.join();\n    std::cout << total.load() << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "n=1 时 worker 半区为空，主线程累加唯一元素。",
+          "含负数时总和保留符号。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "4 1 2 3 4\n",
+            "stdout": "10\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1 7\n",
+            "stdout": "7\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3 -1 2 -3\n",
+            "stdout": "-2\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-atomic-challenge",
+      "type": "challenge",
+      "prompt": "模块挑战：读取整数 n（合同范围 1..1000，含两端）与 n 个整数（每个合同范围 -10000..10000，含两端）存入 vector。要求：① 用一个 worker 线程与主线程分别以 fetch_add 把前、后一半元素累加进同一个 std::atomic<long long>，join 后第一行输出总和；② 用 std::sort 对原数组升序排序，第二行输出排序后的全部元素（以单个空格分隔）。任一输入无法解析或越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <algorithm>\n#include <atomic>\n#include <iostream>\n#include <thread>\n#include <vector>\n\nint main() {\n    // 双线程 atomic 求和 + sort 排序，两行输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 n=4 与 4 1 3 2 时输出两行：10 与 1 2 3 4。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "#include <algorithm>\n#include <atomic>\n#include <iostream>\n#include <thread>\n#include <vector>\n\nint main() {\n    int n = 0;\n    if (!(std::cin >> n)) return 1;\n    if (n < 1 || n > 1000) return 1;\n    std::vector<long long> values;\n    for (int i = 0; i < n; i++) {\n        long long value = 0;\n        if (!(std::cin >> value)) return 1;\n        if (value < -10000 || value > 10000) return 1;\n        values.push_back(value);\n    }\n    std::atomic<long long> total{0};\n    int half = n / 2;\n    std::thread worker([&values, half, &total]() {\n        for (int i = 0; i < half; i++) {\n            total.fetch_add(values[static_cast<std::size_t>(i)]);\n        }\n    });\n    for (int i = half; i < n; i++) {\n        total.fetch_add(values[static_cast<std::size_t>(i)]);\n    }\n    worker.join();\n    std::sort(values.begin(), values.end());\n    std::cout << total.load() << std::endl;\n    for (std::size_t i = 0; i < values.size(); i++) {\n        if (i > 0) std::cout << ' ';\n        std::cout << values[i];\n    }\n    std::cout << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "n=1 时 worker 半区为空，第二行输出唯一元素。",
+          "含负数时总和保留符号且排序把负数排前。",
+          "元素 10000 上边界参与求和与排序。",
+          "元素 10001 越界时不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "4 4 1 3 2\n",
+            "stdout": "10\n1 2 3 4\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1 7\n",
+            "stdout": "7\n7\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3 -1 2 -3\n",
+            "stdout": "-2\n-3 -1 2\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2 10000 9999\n",
+            "stdout": "19999\n9999 10000\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1 10001\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

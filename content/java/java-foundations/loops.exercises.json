@@ -1,0 +1,121 @@
+{
+  "lesson_id": "java-foundations-loops",
+  "questions": [
+    {
+      "id": "java-foundations-loops-k01",
+      "type": "knowledge",
+      "prompt": "for (int i = 0; i < 3; i++) 的循环体执行几次？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "3 次"
+        },
+        {
+          "id": "b",
+          "text": "2 次"
+        },
+        {
+          "id": "c",
+          "text": "4 次"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "java-foundations-loops-k02",
+      "type": "knowledge",
+      "prompt": "while 的条件在第一次判断时就是 false，会怎样？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "执行一次再退出"
+        },
+        {
+          "id": "b",
+          "text": "一次也不执行"
+        },
+        {
+          "id": "c",
+          "text": "永远循环"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-foundations-loops-k03",
+      "type": "knowledge",
+      "prompt": "递减计数的 while 循环，要避免永远不结束，应怎样做？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "只打印计数"
+        },
+        {
+          "id": "b",
+          "text": "删掉条件"
+        },
+        {
+          "id": "c",
+          "text": "在循环体中让计数朝终止条件变化"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "java-foundations-loops-c01",
+      "type": "code",
+      "prompt": "读取一个整数 n（0 到 1000），用循环计算 1 到 n 的整数和并输出。n 为 0 时输出 0。空输入、非整数、多个值或超出范围时不输出结果，以退出码 1 结束。",
+      "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner input = new Scanner(System.in);\n        // 校验输入，用循环累加，再输出结果\n    }\n}\n",
+      "visible_tests": [
+        "输入 4 时输出 10。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner input = new Scanner(System.in);\n        if (!input.hasNextInt()) System.exit(1);\n        int n = input.nextInt();\n        if (n < 0 || n > 1000 || input.hasNext()) System.exit(1);\n        int total = 0;\n        for (int i = 1; i <= n; i++) total += i;\n        System.out.println(total);\n    }\n}\n",
+        "hidden_tests": [
+          "零次迭代输出 0。",
+          "较大合法输入仍逐项求和。",
+          "非法输入以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "4\n",
+            "stdout": "10\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1000\n",
+            "stdout": "500500\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-1\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "x\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

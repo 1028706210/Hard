@@ -1,0 +1,188 @@
+{
+  "lesson_id": "csharp-oop-namespaces",
+  "questions": [
+    {
+      "id": "csharp-oop-namespaces-k01",
+      "type": "knowledge",
+      "prompt": "namespace 的主要作用是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "把类型组织成层次结构并避免同名冲突"
+        },
+        {
+          "id": "b",
+          "text": "提高程序的运行速度"
+        },
+        {
+          "id": "c",
+          "text": "决定对象在内存中的布局方式"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-namespaces-k02",
+      "type": "knowledge",
+      "prompt": "全限定名 Hard.Core.Util 表达的含义是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "命名空间 Hard.Core 下的类型 Util"
+        },
+        {
+          "id": "b",
+          "text": "类型 Hard 的字段 Core.Util"
+        },
+        {
+          "id": "c",
+          "text": "程序集文件的名称"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-namespaces-k03",
+      "type": "knowledge",
+      "prompt": "using 指令（如 `using Hard.Core;`）的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "引入命名空间的成员，使代码可以按短名使用"
+        },
+        {
+          "id": "b",
+          "text": "创建一个新的命名空间"
+        },
+        {
+          "id": "c",
+          "text": "卸载其他已加载的命名空间"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-namespaces-c01",
+      "type": "code",
+      "prompt": "读取一行全限定名（由点分段）。输出一行：最后一个点之前的部分（命名空间）与之后的部分（类型短名），用单个空格分隔；整行没有点时输出 `global 加空格加名称`；整行为空、包含空段（如 A..B）、以点开头或结尾时不输出并以退出码 1 结束。",
+      "starter_code": "var line = Console.ReadLine() ?? \"\";\n// 定位最后一个点，拆分命名空间与短名，并处理边界\n",
+      "visible_tests": [
+        "输入 Hard.Core.Util 时输出 Hard.Core Util。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var line = Console.ReadLine() ?? \"\";\nif (line.Length == 0) Environment.Exit(1);\nvar segments = line.Split('.');\nforeach (var segment in segments)\n{\n    if (segment.Length == 0) Environment.Exit(1);\n}\nif (segments.Length == 1)\n{\n    Console.WriteLine(\"global \" + line);\n    return;\n}\nvar namespacePart = string.Join('.', segments[..^1]);\nConsole.WriteLine(namespacePart + \" \" + segments[^1]);\n",
+        "hidden_tests": [
+          "没有点的单独名称输出 global 前缀。",
+          "多层命名空间只拆最后一层。",
+          "包含空段时无输出并以退出码 1 结束。",
+          "以点结尾时无输出并以退出码 1 结束。",
+          "空行时无输出并以退出码 1 结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "Hard.Core.Util\n",
+            "stdout": "Hard.Core Util\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "Solo\n",
+            "stdout": "global Solo\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "A.B.C\n",
+            "stdout": "A.B C\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "A..B\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "A.B.\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "csharp-oop-namespaces-challenge",
+      "type": "challenge",
+      "prompt": "模块综合挑战：第一行读入 n（0..1000 含两端）；随后 n 行，每行是 `name role score`——name 不含空格，role 必须是 dev、qa 或 ops，score 是 0..100 的整数。用枚举表示角色（dev 权重 3、qa 权重 2、ops 权重 1），用封装了角色与分数的类计算每人的分数乘权重，用 long 累加并输出总权重分；n 为 0 时输出 0。任何行字段数不对、角色未知、score 越界或解析失败时，不输出并以退出码 1 结束。",
+      "starter_code": "if (!int.TryParse(Console.ReadLine(), out var count) || count < 0 || count > 1000) Environment.Exit(1);\n// 逐行解析员工并累加加权得分，最后输出总分\n",
+      "visible_tests": [
+        "输入 2、Ada dev 90、Bob qa 80 三行时输出 430。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "if (!int.TryParse(Console.ReadLine(), out var count) || count < 0 || count > 1000) Environment.Exit(1);\nlong total = 0;\nfor (var i = 0; i < count; i++)\n{\n    var tokens = (Console.ReadLine() ?? \"\").Split(' ', StringSplitOptions.RemoveEmptyEntries);\n    if (tokens.Length != 3) Environment.Exit(1);\n    if (!int.TryParse(tokens[2], out var score) || score < 0 || score > 100) Environment.Exit(1);\n    var employee = Employee.Create(tokens[0], tokens[1], score);\n    if (employee is null) Environment.Exit(1);\n    total += employee.WeightedScore();\n}\nConsole.WriteLine(total);\n\nenum Role\n{\n    Ops = 1,\n    Qa = 2,\n    Dev = 3\n}\n\nclass Employee\n{\n    private readonly Role _role;\n    private readonly int _score;\n\n    private Employee(Role role, int score)\n    {\n        _role = role;\n        _score = score;\n    }\n\n    public static Employee? Create(string name, string roleText, int score)\n    {\n        Role? role = roleText switch\n        {\n            \"dev\" => Role.Dev,\n            \"qa\" => Role.Qa,\n            \"ops\" => Role.Ops,\n            _ => null\n        };\n        return role is null ? null : new Employee(role.Value, score);\n    }\n\n    public long WeightedScore() => (long)_score * (int)_role;\n}\n",
+        "hidden_tests": [
+          "n 为 0 时输出 0。",
+          "单人 ops 满分时输出 100。",
+          "三人混合角色时输出 300。",
+          "角色未知（如 boss）时无输出并以退出码 1 结束。",
+          "score 为 101 时无输出并以退出码 1 结束。",
+          "某行缺少 score 字段时无输出并以退出码 1 结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "2\nAda dev 90\nBob qa 80\n",
+            "stdout": "430\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1\nEve ops 100\n",
+            "stdout": "100\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3\nA dev 50\nB qa 50\nC ops 50\n",
+            "stdout": "300\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1\nX boss 10\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "1\nX dev 101\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "1\nX dev\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

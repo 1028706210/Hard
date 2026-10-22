@@ -1,11 +1,10 @@
 import { createMemoryHistory } from "vue-router";
 import { mount } from "@vue/test-utils";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import App from "../../src/App.vue";
 import { createHardRouter } from "../../src/app/router";
-import { languageWorlds } from "../../src/features/map/map-layout";
-import { buildMapSnapshot } from "../../src/features/map/map.store";
+import { buildMapSnapshot, refreshMapSnapshot, useMapStore } from "../../src/features/map/map.store";
 
 
 async function mountHome() {
@@ -17,30 +16,45 @@ async function mountHome() {
 
 
 describe("knowledge map", () => {
-  it("keeps all four language routes visible and enterable around the continue-learning action", async () => {
-    const wrapper = await mountHome();
-    const worlds = wrapper.get(".orbital-map").findAll('[data-map-world]');
-
-    expect(worlds.map((world) => world.attributes("data-map-world"))).toEqual(languageWorlds.map((world) => world.id));
-    expect(wrapper.find('[data-continue-learning]').exists()).toBe(false);
-    expect(wrapper.text()).toContain("尚无继续学习课时");
-    expect(wrapper.get('[data-map-world="python"]').text()).toContain("尚无课程内容");
-    expect(wrapper.get('[data-map-world="java"]').text()).toContain("尚无课程内容");
-    expect(wrapper.get('[data-map-world="csharp"]').text()).toContain("尚无课程内容");
-    expect(wrapper.get('[data-map-world="cpp"]').text()).toContain("尚无课程内容");
-    expect(wrapper.get('[data-map-world="python"]').classes()).toContain("map-world--unavailable");
-    expect(wrapper.get('[data-route-node="cpp"] .mobile-route__marker').classes()).toContain("mobile-route__marker--unavailable");
+  it("distinguishes saved lesson progress, mastery and due reviews without promoting a visit to mastery", () => {
+    const lessons = ["new", "reading", "done", "mastered", "review"].map(id => ({ id, title: id }));
+    const state = buildMapSnapshot(
+      { courses: [{ language: "python", modules: [{ lessons }] }] },
+      { lesson_statuses: { reading: "in_progress", done: "completed", mastered: "completed", review: "validated" } },
+      { mastery: [{ scope_type: "lesson", scope_id: "mastered", score: 90 }, { scope_type: "lesson", scope_id: "review", score: 100 }] },
+      { items: [{ lesson_id: "review" }] },
+    );
+    expect(state.lessons.new).toMatchObject({ status: "not_started", label: "未学习" });
+    expect(state.lessons.reading).toMatchObject({ status: "in_progress", label: "学习中" });
+    expect(state.lessons.done).toMatchObject({ status: "completed", label: "已学完" });
+    expect(state.lessons.mastered).toMatchObject({ status: "mastered", label: "已掌握" });
+    expect(state.lessons.review).toMatchObject({ status: "due_review", label: "待复习" });
+    expect(state.mastery).toBe("38%");
+    expect(state.languages.python.status).toBe("in_progress");
   });
 
-  it("renders a separate touch-operable vertical route instead of shrinking the orbital canvas", async () => {
-    const wrapper = await mountHome();
-    const mobileRoute = wrapper.get('[data-mobile-route]');
+  it("shows a retryable error instead of fallback learning metrics when a critical API fails", async () => {
+    await refreshMapSnapshot(vi.fn().mockRejectedValue(new Error("offline")) as unknown as typeof fetch);
 
-    expect(mobileRoute.findAll('[data-route-node]')).toHaveLength(4);
-    expect(mobileRoute.findAll("a").map((link) => link.attributes("href"))).toEqual(
-      languageWorlds.map((world) => `/course/${world.id}`),
-    );
-    expect(wrapper.find(".orbital-map").exists()).toBe(true);
+    expect(useMapStore().loadState).toBe("error");
+    expect(useMapStore().error).toContain("重试");
+    expect(useMapStore().level).toBe("");
+    expect(useMapStore().mastery).toBe("");
+  });
+
+  it("shows a loading state instead of static learning metrics before the critical APIs resolve", async () => {
+    const wrapper = await mountHome();
+
+    expect(wrapper.get('[role="status"]').text()).toContain("正在读取学习概览");
+    expect(wrapper.text()).not.toContain("Lv. 1");
+    expect(wrapper.text()).not.toContain("未开始");
+  });
+
+  it("does not expose navigation actions until real learning data is ready", async () => {
+    const wrapper = await mountHome();
+
+    expect(wrapper.find('[data-continue-learning]').exists()).toBe(false);
+    expect(wrapper.find('[data-mobile-route]').exists()).toBe(false);
   });
 
   it.each([

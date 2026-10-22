@@ -73,35 +73,61 @@
     {
       "id": "python-flow-collections-sets-c01",
       "type": "code",
-      "prompt": "用集合去重 python 和 test，并输出元素数量。",
-      "starter_code": "tags = set()\n# 输出数量",
+      "prompt": "读取以空白分隔的标签，使用集合去重并输出不同标签的数量。大小写敏感，中文有效；空白输入表示空集合，输出 0。标签只是文本，不需要数字转换，也不要求输出集合元素顺序。起始代码提供 items 列表。",
+      "starter_code": "import sys\nitems = sys.stdin.read().split()\n# 按题面完成本课操作与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'python python test\\n'，输出 '2\\n'，退出码 0。",
+        "输入 'read\\n'，输出 '1\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-flow-collections-sets-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    tags = {'python', 'python', 'test'}\n    print(len(tags))\n",
+        "reference_solution": "import sys\nitems = sys.stdin.read().split()\ntags = set(items)\nprint(len(tags))\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的边界、顺序和重复项处理。",
+          "输入有效性与退出码按题面约定检查。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "python python test\n",
             "stdout": "2\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "read\n",
+            "stdout": "1\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-flow-collections-sets-c01\n",
+            "stdin": "",
+            "stdout": "0\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
-            "stdout": "",
-            "exit_code": 2
+            "stdin": " \n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "a a a",
+            "stdout": "1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "Python python",
+            "stdout": "2\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "学习 学习 编程",
+            "stdout": "2\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "a b c a b",
+            "stdout": "3\n",
+            "exit_code": 0
           }
         ]
       }

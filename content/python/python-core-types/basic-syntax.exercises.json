@@ -73,35 +73,61 @@
     {
       "id": "python-core-types-basic-syntax-c01",
       "type": "code",
-      "prompt": "定义 name 为 Hard，并输出 Hello, Hard。",
-      "starter_code": "name = \"\"\n# 输出问候",
+      "prompt": "从标准输入读取一个名字，去掉首尾空白后赋给 name，输出 Hello, 后接一个空格和名字。例如输入 Hard，输出 Hello, Hard。保留名字内部的空格；空白输入不输出任何内容，以退出码 1 结束。起始代码已提供读取和校验，只需补上赋值及输出。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\nif not text:\n    raise SystemExit(1)\n# 将 text 赋给 name，再输出问候\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'Hard'，输出 'Hello, Hard'，退出码 0。",
+        "输入 'Ada Lovelace'，输出 'Hello, Ada Lovelace'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-core-types-basic-syntax-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    name = 'Hard'\n    print(f'Hello, {name}')\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\nif not text:\n    raise SystemExit(1)\nname = text\nprint(f'Hello, {name}')\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面声明的有效边界输入。",
+          "非法输入不输出内容，退出码为 1。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "Hard\n",
             "stdout": "Hello, Hard\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "Ada Lovelace\n",
+            "stdout": "Hello, Ada Lovelace\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-core-types-basic-syntax-c01\n",
+            "stdin": "Ada  Lovelace\n",
+            "stdout": "Hello, Ada  Lovelace\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "  Python  \n",
+            "stdout": "Hello, Python\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "学习者\n",
+            "stdout": "Hello, 学习者\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "A\n",
+            "stdout": "Hello, A\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": " \t\n",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

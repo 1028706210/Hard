@@ -1,0 +1,146 @@
+{
+  "lesson_id": "java-oop-io-nio-files",
+  "questions": [
+    {
+      "id": "java-oop-io-nio-files-k01",
+      "type": "knowledge",
+      "prompt": "Paths.get(\"a\",\"b\") 等价于什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Path.of(\"a/b\")"
+        },
+        {
+          "id": "b",
+          "text": "Path.of(\"a\")"
+        },
+        {
+          "id": "c",
+          "text": "Path.of(\"b\")"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "java-oop-io-nio-files-k02",
+      "type": "knowledge",
+      "prompt": "Path.of(\"test.txt\").getFileName() 返回？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "test"
+        },
+        {
+          "id": "b",
+          "text": "txt"
+        },
+        {
+          "id": "c",
+          "text": "test.txt"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "java-oop-io-nio-files-k03",
+      "type": "knowledge",
+      "prompt": "NIO 中替代旧 File 类的是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "String"
+        },
+        {
+          "id": "b",
+          "text": "Path"
+        },
+        {
+          "id": "c",
+          "text": "File"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-oop-io-nio-files-c01",
+      "type": "code",
+      "prompt": "从标准输入读取文件路径，输出扩展名(无扩展名输出 none)。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\nimport java.nio.file.Path;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        String name = Path.of(input).getFileName().toString();\n        int dot = name.lastIndexOf('.');\n        System.out.println(dot > 0 ? name.substring(dot + 1) : \"none\");\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "test.txt\n",
+            "stdout": "txt\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "README\n",
+            "stdout": "none\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "java-oop-io-nio-files-challenge",
+      "type": "challenge",
+      "prompt": "从标准输入读取多行文件路径(空行结束)，逐行输出扩展名(无扩展名输出 none)。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\nimport java.nio.file.Path;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8);\n        if (input.trim().equals(\"__invalid__\")) System.exit(1);\n        String[] lines = input.split(\"\\\\R\");\n        for (String line : lines) {\n            if (line.trim().isEmpty()) continue;\n            String name = Path.of(line.trim()).getFileName().toString();\n            int dot = name.lastIndexOf('.');\n            System.out.println(dot > 0 ? name.substring(dot + 1) : \"none\");\n        }\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "a.txt\nb.java\n\n",
+            "stdout": "txt\njava\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "x.py\ny.md\n\n",
+            "stdout": "py\nmd\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

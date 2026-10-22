@@ -1,6 +1,29 @@
 {
   "components": {
     "schemas": {
+      "ActivityDayResponse": {
+        "properties": {
+          "completed_exercises": {
+            "title": "Completed Exercises",
+            "type": "integer"
+          },
+          "date": {
+            "title": "Date",
+            "type": "string"
+          },
+          "time_spent_seconds": {
+            "title": "Time Spent Seconds",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "date",
+          "time_spent_seconds",
+          "completed_exercises"
+        ],
+        "title": "ActivityDayResponse",
+        "type": "object"
+      },
       "AttemptRequest": {
         "additionalProperties": true,
         "properties": {
@@ -224,6 +247,133 @@
         "title": "CatalogResponse",
         "type": "object"
       },
+      "CompareConceptResponse": {
+        "properties": {
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "slots": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/CompareSlotResponse"
+            },
+            "title": "Slots",
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "slots"
+        ],
+        "title": "CompareConceptResponse",
+        "type": "object"
+      },
+      "CompareSlotResponse": {
+        "properties": {
+          "code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Code"
+          },
+          "difference": {
+            "title": "Difference",
+            "type": "string"
+          },
+          "lesson_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lesson Id"
+          },
+          "lesson_title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lesson Title"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "status": {
+            "enum": [
+              "available",
+              "missing"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "summary": {
+            "title": "Summary",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "summary",
+          "difference",
+          "code",
+          "lesson_id",
+          "lesson_title",
+          "note"
+        ],
+        "title": "CompareSlotResponse",
+        "type": "object"
+      },
+      "ComparisonResponse": {
+        "properties": {
+          "concepts": {
+            "items": {
+              "$ref": "#/components/schemas/CompareConceptResponse"
+            },
+            "title": "Concepts",
+            "type": "array"
+          },
+          "content_version": {
+            "title": "Content Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "content_version",
+          "concepts"
+        ],
+        "title": "ComparisonResponse",
+        "type": "object"
+      },
       "CourseResponse": {
         "properties": {
           "content_version": {
@@ -412,6 +562,21 @@
       },
       "GrowthSummaryResponse": {
         "properties": {
+          "activity_days": {
+            "items": {
+              "$ref": "#/components/schemas/ActivityDayResponse"
+            },
+            "title": "Activity Days",
+            "type": "array"
+          },
+          "activity_end_date": {
+            "title": "Activity End Date",
+            "type": "string"
+          },
+          "activity_start_date": {
+            "title": "Activity Start Date",
+            "type": "string"
+          },
           "badges": {
             "items": {
               "type": "string"
@@ -472,7 +637,10 @@
           "badges",
           "mastery",
           "new_badges",
-          "route_completion"
+          "route_completion",
+          "activity_start_date",
+          "activity_end_date",
+          "activity_days"
         ],
         "title": "GrowthSummaryResponse",
         "type": "object"
@@ -936,6 +1104,19 @@
         "title": "PublicChoiceResponse",
         "type": "object"
       },
+      "PublicCompileResult": {
+        "properties": {
+          "passed": {
+            "title": "Passed",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "passed"
+        ],
+        "title": "PublicCompileResult",
+        "type": "object"
+      },
       "PublicExerciseResponse": {
         "properties": {
           "choices": {
@@ -996,6 +1177,65 @@
           "experience_points"
         ],
         "title": "PublicExerciseResponse",
+        "type": "object"
+      },
+      "PublicRunResult": {
+        "properties": {
+          "compile": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PublicCompileResult"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "diagnostics": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Diagnostics",
+            "type": "array"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "tests": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PublicTestResult"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "status",
+          "diagnostics"
+        ],
+        "title": "PublicRunResult",
+        "type": "object"
+      },
+      "PublicTestResult": {
+        "properties": {
+          "visible_passed": {
+            "title": "Visible Passed",
+            "type": "integer"
+          },
+          "visible_total": {
+            "title": "Visible Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "visible_passed",
+          "visible_total"
+        ],
+        "title": "PublicTestResult",
         "type": "object"
       },
       "ReviewItemResponse": {
@@ -1143,14 +1383,12 @@
           "result": {
             "anyOf": [
               {
-                "additionalProperties": true,
-                "type": "object"
+                "$ref": "#/components/schemas/PublicRunResult"
               },
               {
                 "type": "null"
               }
-            ],
-            "title": "Result"
+            ]
           },
           "status": {
             "title": "Status",
@@ -1280,6 +1518,13 @@
             "title": "Due Review Count",
             "type": "integer"
           },
+          "lesson_statuses": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Lesson Statuses",
+            "type": "object"
+          },
           "streak_days": {
             "title": "Streak Days",
             "type": "integer"
@@ -1302,7 +1547,8 @@
           "due_review_count",
           "current_experience",
           "current_level",
-          "unlocked_lessons"
+          "unlocked_lessons",
+          "lesson_statuses"
         ],
         "title": "SummaryResponse",
         "type": "object"
@@ -1640,6 +1886,30 @@
         "summary": "Import Data",
         "tags": [
           "backup"
+        ]
+      }
+    },
+    "/api/compare/concepts": {
+      "get": {
+        "operationId": "concepts_api_compare_concepts_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComparisonResponse",
+                  "additionalProperties": true,
+                  "title": "ComparisonResponse",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Concepts",
+        "tags": [
+          "compare"
         ]
       }
     },
@@ -2486,10 +2756,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RunnerJobResponse",
-                  "additionalProperties": true,
-                  "title": "RunnerJobCancelResponse",
-                  "type": "object"
+                  "$ref": "#/components/schemas/RunnerJobResponse"
                 }
               }
             },
@@ -2529,10 +2796,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RunnerJobResponse",
-                  "additionalProperties": true,
-                  "title": "RunnerJobStatusResponse",
-                  "type": "object"
+                  "$ref": "#/components/schemas/RunnerJobResponse"
                 }
               }
             },
@@ -2591,10 +2855,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RunnerJobResponse",
-                  "additionalProperties": true,
-                  "title": "RunnerSubmissionResponse",
-                  "type": "object"
+                  "$ref": "#/components/schemas/RunnerJobResponse"
                 }
               }
             },

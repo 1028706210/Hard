@@ -1,0 +1,110 @@
+{
+  "lesson_id": "csharp-foundations-environment",
+  "questions": [
+    {
+      "id": "csharp-foundations-environment-k01",
+      "type": "knowledge",
+      "prompt": ".NET SDK 在 C# 开发环境中主要提供什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "只提供代码编辑器主题"
+        },
+        {
+          "id": "b",
+          "text": "只提供操作系统图形界面"
+        },
+        {
+          "id": "c",
+          "text": "提供 dotnet CLI、编译工具和目标框架支持包"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "csharp-foundations-environment-k02",
+      "type": "knowledge",
+      "prompt": "哪个命令可快速显示当前解析到的 .NET SDK 版本？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "dotnet --version"
+        },
+        {
+          "id": "b",
+          "text": "dotnet --language"
+        },
+        {
+          "id": "c",
+          "text": "csc --frameworks"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-foundations-environment-k03",
+      "type": "knowledge",
+      "prompt": "项目通过 global.json 请求一个未安装且无法匹配的 SDK 时，常见结果是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "自动把 C# 改成其他语言"
+        },
+        {
+          "id": "b",
+          "text": "dotnet 命令报告找不到兼容 SDK"
+        },
+        {
+          "id": "c",
+          "text": "程序忽略配置并保证成功生成"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-foundations-environment-c01",
+      "type": "code",
+      "prompt": "依次读取已安装 SDK 主版本和项目要求的最低主版本；已安装版本不低于要求时输出 READY，否则输出 UPDATE。",
+      "starter_code": "var installedMajor = int.Parse(Console.ReadLine() ?? \"\");\nvar requiredMajor = int.Parse(Console.ReadLine() ?? \"\");\n// 判断 SDK 是否就绪\n",
+      "visible_tests": [
+        "已安装 8、要求 8 时输出 READY。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var installedMajor = int.Parse(Console.ReadLine() ?? \"\");\nvar requiredMajor = int.Parse(Console.ReadLine() ?? \"\");\nConsole.WriteLine(installedMajor >= requiredMajor ? \"READY\" : \"UPDATE\");\n",
+        "hidden_tests": [
+          "已安装版本低于要求时输出 UPDATE。",
+          "已安装版本高于要求时输出 READY。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "8\n8\n",
+            "stdout": "READY\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "7\n8\n",
+            "stdout": "UPDATE\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "9\n8\n",
+            "stdout": "READY\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

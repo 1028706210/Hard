@@ -1,0 +1,128 @@
+{
+  "lesson_id": "csharp-io-metadata-attributes",
+  "questions": [
+    {
+      "id": "csharp-io-metadata-attributes-k01",
+      "type": "knowledge",
+      "prompt": "AttributeUsage 特性的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "限定自定义特性可以应用到哪些程序元素（如仅类、仅方法）"
+        },
+        {
+          "id": "b",
+          "text": "自动为特性生成默认属性值"
+        },
+        {
+          "id": "c",
+          "text": "决定特性数据在磁盘上的存储格式"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-io-metadata-attributes-k02",
+      "type": "knowledge",
+      "prompt": "特性（Attribute）本身何时产生行为？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "贴上特性的那一刻由编译器自动执行"
+        },
+        {
+          "id": "b",
+          "text": "特性只是元数据，必须有代码（通常是反射）去读取它才产生行为"
+        },
+        {
+          "id": "c",
+          "text": "程序退出时由运行时统一执行"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-io-metadata-attributes-k03",
+      "type": "knowledge",
+      "prompt": "[TaskInfo(Owner = \"ops\")] 中 Owner = \"ops\" 的含义是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "调用名为 Owner 的方法并传入参数"
+        },
+        {
+          "id": "b",
+          "text": "设置特性的公共属性或字段 Owner 的值"
+        },
+        {
+          "id": "c",
+          "text": "声明一个局部变量 Owner"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-io-metadata-attributes-c01",
+      "type": "code",
+      "prompt": "在程序中定义特性 TaskInfoAttribute（AttributeUsage 限定为类，含 string 属性 Owner 与 int 属性 Priority），并应用到两个类：Audit 标注 Owner=ops、Priority=2；Export 标注 Owner=dev、Priority=5。输入一行类名；通过反射从对应类的特性实例中读出元数据，输出 owner=<Owner> priority=<Priority>（单空格分隔）。类名不存在、大小写不一致或该类没有 TaskInfo 特性时，不输出并以退出码 1 结束。",
+      "starter_code": "using System.Reflection;\n\nvar name = (Console.ReadLine() ?? \"\").Trim();\n// 在本程序集类型中按名称精确查找，再经 GetCustomAttribute 读取 TaskInfo 元数据\n",
+      "visible_tests": [
+        "输入 Audit 时输出 owner=ops priority=2。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "using System.Reflection;\n\nvar name = (Console.ReadLine() ?? \"\").Trim();\nvar type = typeof(TaskInfoAttribute).Assembly.GetTypes()\n    .FirstOrDefault(candidate => candidate.Name == name);\nif (type is null) Environment.Exit(1);\nvar info = type.GetCustomAttribute<TaskInfoAttribute>();\nif (info is null) Environment.Exit(1);\nConsole.WriteLine($\"owner={info.Owner} priority={info.Priority}\");\n\n[AttributeUsage(AttributeTargets.Class)]\nsealed class TaskInfoAttribute : Attribute\n{\n    public string Owner { get; init; } = \"\";\n    public int Priority { get; init; }\n}\n\n[TaskInfo(Owner = \"ops\", Priority = 2)]\nsealed class Audit { }\n\n[TaskInfo(Owner = \"dev\", Priority = 5)]\nsealed class Export { }\n",
+        "hidden_tests": [
+          "输入 Export 时输出 owner=dev priority=5。",
+          "输入小写 audit 时大小写不一致，无输出并以退出码 1 结束。",
+          "输入不存在的类名时无输出并以退出码 1 结束。",
+          "输入为空时无输出并以退出码 1 结束。",
+          "输入 Export 且行尾带空白时按 trim 后匹配成功输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "Audit\n",
+            "stdout": "owner=ops priority=2\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "Export\n",
+            "stdout": "owner=dev priority=5\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "audit\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "Unknown\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "Export   \n",
+            "stdout": "owner=dev priority=5\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

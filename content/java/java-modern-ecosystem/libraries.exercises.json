@@ -1,0 +1,146 @@
+{
+  "lesson_id": "java-modern-ecosystem-libraries",
+  "questions": [
+    {
+      "id": "java-modern-ecosystem-libraries-k01",
+      "type": "knowledge",
+      "prompt": "Jackson 类库主要用于什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "日志"
+        },
+        {
+          "id": "b",
+          "text": "JSON 处理"
+        },
+        {
+          "id": "c",
+          "text": "数据库"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-modern-ecosystem-libraries-k02",
+      "type": "knowledge",
+      "prompt": "JUnit 的用途是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "构建工具"
+        },
+        {
+          "id": "b",
+          "text": "单元测试"
+        },
+        {
+          "id": "c",
+          "text": "日志"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-modern-ecosystem-libraries-k03",
+      "type": "knowledge",
+      "prompt": "Guava 提供什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "JSON 解析"
+        },
+        {
+          "id": "b",
+          "text": "工具增强"
+        },
+        {
+          "id": "c",
+          "text": "网络通信"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-modern-ecosystem-libraries-c01",
+      "type": "code",
+      "prompt": "从标准输入读取库名(Jackson/Guava/Log4j)，输出对应分类(JSON/Utility/Logging)。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        String category = switch (input) {\n            case \"Jackson\" -> \"JSON\";\n            case \"Guava\" -> \"Utility\";\n            case \"Log4j\" -> \"Logging\";\n            default -> \"Other\";\n        };\n        System.out.println(category);\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "Jackson\n",
+            "stdout": "JSON\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "Log4j\n",
+            "stdout": "Logging\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "java-modern-ecosystem-libraries-challenge",
+      "type": "challenge",
+      "prompt": "从标准输入读取逗号分隔的库名，逐个输出对应分类(逗号分隔)。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        String[] libs = input.split(\",\");\n        StringBuilder sb = new StringBuilder();\n        for (String lib : libs) {\n            String cat = switch (lib.trim()) {\n                case \"Jackson\" -> \"JSON\";\n                case \"Guava\" -> \"Utility\";\n                case \"Log4j\" -> \"Logging\";\n                default -> \"Other\";\n            };\n            if (sb.length() > 0) sb.append(\",\");\n            sb.append(cat);\n        }\n        System.out.println(sb);\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "Jackson,Guava\n",
+            "stdout": "JSON,Utility\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "Log4j,Jackson\n",
+            "stdout": "Logging,JSON\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

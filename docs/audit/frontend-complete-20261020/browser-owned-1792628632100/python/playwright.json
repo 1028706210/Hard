@@ -1,0 +1,169 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\projects\\1\\Hard-trial-clean-20260910\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/e2e/python-journey.spec.ts",
+      "--config",
+      "D:\\projects\\1\\Hard-trial-clean-20260910\\docs\\audit\\frontend-complete-20261020\\playwright-external.config.mts",
+      "--reporter=json",
+      "--output",
+      "D:\\projects\\1\\Hard-trial-clean-20260910\\docs\\audit\\frontend-complete-20261020\\browser-owned-1792628632100\\python\\results"
+    ],
+    "configFile": "D:\\projects\\1\\Hard-trial-clean-20260910\\docs\\audit\\frontend-complete-20261020\\playwright-external.config.mts",
+    "rootDir": "D:/projects/1/Hard-trial-clean-20260910/apps/web/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/projects/1/Hard-trial-clean-20260910/docs/audit/frontend-complete-20261020/browser-owned-1792628632100/python/results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "D:/projects/1/Hard-trial-clean-20260910/apps/web/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.62.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "python-journey.spec.ts",
+      "file": "python-journey.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Python milestone desktop",
+          "file": "python-journey.spec.ts",
+          "line": 38,
+          "column": 8,
+          "specs": [
+            {
+              "title": "uses an isolated real API, runner, scoring, review, backup and growth journey",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3363,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-22T00:23:56.975Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b3cb52163e2da9640197-3aadf555bc0cc3f529b2",
+              "file": "python-journey.spec.ts",
+              "line": 44,
+              "column": 5
+            }
+          ]
+        },
+        {
+          "title": "Python milestone mobile",
+          "file": "python-journey.spec.ts",
+          "line": 38,
+          "column": 8,
+          "specs": [
+            {
+              "title": "uses an isolated real API, runner, scoring, review, backup and growth journey",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2999,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-10-22T00:24:00.925Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b3cb52163e2da9640197-1b3654dc003ecc8f8f6a",
+              "file": "python-journey.spec.ts",
+              "line": 44,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-22T00:23:56.486Z",
+    "duration": 7658.299000000001,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

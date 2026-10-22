@@ -1,0 +1,212 @@
+{
+  "lesson_id": "cpp-capstone-quiz",
+  "questions": [
+    {
+      "id": "cpp-capstone-quiz-k01",
+      "type": "knowledge",
+      "prompt": "整条 C++ 路线中 vector::at 与 operator[] 的分界原则是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "at() 只能用于 map"
+        },
+        {
+          "id": "b",
+          "text": "一律用 operator[] 更快更安全"
+        },
+        {
+          "id": "c",
+          "text": "外部输入下标用 at()（可恢复失败），内部已校验下标可用 operator[]"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-quiz-k02",
+      "type": "knowledge",
+      "prompt": "结业挑战用两个线程分片汇总再合并的设计意图是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "让主线程等待时顺便输出中间结果"
+        },
+        {
+          "id": "b",
+          "text": "线程越多输出越快，顺序无所谓"
+        },
+        {
+          "id": "c",
+          "text": "各线程只写自己的结果槽，join 后统一输出，结果与调度顺序无关"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-quiz-k03",
+      "type": "knowledge",
+      "prompt": "读入的分数在汇总前必须先做什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "直接累加，越界留给未定义行为"
+        },
+        {
+          "id": "b",
+          "text": "校验数量与每个分数范围，非法整体以非零退出码拒绝"
+        },
+        {
+          "id": "c",
+          "text": "把非法分数静默替换为 0"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-capstone-quiz-c01",
+      "type": "code",
+      "prompt": "固定五题答案键为 B A C B C。输入一行恰好五个以空格分隔的大写 A/B/C，统计答对数量并输出 score=<分数>/5 level=<等级>：5 分为 expert，3..4 分为 solid，0..2 分为 review。数量不是 5、含其他字符或空输入时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cstdio>\n\nint main() {\n    // 校验五个答案，与固定答案键逐项比较后映射等级\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 B A C B A 时输出 score=4/5 level=solid。"
+      ],
+      "experience_points": 25,
+      "private": {
+        "reference_solution": "#include <cstdio>\n\nint main() {\n    char answers[8][4];\n    int parsed = 0;\n    for (int i = 0; i < 5; i++) {\n        if (std::scanf(\"%3s\", answers[i]) != 1) return 1;\n        parsed++;\n    }\n    if (parsed != 5) return 1;\n    char extra;\n    if (std::scanf(\" %c\", &extra) != EOF) return 1;\n    const char key[5] = {'B', 'A', 'C', 'B', 'C'};\n    int score = 0;\n    for (int i = 0; i < 5; i++) {\n        if (answers[i][0] != 'A' && answers[i][0] != 'B' && answers[i][0] != 'C') return 1;\n        if (answers[i][1] != '\\0') return 1;\n        if (answers[i][0] == key[i]) score++;\n    }\n    const char* level = score == 5 ? \"expert\" : (score >= 3 ? \"solid\" : \"review\");\n    std::printf(\"score=%d/5 level=%s\\n\", score, level);\n    return 0;\n}\n",
+        "hidden_tests": [
+          "全部答对时等级为 expert。",
+          "恰好三分时等级为 solid。",
+          "小写答案被拒绝。",
+          "答案数量不足被拒绝。",
+          "超出 A/B/C 的选项被拒绝。",
+          "第六个答案被拒绝。",
+          "五个答案后的非法内容被拒绝。",
+          "合法答案后的空白不影响评分。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "B A C B A\n",
+            "stdout": "score=4/5 level=solid\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "B A C B C\n",
+            "stdout": "score=5/5 level=expert\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "B A C A A\n",
+            "stdout": "score=3/5 level=solid\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "b A C B C\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "B A C B\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "B A D B C\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "B A C B C A\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "B A C B C INVALID\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "B A C B C \t\r\n",
+            "stdout": "score=5/5 level=expert\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "cpp-capstone-quiz-challenge",
+      "type": "challenge",
+      "prompt": "C++ 路线结业挑战——并发成绩汇总器。第一行输入整数 n（合同范围 1..100，含两端），第二行输入恰好 n 个以空格分隔的整数分数（每个合同范围 0..100，含两端）。把分数保存到 std::vector<int>；启动两个 std::thread，分别处理前半区间 [0,n/2) 与后半区间 [n/2,n)，每个线程计算自己区间的分数总和与及格人数（分数 >= 60），写入各自的结果变量，禁止共同递增同一计数器。Join 后输出一行「count=<n> pass=<及格总人数> average=<平均分，固定两位小数>」。n 非法、第二行数量不符、非整数或分数越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cstdio>\n#include <thread>\n#include <vector>\n\nint main() {\n    // vector 存分数 + 两个线程分片汇总 + join 后统一输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 5 与 80 50 60 90 40 时输出 count=5 pass=3 average=64.00。"
+      ],
+      "experience_points": 35,
+      "private": {
+        "reference_solution": "#include <cstdio>\n#include <thread>\n#include <vector>\n\nint main() {\n    int n = 0;\n    if (std::scanf(\"%d\", &n) != 1) return 1;\n    if (n < 1 || n > 100) return 1;\n    std::vector<int> scores;\n    for (int i = 0; i < n; i++) {\n        int value = 0;\n        if (std::scanf(\"%d\", &value) != 1) return 1;\n        if (value < 0 || value > 100) return 1;\n        scores.push_back(value);\n    }\n    long long sums[2] = {0, 0};\n    int passes[2] = {0, 0};\n    int half = n / 2;\n    std::thread workers[2] = {\n        std::thread([&scores, half, &sums, &passes]() {\n            for (int i = 0; i < half; i++) {\n                sums[0] += scores[static_cast<std::size_t>(i)];\n                if (scores[static_cast<std::size_t>(i)] >= 60) passes[0]++;\n            }\n        }),\n        std::thread([&scores, half, n, &sums, &passes]() {\n            for (int i = half; i < n; i++) {\n                sums[1] += scores[static_cast<std::size_t>(i)];\n                if (scores[static_cast<std::size_t>(i)] >= 60) passes[1]++;\n            }\n        }),\n    };\n    workers[0].join();\n    workers[1].join();\n    double average = static_cast<double>(sums[0] + sums[1]) / n;\n    std::printf(\"count=%d pass=%d average=%.2f\\n\", n, passes[0] + passes[1], average);\n    return 0;\n}\n",
+        "hidden_tests": [
+          "单个 60 分由后半工作线程处理并判定及格。",
+          "0、59、60、100 覆盖及格边界与两位小数平均。",
+          "全部 100 分时全部及格。",
+          "分数数量与 n 不符时被拒绝。",
+          "n 为 0 时被拒绝。",
+          "分数 101 越界时被拒绝。",
+          "双分片都含数据时合并结果与输入无关地确定。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "5\n80 50 60 90 40\n",
+            "stdout": "count=5 pass=3 average=64.00\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1\n60\n",
+            "stdout": "count=1 pass=1 average=60.00\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "4\n0 59 60 100\n",
+            "stdout": "count=4 pass=2 average=54.75\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3\n100 100 100\n",
+            "stdout": "count=3 pass=3 average=100.00\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3\n10 20\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "0\n\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "2\n50 101\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "6\n10 20 30 60 70 80\n",
+            "stdout": "count=6 pass=3 average=45.00\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

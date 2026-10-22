@@ -165,12 +165,12 @@ print 接收明确的公开值；空文本也是一个可验证输入。
                         "visible_tests": ["输入普通文本后原样输出"],
                         "experience_points": 10,
                         "private": {
-                            "reference_solution": "import sys\nvalue = sys.stdin.read().strip()\nif value == 'error':\n    raise SystemExit(1)\nprint(value or 'empty')",
-                            "hidden_tests": ["空输入输出默认值", "错误输入以非零状态退出"],
+                            "reference_solution": "import sys\nvalue = sys.stdin.read().strip()\nif value == 'error':\n    print('ERROR')\nelse:\n    print(value or 'empty')",
+                            "hidden_tests": ["空输入输出默认值", "错误输入输出错误标记"],
                             "visible_test_cases": [{"stdin": "hello\n", "stdout": "hello\n", "exit_code": 0}],
                             "hidden_test_cases": [
                                 {"stdin": "\n", "stdout": "empty\n", "exit_code": 0},
-                                {"stdin": "error\n", "stdout": "", "exit_code": 1},
+                                {"stdin": "error\n", "stdout": "ERROR\n", "exit_code": 0},
                             ],
                         },
                     },
@@ -182,15 +182,15 @@ print 接收明确的公开值；空文本也是一个可验证输入。
                         "visible_tests": ["输入文本后输出大写文本"],
                         "experience_points": 20,
                         "private": {
-                            "reference_solution": "import sys\nvalue = sys.stdin.read().strip()\nif value == 'error':\n    raise SystemExit(1)\nprint((value or 'empty').upper())",
-                            "hidden_tests": ["空输入使用默认值", "错误输入以非零状态退出"],
+                            "reference_solution": "import sys\nvalue = sys.stdin.read().strip()\nif value == 'error':\n    print('ERROR')\nelse:\n    print((value or 'empty').upper())",
+                            "hidden_tests": ["空输入使用默认值", "错误输入输出错误标记"],
                             "visible_test_cases": [{"stdin": "hello\n", "stdout": "HELLO\n", "exit_code": 0}],
                             "hidden_test_cases": [
                                 {"stdin": "\n", "stdout": "EMPTY\n", "exit_code": 0},
-                                {"stdin": "error\n", "stdout": "", "exit_code": 1},
+                                {"stdin": "error\n", "stdout": "ERROR\n", "exit_code": 0},
                             ],
-                        },
-                    }
+},
+                    },
                 ],
             },
             ensure_ascii=False,
@@ -900,6 +900,60 @@ def test_require_complete_rejects_hidden_cases_that_duplicate_the_visible_case(t
     assert "invalid_hidden_test_cases" in issue_codes(report)
 
 
+def test_report_rejects_a_constant_output_program_that_passes_all_hidden_cases(tmp_path: Path) -> None:
+    write_valid_content(tmp_path)
+    exercises_path = tmp_path / "python" / "python-basics" / "print.exercises.json"
+    exercises = load_json(exercises_path)
+    code = next(item for item in exercises["questions"] if item["type"] == "code")  # type: ignore[index]
+    code["private"]["hidden_test_cases"] = [  # type: ignore[index]
+        {"stdin": "other\n", "stdout": "hello\n", "exit_code": 0},
+        {"stdin": "again\n", "stdout": "hello\n", "exit_code": 0},
+    ]
+    write_json(exercises_path, exercises)
+    output_path = tmp_path / "coverage.json"
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(REPORTER),
+            "--content-root",
+            str(tmp_path),
+            "--language",
+            "python",
+            "--module",
+            "python-basics",
+            "--json",
+            str(output_path),
+        ],
+        capture_output=True,
+        check=False,
+        encoding="utf-8",
+        text=True,
+    )
+    report = load_json(output_path)
+
+    assert result.returncode == 1
+    assert "constant_output_submission_passed" in issue_codes(report)
+
+
+def test_require_complete_rejects_reused_generic_lesson_explanation(tmp_path: Path) -> None:
+    write_valid_content(tmp_path)
+    lesson_path = tmp_path / "python" / "python-basics" / "print.md"
+    lesson_path.write_text(
+        lesson_path.read_text(encoding="utf-8").replace(
+            "输出用于把程序结果交给使用者。",
+            "输出解决的是把明确输入转换为可核验结果的问题。",
+        ),
+        encoding="utf-8",
+    )
+
+    _, report = run_validator(
+        tmp_path, 1, "--language", "python", "--module", "python-basics", "--require-complete"
+    )
+
+    assert "generic_lesson_explanation" in issue_codes(report)
+
+
 def test_require_complete_allows_a_code_question_exception_reason(tmp_path: Path) -> None:
     write_valid_content(tmp_path)
     exercises_path = tmp_path / "python" / "python-basics" / "print.exercises.json"
@@ -1159,6 +1213,53 @@ def test_python_route_provides_a_placement_test_for_each_module() -> None:
     }
 
 
+def test_python_capstone_placement_test_samples_all_ten_modules() -> None:
+    course = content_parser.parse_course(PROJECT_ROOT / "content" / "python" / "course.yaml")
+    placement = next(item for item in course.placement_tests if item.id == "python-capstone-placement")
+
+    assert {
+        "python-foundations-hello-world-k01",
+        "python-core-types-basic-syntax-k01",
+        "python-flow-collections-lists-k01",
+        "python-functions-iteration-functions-k01",
+        "python-modules-io-oop-modules-k01",
+        "python-stdlib-data-overview-k01",
+        "python-concurrency-network-asyncio-k01",
+        "python-database-deployment-cgi-k01",
+        "python-automation-ui-web-pyecharts-k01",
+        "python-capstone-quiz-k01",
+    } <= set(placement.question_ids)
+
+
+def test_csharp_capstone_module_completes_the_source_manifest() -> None:
+    course = content_parser.parse_course(PROJECT_ROOT / "content" / "csharp" / "course.yaml")
+    module = next(item for item in course.modules if item.id == "csharp-capstone")
+
+    assert len(module.source_coverage) == 3
+    assert len(module.lessons) == 3
+
+
+def test_csharp_route_provides_a_placement_test_for_each_module() -> None:
+    course = content_parser.parse_course(PROJECT_ROOT / "content" / "csharp" / "course.yaml")
+
+    assert {placement.module_id for placement in course.placement_tests} == {
+        module.id for module in course.modules
+    }
+
+
+def test_csharp_capstone_placement_test_samples_all_five_modules() -> None:
+    course = content_parser.parse_course(PROJECT_ROOT / "content" / "csharp" / "course.yaml")
+    placement = next(item for item in course.placement_tests if item.id == "csharp-capstone-placement")
+
+    assert {
+        "csharp-foundations-tutorial-k01",
+        "csharp-oop-classes-k01",
+        "csharp-io-metadata-exception-handling-k01",
+        "csharp-language-features-generics-k01",
+        "csharp-capstone-language-quiz-k01",
+    } <= set(placement.question_ids)
+
+
 def test_require_complete_rejects_a_module_without_a_challenge(tmp_path: Path) -> None:
     write_valid_content(tmp_path)
     exercises_path = tmp_path / "python" / "python-basics" / "print.exercises.json"
@@ -1206,6 +1307,118 @@ def test_report_records_real_python_runner_evidence_for_reference_solutions(tmp_
     assert report["implemented"] == 1
     assert report["validated"] == 1
     assert report["reference_solutions_passed"] == 1
+
+
+def test_report_records_real_csharp_runner_evidence_for_visible_and_hidden_cases(tmp_path: Path) -> None:
+    module_dir = tmp_path / "csharp" / "csharp-probe"
+    module_dir.mkdir(parents=True)
+    (tmp_path / "concepts.yaml").write_text(
+        "concepts:\n  - id: variables\n    name: 变量\n    description: 保存可变值的命名位置。\n",
+        encoding="utf-8",
+    )
+    (tmp_path / "csharp" / "course.yaml").write_text(
+        """language: csharp
+title: C#
+growth:
+  review_milestone_points: 10
+  badge_points:
+    first_lesson: 10
+    first_module_mastery: 20
+    seven_day_streak: 30
+placement_tests: []
+modules:
+  - id: csharp-probe
+    title: Probe
+    prerequisites: []
+    source_coverage:
+      - source_id: csharp-probe-source
+        lesson_id: csharp-probe-runner
+    lessons:
+      - id: csharp-probe-runner
+        path: csharp-probe/runner.md
+""",
+        encoding="utf-8",
+    )
+    (module_dir / "runner.md").write_text(
+        """---
+id: csharp-probe-runner
+title: Runner probe
+concepts: [variables]
+objectives: [运行 C# 输入输出]
+prerequisites: []
+difficulty: beginner
+experience_points: 20
+source_url: https://www.runoob.com/csharp/csharp-tutorial.html
+source_snapshot_date: 2026-08-23
+---
+
+## 概念定义与适用场景
+
+Runner probe.
+
+## 语法、API 与边界
+
+Runner probe.
+
+## 常见错误与实践建议
+
+Runner probe.
+""",
+        encoding="utf-8",
+    )
+    (module_dir / "runner.exercises.json").write_text(
+        json.dumps(
+            {
+                "lesson_id": "csharp-probe-runner",
+                "questions": [
+                    {
+                        "id": "csharp-probe-runner-c01",
+                        "type": "code",
+                        "prompt": "输出大写文本。",
+                        "starter_code": "Console.WriteLine();",
+                        "visible_tests": ["普通输入"],
+                        "experience_points": 10,
+                        "private": {
+                            "reference_solution": (
+                                "var value = Console.In.ReadToEnd().Trim(); "
+                                "Console.WriteLine(value.ToUpperInvariant());"
+                            ),
+                            "hidden_tests": ["隐藏输入"],
+                            "visible_test_cases": [{"stdin": "Ada\n", "stdout": "ADA\n", "exit_code": 0}],
+                            "hidden_test_cases": [{"stdin": "bob\n", "stdout": "BOB\n", "exit_code": 0}],
+                        },
+                    }
+                ],
+            },
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+    output_path = tmp_path / "coverage.json"
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(REPORTER),
+            "--content-root",
+            str(tmp_path),
+            "--language",
+            "csharp",
+            "--module",
+            "csharp-probe",
+            "--json",
+            str(output_path),
+        ],
+        capture_output=True,
+        check=False,
+        encoding="utf-8",
+        text=True,
+    )
+
+    assert output_path.is_file(), result.stderr
+    report = load_json(output_path)
+    assert report["reference_solutions_passed"] == 1
+    assert report["constant_output"] == {"attempted": 1, "rejected": 1}
 
 
 def test_report_records_source_sections_and_distinct_assessment_case_counts(tmp_path: Path) -> None:

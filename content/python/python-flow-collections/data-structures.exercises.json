@@ -73,35 +73,81 @@
     {
       "id": "python-flow-collections-data-structures-c01",
       "type": "code",
-      "prompt": "建立 beginner 映射到 syntax 列表的字典并输出列表。",
-      "starter_code": "groups = {}\n# 输出列表",
+      "prompt": "输入一个 JSON 对象 groups，其中每个值必须是字符串列表。读取 beginner 对应的列表，缺少该键时使用空列表；输出其长度，然后按原顺序逐行输出每个元素，保留重复项和字符串内部空格。空对象输出 0。非法 JSON、非对象、任一值不是字符串列表时不输出内容，退出码为 1。起始代码已经解析校验 groups。",
+      "starter_code": "import sys, json\ntry:\n    groups = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif not isinstance(groups, dict) or any(not isinstance(items, list) or any(not isinstance(item, str) for item in items) for items in groups.values()):\n    raise SystemExit(1)\n# 按题面完成本课操作与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '{\"beginner\":[\"syntax\"]}'，输出 '1\\nsyntax\\n'，退出码 0。",
+        "输入 '{\"beginner\":[\"list\",\"loop\"]}'，输出 '2\\nlist\\nloop\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-flow-collections-data-structures-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    groups = {'beginner': ['syntax']}\n    print(groups['beginner'])\n",
+        "reference_solution": "import sys, json\ntry:\n    groups = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif not isinstance(groups, dict) or any(not isinstance(items, list) or any(not isinstance(item, str) for item in items) for items in groups.values()):\n    raise SystemExit(1)\nitems = groups.get(\"beginner\", [])\nprint(len(items))\nfor item in items:\n    print(item)\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的边界、顺序和重复项处理。",
+          "输入有效性与退出码按题面约定检查。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
-            "stdout": "['syntax']\n",
+            "stdin": "{\"beginner\":[\"syntax\"]}",
+            "stdout": "1\nsyntax\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"beginner\":[\"list\",\"loop\"]}",
+            "stdout": "2\nlist\nloop\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-flow-collections-data-structures-c01\n",
+            "stdin": "{}",
+            "stdout": "0\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "{\"advanced\":[\"class\"]}",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"beginner\":[]}",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"beginner\":[\"学习\",\"a  b\",\"学习\"]}",
+            "stdout": "3\n学习\na  b\n学习\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"beginner\":[\"\"]}",
+            "stdout": "1\n\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"beginner\":\"syntax\"}",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "{\"beginner\":[1]}",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "{\"advanced\":null}",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "[]",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

@@ -23,7 +23,7 @@ defineProps<{ snapshot: Readonly<MapSnapshot> }>();
 .orbital-map {
   position: relative;
   isolation: isolate;
-  height: clamp(34rem, calc(100dvh - 26rem), 42rem);
+  height: clamp(29rem, calc(100dvh - 21rem), 39rem);
   overflow: hidden;
   border: 0.0625rem solid color-mix(in srgb, var(--hard-color-primary) 34%, var(--hard-color-line));
   border-radius: var(--hard-radius-lg);

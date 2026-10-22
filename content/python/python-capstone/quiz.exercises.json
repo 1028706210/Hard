@@ -73,35 +73,46 @@
     {
       "id": "python-capstone-quiz-c01",
       "type": "code",
-      "prompt": "实现 normalize(text)：去掉首尾空白后返回小写文本，并输出 normalize(' PyTHON ')。",
-      "starter_code": "def normalize(text):\n    # 返回规范化文本\n    pass\n\nprint(normalize(' PyTHON '))",
+      "prompt": "读取全部文本，normalize(text) 去掉首尾空白并转成小写，打印结果，保留内部空格。中文不因大小写转换消失；空白输入输出一个换行，正常结束。",
+      "starter_code": "import sys\ntext = sys.stdin.read()\n# 按题面实现本课操作\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 ' PyTHON '，输出 'python\\n'，退出码 0。",
+        "输入 'HARD'，输出 'hard\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-capstone-quiz-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    def normalize(text):\n        return text.strip().lower()\n\n    print(normalize(' PyTHON '))\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read()\ndef normalize(value):\n    return value.strip().lower()\nprint(normalize(text))\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面规定的有效边界和失败行为。",
+          "输出格式、类型和顺序以题面约定为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": " PyTHON ",
             "stdout": "python\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "HARD",
+            "stdout": "hard\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-capstone-quiz-c01\n",
+            "stdin": "",
+            "stdout": "\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
-            "stdout": "",
-            "exit_code": 2
+            "stdin": " A  B ",
+            "stdout": "a  b\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "学习 Python",
+            "stdout": "学习 python\n",
+            "exit_code": 0
           }
         ]
       }
@@ -109,33 +120,49 @@
     {
       "id": "python-capstone-quiz-challenge",
       "type": "challenge",
-      "prompt": "完成离线结业挑战：JSON 输入、集合去重、函数拆分、异常分支、文件式 stdin 和 asyncio 协程共同生成学习摘要。",
-      "starter_code": "# 解析 JSON，组合函数、集合、异常与 asyncio 生成摘要\n",
+      "prompt": "输入JSON对象，scores为整数列表（布尔值不算整数）。去重后计算count（不同分数数目）、passed（不低于60的不同分数数目）、total（不同分数之和），使用本地async协程和asyncio.run，输出json.dumps(sort_keys=True)结果。允许任意整数和空列表；结构或类型错误无输出，退出码1。只作离线汇总，不联网。",
+      "starter_code": "import sys, json\ntry:\n    data = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif not isinstance(data, dict):\n    raise SystemExit(1)\nimport asyncio\nif not isinstance(data.get(\"scores\"),list) or any(type(value) is not int for value in data[\"scores\"]):\n    raise SystemExit(1)\n# 按题面实现本课操作\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '{\"scores\":[60,60,90]}'，输出 '{\"count\": 2, \"passed\": 2, \"total\": 150}\\n'，退出码 0。",
+        "输入 '{\"scores\":[]}'，输出 '{\"count\": 0, \"passed\": 0, \"total\": 0}\\n'，退出码 0。"
       ],
       "experience_points": 30,
       "private": {
-        "reference_solution": "import asyncio\nimport json\nimport sys\ndef normalize(values):\n    if not isinstance(values, list) or not all(isinstance(value, int) and not isinstance(value, bool) for value in values):\n        raise ValueError('values must be integer list')\n    return sorted(set(values))\nasync def summarize(text):\n    values = normalize(json.loads(text)['scores'])\n    await asyncio.sleep(0)\n    return {'count': len(values), 'passed': sum(value >= 60 for value in values), 'total': sum(values)}\ntext = sys.stdin.read().strip()\nif text == '__invalid__':\n    raise ValueError('reserved invalid marker')\nprint(json.dumps(asyncio.run(summarize(text)), sort_keys=True))\n",
+        "reference_solution": "import sys, json\ntry:\n    data = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif not isinstance(data, dict):\n    raise SystemExit(1)\nimport asyncio\nif not isinstance(data.get(\"scores\"),list) or any(type(value) is not int for value in data[\"scores\"]):\n    raise SystemExit(1)\nasync def summarize(values):\n    unique = set(values)\n    await asyncio.sleep(0)\n    return {\"count\":len(unique),\"passed\":sum(value >= 60 for value in unique),\"total\":sum(unique)}\nprint(json.dumps(asyncio.run(summarize(data[\"scores\"])),sort_keys=True))\n",
         "hidden_tests": [
-          "边界输入必须返回主题定义的结果。",
-          "无效输入必须进入可预期的失败分支。"
+          "检查题面规定的有效边界和失败行为。",
+          "输出格式、类型和顺序以题面约定为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "{\"scores\": [60, 80, 60]}\n",
-            "stdout": "{\"count\": 2, \"passed\": 2, \"total\": 140}\n",
+            "stdin": "{\"scores\":[60,60,90]}",
+            "stdout": "{\"count\": 2, \"passed\": 2, \"total\": 150}\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"scores\":[]}",
+            "stdout": "{\"count\": 0, \"passed\": 0, \"total\": 0}\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "{\"scores\": []}\n",
-            "stdout": "{\"count\": 0, \"passed\": 0, \"total\": 0}\n",
+            "stdin": "{\"scores\":[-1,0,59,60]}",
+            "stdout": "{\"count\": 4, \"passed\": 1, \"total\": 118}\n",
             "exit_code": 0
           },
           {
-            "stdin": "__invalid__\n",
+            "stdin": "{\"scores\":[true]}",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "{\"scores\":\"x\"}",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "{}",
             "stdout": "",
             "exit_code": 1
           }

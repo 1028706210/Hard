@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-capstone-cstdlib",
+  "questions": [
+    {
+      "id": "cpp-capstone-cstdlib-k01",
+      "type": "knowledge",
+      "prompt": "strtol(text, &end, 10) 完整解析成功的判据是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "end != text 且 *end == '\\0'"
+        },
+        {
+          "id": "b",
+          "text": "返回值为 0"
+        },
+        {
+          "id": "c",
+          "text": "end == text"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-capstone-cstdlib-k02",
+      "type": "knowledge",
+      "prompt": "atoi 失败（如输入 \"abc\"）时的返回值是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "抛出异常"
+        },
+        {
+          "id": "b",
+          "text": "0，无法与真 0 区分"
+        },
+        {
+          "id": "c",
+          "text": "返回负数"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-capstone-cstdlib-k03",
+      "type": "knowledge",
+      "prompt": "strtol 第三参 base 传 10 表示？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "按十进制解析"
+        },
+        {
+          "id": "b",
+          "text": "解析后乘 10"
+        },
+        {
+          "id": "c",
+          "text": "读取 10 个字符"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-capstone-cstdlib-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 1..100，含两端），随后 n 个整数 token（字符串形式，每个合同范围 -1000000000..1000000000，即 ±10^9，含两端）。用 strtol 配合 endptr 逐个严格解析（不允许前导/尾部垃圾），全部合法时输出一行总和。任一 token 非法、越界或数量缺失时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cstdio>\n#include <cstdlib>\n\nint main() {\n    // 读取 n 个 token，strtol + endptr 严格解析求和\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3 与 10 -5 8 时输出 13。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <cstdio>\n#include <cstdlib>\n\nint main() {\n    int n = 0;\n    if (std::scanf(\"%d\", &n) != 1) return 1;\n    if (n < 1 || n > 100) return 1;\n    long long total = 0;\n    for (int i = 0; i < n; i++) {\n        char token[32];\n        if (std::scanf(\"%31s\", token) != 1) return 1;\n        char* end = nullptr;\n        const char* text = token;\n        long value = std::strtol(text, &end, 10);\n        if (end == text || *end != '\\0') return 1;\n        if (value < -1000000000L || value > 1000000000L) return 1;\n        total += value;\n    }\n    std::printf(\"%lld\\n\", total);\n    return 0;\n}\n",
+        "hidden_tests": [
+          "单个 0 输出 0（合法真 0 与失败 0 区分靠 endptr）。",
+          "带尾巴的 12x 不输出并以非零退出码结束。",
+          "越界 1000000001 不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 10 -5 8\n",
+            "stdout": "13\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1 0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1 12x\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "1 1000000001\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "lesson_id": "java-capstone-examples",
+  "questions": [
+    {
+      "id": "java-capstone-examples-k01",
+      "type": "knowledge",
+      "prompt": "判断偶数用什么运算？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "n % 2 == 0"
+        },
+        {
+          "id": "b",
+          "text": "n / 2 == 0"
+        },
+        {
+          "id": "c",
+          "text": "n & 1 == 0"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "java-capstone-examples-k02",
+      "type": "knowledge",
+      "prompt": "split(\" \") 的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "连接字符串"
+        },
+        {
+          "id": "b",
+          "text": "按空格分割"
+        },
+        {
+          "id": "c",
+          "text": "去除空格"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-capstone-examples-k03",
+      "type": "knowledge",
+      "prompt": "实例编程中输入解析的核心模式是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "直接输出"
+        },
+        {
+          "id": "b",
+          "text": "解析-执行-格式化"
+        },
+        {
+          "id": "c",
+          "text": "仅执行"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-capstone-examples-c01",
+      "type": "code",
+      "prompt": "从标准输入读取逗号分隔整数，统计并输出偶数个数。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        int even = 0;\n        for (String p : input.split(\",\")) if (Integer.parseInt(p.trim()) % 2 == 0) even++;\n        System.out.println(even);\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1,2,3,4\n",
+            "stdout": "2\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "2,4,6\n",
+            "stdout": "3\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "java-capstone-examples-challenge",
+      "type": "challenge",
+      "prompt": "结业挑战：从标准输入读取多行\"操作 a b\"(add/sub/mul, 空行结束)，逐行输出计算结果。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8);\n        if (input.trim().equals(\"__invalid__\")) System.exit(1);\n        String[] lines = input.split(\"\\\\R\");\n        for (String line : lines) {\n            if (line.trim().isEmpty()) continue;\n            String[] p = line.trim().split(\"\\\\s+\");\n            int a = Integer.parseInt(p[1]), b = Integer.parseInt(p[2]);\n            int r = switch (p[0]) {\n                case \"add\" -> a + b;\n                case \"sub\" -> a - b;\n                case \"mul\" -> a * b;\n                default -> 0;\n            };\n            System.out.println(r);\n        }\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "add 3 5\nmul 2 4\n\n",
+            "stdout": "8\n8\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "sub 10 3\nadd 1 1\n\n",
+            "stdout": "7\n2\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

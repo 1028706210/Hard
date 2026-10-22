@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { destinations } from "./router";
+import { computed } from "vue";
+import { learningDestinations } from "./router";
+const props = defineProps<{ lessonId?: string }>();
+const destinations = computed(() => learningDestinations(props.lessonId));
 </script>
 
 <template>

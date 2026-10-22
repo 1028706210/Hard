@@ -1,0 +1,110 @@
+{
+  "lesson_id": "csharp-foundations-tutorial",
+  "questions": [
+    {
+      "id": "csharp-foundations-tutorial-k01",
+      "type": "knowledge",
+      "prompt": "控制台程序的“输入—处理—输出”流程中，处理步骤的职责是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "按照规则把输入转换为结果"
+        },
+        {
+          "id": "b",
+          "text": "只负责读取键盘内容"
+        },
+        {
+          "id": "c",
+          "text": "只负责决定项目名称"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-foundations-tutorial-k02",
+      "type": "knowledge",
+      "prompt": "哪组 C# API 最直接对应“读取一行并输出一行”？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Console.ReadKey 与 Console.Beep"
+        },
+        {
+          "id": "b",
+          "text": "Console.ReadLine 与 Console.WriteLine"
+        },
+        {
+          "id": "c",
+          "text": "Environment.GetCommandLineArgs 与 GC.Collect"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-foundations-tutorial-k03",
+      "type": "knowledge",
+      "prompt": "读取姓名后先 Trim；若结果长度为 0，最稳妥的处理是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "继续输出原始空白"
+        },
+        {
+          "id": "b",
+          "text": "访问第一个字符来判断"
+        },
+        {
+          "id": "c",
+          "text": "把它作为明确的空输入分支处理"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "csharp-foundations-tutorial-c01",
+      "type": "code",
+      "prompt": "读取一行文本，先去除首尾空白，再输出其不区分区域性的全大写形式；规范化后为空时输出 empty。",
+      "starter_code": "var value = Console.ReadLine() ?? \"\";\n// 规范化输入并输出结果\n",
+      "visible_tests": [
+        "输入 hard 时输出 HARD。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var value = Console.ReadLine() ?? \"\";\nvalue = value.Trim();\nConsole.WriteLine(value.Length == 0 ? \"empty\" : value.ToUpperInvariant());\n",
+        "hidden_tests": [
+          "空行输出 empty。",
+          "混合大小写且带首尾空白时输出规范化结果。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "hard\n",
+            "stdout": "HARD\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "\n",
+            "stdout": "empty\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "  CsHaRp  \n",
+            "stdout": "CSHARP\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

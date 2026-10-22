@@ -19,8 +19,8 @@ if (process.env.VITEST) {
   ]);
 
   const destinations = [
-    ["/", "知识星图主页"],
-    ["/course/python", "课程：python"],
+    ["/", "知识星图"],
+    ["/course/python", "Python 学习路径"],
     ["/lesson/python-basics", "课时：python-basics"],
     ["/review", "复习中心"],
     ["/search", "搜索"],
@@ -47,14 +47,16 @@ if (process.env.VITEST) {
       const { router, wrapper } = await mountAt("/unknown-route");
 
       expect(router.currentRoute.value.path).toBe("/");
-      expect(wrapper.text()).toContain("知识星图主页");
+      expect(wrapper.get('h1').attributes('aria-label')).toBe("知识星图主页");
+      expect(wrapper.get('h1').text()).toBe("知识星图");
     });
 
     it("uses language and lesson route parameters", async () => {
       const course = await mountAt("/course/java");
       const lesson = await mountAt("/lesson/java-basics");
 
-      expect(course.wrapper.text()).toContain("课程：java");
+      expect(course.wrapper.get('h1').attributes('aria-label')).toBe("课程：java");
+      expect(course.wrapper.get('h1').text()).toBe("Java 学习路径");
       expect(lesson.wrapper.text()).toContain("课时：java-basics");
     });
 

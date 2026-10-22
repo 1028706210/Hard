@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-advanced-signals",
+  "questions": [
+    {
+      "id": "cpp-advanced-signals-k01",
+      "type": "knowledge",
+      "prompt": "信号处理器函数内安全的做法是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "只置位 volatile sig_atomic_t 标志"
+        },
+        {
+          "id": "b",
+          "text": "执行 printf 与动态分配"
+        },
+        {
+          "id": "c",
+          "text": "递归调用主函数"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-advanced-signals-k02",
+      "type": "knowledge",
+      "prompt": "std::raise(SIGTERM) 的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "在当前进程内触发 SIGTERM 信号"
+        },
+        {
+          "id": "b",
+          "text": "向另一个指定进程发消息"
+        },
+        {
+          "id": "c",
+          "text": "永久屏蔽所有信号"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-advanced-signals-k03",
+      "type": "knowledge",
+      "prompt": "下列哪个信号无法被捕获或忽略？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "SIGTERM"
+        },
+        {
+          "id": "b",
+          "text": "SIGINT"
+        },
+        {
+          "id": "c",
+          "text": "SIGKILL"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-advanced-signals-c01",
+      "type": "code",
+      "prompt": "注册 SIGTERM 处理器（置位 volatile std::sig_atomic_t 标志），读取整数 n：n > 0 时调用 std::raise(SIGTERM) 触发处理器，随后根据标志输出 caught；n ≤ 0 时不触发，输出 none。",
+      "starter_code": "#include <csignal>\n#include <iostream>\n\nvolatile std::sig_atomic_t flagged = 0;\n\n// 注册处理器并按输入触发\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    // 触发或跳过信号，按标志输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 1 时输出 caught。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <csignal>\n#include <iostream>\n\nvolatile std::sig_atomic_t flagged = 0;\n\nvoid handle_term(int) {\n    flagged = 1;\n}\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    std::signal(SIGTERM, handle_term);\n    if (n > 0) {\n        std::raise(SIGTERM);\n    }\n    std::cout << (flagged ? \"caught\" : \"none\") << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "零输入不触发信号输出 none。",
+          "更大的正数同样触发输出 caught。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1\n",
+            "stdout": "caught\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "none\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "9\n",
+            "stdout": "caught\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

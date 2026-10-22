@@ -1,0 +1,43 @@
+{
+  "language": "csharp",
+  "status": "proposed_only",
+  "shared_files_modified": false,
+  "suggestions": [
+    {
+      "concept_id": "classes",
+      "lesson_id": "csharp-oop-classes",
+      "suggested_summary": "class 是具有对象身份的引用类型，赋值与普通传参复制引用；修改共享对象与替换变量是两件事。",
+      "reason": "新增完整共享引用/参数重绑定输出示例"
+    },
+    {
+      "concept_id": "memory",
+      "lesson_id": "csharp-oop-structs",
+      "suggested_summary": "struct 按字段复制值，引用字段仍共享对象；装箱保存值副本，存储位置不能替代值/引用语义。",
+      "reason": "新增浅复制、装箱与栈/堆误区"
+    },
+    {
+      "concept_id": "references",
+      "lesson_id": "csharp-oop-classes",
+      "suggested_summary": "引用类型变量保存引用；普通参数复制引用，ref 参数才允许替换调用方变量。",
+      "reason": "现有references概念可补充C#对照，不新增抽象概念"
+    },
+    {
+      "concept_id": "polymorphism",
+      "lesson_id": "csharp-oop-polymorphism",
+      "suggested_summary": "override 参与运行期虚分派，new 按静态类型隐藏成员；abstract 要求具体派生类实现缺失行为。",
+      "reason": "新增同对象静态/动态行为对照及抽象类"
+    },
+    {
+      "concept_id": "interfaces",
+      "lesson_id": "csharp-oop-interfaces",
+      "suggested_summary": "接口是可由类或结构体实现的能力合同；支持多实现，显式实现通过接口视图访问。抽象类另可共享状态与构造流程。",
+      "reason": "纠正所有接口成员必须public实现的过度概括"
+    },
+    {
+      "concept_id": "generics",
+      "lesson_id": "csharp-language-features-generics",
+      "suggested_summary": "类型参数与约束保留类型安全，.NET运行期保留泛型类型信息；泛型集合并非自动协变，转object仍可能装箱。",
+      "reason": "纠正泛型只存在于编译期/元数据的表述"
+    }
+  ]
+}

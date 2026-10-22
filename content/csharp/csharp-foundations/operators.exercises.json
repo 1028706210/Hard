@@ -1,0 +1,110 @@
+{
+  "lesson_id": "csharp-foundations-operators",
+  "questions": [
+    {
+      "id": "csharp-foundations-operators-k01",
+      "type": "knowledge",
+      "prompt": "表达式 2 + 3 * 4 在没有括号时先执行什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "先执行加法"
+        },
+        {
+          "id": "b",
+          "text": "先执行乘法，因为 * 的优先级更高"
+        },
+        {
+          "id": "c",
+          "text": "从右到左随机执行"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-foundations-operators-k02",
+      "type": "knowledge",
+      "prompt": "当 a 和 b 都是 int 时，关于 / 与 % 的描述哪项正确？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "/ 总是产生 decimal"
+        },
+        {
+          "id": "b",
+          "text": "% 计算百分比"
+        },
+        {
+          "id": "c",
+          "text": "/ 进行整数除法，% 给出余数"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "csharp-foundations-operators-k03",
+      "type": "knowledge",
+      "prompt": "整数除法或取余的右操作数为 0 时会怎样？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "运行时抛出 DivideByZeroException"
+        },
+        {
+          "id": "b",
+          "text": "结果自动变成 0"
+        },
+        {
+          "id": "c",
+          "text": "结果自动变成无穷大"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-foundations-operators-c01",
+      "type": "code",
+      "prompt": "依次读取整数 a 和非零整数 b，按顺序输出 a+b、a-b、a*b、a/b、a%b，五个结果以单个空格分隔。",
+      "starter_code": "var a = int.Parse(Console.ReadLine() ?? \"\");\nvar b = int.Parse(Console.ReadLine() ?? \"\");\n// 使用五种算术运算符并输出\n",
+      "visible_tests": [
+        "输入 17 和 5 时输出 22 12 85 3 2。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var a = int.Parse(Console.ReadLine() ?? \"\");\nvar b = int.Parse(Console.ReadLine() ?? \"\");\nConsole.WriteLine($\"{a + b} {a - b} {a * b} {a / b} {a % b}\");\n",
+        "hidden_tests": [
+          "不能整除的正整数保留商与余数语义。",
+          "负被除数遵循 C# 整数除法与取余规则。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "17\n5\n",
+            "stdout": "22 12 85 3 2\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "8\n3\n",
+            "stdout": "11 5 24 2 2\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-17\n5\n",
+            "stdout": "-12 -22 -85 -3 -2\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

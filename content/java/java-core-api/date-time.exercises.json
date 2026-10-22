@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-core-api-date-time",
+  "questions": [
+    {
+      "id": "java-core-api-date-time-k01",
+      "type": "knowledge",
+      "prompt": "LocalDate.of(2026,1,15).plusDays(1) 的结果是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "2026-01-15"
+        },
+        {
+          "id": "b",
+          "text": "2026-01-16"
+        },
+        {
+          "id": "c",
+          "text": "2026-02-15"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-date-time-k02",
+      "type": "knowledge",
+      "prompt": "LocalDate.parse(\"2026-12-31\").plusDays(1).getYear() 是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "2026"
+        },
+        {
+          "id": "b",
+          "text": "2027"
+        },
+        {
+          "id": "c",
+          "text": "2025"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-date-time-k03",
+      "type": "knowledge",
+      "prompt": "LocalDate 是否可变？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "是"
+        },
+        {
+          "id": "b",
+          "text": "否"
+        },
+        {
+          "id": "c",
+          "text": "仅日期可变"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-date-time-c01",
+      "type": "code",
+      "prompt": "从标准输入读取 ISO 格式日期(YYYY-MM-DD)，输出加一天后的日期。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // 读取日期，加一天输出\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\nimport java.time.LocalDate;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        LocalDate d = LocalDate.parse(input);\n        System.out.println(d.plusDays(1));\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "2026-01-15\n",
+            "stdout": "2026-01-16\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "2026-12-31\n",
+            "stdout": "2027-01-01\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

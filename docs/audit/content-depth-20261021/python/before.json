@@ -1,0 +1,2368 @@
+[
+  {
+    "path": "content/python/course.yaml",
+    "sha256": "265565db1027e86701a1ede771f3acbab27370690d6ae4723b7ee004c92c1752"
+  },
+  {
+    "path": "content/python/python-automation-ui-web/crawler.exercises.json",
+    "sha256": "562ed3aaef0549eec5d2f6a57e8f0177f7c735c0372f1dd8d6c4479fe1101567"
+  },
+  {
+    "path": "content/python/python-automation-ui-web/crawler.md",
+    "sha256": "cb7cfee4ca296917c844f18216a258391ea8d999dce664ea20f993dd68a67f94",
+    "front_matter": {
+      "id": "python-automation-ui-web-crawler",
+      "title": "Python 爬虫解析边界",
+      "concepts": [
+        "security",
+        "io"
+      ],
+      "objectives": [
+        "从本地 HTML fixture 提取明确字段",
+        "说明抓取前必须遵守的授权与频率边界"
+      ],
+      "prerequisites": [
+        "python-automation-ui-web-selenium"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python-spider-beautifulsoup.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 693
+  },
+  {
+    "path": "content/python/python-automation-ui-web/markdown.exercises.json",
+    "sha256": "c85438867b1dd3a1c99322920ac2d1ab80a8d829b44c83d1f901f002e56fad8e"
+  },
+  {
+    "path": "content/python/python-automation-ui-web/markdown.md",
+    "sha256": "54af9628b7d3507a241218c9f2957b3bb07a9bbf518c3c2e50dbe9bdd24ef306",
+    "front_matter": {
+      "id": "python-automation-ui-web-markdown",
+      "title": "Python Markdown 安全转换",
+      "concepts": [
+        "security",
+        "strings"
+      ],
+      "objectives": [
+        "识别 Markdown 的标题和链接语法",
+        "在展示不可信 Markdown 前保留转义与净化边界"
+      ],
+      "prerequisites": [
+        "python-automation-ui-web-scrapy"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python-markdown2html.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 610
+  },
+  {
+    "path": "content/python/python-automation-ui-web/pyecharts.exercises.json",
+    "sha256": "ce83573e04096a59f66c49c731043af32a6254793cfa1eadb87c45994456db20"
+  },
+  {
+    "path": "content/python/python-automation-ui-web/pyecharts.md",
+    "sha256": "40352d7728e0f17bce05b2521a9ba2b6e2b98fb65135b790a79e6f45d4081873",
+    "front_matter": {
+      "id": "python-automation-ui-web-pyecharts",
+      "title": "Python pyecharts 数据准备",
+      "concepts": [
+        "collections",
+        "security"
+      ],
+      "objectives": [
+        "将受信数据整理成图表序列",
+        "在不渲染浏览器的情况下检查图表配置"
+      ],
+      "prerequisites": [
+        "python-database-deployment-uwsgi"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python-pyecharts.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 660
+  },
+  {
+    "path": "content/python/python-automation-ui-web/pyqt.exercises.json",
+    "sha256": "848ad4ccd99dca3daf0dfeb743991e2899171facfdbfbb23605297f2dc596cda"
+  },
+  {
+    "path": "content/python/python-automation-ui-web/pyqt.md",
+    "sha256": "a616de2c2d148eb9e271fe561bb22442d876ae23b5bb6ac74c236850c4072afb",
+    "front_matter": {
+      "id": "python-automation-ui-web-pyqt",
+      "title": "Python PyQt 界面状态",
+      "concepts": [
+        "collections",
+        "security"
+      ],
+      "objectives": [
+        "用纯函数维护界面可见状态",
+        "在不启动 GUI 的前提下验证用户操作结果"
+      ],
+      "prerequisites": [
+        "python-automation-ui-web-markdown"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python-pyqt.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 892
+  },
+  {
+    "path": "content/python/python-automation-ui-web/scrapy.exercises.json",
+    "sha256": "9623fa2487c806e1290c78aafe9c98220ffc6587af54c41778e65be927af370d"
+  },
+  {
+    "path": "content/python/python-automation-ui-web/scrapy.md",
+    "sha256": "28586259607edbda6634eff57d5a9dd4bbdf069247962e3fa0f9cca179fb8236",
+    "front_matter": {
+      "id": "python-automation-ui-web-scrapy",
+      "title": "Python Scrapy 请求计划",
+      "concepts": [
+        "collections",
+        "security"
+      ],
+      "objectives": [
+        "用纯数据表达请求队列与解析结果",
+        "为爬取任务设置允许域名和去重边界"
+      ],
+      "prerequisites": [
+        "python-automation-ui-web-crawler"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python-scrapy.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 824
+  },
+  {
+    "path": "content/python/python-automation-ui-web/selenium.exercises.json",
+    "sha256": "0eac7730b98d4bc19e211b8d6b161bcdb27bb7da665688c3aebb835cc8604ac0"
+  },
+  {
+    "path": "content/python/python-automation-ui-web/selenium.md",
+    "sha256": "7f9e501d7cd7b7b73634ddf6e3261c034e4904d969c95250eb661ac8d86a5ac3",
+    "front_matter": {
+      "id": "python-automation-ui-web-selenium",
+      "title": "Python selenium 选择器设计",
+      "concepts": [
+        "security",
+        "collections"
+      ],
+      "objectives": [
+        "为稳定页面元素选择合适定位策略",
+        "使用本地 DOM fixture 验证选择器意图"
+      ],
+      "prerequisites": [
+        "python-automation-ui-web-pyecharts"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python-selenium.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 1018
+  },
+  {
+    "path": "content/python/python-capstone/ai-draw.exercises.json",
+    "sha256": "565c4cb7fb7b982fe1edc30e3b61ff60120bb959ab33ab305a6732dcca637b64"
+  },
+  {
+    "path": "content/python/python-capstone/ai-draw.md",
+    "sha256": "328ace288f308a8e008e57432ae12f6cefdfd283e190d9295d93bc3e945aadcd",
+    "front_matter": {
+      "id": "python-capstone-ai-draw",
+      "title": "AI 绘画任务的离线规格",
+      "concepts": [
+        "collections",
+        "functions",
+        "security"
+      ],
+      "objectives": [
+        "把绘画提示词整理为可审查的本地任务规格",
+        "在调用外部生成器前验证尺寸与安全字段"
+      ],
+      "prerequisites": [
+        "python-capstone-openai"
+      ],
+      "difficulty": "advanced",
+      "experience_points": 40,
+      "source_url": "https://www.runoob.com/python3/python-ai-draw.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 828
+  },
+  {
+    "path": "content/python/python-capstone/examples.exercises.json",
+    "sha256": "1f656a90e1d784db8957d67bfcc92744647a508f9233669a817beb0c47015f2d"
+  },
+  {
+    "path": "content/python/python-capstone/examples.md",
+    "sha256": "1948b157fca7bd04952b9110bb04ab39330333118a5daeb722a4534f5462c794",
+    "front_matter": {
+      "id": "python-capstone-examples",
+      "title": "Python 实例：从需求到可验证程序",
+      "concepts": [
+        "functions",
+        "collections",
+        "control-flow"
+      ],
+      "objectives": [
+        "把自然语言需求拆成可测试的函数",
+        "使用边界样本验证小程序的行为"
+      ],
+      "prerequisites": [
+        "python-automation-ui-web-markdown"
+      ],
+      "difficulty": "advanced",
+      "experience_points": 35,
+      "source_url": "https://www.runoob.com/python3/python3-examples.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 717
+  },
+  {
+    "path": "content/python/python-capstone/openai.exercises.json",
+    "sha256": "4d973a9b23f305767926314afe3e4019fd6c6b6daf732ad3e947b45c7738c60c"
+  },
+  {
+    "path": "content/python/python-capstone/openai.md",
+    "sha256": "e8c3d280c779c9c5f63c88ed1a4b029e71a6e35a95ae5c5bb9a01acaf715dcd9",
+    "front_matter": {
+      "id": "python-capstone-openai",
+      "title": "Python AI 客户端的本地契约",
+      "concepts": [
+        "functions",
+        "security",
+        "collections"
+      ],
+      "objectives": [
+        "用本地 fixture 验证 AI 响应解析逻辑",
+        "将密钥和网络调用隔离在可替换边界之外"
+      ],
+      "prerequisites": [
+        "python-capstone-quiz"
+      ],
+      "difficulty": "advanced",
+      "experience_points": 40,
+      "source_url": "https://www.runoob.com/python3/python-openai.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 840
+  },
+  {
+    "path": "content/python/python-capstone/quant.exercises.json",
+    "sha256": "37046b585ef1bbd01f5cbe66d7b7c4a081b1bbac1889994b1aa66e9f5c643b14"
+  },
+  {
+    "path": "content/python/python-capstone/quant.md",
+    "sha256": "261d431f86aa1bb2be50fc6a8997a50413f4d52d2c4bb50936b5ed6a4cfabe45",
+    "front_matter": {
+      "id": "python-capstone-quant",
+      "title": "量化策略的离线回测边界",
+      "concepts": [
+        "collections",
+        "functions",
+        "security"
+      ],
+      "objectives": [
+        "用固定价格 fixture 计算简单策略信号",
+        "区分离线研究结果与真实下单行为"
+      ],
+      "prerequisites": [
+        "python-capstone-ai-draw"
+      ],
+      "difficulty": "advanced",
+      "experience_points": 45,
+      "source_url": "https://www.runoob.com/python3/python-qt.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 792
+  },
+  {
+    "path": "content/python/python-capstone/quiz.exercises.json",
+    "sha256": "b4e9dda918d172d9e1c42360142b5a589e85044fda2688bac44d773d11669f17"
+  },
+  {
+    "path": "content/python/python-capstone/quiz.md",
+    "sha256": "02259af7e45f50276ff972ab4a72b913f506a193880ce82c963eae349864983a",
+    "front_matter": {
+      "id": "python-capstone-quiz",
+      "title": "Python 路线自测与诊断",
+      "concepts": [
+        "types",
+        "control-flow",
+        "exceptions"
+      ],
+      "objectives": [
+        "通过短题定位语言基础的薄弱点",
+        "根据错误类型选择复习策略"
+      ],
+      "prerequisites": [
+        "python-capstone-examples"
+      ],
+      "difficulty": "advanced",
+      "experience_points": 35,
+      "source_url": "https://www.runoob.com/quiz/python-quiz.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 879
+  },
+  {
+    "path": "content/python/python-concurrency-network/asyncio.exercises.json",
+    "sha256": "58586b89e9b22985eb6fc8ac5a7304ee9bc0246aa86b42b57578a8e1eb25a308"
+  },
+  {
+    "path": "content/python/python-concurrency-network/asyncio.md",
+    "sha256": "3ba9eb05b6916fbdd78d9535a6f759e4ab881acc08e7fe87545d08218289fcbc",
+    "front_matter": {
+      "id": "python-concurrency-network-asyncio",
+      "title": "Python asyncio",
+      "concepts": [
+        "concurrency",
+        "functions"
+      ],
+      "objectives": [
+        "理解协程等待不会阻塞事件循环",
+        "用纯函数验证任务状态转换"
+      ],
+      "prerequisites": [
+        "python-concurrency-network-threading"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 35,
+      "source_url": "https://www.runoob.com/python3/python-asyncio.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 1032
+  },
+  {
+    "path": "content/python/python-concurrency-network/multithreading.exercises.json",
+    "sha256": "37d7a0998ca24270f0255906f1e99690c1d2df7cceeb2eebcc6696a035da0f3f"
+  },
+  {
+    "path": "content/python/python-concurrency-network/multithreading.md",
+    "sha256": "c2bf46cbbc9e0439a4735d55724a902ff03f409fe04aad7a74c4b8a40a03727a",
+    "front_matter": {
+      "id": "python-concurrency-network-multithreading",
+      "title": "Python 多线程",
+      "concepts": [
+        "concurrency",
+        "security"
+      ],
+      "objectives": [
+        "理解并发任务的共享状态风险",
+        "用纯函数检查任务结果聚合"
+      ],
+      "prerequisites": [
+        "python-concurrency-network-subprocess"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-multithreading.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 520
+  },
+  {
+    "path": "content/python/python-concurrency-network/requests.exercises.json",
+    "sha256": "672957df0274b61752ed345fd99ec57ff80162d6c0f7a594565d58da737d878d"
+  },
+  {
+    "path": "content/python/python-concurrency-network/requests.md",
+    "sha256": "f8e5a0f73085c123c012f0f599f4f134b3c6b5906a22c7dbb536f9c8b3cc13fd",
+    "front_matter": {
+      "id": "python-concurrency-network-requests",
+      "title": "Python requests",
+      "concepts": [
+        "io",
+        "security"
+      ],
+      "objectives": [
+        "用注入响应 fixture 处理 HTTP 状态",
+        "为请求边界定义超时语义"
+      ],
+      "prerequisites": [
+        "python-concurrency-network-urllib"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python-requests.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 615
+  },
+  {
+    "path": "content/python/python-concurrency-network/smtp.exercises.json",
+    "sha256": "65ff06b5308970580d0b48efeb3493223f5be6374c85042cd5a577410fd1ff40"
+  },
+  {
+    "path": "content/python/python-concurrency-network/smtp.md",
+    "sha256": "b50ce087caf7740c7de2f3b318c41867541d9d205241eda1c5a24506b16275b2",
+    "front_matter": {
+      "id": "python-concurrency-network-smtp",
+      "title": "Python SMTP",
+      "concepts": [
+        "io",
+        "security"
+      ],
+      "objectives": [
+        "理解邮件消息包含收件人与正文",
+        "用 fixture 验证消息格式"
+      ],
+      "prerequisites": [
+        "python-concurrency-network-sockets"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-smtp.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 583
+  },
+  {
+    "path": "content/python/python-concurrency-network/sockets.exercises.json",
+    "sha256": "c050119e66e71baeb3d0146726a981af53e53ed665dd8bc969b242ace3e30fba"
+  },
+  {
+    "path": "content/python/python-concurrency-network/sockets.md",
+    "sha256": "f5e18aeb103f212ac991c2c2d29bf15fe3ad47e1b43e6cb960a5e9bf7fd0523e",
+    "front_matter": {
+      "id": "python-concurrency-network-sockets",
+      "title": "Python 网络编程",
+      "concepts": [
+        "io",
+        "security"
+      ],
+      "objectives": [
+        "理解套接字的客户端服务端角色",
+        "用纯函数验证消息边界"
+      ],
+      "prerequisites": [
+        "python-stdlib-data-csv"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-socket.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 552
+  },
+  {
+    "path": "content/python/python-concurrency-network/subprocess.exercises.json",
+    "sha256": "a074c3ae58005fa51de293102411d10b5729214a4ee6ed6daaf041987cef9387"
+  },
+  {
+    "path": "content/python/python-concurrency-network/subprocess.md",
+    "sha256": "aad92e8c73237d9bdffd8d603f06a4b4547ac42c2c33b4961e9bdc74e6203291",
+    "front_matter": {
+      "id": "python-concurrency-network-subprocess",
+      "title": "Python subprocess",
+      "concepts": [
+        "security",
+        "tooling"
+      ],
+      "objectives": [
+        "理解命令执行的风险",
+        "用纯函数检查受控命令配置"
+      ],
+      "prerequisites": [
+        "python-concurrency-network-requests"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python-subprocess.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 609
+  },
+  {
+    "path": "content/python/python-concurrency-network/threading.exercises.json",
+    "sha256": "c14b6daa7fbf5b050f37a0cbd54b654a1930cd4d7f48c2d6a3e2995b7462c3ce"
+  },
+  {
+    "path": "content/python/python-concurrency-network/threading.md",
+    "sha256": "a91f3cb7fc08a67c6f3cdf9b754f890ebcc9d9d631b7f9fa6b5aa20267565b44",
+    "front_matter": {
+      "id": "python-concurrency-network-threading",
+      "title": "Python threading",
+      "concepts": [
+        "concurrency",
+        "security"
+      ],
+      "objectives": [
+        "识别锁保护共享状态的目的",
+        "使用有限本地线程验证临界区与等待语义"
+      ],
+      "prerequisites": [
+        "python-concurrency-network-multithreading"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python-treading.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 827
+  },
+  {
+    "path": "content/python/python-concurrency-network/urllib.exercises.json",
+    "sha256": "618d92c60e6d87061fcfe8020dc211c92fb82a6f08eb41781fa267701aaa0c49"
+  },
+  {
+    "path": "content/python/python-concurrency-network/urllib.md",
+    "sha256": "b2637c18ce644078a031fd6deebeba635563744fb93aee62449dc79853396178",
+    "front_matter": {
+      "id": "python-concurrency-network-urllib",
+      "title": "Python urllib",
+      "concepts": [
+        "io",
+        "security"
+      ],
+      "objectives": [
+        "解析受控 URL 结构",
+        "区分 URL 构造与实际网络请求"
+      ],
+      "prerequisites": [
+        "python-concurrency-network-smtp"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python-urllib.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 695
+  },
+  {
+    "path": "content/python/python-core-types/basic-syntax.exercises.json",
+    "sha256": "c9f580f8f049d2d622b1ec77c0f820f66aa8f4408d9a0c9d27f4f22c2092a1df"
+  },
+  {
+    "path": "content/python/python-core-types/basic-syntax.md",
+    "sha256": "91529d23be33d5a5cf853bd698da9757de72f0d892af5665d9414a5ef9518bde",
+    "front_matter": {
+      "id": "python-core-types-basic-syntax",
+      "title": "Python 基础语法",
+      "concepts": [
+        "variables",
+        "interpreter"
+      ],
+      "objectives": [
+        "使用缩进和语句顺序组织一段可运行的 Python 程序。",
+        "识别赋值、表达式与输出语句各自的职责。"
+      ],
+      "prerequisites": [
+        "python-foundations-learning-resources"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-basic-syntax.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 533
+  },
+  {
+    "path": "content/python/python-core-types/comments.exercises.json",
+    "sha256": "742a327fc9cd2d7c4cec0cff9239fdfe0ae68e039eb3f8d72115a58123e9eb38"
+  },
+  {
+    "path": "content/python/python-core-types/comments.md",
+    "sha256": "e23e787962c9895477d72f003f18a52a788823c4b8527cac229b9ce83b08ab4c",
+    "front_matter": {
+      "id": "python-core-types-comments",
+      "title": "Python 注释",
+      "concepts": [
+        "tooling",
+        "variables"
+      ],
+      "objectives": [
+        "用注释解释不容易从代码直接看出的原因。",
+        "避免用注释重复代码已经表达的动作。"
+      ],
+      "prerequisites": [
+        "python-core-types-basic-syntax"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python3-comment.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 537
+  },
+  {
+    "path": "content/python/python-core-types/conversion.exercises.json",
+    "sha256": "ca83b3ba994b17604718c0177238a93f71b37f78b78cfd9d27d5b05f223493f9"
+  },
+  {
+    "path": "content/python/python-core-types/conversion.md",
+    "sha256": "d54ead27c357700dd949e94345fecc2055fa8b12067cf5f21d9eb57e57255f3d",
+    "front_matter": {
+      "id": "python-core-types-conversion",
+      "title": "Python 数据类型转换",
+      "concepts": [
+        "types",
+        "variables"
+      ],
+      "objectives": [
+        "使用 int、float 和 str 进行显式类型转换。",
+        "在转换前识别可能无效的输入格式。"
+      ],
+      "prerequisites": [
+        "python-core-types-data-types"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-type-conversion.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 620
+  },
+  {
+    "path": "content/python/python-core-types/data-types.exercises.json",
+    "sha256": "9cd6f799b29baa6220cd7b2587f549876cb29a3b6a616a435d554d789bfee418"
+  },
+  {
+    "path": "content/python/python-core-types/data-types.md",
+    "sha256": "5f1a34713db86d4a5ee9a55ce61775f7a5bbf8578bf53181178678a2ebf9e498",
+    "front_matter": {
+      "id": "python-core-types-data-types",
+      "title": "Python 基本数据类型",
+      "concepts": [
+        "types",
+        "variables"
+      ],
+      "objectives": [
+        "区分整数、浮点数、布尔值和字符串的基本用途。",
+        "使用 type 函数观察一个值的运行时类型。"
+      ],
+      "prerequisites": [
+        "python-core-types-basic-syntax"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-data-type.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 633
+  },
+  {
+    "path": "content/python/python-core-types/numbers.exercises.json",
+    "sha256": "c94cea9484aceb29d3ebb09b45039b62e70812c0edd8b8a85fa97cc9c22780da"
+  },
+  {
+    "path": "content/python/python-core-types/numbers.md",
+    "sha256": "d923cf3d7da3370e2ef75ef38dc20332481cbce7496d4cefe3661f82416f981f",
+    "front_matter": {
+      "id": "python-core-types-numbers",
+      "title": "Python 数字",
+      "concepts": [
+        "types",
+        "operators"
+      ],
+      "objectives": [
+        "区分整数除法、真除法和取余的结果。",
+        "选择可读的数值表达式完成简单计算。"
+      ],
+      "prerequisites": [
+        "python-core-types-operators"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-number.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 532
+  },
+  {
+    "path": "content/python/python-core-types/operators.exercises.json",
+    "sha256": "abf80039e71d93ad8d363e2de40d5ebb098e6746192ad0805e146f1a3060bc1d"
+  },
+  {
+    "path": "content/python/python-core-types/operators.md",
+    "sha256": "0d9dd0715a83e02b164b79ea5b200a8edf9c15865a82eef238dcabf76e48869b",
+    "front_matter": {
+      "id": "python-core-types-operators",
+      "title": "Python 运算符",
+      "concepts": [
+        "operators",
+        "types"
+      ],
+      "objectives": [
+        "使用算术与比较运算符构造确定的表达式。",
+        "区分赋值符号与相等比较符号。"
+      ],
+      "prerequisites": [
+        "python-core-types-data-types"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-basic-operators.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 488
+  },
+  {
+    "path": "content/python/python-core-types/strings.exercises.json",
+    "sha256": "d28711ed2f0a6931795302030c77dd578c470d341c76abf5c7df3d4d11eed4bb"
+  },
+  {
+    "path": "content/python/python-core-types/strings.md",
+    "sha256": "54bb880afe6781ea7708e3f1ff530dcab0a150c95b25ca32d275457d760df65e",
+    "front_matter": {
+      "id": "python-core-types-strings",
+      "title": "Python 字符串",
+      "concepts": [
+        "strings",
+        "types"
+      ],
+      "objectives": [
+        "使用索引、切片和格式化读取字符串信息。",
+        "编写不修改原字符串的文本处理表达式。"
+      ],
+      "prerequisites": [
+        "python-core-types-conversion"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 35,
+      "source_url": "https://www.runoob.com/python3/python3-string.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 594
+  },
+  {
+    "path": "content/python/python-database-deployment/cgi.exercises.json",
+    "sha256": "4be3a6a2e9a7dabea6d1f3fd5616307351b9812479c0984fca7461801a05ee25"
+  },
+  {
+    "path": "content/python/python-database-deployment/cgi.md",
+    "sha256": "df85109fd416cc140e47d22d2fe7fcf499fa4a3dfea28c8e915f7d3820e660b8",
+    "front_matter": {
+      "id": "python-database-deployment-cgi",
+      "title": "CGI 的请求边界",
+      "concepts": [
+        "web",
+        "security"
+      ],
+      "objectives": [
+        "识别 CGI 响应中必须先写出的头部",
+        "用纯函数验证表单字段而不执行服务器"
+      ],
+      "prerequisites": [
+        "python-concurrency-network-asyncio"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python3-cgi-programming.html",
+      "source_snapshot_date": "2026-08-23",
+      "code_exercise_exception_reason": "CGI 依赖 Web 服务器环境，本课用可重复的请求数据判题，避免启动服务。"
+    },
+    "body_characters": 793
+  },
+  {
+    "path": "content/python/python-database-deployment/mongodb.exercises.json",
+    "sha256": "e03d65b2ce5b36f33d7c9a1e8662778b1e55f67741d46411917017fe68f83756"
+  },
+  {
+    "path": "content/python/python-database-deployment/mongodb.md",
+    "sha256": "4a81aad8de44e4cdcb1bb6741d2a083886bd53f8be72819ba53dd24c77703e7b",
+    "front_matter": {
+      "id": "python-database-deployment-mongodb",
+      "title": "MongoDB 文档与查询边界",
+      "concepts": [
+        "databases",
+        "data-structures",
+        "security"
+      ],
+      "objectives": [
+        "构造最小化的文档查询条件",
+        "校验允许的过滤字段以限制查询范围"
+      ],
+      "prerequisites": [
+        "python-database-deployment-pymysql"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python-mongodb.html",
+      "source_snapshot_date": "2026-08-23",
+      "code_exercise_exception_reason": "MongoDB 练习不连接服务；使用内存文档和白名单过滤字段完成可评分判断。"
+    },
+    "body_characters": 819
+  },
+  {
+    "path": "content/python/python-database-deployment/mysql-connector.exercises.json",
+    "sha256": "57036fd0d585f7983f9ddd2d06b2a3179e6213c9cf06fa84d13af05e967256dd"
+  },
+  {
+    "path": "content/python/python-database-deployment/mysql-connector.md",
+    "sha256": "5408cf5ce5b0e8425f6f7d7162a0c37a8daf82f2a3a217826fa8dc9b91e6ba2a",
+    "front_matter": {
+      "id": "python-database-deployment-mysql-connector",
+      "title": "mysql-connector 与参数化查询",
+      "concepts": [
+        "databases",
+        "security"
+      ],
+      "objectives": [
+        "区分 SQL 模板与参数值",
+        "编写不拼接用户输入的查询描述"
+      ],
+      "prerequisites": [
+        "python-database-deployment-cgi"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python-mysql-connector.html",
+      "source_snapshot_date": "2026-08-23",
+      "code_exercise_exception_reason": "数据库连接需要外部服务与凭据，本课以 SQL 模板和参数元组的静态结构评分。"
+    },
+    "body_characters": 850
+  },
+  {
+    "path": "content/python/python-database-deployment/pymysql.exercises.json",
+    "sha256": "46aa8f8ad5525cd0b053e6d5d8fd2e563f9ec2e178d7dc2f99bcd3b0c0fba48f"
+  },
+  {
+    "path": "content/python/python-database-deployment/pymysql.md",
+    "sha256": "41e4c77de96dfb2c9560c046001c68153715d6d79861deee8a471dcaf65f1521",
+    "front_matter": {
+      "id": "python-database-deployment-pymysql",
+      "title": "PyMySQL 的事务意图",
+      "concepts": [
+        "databases",
+        "exceptions"
+      ],
+      "objectives": [
+        "用明确步骤表达提交与回滚意图",
+        "在异常路径上保持资源处理可审查"
+      ],
+      "prerequisites": [
+        "python-database-deployment-mysql-connector"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python3-mysql.html",
+      "source_snapshot_date": "2026-08-23",
+      "code_exercise_exception_reason": "真实 PyMySQL 需要数据库和网络；本课对纯函数返回的事务决策进行评分。"
+    },
+    "body_characters": 715
+  },
+  {
+    "path": "content/python/python-database-deployment/uwsgi.exercises.json",
+    "sha256": "fbb00ed7aee42727537534266fb64a05d168a4ddf94429a4f1266a085ebb6389"
+  },
+  {
+    "path": "content/python/python-database-deployment/uwsgi.md",
+    "sha256": "8d4cf7bc8e7f7dd0742d7890636e596f6fda97075a9386a6a29d7a9a48ee6de7",
+    "front_matter": {
+      "id": "python-database-deployment-uwsgi",
+      "title": "uWSGI 部署配置审查",
+      "concepts": [
+        "deployment",
+        "security"
+      ],
+      "objectives": [
+        "识别部署配置中应与代码隔离的秘密",
+        "用静态规则检查最小化的监听配置"
+      ],
+      "prerequisites": [
+        "python-database-deployment-mongodb"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python-uwsgi.html",
+      "source_snapshot_date": "2026-08-23",
+      "code_exercise_exception_reason": "uWSGI 会启动进程并监听端口；本课只校验内存配置文本，不启动部署服务。"
+    },
+    "body_characters": 753
+  },
+  {
+    "path": "content/python/python-flow-collections/comprehensions.exercises.json",
+    "sha256": "80327a2a2027c21fb330235ca9739da343d3d808b3afacb39a536f1cc1cf114a"
+  },
+  {
+    "path": "content/python/python-flow-collections/comprehensions.md",
+    "sha256": "946dff38d69e0cf91510004af943d575a084a7ea412c145eaa053fdd0e2c0ffb",
+    "front_matter": {
+      "id": "python-flow-collections-comprehensions",
+      "title": "Python 推导式",
+      "concepts": [
+        "collections",
+        "control-flow"
+      ],
+      "objectives": [
+        "用列表推导式转换一组值",
+        "在推导式中加入简单筛选条件"
+      ],
+      "prerequisites": [
+        "python-flow-collections-first-program"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 35,
+      "source_url": "https://www.runoob.com/python3/python-comprehensions.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 591
+  },
+  {
+    "path": "content/python/python-flow-collections/conditions.exercises.json",
+    "sha256": "2cd0d523b6a74823f4c27862f789e17a1294c09bfe708cb96bafe56d8ba70e81"
+  },
+  {
+    "path": "content/python/python-flow-collections/conditions.md",
+    "sha256": "e9a3807dd4e8257e3baf13b06d73c4a9e6a0b14bd512f4a83ac742e0c6bc2d08",
+    "front_matter": {
+      "id": "python-flow-collections-conditions",
+      "title": "Python 条件控制",
+      "concepts": [
+        "control-flow",
+        "operators"
+      ],
+      "objectives": [
+        "编写 if 和 else 分支",
+        "根据布尔表达式选择唯一执行路径"
+      ],
+      "prerequisites": [
+        "python-flow-collections-sets"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-conditional-statements.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 536
+  },
+  {
+    "path": "content/python/python-flow-collections/data-structures.exercises.json",
+    "sha256": "fdacb952a4d98b7fa1fd839dc124e36b7e94e02292d608f6c3fb3a448f32d099"
+  },
+  {
+    "path": "content/python/python-flow-collections/data-structures.md",
+    "sha256": "c8cec11b363654e71b2b3e111ff0f4d473484e2652e694af5ed690ceba17a36d",
+    "front_matter": {
+      "id": "python-flow-collections-data-structures",
+      "title": "Python 数据结构",
+      "concepts": [
+        "collections",
+        "control-flow"
+      ],
+      "objectives": [
+        "为问题选择列表字典或集合",
+        "用组合数据结构表达简单记录"
+      ],
+      "prerequisites": [
+        "python-flow-collections-comprehensions"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-data-structure.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 548
+  },
+  {
+    "path": "content/python/python-flow-collections/dictionaries.exercises.json",
+    "sha256": "2115e9f29bc09f1c4a17f18cd8ac77853444d611897bb9e321e356f5d0bee395"
+  },
+  {
+    "path": "content/python/python-flow-collections/dictionaries.md",
+    "sha256": "2b25c30767c41fae200b0f0baad58733291b70d545ca56a1e8e2db2e30065e28",
+    "front_matter": {
+      "id": "python-flow-collections-dictionaries",
+      "title": "Python 字典",
+      "concepts": [
+        "collections",
+        "variables"
+      ],
+      "objectives": [
+        "用键值对保存具名信息",
+        "通过键安全读取字典内容"
+      ],
+      "prerequisites": [
+        "python-flow-collections-tuples"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-dictionary.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 572
+  },
+  {
+    "path": "content/python/python-flow-collections/first-program.exercises.json",
+    "sha256": "375318df9d0c0a7b8bf2a45741195d57d180d32e7aa0dd2d3097bb17d5cb8d9f"
+  },
+  {
+    "path": "content/python/python-flow-collections/first-program.md",
+    "sha256": "94b991dfeda109c69d3b15dfbbb6899df6a040d4337afa13f5a164c8361abc1f",
+    "front_matter": {
+      "id": "python-flow-collections-first-program",
+      "title": "Python 编程第一步",
+      "concepts": [
+        "variables",
+        "control-flow"
+      ],
+      "objectives": [
+        "把问题拆成输入处理输出步骤",
+        "用小程序验证一个明确结果"
+      ],
+      "prerequisites": [
+        "python-flow-collections-loops"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python3-step1.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 483
+  },
+  {
+    "path": "content/python/python-flow-collections/for-loop.exercises.json",
+    "sha256": "e2e43afc9ae7a0ee74ea6c985facf7158945926bd7819cada652c683e20b503d"
+  },
+  {
+    "path": "content/python/python-flow-collections/for-loop.md",
+    "sha256": "e0dd3d053e3e10854eea945b78f56ef90cb1aecbcb71ee8a32e9df9062dd0362",
+    "front_matter": {
+      "id": "python-flow-collections-for-loop",
+      "title": "Python for 循环",
+      "concepts": [
+        "control-flow",
+        "collections"
+      ],
+      "objectives": [
+        "用 for 遍历序列",
+        "使用 range 构造有限次数的循环"
+      ],
+      "prerequisites": [
+        "python-flow-collections-data-structures"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-for.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 486
+  },
+  {
+    "path": "content/python/python-flow-collections/lists.exercises.json",
+    "sha256": "ea2030c80b29c81efb5a42ede91e4899947f5cf1fad3bc6cd8d4018b51f2fc29"
+  },
+  {
+    "path": "content/python/python-flow-collections/lists.md",
+    "sha256": "50c4839abeb6047ee665028abc623d38324cf4d19b51ab7bdb04ef368cd33b6a",
+    "front_matter": {
+      "id": "python-flow-collections-lists",
+      "title": "Python 列表",
+      "concepts": [
+        "collections",
+        "variables"
+      ],
+      "objectives": [
+        "创建并读取有序列表",
+        "使用 append 增加一个元素"
+      ],
+      "prerequisites": [
+        "python-core-types-strings"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-list.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 487
+  },
+  {
+    "path": "content/python/python-flow-collections/loops.exercises.json",
+    "sha256": "4ca7588773afbcf40c0f4630dc0fb6094e9e135f475934ecf9a3d09bce867b8a"
+  },
+  {
+    "path": "content/python/python-flow-collections/loops.md",
+    "sha256": "91807d0f8e2c0ba06dc33de2d851d566d351823abee75673c13673ffe5e4ef53",
+    "front_matter": {
+      "id": "python-flow-collections-loops",
+      "title": "Python 循环语句",
+      "concepts": [
+        "control-flow",
+        "collections"
+      ],
+      "objectives": [
+        "遍历一个有限集合",
+        "在循环中维护清晰的单步动作"
+      ],
+      "prerequisites": [
+        "python-flow-collections-conditions"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-loop.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 499
+  },
+  {
+    "path": "content/python/python-flow-collections/sets.exercises.json",
+    "sha256": "0be1a04235103211e518a3893d8f7e3a8317d48ede369340dd0dbdfec1c1452e"
+  },
+  {
+    "path": "content/python/python-flow-collections/sets.md",
+    "sha256": "2b26bd41f1daf354c015810772303ab461b301634e6e6d4941033cdbf67df297",
+    "front_matter": {
+      "id": "python-flow-collections-sets",
+      "title": "Python 集合",
+      "concepts": [
+        "collections",
+        "types"
+      ],
+      "objectives": [
+        "使用集合去除重复值",
+        "判断一个值是否属于集合"
+      ],
+      "prerequisites": [
+        "python-flow-collections-dictionaries"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python3-set.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 499
+  },
+  {
+    "path": "content/python/python-flow-collections/tuples.exercises.json",
+    "sha256": "dc9642a654c9deadf6d2342766a453ba6b273e114e7c7a2998094a9fe4d02949"
+  },
+  {
+    "path": "content/python/python-flow-collections/tuples.md",
+    "sha256": "13f702e19b427b0607d5d64b971283f749f3089062e2d4246d0b1a0994dc60ff",
+    "front_matter": {
+      "id": "python-flow-collections-tuples",
+      "title": "Python 元组",
+      "concepts": [
+        "collections",
+        "types"
+      ],
+      "objectives": [
+        "使用元组表示固定顺序的数据",
+        "区分元组和列表的可变性"
+      ],
+      "prerequisites": [
+        "python-flow-collections-lists"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python3-tuple.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 470
+  },
+  {
+    "path": "content/python/python-flow-collections/while-loop.exercises.json",
+    "sha256": "f28dde606933845ab4ffadad7c31321b155554368396674bf2112d2b67fbc5c1"
+  },
+  {
+    "path": "content/python/python-flow-collections/while-loop.md",
+    "sha256": "4f71736d1896eed293bd17fdc42bed52ba7e27429b6f550c6c8f73eb1cafdebf",
+    "front_matter": {
+      "id": "python-flow-collections-while-loop",
+      "title": "Python while 循环",
+      "concepts": [
+        "control-flow",
+        "operators"
+      ],
+      "objectives": [
+        "用 while 表达状态驱动的重复",
+        "确保循环变量朝停止条件变化"
+      ],
+      "prerequisites": [
+        "python-flow-collections-for-loop"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 35,
+      "source_url": "https://www.runoob.com/python3/python3-while.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 562
+  },
+  {
+    "path": "content/python/python-foundations/hello-world.exercises.json",
+    "sha256": "a31320454642035b430651401b88bb61e495e8cc69b9bfda0db0d101df6e838c"
+  },
+  {
+    "path": "content/python/python-foundations/hello-world.md",
+    "sha256": "5bce2f4affa2063b0c0fdf58097688a5e6c820dc87f48682224693add43b8468",
+    "front_matter": {
+      "id": "python-foundations-hello-world",
+      "title": "Hello World",
+      "concepts": [
+        "variables",
+        "io"
+      ],
+      "objectives": [
+        "认识 Python 程序按顺序执行的方式。",
+        "使用 print 输出清晰的问候文本。"
+      ],
+      "prerequisites": [],
+      "difficulty": "beginner",
+      "experience_points": 50,
+      "source_url": "https://www.runoob.com/python3/python3-tutorial.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 596
+  },
+  {
+    "path": "content/python/python-foundations/installation.exercises.json",
+    "sha256": "f358c1af5bba149c89c55c6f1eedb47cc36c04956b476e194bb388d58281a5af"
+  },
+  {
+    "path": "content/python/python-foundations/installation.md",
+    "sha256": "71c74bd28b7697aadcf7a7ae7be8aef9e790e34b14f4bc15e4bc7b95279dd303",
+    "front_matter": {
+      "id": "python-foundations-installation",
+      "title": "安装后的第一项检查",
+      "concepts": [
+        "interpreter",
+        "tooling"
+      ],
+      "objectives": [
+        "用版本信息确认终端找到的是预期解释器。",
+        "区分“已安装”与“当前终端可运行”。"
+      ],
+      "prerequisites": [
+        "python-foundations-introduction"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-install.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 661
+  },
+  {
+    "path": "content/python/python-foundations/interpreter.exercises.json",
+    "sha256": "780a4a75c752ec778ccf2bd220c956daa10ffd664c737782225954f0d515b33c"
+  },
+  {
+    "path": "content/python/python-foundations/interpreter.md",
+    "sha256": "a3932a9830a761a6073bb86208f61a7f44e7f0bb9580a946b800196575dc1a24",
+    "front_matter": {
+      "id": "python-foundations-interpreter",
+      "title": "在解释器中验证想法",
+      "concepts": [
+        "interpreter",
+        "variables"
+      ],
+      "objectives": [
+        "使用交互式表达式快速验证一个小假设。",
+        "知道临时会话变量不会自动成为项目代码。"
+      ],
+      "prerequisites": [
+        "python-foundations-introduction"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-interpreter.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 526
+  },
+  {
+    "path": "content/python/python-foundations/introduction.exercises.json",
+    "sha256": "052af94ec1560dba86b7157773556ae71b759d4eb7c9b6e49e594b8f2e5986e1"
+  },
+  {
+    "path": "content/python/python-foundations/introduction.md",
+    "sha256": "9a0d2568f020019a2f7237239eed33804349fa89d0462fcdc917512058eac8bc",
+    "front_matter": {
+      "id": "python-foundations-introduction",
+      "title": "Python 的学习方式",
+      "concepts": [
+        "interpreter",
+        "tooling"
+      ],
+      "objectives": [
+        "说明 Python 解释器与源代码的协作关系。",
+        "建立可重复的“编写、运行、观察”学习循环。"
+      ],
+      "prerequisites": [
+        "python-foundations-hello-world"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-intro.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 620
+  },
+  {
+    "path": "content/python/python-foundations/learning-resources.exercises.json",
+    "sha256": "ff451921b134ecefa40178ab545ed1aa51496e0eaf483642b734ce3df45eefa3"
+  },
+  {
+    "path": "content/python/python-foundations/learning-resources.md",
+    "sha256": "ef40f0f92787b7c395c3e821f97e3209dcf06ae430ecddcfbf270757541b59c7",
+    "front_matter": {
+      "id": "python-foundations-learning-resources",
+      "title": "选择与整理学习资源",
+      "concepts": [
+        "tooling",
+        "packages",
+        "variables"
+      ],
+      "objectives": [
+        "用来源、用途和版本三个维度评估学习资源。",
+        "编写一个可读的学习环境摘要。"
+      ],
+      "prerequisites": [
+        "python-foundations-package-management"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 40,
+      "source_url": "https://www.runoob.com/python3/python3-resources.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 683
+  },
+  {
+    "path": "content/python/python-foundations/package-management.exercises.json",
+    "sha256": "676d190d1e459398b9958ab9e6af31157d55788b07dfd0ea1d5f9603d08ef348"
+  },
+  {
+    "path": "content/python/python-foundations/package-management.md",
+    "sha256": "c10731bc34c323c72b897e202305c9d0dcdb07914177f02d351fe6051bf00dfc",
+    "front_matter": {
+      "id": "python-foundations-package-management",
+      "title": "用 pip 管理依赖",
+      "concepts": [
+        "packages",
+        "environments"
+      ],
+      "objectives": [
+        "区分包名称、版本约束与安装命令。",
+        "在安装前先确认项目环境，避免污染全局解释器。"
+      ],
+      "prerequisites": [
+        "python-foundations-virtual-environment"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 35,
+      "source_url": "https://www.runoob.com/python3/python3-pip.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 685
+  },
+  {
+    "path": "content/python/python-foundations/pycharm.exercises.json",
+    "sha256": "80b5f7d5d7017b1561debf4b406ed1b960df0fcc11f8323736313640a4b4b795"
+  },
+  {
+    "path": "content/python/python-foundations/pycharm.md",
+    "sha256": "123fc6a9bb8cc25813a926094322227fe7d134e5b726d53992a8cc853f1bb273",
+    "front_matter": {
+      "id": "python-foundations-pycharm",
+      "title": "用 PyCharm 组织项目",
+      "concepts": [
+        "tooling",
+        "interpreter"
+      ],
+      "objectives": [
+        "识别项目解释器配置与单个代码文件的关系。",
+        "使用清晰的入口文件名称组织练习。"
+      ],
+      "prerequisites": [
+        "python-foundations-installation"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python-pycharm-usage.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 634
+  },
+  {
+    "path": "content/python/python-foundations/virtual-environment.exercises.json",
+    "sha256": "f028937f6ada5e5e374234da0fb1c6706d7e0744fc5e60120dba339120929d71"
+  },
+  {
+    "path": "content/python/python-foundations/virtual-environment.md",
+    "sha256": "802b01d53ca9968daa832381700532d38f3d337213bb194a9e96beb4b45a0adf",
+    "front_matter": {
+      "id": "python-foundations-virtual-environment",
+      "title": "为项目隔离虚拟环境",
+      "concepts": [
+        "environments",
+        "packages"
+      ],
+      "objectives": [
+        "说明虚拟环境如何避免项目依赖互相干扰。",
+        "记录项目所需依赖，而不把环境目录当作源码提交。"
+      ],
+      "prerequisites": [
+        "python-foundations-installation"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 35,
+      "source_url": "https://www.runoob.com/python3/python-venv.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 672
+  },
+  {
+    "path": "content/python/python-foundations/vscode.exercises.json",
+    "sha256": "d55d5ea8a0b6f32760b47141bb0b0465cd7ffa9fd4d998fa31374e4a3675f7ef"
+  },
+  {
+    "path": "content/python/python-foundations/vscode.md",
+    "sha256": "6a099bdb5976b783c61064c62b954dc40eb6c664a8fade105970f4f373b7b2df",
+    "front_matter": {
+      "id": "python-foundations-vscode",
+      "title": "用 VS Code 编辑与运行",
+      "concepts": [
+        "tooling",
+        "interpreter"
+      ],
+      "objectives": [
+        "区分编辑器扩展和实际 Python 解释器。",
+        "通过工作区中的终端复现运行结果。"
+      ],
+      "prerequisites": [
+        "python-foundations-installation"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python-vscode-setup.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 618
+  },
+  {
+    "path": "content/python/python-functions-iteration/decorators.exercises.json",
+    "sha256": "564ed6f85b10874381de71d8d7b91fa3e9875b66402c7ee4974a809b730601a3"
+  },
+  {
+    "path": "content/python/python-functions-iteration/decorators.md",
+    "sha256": "e1565b819dfae77a4befa326a0d1707cbe1d662e13cfcf92302a4c8612b7832b",
+    "front_matter": {
+      "id": "python-functions-iteration-decorators",
+      "title": "Python 装饰器",
+      "concepts": [
+        "functions",
+        "tooling"
+      ],
+      "objectives": [
+        "理解函数可以作为对象传递",
+        "用最小装饰器包装调用行为"
+      ],
+      "prerequisites": [
+        "python-functions-iteration-lambda"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 35,
+      "source_url": "https://www.runoob.com/python3/python-decorators.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 673
+  },
+  {
+    "path": "content/python/python-functions-iteration/functions.exercises.json",
+    "sha256": "12fe805d2d19cf1db63fe5fd4b035783d3fb7989b108d2596ad0634237f93a32"
+  },
+  {
+    "path": "content/python/python-functions-iteration/functions.md",
+    "sha256": "a386986a02f382d8b28ef49cb3db31ca3de3967477d816c010ebd8e2adfc4f6a",
+    "front_matter": {
+      "id": "python-functions-iteration-functions",
+      "title": "Python 函数",
+      "concepts": [
+        "functions",
+        "variables"
+      ],
+      "objectives": [
+        "定义带参数的函数",
+        "用返回值传递计算结果"
+      ],
+      "prerequisites": [
+        "python-functions-iteration-with"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 35,
+      "source_url": "https://www.runoob.com/python3/python3-function.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 724
+  },
+  {
+    "path": "content/python/python-functions-iteration/iterators.exercises.json",
+    "sha256": "96cbc2d0f204ca62e526ad9aafffcf1a18f2546ddc14e2fea747602a786a4e38"
+  },
+  {
+    "path": "content/python/python-functions-iteration/iterators.md",
+    "sha256": "00ab9a2b108310e3ef77cede6c86d7ec4e8ca49a050733cd06578834d4412c14",
+    "front_matter": {
+      "id": "python-functions-iteration-iterators",
+      "title": "Python 迭代器与生成器",
+      "concepts": [
+        "collections",
+        "functions"
+      ],
+      "objectives": [
+        "识别可迭代对象和迭代器的区别",
+        "使用生成器逐步产生值"
+      ],
+      "prerequisites": [
+        "python-flow-collections-while-loop"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 35,
+      "source_url": "https://www.runoob.com/python3/python3-iterator-generator.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 596
+  },
+  {
+    "path": "content/python/python-functions-iteration/lambda.exercises.json",
+    "sha256": "ccabb2565fe7f874d3f4386963693f1b7d4cd143e0e7cbbe2304d1cebaa9a25a"
+  },
+  {
+    "path": "content/python/python-functions-iteration/lambda.md",
+    "sha256": "2a7d6dc18f57121fb042fee2cb0706bbeba150c3a249d9240054586f626f489d",
+    "front_matter": {
+      "id": "python-functions-iteration-lambda",
+      "title": "Python lambda",
+      "concepts": [
+        "functions",
+        "collections"
+      ],
+      "objectives": [
+        "使用 lambda 表达单个简单表达式",
+        "在复杂逻辑中选择具名函数"
+      ],
+      "prerequisites": [
+        "python-functions-iteration-functions"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python-lambda.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 532
+  },
+  {
+    "path": "content/python/python-functions-iteration/name-main.exercises.json",
+    "sha256": "9f876867880eb6b6b265975a9d370eecfcbbc19542ff26c0c1bc4951b67ca809"
+  },
+  {
+    "path": "content/python/python-functions-iteration/name-main.md",
+    "sha256": "8b19ac4a787f8443a1445c805af7513276f5cf1c165f8893c3929ed2cea9b6e1",
+    "front_matter": {
+      "id": "python-functions-iteration-name-main",
+      "title": "Python __name__",
+      "concepts": [
+        "functions",
+        "tooling"
+      ],
+      "objectives": [
+        "解释模块直接运行和被导入的差异",
+        "使用 __name__ 守卫隔离启动行为"
+      ],
+      "prerequisites": [
+        "python-functions-iteration-decorators"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-name-main.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 611
+  },
+  {
+    "path": "content/python/python-functions-iteration/scope.exercises.json",
+    "sha256": "fd84b9eb92a91e680ecf26feb3f42c759ae225febaaef0c7100e36e9a37e944a"
+  },
+  {
+    "path": "content/python/python-functions-iteration/scope.md",
+    "sha256": "545bf30f9487e5a2b839b4f61bc8519e6d84aa4a1f5fbd780bbb75df088a8602",
+    "front_matter": {
+      "id": "python-functions-iteration-scope",
+      "title": "Python 命名空间与作用域",
+      "concepts": [
+        "variables",
+        "functions"
+      ],
+      "objectives": [
+        "区分局部和全局名称",
+        "避免函数意外修改外层状态"
+      ],
+      "prerequisites": [
+        "python-functions-iteration-name-main"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 35,
+      "source_url": "https://www.runoob.com/python3/python3-namespace-scope.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 626
+  },
+  {
+    "path": "content/python/python-functions-iteration/type-hints.exercises.json",
+    "sha256": "61d40ca961570cfbbde9bf7437dab2c28f36af1fa83d21edecddeb71fd4e295a"
+  },
+  {
+    "path": "content/python/python-functions-iteration/type-hints.md",
+    "sha256": "eb8fa3dd2e4634ced2ac67564362a6ac8690e8cbf33a73e91b5beaa3ed1e7774",
+    "front_matter": {
+      "id": "python-functions-iteration-type-hints",
+      "title": "Python 类型注解",
+      "concepts": [
+        "types",
+        "functions"
+      ],
+      "objectives": [
+        "为函数参数和返回值添加类型注解",
+        "理解注解不会替代运行时校验"
+      ],
+      "prerequisites": [
+        "python-functions-iteration-scope"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 35,
+      "source_url": "https://www.runoob.com/python3/python-type-hints.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 656
+  },
+  {
+    "path": "content/python/python-functions-iteration/with.exercises.json",
+    "sha256": "8069f2afa047393bc3d61796084452974811340d4b95e1efff6775bdb6fdba27"
+  },
+  {
+    "path": "content/python/python-functions-iteration/with.md",
+    "sha256": "77d3ea029e68e1b4c9c3d8f0f89d6c0690b0eff804f7f2ae9d80ba1b26b089cc",
+    "front_matter": {
+      "id": "python-functions-iteration-with",
+      "title": "Python with",
+      "concepts": [
+        "io",
+        "functions"
+      ],
+      "objectives": [
+        "理解上下文管理器的进入和退出边界",
+        "使用 with 表达资源使用范围"
+      ],
+      "prerequisites": [
+        "python-functions-iteration-iterators"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-with-keyword.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 655
+  },
+  {
+    "path": "content/python/python-modules-io-oop/classes.exercises.json",
+    "sha256": "80f234bf2a2244abd14a5ad367dd7da891da3c6f1cd504e56c72e524a929efad"
+  },
+  {
+    "path": "content/python/python-modules-io-oop/classes.md",
+    "sha256": "def95da0aed53dfe999ca817791c826f288bd0c5de1802784a5c8fdc9a251bd2",
+    "front_matter": {
+      "id": "python-modules-io-oop-classes",
+      "title": "Python 面向对象",
+      "concepts": [
+        "classes",
+        "functions"
+      ],
+      "objectives": [
+        "定义带状态和方法的简单类",
+        "通过实例访问对象行为"
+      ],
+      "prerequisites": [
+        "python-modules-io-oop-exceptions"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 40,
+      "source_url": "https://www.runoob.com/python3/python3-class.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 631
+  },
+  {
+    "path": "content/python/python-modules-io-oop/exceptions.exercises.json",
+    "sha256": "e80db0e41c354941ce1dbdb0779caf166e6280af1de36bc12f20aab9cc6969f7"
+  },
+  {
+    "path": "content/python/python-modules-io-oop/exceptions.md",
+    "sha256": "45740ef05b4fef4111e66b4e215fb264876b883f46272d74584c196f9c55a9af",
+    "front_matter": {
+      "id": "python-modules-io-oop-exceptions",
+      "title": "Python 错误和异常",
+      "concepts": [
+        "exceptions",
+        "functions"
+      ],
+      "objectives": [
+        "用 try 和 except 处理可预期失败",
+        "避免吞掉未知异常"
+      ],
+      "prerequisites": [
+        "python-modules-io-oop-os"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 35,
+      "source_url": "https://www.runoob.com/python3/python3-errors-execptions.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 597
+  },
+  {
+    "path": "content/python/python-modules-io-oop/files.exercises.json",
+    "sha256": "a122523f78fda8a6b753b99ce869a02f695f72ad17f7ac10317a65ceb6089457"
+  },
+  {
+    "path": "content/python/python-modules-io-oop/files.md",
+    "sha256": "712119587ccdbc29d95cc11c1feec942afb99a0e600b106d38afab5041f91ee2",
+    "front_matter": {
+      "id": "python-modules-io-oop-files",
+      "title": "Python 文件",
+      "concepts": [
+        "io",
+        "exceptions"
+      ],
+      "objectives": [
+        "在受控临时目录中读写文本文件",
+        "使用 with 确保文件句柄关闭"
+      ],
+      "prerequisites": [
+        "python-modules-io-oop-input-output"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 35,
+      "source_url": "https://www.runoob.com/python3/python3-file-methods.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 662
+  },
+  {
+    "path": "content/python/python-modules-io-oop/input-output.exercises.json",
+    "sha256": "bb31ea469628b80aca24af110fd063dd966c6f151483fbc8b9f2ee109a12eebb"
+  },
+  {
+    "path": "content/python/python-modules-io-oop/input-output.md",
+    "sha256": "5f31b1d19532ba769438f9cb0778296c9a00565727b868f95f62a6fbda964411",
+    "front_matter": {
+      "id": "python-modules-io-oop-input-output",
+      "title": "Python 输入和输出",
+      "concepts": [
+        "io",
+        "strings"
+      ],
+      "objectives": [
+        "用 print 生成可观察输出",
+        "把外部文本在边界处转换为需要的类型"
+      ],
+      "prerequisites": [
+        "python-modules-io-oop-modules"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-inputoutput.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 471
+  },
+  {
+    "path": "content/python/python-modules-io-oop/modules.exercises.json",
+    "sha256": "2dec0b037a9ace079fb639685ef88af33b94424e04b6eba7163a8c9df9e8ed60"
+  },
+  {
+    "path": "content/python/python-modules-io-oop/modules.md",
+    "sha256": "e9ffc91357c49870326549d79bcaceca7139fd9f059500bdc68f8de5f95dc359",
+    "front_matter": {
+      "id": "python-modules-io-oop-modules",
+      "title": "Python 模块",
+      "concepts": [
+        "functions",
+        "tooling"
+      ],
+      "objectives": [
+        "使用 import 引入模块能力",
+        "区分模块公共接口和启动代码"
+      ],
+      "prerequisites": [
+        "python-functions-iteration-type-hints"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-module.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 535
+  },
+  {
+    "path": "content/python/python-modules-io-oop/os.exercises.json",
+    "sha256": "dcb169224151d05ab38dc5f955a5b8af7411aa4aadd3632b3b41029056482573"
+  },
+  {
+    "path": "content/python/python-modules-io-oop/os.md",
+    "sha256": "2e06151378753c9c5d257c3bf70c74779bc21a14b631887ac5a7b0a8d532fdc0",
+    "front_matter": {
+      "id": "python-modules-io-oop-os",
+      "title": "Python OS",
+      "concepts": [
+        "io",
+        "tooling"
+      ],
+      "objectives": [
+        "使用 pathlib 组合受控路径",
+        "避免从外部输入直接构造系统路径"
+      ],
+      "prerequisites": [
+        "python-modules-io-oop-files"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-os-file-methods.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 644
+  },
+  {
+    "path": "content/python/python-stdlib-data/builtins.exercises.json",
+    "sha256": "8ed5b64d82851a53b33b7b4cc1b25aa89db7a0a692c0f98d3857aef899f6b19f"
+  },
+  {
+    "path": "content/python/python-stdlib-data/builtins.md",
+    "sha256": "7ca503dd9fe8e7e5e6d0f0533844bdea2689e3a6f99d2fe9eb757060fd03b39f",
+    "front_matter": {
+      "id": "python-stdlib-data-builtins",
+      "title": "Python 内置函数",
+      "concepts": [
+        "functions",
+        "collections"
+      ],
+      "objectives": [
+        "使用 len、sum 等内置函数处理简单数据",
+        "选择表达意图的内置函数"
+      ],
+      "prerequisites": [
+        "python-stdlib-data-date-time"
+      ],
+      "difficulty": "beginner",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python3-built-in-functions.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 456
+  },
+  {
+    "path": "content/python/python-stdlib-data/csv.exercises.json",
+    "sha256": "c644195a51c8d26fc3c75240004ca6217f706c2996500d79031832354cdc82ca"
+  },
+  {
+    "path": "content/python/python-stdlib-data/csv.md",
+    "sha256": "1d4009cf40a64f043e82c0b02032853cd23c08130a5982ac98e4700ae3b8f17b",
+    "front_matter": {
+      "id": "python-stdlib-data-csv",
+      "title": "Python csv",
+      "concepts": [
+        "io",
+        "collections"
+      ],
+      "objectives": [
+        "在内存文本中读取 CSV 行",
+        "使用 DictReader 按列名访问数据"
+      ],
+      "prerequisites": [
+        "python-stdlib-data-re"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python-csv.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 574
+  },
+  {
+    "path": "content/python/python-stdlib-data/date-time.exercises.json",
+    "sha256": "97d88cd67b98d86a35f00766c58278856673b07ab7b12925ecb446faed91a06e"
+  },
+  {
+    "path": "content/python/python-stdlib-data/date-time.md",
+    "sha256": "242402a8c400060ae338b5e528ca1d3f792da9e15d0432e8a3e5179b60065bd3",
+    "front_matter": {
+      "id": "python-stdlib-data-date-time",
+      "title": "Python 日期和时间",
+      "concepts": [
+        "types",
+        "functions"
+      ],
+      "objectives": [
+        "区分日期文本和时间对象",
+        "使用固定格式呈现可比较的日期"
+      ],
+      "prerequisites": [
+        "python-stdlib-data-json"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-date-time.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 507
+  },
+  {
+    "path": "content/python/python-stdlib-data/datetime.exercises.json",
+    "sha256": "6ee2c38d2fab04b73c2c09beebfe2e119b329037fa552870f52d66671391caad"
+  },
+  {
+    "path": "content/python/python-stdlib-data/datetime.md",
+    "sha256": "f7ca5fd1bb0cd22c59b467cb80af14747e945797db3a9eac86a0a3d990ae3e88",
+    "front_matter": {
+      "id": "python-stdlib-data-datetime",
+      "title": "Python datetime",
+      "concepts": [
+        "types",
+        "functions"
+      ],
+      "objectives": [
+        "创建确定的日期时间值",
+        "用 timedelta 表达时间间隔"
+      ],
+      "prerequisites": [
+        "python-stdlib-data-logging"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python-datetime.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 519
+  },
+  {
+    "path": "content/python/python-stdlib-data/hashlib.exercises.json",
+    "sha256": "c1f75775cb02bd3c5561e9cb54eab761a88c0e653879b15185629146fab62166"
+  },
+  {
+    "path": "content/python/python-stdlib-data/hashlib.md",
+    "sha256": "fd4b17fc4c132edd58570a618cf001151a4e1513ed6cfcd654dd3a06166b9952",
+    "front_matter": {
+      "id": "python-stdlib-data-hashlib",
+      "title": "Python hashlib",
+      "concepts": [
+        "strings",
+        "functions"
+      ],
+      "objectives": [
+        "计算文本的摘要",
+        "理解摘要不是可逆加密"
+      ],
+      "prerequisites": [
+        "python-stdlib-data-statistics"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python-hashlib.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 565
+  },
+  {
+    "path": "content/python/python-stdlib-data/json.exercises.json",
+    "sha256": "2c982976a9edd766ba8930ca410542ef4b3e814d0f80625b2467a80ddf64f1d5"
+  },
+  {
+    "path": "content/python/python-stdlib-data/json.md",
+    "sha256": "97ac7eeb36a891eca278800d0f2682da637cb4639884c05688868923bcdd4a5f",
+    "front_matter": {
+      "id": "python-stdlib-data-json",
+      "title": "Python JSON",
+      "concepts": [
+        "io",
+        "collections"
+      ],
+      "objectives": [
+        "把简单对象编码为 JSON",
+        "从 JSON 文本解析受信字段"
+      ],
+      "prerequisites": [
+        "python-stdlib-data-xml"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-json.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 622
+  },
+  {
+    "path": "content/python/python-stdlib-data/logging.exercises.json",
+    "sha256": "b3f062d7526cb3cdb939e5022b8b76b3120154551e93f8e53d6ed2fe3fded294"
+  },
+  {
+    "path": "content/python/python-stdlib-data/logging.md",
+    "sha256": "4065195cafe99d5b8abb8d64218be8a3ff27bf363a1ba779a9c518541f204fdc",
+    "front_matter": {
+      "id": "python-stdlib-data-logging",
+      "title": "Python logging",
+      "concepts": [
+        "tooling",
+        "security"
+      ],
+      "objectives": [
+        "使用日志级别区分诊断重要性",
+        "避免在日志中写入私密数据"
+      ],
+      "prerequisites": [
+        "python-stdlib-data-stringio"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python-logging.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 496
+  },
+  {
+    "path": "content/python/python-stdlib-data/math.exercises.json",
+    "sha256": "cdf7682cd86063600f48d28b3e8007a3449f0cdb437e3636e13ca43ae6ad86ff"
+  },
+  {
+    "path": "content/python/python-stdlib-data/math.md",
+    "sha256": "48598884ad47371be04cf40e1d8e8ba03dc2fb782e1766c627357dbdf974913d",
+    "front_matter": {
+      "id": "python-stdlib-data-math",
+      "title": "Python math",
+      "concepts": [
+        "operators",
+        "types"
+      ],
+      "objectives": [
+        "使用 math 的确定性数学函数",
+        "区分取整与精确值"
+      ],
+      "prerequisites": [
+        "python-stdlib-data-operator"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python-math.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 433
+  },
+  {
+    "path": "content/python/python-stdlib-data/operator.exercises.json",
+    "sha256": "bd35f879a349ffeee645a784e1683e07857d46f634558ba04d8e7932063c97c4"
+  },
+  {
+    "path": "content/python/python-stdlib-data/operator.md",
+    "sha256": "56aa4cc2e274dbcaabe87492c7b8d896a1f3ba64b8e50e015d5591e3548b6bde",
+    "front_matter": {
+      "id": "python-stdlib-data-operator",
+      "title": "Python operator",
+      "concepts": [
+        "operators",
+        "functions"
+      ],
+      "objectives": [
+        "使用 operator 表达基本运算",
+        "选择可读的函数式操作"
+      ],
+      "prerequisites": [
+        "python-stdlib-data-builtins"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python-operator.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 486
+  },
+  {
+    "path": "content/python/python-stdlib-data/overview.exercises.json",
+    "sha256": "4506176d9b338f91de0e8dbffb462a2b64efa024b5a8810ada0256c5dbcfc4c5"
+  },
+  {
+    "path": "content/python/python-stdlib-data/overview.md",
+    "sha256": "898d5f1123add285e65f38c66eb62de4688434dcd3fba311a74723988adccf4b",
+    "front_matter": {
+      "id": "python-stdlib-data-overview",
+      "title": "Python 标准库概览",
+      "concepts": [
+        "tooling",
+        "functions"
+      ],
+      "objectives": [
+        "识别标准库模块的作用",
+        "选择最小的内置能力解决问题"
+      ],
+      "prerequisites": [
+        "python-modules-io-oop-classes"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python3-stdlib.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 483
+  },
+  {
+    "path": "content/python/python-stdlib-data/pickle.exercises.json",
+    "sha256": "ec1add4a7e11b6ff6de3d6764a397a98bb9c000d385f94d79bd5ae36e27b6741"
+  },
+  {
+    "path": "content/python/python-stdlib-data/pickle.md",
+    "sha256": "5888a3defb7313f5b35c9f606c10bc6fa52c43740bb58216be5a9ef782b238cc",
+    "front_matter": {
+      "id": "python-stdlib-data-pickle",
+      "title": "Python Pickle",
+      "concepts": [
+        "io",
+        "security"
+      ],
+      "objectives": [
+        "理解 pickle 仅适用于受信数据",
+        "选择 JSON 作为跨边界交换格式"
+      ],
+      "prerequisites": [
+        "python-stdlib-data-sys"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python-pickle.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 574
+  },
+  {
+    "path": "content/python/python-stdlib-data/queue.exercises.json",
+    "sha256": "ceb140c631a66fe3569070fa0d73522987ae058fba5f7623639b43307d55a521"
+  },
+  {
+    "path": "content/python/python-stdlib-data/queue.md",
+    "sha256": "58e24329ce053e5ee12bac1afd3a754841f9fe5e67bae0d2b30f82b03fa2ad56",
+    "front_matter": {
+      "id": "python-stdlib-data-queue",
+      "title": "Python queue",
+      "concepts": [
+        "collections",
+        "concurrency"
+      ],
+      "objectives": [
+        "使用队列按先进先出传递任务",
+        "理解队列在并发协作中的作用"
+      ],
+      "prerequisites": [
+        "python-stdlib-data-pickle"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python-queue.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 521
+  },
+  {
+    "path": "content/python/python-stdlib-data/random.exercises.json",
+    "sha256": "5b62a84832d074d77c1801b57a54c07cbde64b179b18c2b29b5bba13f85ee809"
+  },
+  {
+    "path": "content/python/python-stdlib-data/random.md",
+    "sha256": "0a26321993952693d2742839e541516d8789ce543040a703e1d6404abec25029",
+    "front_matter": {
+      "id": "python-stdlib-data-random",
+      "title": "Python random",
+      "concepts": [
+        "functions",
+        "collections"
+      ],
+      "objectives": [
+        "理解随机值用于模拟而非安全令牌",
+        "在测试中固定随机来源"
+      ],
+      "prerequisites": [
+        "python-stdlib-data-math"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python-random.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 468
+  },
+  {
+    "path": "content/python/python-stdlib-data/re.exercises.json",
+    "sha256": "10fb450af21f37bad1d6a2fcbf0f784a100fbdb3c56ff749d2f67a07aff117ff"
+  },
+  {
+    "path": "content/python/python-stdlib-data/re.md",
+    "sha256": "e4fad4ee6aea4227a19dbe7d78f659a4431e48ad78256fb29a4a0f1b3653f4f4",
+    "front_matter": {
+      "id": "python-stdlib-data-re",
+      "title": "Python re 模块",
+      "concepts": [
+        "strings",
+        "functions"
+      ],
+      "objectives": [
+        "使用编译后的模式匹配文本",
+        "选择 fullmatch 验证完整输入"
+      ],
+      "prerequisites": [
+        "python-stdlib-data-datetime"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python-re.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 517
+  },
+  {
+    "path": "content/python/python-stdlib-data/regex-basics.exercises.json",
+    "sha256": "dfdc4712e358ab76fa288bf8e5c77daeee26f52f41bfd06304d8f198ad4f1ac8"
+  },
+  {
+    "path": "content/python/python-stdlib-data/regex-basics.md",
+    "sha256": "7ee455e53723249b5d9f11ab8886197d738f42757decc2da40e57b26ba34f3f9",
+    "front_matter": {
+      "id": "python-stdlib-data-regex-basics",
+      "title": "Python 正则表达式基础",
+      "concepts": [
+        "strings",
+        "functions"
+      ],
+      "objectives": [
+        "使用 re 匹配简单文本模式",
+        "避免把复杂正则隐藏在未命名字符串中"
+      ],
+      "prerequisites": [
+        "python-stdlib-data-overview"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-reg-expressions.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 506
+  },
+  {
+    "path": "content/python/python-stdlib-data/statistics.exercises.json",
+    "sha256": "3303c18befb683f1a534b6847ff6c762c3f7b246ae483136128120f0b142841b"
+  },
+  {
+    "path": "content/python/python-stdlib-data/statistics.md",
+    "sha256": "24697d7d695b760b5c8eb07adf0bd40132bdfa1d682c578696773009533beaac",
+    "front_matter": {
+      "id": "python-stdlib-data-statistics",
+      "title": "Python statistics",
+      "concepts": [
+        "collections",
+        "functions"
+      ],
+      "objectives": [
+        "计算一组数的均值",
+        "在聚合前检查数据是否为空"
+      ],
+      "prerequisites": [
+        "python-stdlib-data-random"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python-statistics.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 501
+  },
+  {
+    "path": "content/python/python-stdlib-data/stringio.exercises.json",
+    "sha256": "ce06f0c39aea514369f4cd8b0e9de8e737b1fb8789222b8c4e383bb61a2f8763"
+  },
+  {
+    "path": "content/python/python-stdlib-data/stringio.md",
+    "sha256": "4460c9576072a1c06329159c872f3d5f44d901da9fc9e6d72d328fd260f67cbb",
+    "front_matter": {
+      "id": "python-stdlib-data-stringio",
+      "title": "Python StringIO",
+      "concepts": [
+        "io",
+        "strings"
+      ],
+      "objectives": [
+        "在内存中读写文本流",
+        "用 StringIO 测试不需真实文件的输出"
+      ],
+      "prerequisites": [
+        "python-stdlib-data-queue"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python-stringio.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 520
+  },
+  {
+    "path": "content/python/python-stdlib-data/sys.exercises.json",
+    "sha256": "6190c9f343df9e2a31bbe8989d7cc3192702d85c4dd598ee4391948739c55efd"
+  },
+  {
+    "path": "content/python/python-stdlib-data/sys.md",
+    "sha256": "880c79c63d2f6fe0012cf1a15cc7a9a39dd488e1dceec61ca98e08365644837a",
+    "front_matter": {
+      "id": "python-stdlib-data-sys",
+      "title": "Python sys",
+      "concepts": [
+        "tooling",
+        "io"
+      ],
+      "objectives": [
+        "读取受控的解释器信息",
+        "区分诊断信息与业务输入"
+      ],
+      "prerequisites": [
+        "python-stdlib-data-hashlib"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 25,
+      "source_url": "https://www.runoob.com/python3/python-sys.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 506
+  },
+  {
+    "path": "content/python/python-stdlib-data/xml.exercises.json",
+    "sha256": "52324c209b37bcb4306b1e05b828c48299b765023c142f09d538bee4c23054c3"
+  },
+  {
+    "path": "content/python/python-stdlib-data/xml.md",
+    "sha256": "147b0951bee4e7f6c19cf567773303a6b881e7dffc91c1e606ed9db06b44edfb",
+    "front_matter": {
+      "id": "python-stdlib-data-xml",
+      "title": "Python XML",
+      "concepts": [
+        "io",
+        "collections"
+      ],
+      "objectives": [
+        "解析受信 XML 文本的简单节点",
+        "从结构化节点读取明确字段"
+      ],
+      "prerequisites": [
+        "python-stdlib-data-regex-basics"
+      ],
+      "difficulty": "intermediate",
+      "experience_points": 30,
+      "source_url": "https://www.runoob.com/python3/python3-xml-processing.html",
+      "source_snapshot_date": "2026-08-23"
+    },
+    "body_characters": 607
+  }
+]

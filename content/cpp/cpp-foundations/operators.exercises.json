@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-foundations-operators",
+  "questions": [
+    {
+      "id": "cpp-foundations-operators-k01",
+      "type": "knowledge",
+      "prompt": "表达式 2 + 3 * 4 的值是多少？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "20"
+        },
+        {
+          "id": "b",
+          "text": "24"
+        },
+        {
+          "id": "c",
+          "text": "14"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-foundations-operators-k02",
+      "type": "knowledge",
+      "prompt": "整数除法 7 / 2 与取余 7 % 2 的结果分别是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "3 和 1"
+        },
+        {
+          "id": "b",
+          "text": "3.5 和 1"
+        },
+        {
+          "id": "c",
+          "text": "4 和 -1"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-foundations-operators-k03",
+      "type": "knowledge",
+      "prompt": "除法运算的右操作数为 0 时会发生什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "返回无穷大"
+        },
+        {
+          "id": "b",
+          "text": "抛出可捕获的标准异常"
+        },
+        {
+          "id": "c",
+          "text": "未定义行为，必须在代码中避免"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-foundations-operators-c01",
+      "type": "code",
+      "prompt": "读取同一行上的三个整数 a、b、c，按运算符优先级输出 a + b * c 的值。",
+      "starter_code": "#include <iostream>\n\nint main() {\n    int a = 0;\n    int b = 0;\n    int c = 0;\n    std::cin >> a >> b >> c;\n    // 输出 a + b * c\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 2 3 4 时输出 14。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n\nint main() {\n    int a = 0;\n    int b = 0;\n    int c = 0;\n    std::cin >> a >> b >> c;\n    std::cout << a + b * c << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "乘数为 0 时输出 a 本身。",
+          "另一组输入验证先乘后加的优先级。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "2 3 4\n",
+            "stdout": "14\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1 0 9\n",
+            "stdout": "1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "5 2 6\n",
+            "stdout": "17\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

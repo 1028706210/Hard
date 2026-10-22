@@ -73,35 +73,66 @@
     {
       "id": "python-concurrency-network-urllib-c01",
       "type": "code",
-      "prompt": "检查内嵌 URL 是否以 https:// 开头，并输出 True。",
-      "starter_code": "url = 'https://example.test/a'\n# 输出检查结果",
+      "prompt": "读取 URL 文本并去掉首尾空白。仅当 scheme 为 https、hostname 为 example.test、无用户名密码、端口未指定或为 443，且输入不含空白或反斜杠时输出 True；否则输出 False，均正常结束。主机名大小写不敏感，路径与查询不参与判断。使用 urlsplit，不发起请求。端口解析错误也返回 False。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\nfrom urllib.parse import urlsplit\n# 按题面实现本课操作\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'https://example.test/a'，输出 'True\\n'，退出码 0。",
+        "输入 'http://example.test/a'，输出 'False\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-concurrency-network-urllib-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    url = 'https://example.test/a'\n    print(url.startswith('https://'))\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\nfrom urllib.parse import urlsplit\ntry:\n    url = urlsplit(text)\n    valid = bool(text) and not any(c.isspace() for c in text) and \"\\\\\" not in text and url.scheme == \"https\" and url.hostname == \"example.test\" and url.username is None and url.password is None and url.port in (None, 443)\nexcept ValueError:\n    valid = False\nprint(valid)\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面规定的有效边界和失败行为。",
+          "输出格式、类型和顺序以题面约定为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "https://example.test/a",
             "stdout": "True\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "http://example.test/a",
+            "stdout": "False\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-concurrency-network-urllib-c01\n",
+            "stdin": "https://EXAMPLE.test:443/a?q=1",
+            "stdout": "True\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
-            "stdout": "",
-            "exit_code": 2
+            "stdin": "https://example.test.evil/a",
+            "stdout": "False\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "https://user@example.test",
+            "stdout": "False\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "https://example.test:80",
+            "stdout": "False\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "https://example.test:x",
+            "stdout": "False\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "https://example.test/a b",
+            "stdout": "False\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "",
+            "stdout": "False\n",
+            "exit_code": 0
           }
         ]
       }

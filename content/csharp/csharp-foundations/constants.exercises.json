@@ -1,0 +1,110 @@
+{
+  "lesson_id": "csharp-foundations-constants",
+  "questions": [
+    {
+      "id": "csharp-foundations-constants-k01",
+      "type": "knowledge",
+      "prompt": "C# 的 const 局部量或字段表达什么约束？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "值在编译期确定且之后不能重新赋值"
+        },
+        {
+          "id": "b",
+          "text": "值可以在每次读取时改变"
+        },
+        {
+          "id": "c",
+          "text": "只能保存对象实例"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-foundations-constants-k02",
+      "type": "knowledge",
+      "prompt": "哪一项是合法且命名清晰的 decimal 常量声明？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "decimal TaxRate = const 0.13;"
+        },
+        {
+          "id": "b",
+          "text": "const decimal TaxRate = 0.13m;"
+        },
+        {
+          "id": "c",
+          "text": "readonly decimal = TaxRate 0.13m;"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-foundations-constants-k03",
+      "type": "knowledge",
+      "prompt": "为什么不能用 Console.ReadLine() 的结果初始化 const string？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "字符串不能声明常量"
+        },
+        {
+          "id": "b",
+          "text": "ReadLine 只能返回整数"
+        },
+        {
+          "id": "c",
+          "text": "运行时输入不是编译期常量表达式"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "csharp-foundations-constants-c01",
+      "type": "code",
+      "prompt": "读取购买数量 count；使用命名常量 UnitPrice=12 和 ServiceFee=5 计算 count * UnitPrice + ServiceFee，并输出总额。",
+      "starter_code": "var count = int.Parse(Console.ReadLine() ?? \"\");\n// 声明两个命名常量并计算总额\n",
+      "visible_tests": [
+        "输入 3 时输出 41。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var count = int.Parse(Console.ReadLine() ?? \"\");\nconst int UnitPrice = 12;\nconst int ServiceFee = 5;\nvar total = count * UnitPrice + ServiceFee;\nConsole.WriteLine(total);\n",
+        "hidden_tests": [
+          "数量为零时仍包含固定服务费。",
+          "较大数量按常量单价累计。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3\n",
+            "stdout": "41\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "5\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "10\n",
+            "stdout": "125\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

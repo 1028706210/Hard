@@ -22,13 +22,24 @@ export const destinations = [
   { path: "/assessment/python-foundations-hello-world", label: "练习评分", heading: "练习评分" },
   { path: "/review", label: "复习", heading: "复习中心" },
   { path: "/search", label: "搜索", heading: "搜索" },
+  { path: "/compare", label: "对照", heading: "跨语言对照" },
   { path: "/growth", label: "成长", heading: "成长报告" },
   { path: "/settings", label: "设置", heading: "设置" },
 ] as const;
 
+export function learningDestinations(lessonId?: string) {
+  return destinations.map(destination => {
+    if (!lessonId) return destination;
+    if (destination.path.startsWith("/lesson/")) return { ...destination, path: `/lesson/${encodeURIComponent(lessonId)}` };
+    if (destination.path.startsWith("/assessment/")) return { ...destination, path: `/assessment/${encodeURIComponent(lessonId)}` };
+    return destination;
+  });
+}
+
 const routes: RouteRecordRaw[] = [
   { path: "/", component: KnowledgeMapPage },
   { path: "/course/:language", component: CoursePage },
+  { path: "/constellations", redirect: to => ({ path: "/", query: to.query }) },
   { path: "/lesson/:lessonId", component: LessonPage },
   { path: "/assessment/:lessonId", component: AssessmentPage },
   { path: "/review", component: ReviewPage },

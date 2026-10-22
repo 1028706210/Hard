@@ -49,4 +49,16 @@ onMounted(load);
 
 <style scoped>
 .lan-access { display: grid; gap: var(--hard-space-3); } h2, p { margin: 0; } p { color: var(--hard-color-muted); line-height: 1.65; } label { display: grid; gap: var(--hard-space-1); color: var(--hard-color-muted); } select, button { min-height: var(--hard-touch-target); border-radius: var(--hard-radius-sm); font: inherit; } select { padding: 0 var(--hard-space-2); border: .0625rem solid var(--hard-color-line); color: var(--hard-color-text); background: var(--hard-color-space); } .acknowledgement { display: flex; align-items: center; gap: var(--hard-space-2); } button { padding: 0 var(--hard-space-3); border: 0; color: var(--hard-color-text); background: var(--hard-color-primary); cursor: pointer; } button:disabled { opacity: .55; cursor: not-allowed; } .url { color: var(--hard-color-cyan); font-weight: 700; overflow-wrap: anywhere; } svg { width: min(13rem, 100%); padding: var(--hard-space-2); border-radius: var(--hard-radius-sm); background: white; image-rendering: pixelated; } details { display: grid; gap: var(--hard-space-2); color: var(--hard-color-muted); } code { overflow-wrap: anywhere; color: var(--hard-color-amber); } .error { color: var(--hard-color-danger); }
+h2 { font-size: 1.3rem; }
+.lan-access { gap: 1rem; }
+.lan-access > p { font-size: .875rem; line-height: 1.8; }
+.lan-access > p:first-of-type { padding: 1rem; border: 1px solid color-mix(in srgb, var(--hard-color-amber) 25%, var(--hard-color-line)); border-radius: var(--hard-radius-sm); background: color-mix(in srgb, var(--hard-color-amber) 4%, transparent); color: var(--hard-color-amber); }
+label { gap: .65rem; font-size: .8rem; }
+select { width: 100%; max-width: 26rem; }
+.acknowledgement { min-height: var(--hard-touch-target); line-height: 1.7; cursor: pointer; }
+.acknowledgement input { flex: 0 0 auto; width: 1.1rem; height: 1.1rem; margin: 0 .25rem 0 0; accent-color: var(--hard-color-primary); }
+button { justify-self: start; padding-inline: 1.25rem; }
+.url { padding-top: 1rem; border-top: 1px solid var(--hard-color-line); }
+summary { min-height: var(--hard-touch-target); padding-block: .75rem; cursor: pointer; font-size: .8rem; }
+details code { display: block; padding: 1rem; margin-top: .75rem; border: 1px solid var(--hard-color-line); border-radius: var(--hard-radius-sm); background: var(--hard-color-space); font-size: .8rem; line-height: 1.8; }
 </style>

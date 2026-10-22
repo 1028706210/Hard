@@ -17,3 +17,4 @@ runner-work/
 .env.local
 *.pem
 *.key
+*.class

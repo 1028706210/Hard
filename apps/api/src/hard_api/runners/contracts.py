@@ -66,26 +66,38 @@ class RunResult:
 
     def public_payload(self) -> dict[str, object]:
         payload: dict[str, object] = {
-            "status": self.status,
-            "stdout": self.stdout,
-            "stderr": self.stderr,
-            "diagnostics": list(self.diagnostics),
-            "duration_ms": self.duration_ms,
-            "error_code": self.error_code,
+            "status": self.status.value,
+            "diagnostics": list(self._public_diagnostics()),
         }
         if self.compile is not None:
             payload["compile"] = {
                 "passed": self.compile.passed,
-                "diagnostics": list(self.compile.diagnostics),
             }
         if self.tests is not None:
             payload["tests"] = {
                 "visible_passed": self.tests.visible_passed,
                 "visible_total": self.tests.visible_total,
-                "hidden_passed": self.tests.hidden_passed,
-                "hidden_total": self.tests.hidden_total,
             }
         return payload
+
+    def _public_diagnostics(self) -> tuple[str, ...]:
+        if self.status == RunStatus.SUCCEEDED:
+            return ()
+        if self.error_code == "compile_failed":
+            return ("编译未通过，请检查语法和代码结构。",)
+        if self.error_code == "forbidden_import":
+            return ("代码使用了不允许的高风险模块。",)
+        if self.status == RunStatus.TIMED_OUT:
+            return ("运行超时。",)
+        if self.status == RunStatus.OUTPUT_OVERFLOW:
+            return ("输出超过限制。",)
+        if self.status == RunStatus.CANCELLED:
+            return ("运行已取消。",)
+        if self.status == RunStatus.TOOL_MISSING:
+            return ("运行工具不可用。",)
+        if self.status == RunStatus.REJECTED:
+            return ("提交不符合运行要求。",)
+        return ("代码未通过全部测试。",)
 
 
 @dataclass(slots=True)
@@ -104,6 +116,6 @@ class RunJob:
     def public_payload(self) -> dict[str, object]:
         return {
             "id": self.id,
-            "status": self.status,
+            "status": self.status.value,
             "result": self.result.public_payload() if self.result is not None else None,
         }

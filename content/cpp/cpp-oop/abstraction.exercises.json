@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-oop-abstraction",
+  "questions": [
+    {
+      "id": "cpp-oop-abstraction-k01",
+      "type": "knowledge",
+      "prompt": "数据抽象向调用方暴露的是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "全部私有数据成员"
+        },
+        {
+          "id": "b",
+          "text": "公开接口（做什么），隐藏内部实现（怎么做）"
+        },
+        {
+          "id": "c",
+          "text": "内部算法的每一步细节"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-oop-abstraction-k02",
+      "type": "knowledge",
+      "prompt": "含纯虚函数（= 0）的类？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "是抽象类，不能直接实例化"
+        },
+        {
+          "id": "b",
+          "text": "可以像普通类一样创建对象"
+        },
+        {
+          "id": "c",
+          "text": "只能被 static 调用"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-oop-abstraction-k03",
+      "type": "knowledge",
+      "prompt": "调用方依赖抽象接口而非具体实现的直接收益是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "实现替换或测试替身不影响调用方代码"
+        },
+        {
+          "id": "b",
+          "text": "运行时不再需要对象"
+        },
+        {
+          "id": "c",
+          "text": "编译产物体积一定最小"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-oop-abstraction-c01",
+      "type": "code",
+      "prompt": "定义抽象类 Sequencer（纯虚函数 next()）与实现类 Doubler（构造接收起始值 start，每次 next() 把当前值翻倍并返回）。读取一行两个整数 start n，通过 Sequencer 引用调用 next() 共 n 次后输出最终值（n 为 0 时输出 start 本身）。",
+      "starter_code": "#include <iostream>\n\nclass Sequencer {\npublic:\n    virtual ~Sequencer() = default;\n    virtual int next() = 0;\n};\n\n// 定义 Doubler\n\nint main() {\n    int start = 0;\n    int n = 0;\n    std::cin >> start >> n;\n    // 通过抽象接口调用并输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 1 4 时输出 16。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n\nclass Sequencer {\npublic:\n    virtual ~Sequencer() = default;\n    virtual int next() = 0;\n};\n\nclass Doubler : public Sequencer {\npublic:\n    explicit Doubler(int start) : value_(start) {}\n    int next() override { value_ *= 2; return value_; }\nprivate:\n    int value_;\n};\n\nint main() {\n    int start = 0;\n    int n = 0;\n    std::cin >> start >> n;\n    Doubler doubler(start);\n    Sequencer& seq = doubler;\n    int value = start;\n    for (int i = 0; i < n; i++) {\n        value = seq.next();\n    }\n    std::cout << value << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "调用零次时输出起始值。",
+          "非一起始值按逐次翻倍输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1 4\n",
+            "stdout": "16\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "5 0\n",
+            "stdout": "5\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3 2\n",
+            "stdout": "12\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

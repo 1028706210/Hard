@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-capstone-cwchar",
+  "questions": [
+    {
+      "id": "cpp-capstone-cwchar-k01",
+      "type": "knowledge",
+      "prompt": "wcscmp 的返回值形态是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "三态：<0、0、>0"
+        },
+        {
+          "id": "b",
+          "text": "布尔 0 或 1"
+        },
+        {
+          "id": "c",
+          "text": "总是 0"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-capstone-cwchar-k02",
+      "type": "knowledge",
+      "prompt": "mbstowcs 的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "多字节字符串转宽字符数组"
+        },
+        {
+          "id": "b",
+          "text": "宽字符转多字节"
+        },
+        {
+          "id": "c",
+          "text": "拼接两个窄字符串"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-capstone-cwchar-k03",
+      "type": "knowledge",
+      "prompt": "宽字符串的字典序比较依据是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "码点值逐位比较"
+        },
+        {
+          "id": "b",
+          "text": "本地化排序规则"
+        },
+        {
+          "id": "c",
+          "text": "字符串长度"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-capstone-cwchar-c01",
+      "type": "code",
+      "prompt": "读取两个单词（各由小写字母 a..z 组成，长度 1..50，含两端，以空白分隔）。分别用 mbstowcs 转成宽字符串后按 wcscmp 比较：输出字典序较小的单词一行；完全相等时输出 equal 一行。任一单词为空、长度越界或含非法字符时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cstdio>\n#include <cwchar>\n\nint main() {\n    // 读取两个单词，mbstowcs 转宽串后 wcscmp 比较输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 apple banana 时输出 apple。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <cwchar>\n#include <initializer_list>\n\nint main() {\n    char first[64];\n    char second[64];\n    if (std::scanf(\"%63s %63s\", first, second) != 2) return 1;\n    if (std::strlen(first) < 1 || std::strlen(first) > 50) return 1;\n    if (std::strlen(second) < 1 || std::strlen(second) > 50) return 1;\n    for (const char* word : {first, second}) {\n        for (const char* p = word; *p != '\\0'; p++) {\n            if (*p < 'a' || *p > 'z') return 1;\n        }\n    }\n    wchar_t wide_first[64];\n    wchar_t wide_second[64];\n    if (std::mbstowcs(wide_first, first, 64) == static_cast<std::size_t>(-1)) return 1;\n    if (std::mbstowcs(wide_second, second, 64) == static_cast<std::size_t>(-1)) return 1;\n    int order = std::wcscmp(wide_first, wide_second);\n    if (order < 0) {\n        std::printf(\"%s\\n\", first);\n    } else if (order > 0) {\n        std::printf(\"%s\\n\", second);\n    } else {\n        std::printf(\"equal\\n\");\n    }\n    return 0;\n}\n",
+        "hidden_tests": [
+          "zeta alpha 输出 alpha（逆序输入取较小者）。",
+          "两个相同单词输出 equal。",
+          "含大写字母的单词不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "apple banana\n",
+            "stdout": "apple\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "zeta alpha\n",
+            "stdout": "alpha\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "same same\n",
+            "stdout": "equal\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "Apple apple\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

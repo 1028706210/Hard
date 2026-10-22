@@ -1,0 +1,134 @@
+{
+  "lesson_id": "csharp-language-features-delegates",
+  "questions": [
+    {
+      "id": "csharp-language-features-delegates-k01",
+      "type": "knowledge",
+      "prompt": "委托类型的本质是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "一个存放数据的容器，与方法无关"
+        },
+        {
+          "id": "b",
+          "text": "描述方法签名（参数与返回类型）的类型，其实例可绑定一个或多个方法"
+        },
+        {
+          "id": "c",
+          "text": "只能绑定一个静态方法的指针，不能重绑"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-language-features-delegates-k02",
+      "type": "knowledge",
+      "prompt": "对多播委托执行 += 之后整体调用一次，行为是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "链上方法按加入顺序同步依次调用，整体表达式的返回值来自最后一个方法"
+        },
+        {
+          "id": "b",
+          "text": "链上方法并行执行，返回值随机取一个"
+        },
+        {
+          "id": "c",
+          "text": "后加入的方法先执行，先加入的会被丢弃"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-language-features-delegates-k03",
+      "type": "knowledge",
+      "prompt": "委托与直接方法调用的核心区别是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "委托调用不经过栈，因此速度更快"
+        },
+        {
+          "id": "b",
+          "text": "委托只能在多线程程序里使用"
+        },
+        {
+          "id": "c",
+          "text": "委托把调用目标推迟到运行期决定，方法可以作为参数传递与组合"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "csharp-language-features-delegates-c01",
+      "type": "code",
+      "prompt": "声明委托 int Transformer(int x)，并实现三个静态方法：Square（平方）、Negate（取负）、Increment（加一）。输入：第一行 k（1..5 含两端）；随后 k 行每行一个操作名（square/negate/increment，小写）；最后一行整数 x。按输入顺序用 += 把对应方法加入同一个多播委托实例；然后遍历调用链（如 GetInvocationList），把 x 依次流过每个方法（上一步返回值作为下一步输入），输出 result=<最终值>。以下情形不输出并以退出码 1 结束：k 不是整数或越界；操作名未知；x 不是整数；任一输入行缺失。",
+      "starter_code": "// 声明 Transformer 委托，按输入顺序组成多播委托，再把 x 依次流过调用链\n",
+      "visible_tests": [
+        "输入 2、square、increment、3 时输出 result=10（3 平方得 9 再加一）。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "if (!int.TryParse((Console.ReadLine() ?? \"\").Trim(), out var stepCount) || stepCount < 1 || stepCount > 5) Environment.Exit(1);\nTransformer chain = null!;\nfor (var i = 0; i < stepCount; i++)\n{\n    var op = (Console.ReadLine() ?? \"\").Trim();\n    Transformer? step = op switch\n    {\n        \"square\" => TransformOps.Square,\n        \"negate\" => TransformOps.Negate,\n        \"increment\" => TransformOps.Increment,\n        _ => null,\n    };\n    if (step is null) Environment.Exit(1);\n    chain += step;\n}\nif (!int.TryParse((Console.ReadLine() ?? \"\").Trim(), out var value)) Environment.Exit(1);\nforeach (Transformer step in chain.GetInvocationList())\n{\n    value = step(value);\n}\nConsole.WriteLine(\"result=\" + value);\n\ndelegate int Transformer(int x);\n\nstatic class TransformOps\n{\n    public static int Square(int x) => x * x;\n    public static int Negate(int x) => -x;\n    public static int Increment(int x) => x + 1;\n}\n",
+        "hidden_tests": [
+          "单个 increment 作用于负数时输出加一后的值。",
+          "negate 再 square 的链按顺序叠加作用于初值。",
+          "两个 square 组成的链输出四次方结果。",
+          "操作名未知时不输出并以退出码 1 结束。",
+          "k 为 0 时不输出并以退出码 1 结束。",
+          "k 超过 5 时不输出并以退出码 1 结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "2\nsquare\nincrement\n3\n",
+            "stdout": "result=10\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1\nincrement\n-7\n",
+            "stdout": "result=-6\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2\nnegate\nsquare\n4\n",
+            "stdout": "result=16\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2\nsquare\nsquare\n3\n",
+            "stdout": "result=81\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1\ninverse\n5\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "0\nsquare\n5\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "6\nsquare\nsquare\nsquare\nsquare\nsquare\nsquare\n5\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

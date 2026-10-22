@@ -1,0 +1,68 @@
+[
+  {
+    "lesson": "cpp-oop/classes",
+    "example": "docs/audit/content-depth-20261021/cpp/examples/cpp-oop--classes.cpp",
+    "expected": "25 25\n",
+    "source": "https://eel.is/c++draft/class.base.init"
+  },
+  {
+    "lesson": "cpp-oop/inheritance",
+    "example": "docs/audit/content-depth-20261021/cpp/examples/cpp-oop--inheritance.cpp",
+    "expected": "2 1 150\n",
+    "source": "https://eel.is/c++draft/class.virtual"
+  },
+  {
+    "lesson": "cpp-oop/polymorphism",
+    "example": "docs/audit/content-depth-20261021/cpp/examples/cpp-oop--polymorphism.cpp",
+    "expected": "88 1 88\n",
+    "source": "https://eel.is/c++draft/class.cdtor"
+  },
+  {
+    "lesson": "cpp-core-memory/pointers",
+    "example": "docs/audit/content-depth-20261021/cpp/examples/cpp-core-memory--pointers.cpp",
+    "expected": "7 9\n",
+    "source": "https://eel.is/c++draft/basic.compound"
+  },
+  {
+    "lesson": "cpp-core-memory/references",
+    "example": "docs/audit/content-depth-20261021/cpp/examples/cpp-core-memory--references.cpp",
+    "expected": "8 10 3\n",
+    "source": "https://eel.is/c++draft/dcl.ref"
+  },
+  {
+    "lesson": "cpp-advanced/templates",
+    "example": "docs/audit/content-depth-20261021/cpp/examples/cpp-advanced--templates.cpp",
+    "expected": "7 3 orbit\n",
+    "source": "https://eel.is/c++draft/temp"
+  },
+  {
+    "lesson": "cpp-advanced/dynamic-memory",
+    "example": "docs/audit/content-depth-20261021/cpp/examples/cpp-advanced--dynamic-memory.cpp",
+    "expected": "1 7 7\n",
+    "source": "https://eel.is/c++draft/expr.new"
+  },
+  {
+    "lesson": "cpp-advanced/exceptions",
+    "example": "docs/audit/content-depth-20261021/cpp/examples/cpp-advanced--exceptions.cpp",
+    "expected": "42\ninvalid\nrange\n",
+    "source": "https://eel.is/c++draft/except.ctor"
+  },
+  {
+    "lesson": "cpp-core-memory/vector",
+    "example": "docs/audit/content-depth-20261021/cpp/examples/cpp-core-memory--vector.cpp",
+    "expected": "0 1\n4 11\n",
+    "source": "https://eel.is/c++draft/vector.capacity"
+  },
+  {
+    "lesson": "cpp-stl-containers/vector",
+    "example": "docs/audit/content-depth-20261021/cpp/examples/cpp-stl-containers--vector.cpp",
+    "expected": "1 3 5 \n",
+    "source": "https://eel.is/c++draft/vector.modifiers"
+  },
+  {
+    "lesson": "cpp-oop/interfaces",
+    "example": "docs/audit/content-depth-20261021/cpp/examples/cpp-oop--interfaces.cpp",
+    "expected": "12\n",
+    "source": "https://eel.is/c++draft/class.abstract"
+  }
+]

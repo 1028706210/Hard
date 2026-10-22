@@ -73,33 +73,59 @@
     {
       "id": "python-database-deployment-mysql-connector-c01",
       "type": "code",
-      "prompt": "依据 email 构造参数化查询的模板和参数元组；无效 email 拒绝。",
-      "starter_code": "import sys\n# 保持 SQL 模板与参数值分离\n",
+      "prompt": "读取一个简化 email 标签：去掉首尾空白后恰好一个 @，两侧均非空，且不含空白。这个教学规则不是完整邮箱规范。构造固定 SQL 模板 SELECT id FROM learner WHERE email = %s 和单元素参数元组，输出 JSON 对象（键为 sql、params），使用 json.dumps(sort_keys=True)。格式无效时无输出，退出码1。参数不得拼进SQL；不连接数据库。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\nimport json\nif text.count(\"@\") != 1 or not all(text.split(\"@\")) or any(c.isspace() for c in text):\n    raise SystemExit(1)\n# 按题面实现本课操作\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'ada@example.test'，输出 '{\"params\": [\"ada@example.test\"], \"sql\": \"SELECT id FROM learner WHERE email = %s\"}\\n'，退出码 0。",
+        "输入 'lin@example.test'，输出 '{\"params\": [\"lin@example.test\"], \"sql\": \"SELECT id FROM learner WHERE email = %s\"}\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\nemail = sys.stdin.read().strip()\nif email == '__invalid__' or '@' not in email:\n    raise ValueError('email required')\nsql = 'SELECT id FROM learner WHERE email = %s'\nprint(f'{sql}|{email}')\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\nimport json\nif text.count(\"@\") != 1 or not all(text.split(\"@\")) or any(c.isspace() for c in text):\n    raise SystemExit(1)\nsql = \"SELECT id FROM learner WHERE email = %s\"\nparams = (text,)\nprint(json.dumps({\"sql\":sql,\"params\":params},sort_keys=True))\n",
         "hidden_tests": [
-          "边界输入必须返回主题定义的结果。",
-          "无效输入必须进入可预期的失败分支。"
+          "检查题面规定的有效边界和失败行为。",
+          "输出格式、类型和顺序以题面约定为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "a@test\n",
-            "stdout": "SELECT id FROM learner WHERE email = %s|a@test\n",
+            "stdin": "ada@example.test",
+            "stdout": "{\"params\": [\"ada@example.test\"], \"sql\": \"SELECT id FROM learner WHERE email = %s\"}\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "lin@example.test",
+            "stdout": "{\"params\": [\"lin@example.test\"], \"sql\": \"SELECT id FROM learner WHERE email = %s\"}\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "admin@test\n",
-            "stdout": "SELECT id FROM learner WHERE email = %s|admin@test\n",
+            "stdin": "x'OR'1'='1@example.test",
+            "stdout": "{\"params\": [\"x'OR'1'='1@example.test\"], \"sql\": \"SELECT id FROM learner WHERE email = %s\"}\n",
             "exit_code": 0
           },
           {
-            "stdin": "__invalid__\n",
+            "stdin": "bad",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "@x",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "x@",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "a@@b",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
             "stdout": "",
             "exit_code": 1
           }

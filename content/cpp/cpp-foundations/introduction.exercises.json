@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-foundations-introduction",
+  "questions": [
+    {
+      "id": "cpp-foundations-introduction-k01",
+      "type": "knowledge",
+      "prompt": "C++ 程序的执行入口是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "全局变量的构造函数"
+        },
+        {
+          "id": "b",
+          "text": "main 函数"
+        },
+        {
+          "id": "c",
+          "text": "main 类的静态方法"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-foundations-introduction-k02",
+      "type": "knowledge",
+      "prompt": "在最小的 C++ 程序中使用 std::cout 前，需要包含哪个头文件？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "<iostream>"
+        },
+        {
+          "id": "b",
+          "text": "<stdio.h>"
+        },
+        {
+          "id": "c",
+          "text": "<string>"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-foundations-introduction-k03",
+      "type": "knowledge",
+      "prompt": "关于 C++ 与 C 的关系，正确的说法是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "C++ 在 C 的基础上扩展了类、模板等抽象能力"
+        },
+        {
+          "id": "b",
+          "text": "C++ 是 C 的另一种脚本解释器"
+        },
+        {
+          "id": "c",
+          "text": "两者完全无关，语法互不兼容"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-foundations-introduction-c01",
+      "type": "code",
+      "prompt": "读取两个整数 a 和 b（同一行，以空格分隔），输出它们的和。",
+      "starter_code": "#include <iostream>\n\nint main() {\n    int a = 0;\n    int b = 0;\n    std::cin >> a >> b;\n    // 输出 a 与 b 的和\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3 和 5 时输出 8。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n\nint main() {\n    int a = 0;\n    int b = 0;\n    std::cin >> a >> b;\n    std::cout << a + b << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "负数参与加法时结果正确。",
+          "较大整数相加仍在 int 范围内并正确输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 5\n",
+            "stdout": "8\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "-10 4\n",
+            "stdout": "-6\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "100000 234567\n",
+            "stdout": "334567\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

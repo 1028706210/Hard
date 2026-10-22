@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-oop-io-exceptions",
+  "questions": [
+    {
+      "id": "java-oop-io-exceptions-k01",
+      "type": "knowledge",
+      "prompt": "try-catch 中 catch 的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "抛出异常"
+        },
+        {
+          "id": "b",
+          "text": "捕获异常"
+        },
+        {
+          "id": "c",
+          "text": "忽略异常"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-oop-io-exceptions-k02",
+      "type": "knowledge",
+      "prompt": "finally 块何时执行？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "仅在异常时"
+        },
+        {
+          "id": "b",
+          "text": "仅在正常时"
+        },
+        {
+          "id": "c",
+          "text": "无论是否异常"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "java-oop-io-exceptions-k03",
+      "type": "knowledge",
+      "prompt": "Integer.parseInt(\"abc\") 抛出什么异常？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "NullPointerException"
+        },
+        {
+          "id": "b",
+          "text": "NumberFormatException"
+        },
+        {
+          "id": "c",
+          "text": "IOException"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-oop-io-exceptions-c01",
+      "type": "code",
+      "prompt": "从标准输入读取字符串，尝试解析为整数，成功输出 OK:值，失败输出 ERROR。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        try {\n            int n = Integer.parseInt(input);\n            System.out.println(\"OK:\" + n);\n        } catch (NumberFormatException e) {\n            System.out.println(\"ERROR\");\n        }\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "42\n",
+            "stdout": "OK:42\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "abc\n",
+            "stdout": "ERROR\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

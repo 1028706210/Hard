@@ -79,6 +79,7 @@ class SummaryResponse(BaseModel):
     current_experience: int
     current_level: int
     unlocked_lessons: dict[str, list[str]]
+    lesson_statuses: dict[str, str]
 
 
 def _content(request: Request) -> ContentService:

@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-advanced-dynamic-memory",
+  "questions": [
+    {
+      "id": "cpp-advanced-dynamic-memory-k01",
+      "type": "knowledge",
+      "prompt": "new int[n] 分配的数组应该用哪个释放？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "delete（单对象形式即可）"
+        },
+        {
+          "id": "b",
+          "text": "delete[]（数组形式）"
+        },
+        {
+          "id": "c",
+          "text": "free()"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-advanced-dynamic-memory-k02",
+      "type": "knowledge",
+      "prompt": "std::make_unique 的核心价值是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "把对象分配到栈上以提速"
+        },
+        {
+          "id": "b",
+          "text": "让对象永远不被释放"
+        },
+        {
+          "id": "c",
+          "text": "离开作用域自动释放，消除手动 delete 的泄漏与悬垂风险"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-advanced-dynamic-memory-k03",
+      "type": "knowledge",
+      "prompt": "delete 之后继续使用原指针会？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "自动重新分配同一块内存"
+        },
+        {
+          "id": "b",
+          "text": "悬垂指针访问，未定义行为"
+        },
+        {
+          "id": "c",
+          "text": "抛出 std::bad_pointer"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-advanced-dynamic-memory-c01",
+      "type": "code",
+      "prompt": "读取非负整数 n，用 new int[n] 动态分配数组并依次填入 1..n，累计求和输出后用 delete[] 释放（n 为 0 时输出 0）。",
+      "starter_code": "#include <iostream>\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    // new[] 分配、填充、求和、delete[] 释放\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 4 时输出 10。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    int* values = new int[n];\n    long long total = 0;\n    for (int i = 0; i < n; i++) {\n        values[i] = i + 1;\n        total += values[i];\n    }\n    delete[] values;\n    std::cout << total << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "n 为 0 时不填充且输出 0。",
+          "较大 n 按等差求和输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "4\n",
+            "stdout": "10\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "100\n",
+            "stdout": "5050\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

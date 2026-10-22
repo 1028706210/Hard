@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-algorithms-concurrency-mutex",
+  "questions": [
+    {
+      "id": "cpp-algorithms-concurrency-mutex-k01",
+      "type": "knowledge",
+      "prompt": "std::lock_guard 的解锁时机是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "作用域结束自动解锁（RAII）"
+        },
+        {
+          "id": "b",
+          "text": "必须手动调用 unlock"
+        },
+        {
+          "id": "c",
+          "text": "程序退出时解锁"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-mutex-k02",
+      "type": "knowledge",
+      "prompt": "两个线程无锁并发读写同一变量属于？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "数据竞争，未定义行为"
+        },
+        {
+          "id": "b",
+          "text": "安全的原子操作"
+        },
+        {
+          "id": "c",
+          "text": "编译错误"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-mutex-k03",
+      "type": "knowledge",
+      "prompt": "两个线程以相反顺序各锁两把互斥量会导致？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "编译失败"
+        },
+        {
+          "id": "b",
+          "text": "死锁，互相等待"
+        },
+        {
+          "id": "c",
+          "text": "第二次 lock 直接跳过"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-mutex-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 1..1000，含两端）与 n 个整数（每个合同范围 -10000..10000，含两端）存入 vector，创建一个 worker 线程累加前一半元素、主线程累加后一半元素，两边的每次累加都用 std::mutex 与 std::lock_guard 保护同一个共享 long long，join 后输出总和。任一输入无法解析或越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <iostream>\n#include <mutex>\n#include <thread>\n#include <vector>\n\nint main() {\n    // 读取 n 与 n 个整数，双线程持锁累加共享和\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 n=4 与 1 2 3 4 时输出 10。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <mutex>\n#include <thread>\n#include <vector>\n\nint main() {\n    int n = 0;\n    if (!(std::cin >> n)) return 1;\n    if (n < 1 || n > 1000) return 1;\n    std::vector<long long> values;\n    for (int i = 0; i < n; i++) {\n        long long value = 0;\n        if (!(std::cin >> value)) return 1;\n        if (value < -10000 || value > 10000) return 1;\n        values.push_back(value);\n    }\n    std::mutex guard;\n    long long total = 0;\n    int half = n / 2;\n    std::thread worker([&values, half, &guard, &total]() {\n        for (int i = 0; i < half; i++) {\n            std::lock_guard<std::mutex> locked(guard);\n            total += values[static_cast<std::size_t>(i)];\n        }\n    });\n    for (int i = half; i < n; i++) {\n        std::lock_guard<std::mutex> locked(guard);\n        total += values[static_cast<std::size_t>(i)];\n    }\n    worker.join();\n    std::cout << total << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "n=1 时 worker 半区为空，主线程累加唯一元素。",
+          "含负数时总和保留符号。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "4 1 2 3 4\n",
+            "stdout": "10\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1 7\n",
+            "stdout": "7\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3 -1 2 -3\n",
+            "stdout": "-2\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

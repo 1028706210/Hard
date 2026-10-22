@@ -73,35 +73,66 @@
     {
       "id": "python-functions-iteration-with-c01",
       "type": "code",
-      "prompt": "用 nullcontext 管理 2，并输出加一的结果。",
-      "starter_code": "from contextlib import nullcontext\n# 使用 with",
+      "prompt": "读取一个整数 n，使用 with nullcontext(n) as value 获取值，并输出 value + 1。零和负数有效；非整数或空输入不输出内容，退出码为 1。起始代码已解析 n。nullcontext 仅演示上下文语法，不打开文件或提供实际资源清理。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    n = int(text)\nexcept ValueError:\n    raise SystemExit(1)\nfrom contextlib import nullcontext\n# 按题面定义函数并调用输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '2'，输出 '3\\n'，退出码 0。",
+        "输入 '9'，输出 '10\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-functions-iteration-with-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    from contextlib import nullcontext\n    with nullcontext(2) as value:\n        print(value + 1)\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    n = int(text)\nexcept ValueError:\n    raise SystemExit(1)\nfrom contextlib import nullcontext\nwith nullcontext(n) as value:\n    print(value + 1)\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的有效输入与边界。",
+          "无效输入不输出内容，以退出码 1 结束。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "2",
             "stdout": "3\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "9",
+            "stdout": "10\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-functions-iteration-with-c01\n",
+            "stdin": "0",
+            "stdout": "1\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "-2",
+            "stdout": "-1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": " 100 \n",
+            "stdout": "101\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1 2",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "2.5",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "x",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

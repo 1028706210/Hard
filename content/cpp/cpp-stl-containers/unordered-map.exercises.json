@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-stl-containers-unordered-map",
+  "questions": [
+    {
+      "id": "cpp-stl-containers-unordered-map-k01",
+      "type": "knowledge",
+      "prompt": "unordered_map 相对 map 的主要优势是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "平均 O(1) 的查找与更新"
+        },
+        {
+          "id": "b",
+          "text": "按 key 有序遍历"
+        },
+        {
+          "id": "c",
+          "text": "支持范围查询"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-unordered-map-k02",
+      "type": "knowledge",
+      "prompt": "要按「首次出现顺序」输出统计结果，正确组合是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "unordered_map 计数 + vector 记录首次出现"
+        },
+        {
+          "id": "b",
+          "text": "只遍历 unordered_map"
+        },
+        {
+          "id": "c",
+          "text": "stack 计数 + map 输出"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-unordered-map-k03",
+      "type": "knowledge",
+      "prompt": "unordered_map 哈希冲突严重时单次操作会退化为？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "O(1)"
+        },
+        {
+          "id": "b",
+          "text": "O(n)"
+        },
+        {
+          "id": "c",
+          "text": "O(log n)"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-unordered-map-c01",
+      "type": "code",
+      "prompt": "读取一行以空格分隔的单词（个数 1..100，含两端，每个单词无空格且长度 1..20，含两端），用 std::unordered_map<std::string, int> 统计词频，并按单词首次出现顺序逐行输出 \"<单词> <次数>\"。无输入行、或个数与长度越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <iostream>\n#include <string>\n#include <unordered_map>\n#include <vector>\n\nint main() {\n    // 读取一行单词，unordered_map 计数并按首次出现顺序输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 to be or not to be 时依次输出 to 2、be 2、or 1、not 1 各占一行。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <sstream>\n#include <string>\n#include <unordered_map>\n#include <vector>\n\nint main() {\n    std::string line;\n    if (!std::getline(std::cin, line)) return 1;\n    std::istringstream reader(line);\n    std::unordered_map<std::string, int> counts;\n    std::vector<std::string> order;\n    std::string word;\n    int total = 0;\n    while (reader >> word) {\n        if (word.size() < 1 || word.size() > 20) return 1;\n        total++;\n        if (counts.find(word) == counts.end()) {\n            order.push_back(word);\n        }\n        counts[word]++;\n    }\n    if (total < 1 || total > 100) return 1;\n    for (const std::string& key : order) {\n        std::cout << key << \" \" << counts[key] << \"\\n\";\n    }\n    return 0;\n}\n",
+        "hidden_tests": [
+          "全部相同单词输出一行且计数为总数。",
+          "逆序输入时按输入顺序输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "to be or not to be\n",
+            "stdout": "to 2\nbe 2\nor 1\nnot 1\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "go go go\n",
+            "stdout": "go 3\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "c b a\n",
+            "stdout": "c 1\nb 1\na 1\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

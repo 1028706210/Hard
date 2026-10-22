@@ -17,6 +17,7 @@ from hard_api.main import create_app
 from hard_api.core.config import Settings
 from hard_api.db import migrations
 from hard_api.backup.service import LocalBackupService
+from hard_api.runners.csharp import CSharpRunner
 from hard_api.runners.contracts import RunResult, RunStatus, Submission
 from hard_api.runners.manager import RunManager
 from test_catalog import make_settings, write_python_fixture
@@ -134,24 +135,26 @@ def test_runner_api_submits_queries_and_cancels_without_accepting_private_tests(
     app.state.runner_manager.shutdown()
 
 
-def test_hello_world_runner_rejects_fixed_public_output_and_accepts_dynamic_reference_without_private_leaks(tmp_path: Path) -> None:
+def test_runner_http_and_openapi_keep_hidden_input_output_and_counts_private(tmp_path: Path) -> None:
     root = Path(__file__).resolve().parents[4]
     settings = Settings(project_root=root, data_dir=tmp_path / "data", database_path=tmp_path / "data" / "hard.db", backup_dir=tmp_path / "backups", export_dir=tmp_path / "exports", runner_work_dir=tmp_path / "runner-work", content_dir=root / "content", toolchain_lock_path=root / "docs/setup/toolchain-lock.json")
     migrations.migrate_database(settings.database_path, backup_provider=LocalBackupService(settings.backup_dir))
     app = create_app(settings)
     with TestClient(app) as client:
-        fixed_output = client.post("/api/runners/submissions", json={"lesson_id": "python-foundations-hello-world", "exercise_id": "python-foundations-hello-world-c01", "source_code": "print('Hello, Hard!')", "stdin": ""}, headers={"Idempotency-Key": "fixed-public-output"})
-        fixed_job = app.state.runner_manager.wait(fixed_output.json()["id"], timeout=10)
-        created = client.post("/api/runners/submissions", json={"lesson_id": "python-foundations-hello-world", "exercise_id": "python-foundations-hello-world-c01", "source_code": "import sys\nname = sys.stdin.read().strip()\nif name == '__invalid__' or (name and not name.isalpha()):\n    raise ValueError('name must contain letters only')\nprint(f\"Hello, {name or 'World'}!\")", "stdin": ""}, headers={"Idempotency-Key": "official-reference"})
+        created = client.post("/api/runners/submissions", json={"lesson_id": "python-foundations-introduction", "exercise_id": "python-foundations-introduction-c01", "source_code": "import sys\nvalue = sys.stdin.read()\nif value.startswith('__hard_hidden'):\n    print(value, end='')\nelse:\n    print('欢迎使用 Hard Python 课程！')", "stdin": ""}, headers={"Idempotency-Key": "hidden-echo"})
         job_id = created.json()["id"]
         job = app.state.runner_manager.wait(job_id, timeout=10)
         response = client.get(f"/api/runners/jobs/{job_id}")
-    assert fixed_output.status_code == 200
-    assert fixed_job.status == RunStatus.FAILED
-    assert job.status == RunStatus.SUCCEEDED
-    assert response.json()["result"]["tests"] == {"visible_passed": 1, "visible_total": 1, "hidden_passed": 2, "hidden_total": 2}
-    assert "hidden_test_cases" not in response.text
-    assert "reference_solution" not in response.text
+        openapi = client.get("/openapi.json").json()
+
+    assert created.status_code == response.status_code == 200
+    assert job.status == RunStatus.FAILED
+    assert "__hard_hidden_boundary__" not in response.text
+    assert "__hard_hidden_failure__" not in response.text
+    assert "hidden_passed" not in response.text
+    assert "hidden_total" not in response.text
+    result_schema = openapi["components"]["schemas"]["RunnerJobResponse"]["properties"]["result"]["anyOf"][0]
+    assert result_schema == {"$ref": "#/components/schemas/PublicRunResult"}
 
 
 def test_idempotency_conflict_does_not_displace_the_original_runner_job(tmp_path: Path) -> None:
@@ -272,4 +275,50 @@ def test_manager_cleans_up_after_workspace_factory_rejects_a_protected_root(tmp_
 
     assert completed.status == RunStatus.REJECTED
     assert completed.result is not None and completed.result.error_code == "unsafe_workspace_root"
+    manager.shutdown()
+
+
+def test_manager_cancels_queued_csharp_jobs_without_creating_workspace(tmp_path: Path) -> None:
+    adapter = BlockingAdapter()
+    root = tmp_path / "runner-work"
+    manager = RunManager(
+        root,
+        adapters={"fake": adapter, "csharp": CSharpRunner(run_timeout_seconds=30)},
+    )
+    first = manager.submit(_submission("first"))
+    second = manager.submit(_submission("second"))
+    queued = manager.submit(
+        Submission(language="csharp", files={"main.py": "while (true) {}"}, idempotency_key="csharp-queued")
+    )
+    assert adapter.two_running.wait(timeout=2)
+
+    manager.cancel(queued.id)
+    adapter.release.set()
+
+    assert manager.wait(first.id, timeout=5).status == RunStatus.SUCCEEDED
+    assert manager.wait(second.id, timeout=5).status == RunStatus.SUCCEEDED
+    assert manager.wait(queued.id, timeout=5).status == RunStatus.CANCELLED
+    assert list(root.iterdir()) == []
+    manager.shutdown()
+
+
+def test_manager_cancels_running_csharp_jobs_and_cleans_workspace(tmp_path: Path) -> None:
+    root = tmp_path / "runner-work"
+    manager = RunManager(root, adapters={"csharp": CSharpRunner(run_timeout_seconds=30)})
+    job = manager.submit(
+        Submission(language="csharp", files={"main.py": "while (true) {}"}, idempotency_key="csharp-running")
+    )
+    for _ in range(200):
+        current = manager.get(job.id)
+        if current is not None and current.status == RunStatus.RUNNING:
+            break
+        time.sleep(0.01)
+
+    cancelled = manager.cancel(job.id)
+    completed = manager.wait(job.id, timeout=20)
+
+    assert cancelled is not None
+    assert completed.status == RunStatus.CANCELLED
+    assert completed.result is not None and completed.result.error_code == "cancelled"
+    assert list(root.iterdir()) == []
     manager.shutdown()

@@ -73,35 +73,51 @@
     {
       "id": "python-database-deployment-pymysql-c01",
       "type": "code",
-      "prompt": "实现 transaction_action(ok)：真值返回 commit，假值返回 rollback。依次打印 True 和 False 的结果。",
-      "starter_code": "def transaction_action(ok):\n    # 返回事务决策\n    pass\n\nprint(transaction_action(True))\nprint(transaction_action(False))",
+      "prompt": "输入 JSON 布尔值 true 或 false。transaction_action(ok) 为 True 返回 commit，为 False 返回 rollback，打印结果。其他 JSON 类型或非法文本无输出，退出码1。仅计算事务意图，不连接数据库，不执行提交或回滚。",
+      "starter_code": "import sys, json\ntry:\n    data = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif type(data) is not bool:\n    raise SystemExit(1)\n# 按题面实现本课操作\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'true'，输出 'commit\\n'，退出码 0。",
+        "输入 'false'，输出 'rollback\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-database-deployment-pymysql-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    def transaction_action(ok):\n        return 'commit' if ok else 'rollback'\n\n    print(transaction_action(True))\n    print(transaction_action(False))\n",
+        "reference_solution": "import sys, json\ntry:\n    data = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif type(data) is not bool:\n    raise SystemExit(1)\ndef transaction_action(ok):\n    return \"commit\" if ok else \"rollback\"\nprint(transaction_action(data))\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面规定的有效边界和失败行为。",
+          "输出格式、类型和顺序以题面约定为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
-            "stdout": "commit\nrollback\n",
+            "stdin": "true",
+            "stdout": "commit\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "false",
+            "stdout": "rollback\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-database-deployment-pymysql-c01\n",
-            "exit_code": 0
+            "stdin": "1",
+            "stdout": "",
+            "exit_code": 1
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "\"false\"",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "null",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

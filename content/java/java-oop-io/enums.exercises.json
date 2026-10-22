@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-oop-io-enums",
+  "questions": [
+    {
+      "id": "java-oop-io-enums-k01",
+      "type": "knowledge",
+      "prompt": "enum Color { RED, GREEN, BLUE } 中 RED.ordinal() 是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "1"
+        },
+        {
+          "id": "b",
+          "text": "0"
+        },
+        {
+          "id": "c",
+          "text": "-1"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-oop-io-enums-k02",
+      "type": "knowledge",
+      "prompt": "Color.valueOf(\"RED\") 返回什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Color.RED"
+        },
+        {
+          "id": "b",
+          "text": "0"
+        },
+        {
+          "id": "c",
+          "text": "字符串"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "java-oop-io-enums-k03",
+      "type": "knowledge",
+      "prompt": "Java 枚举能否有构造方法？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "不能"
+        },
+        {
+          "id": "b",
+          "text": "能（私有）"
+        },
+        {
+          "id": "c",
+          "text": "能（public）"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-oop-io-enums-c01",
+      "type": "code",
+      "prompt": "从标准输入读取颜色名(RED/GREEN/BLUE)，输出对应数值(1/2/3)。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\nenum Color {\n    RED(1), GREEN(2), BLUE(3);\n    final int v;\n    Color(int v) { this.v = v; }\n}\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        System.out.println(Color.valueOf(input).v);\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "RED\n",
+            "stdout": "1\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "BLUE\n",
+            "stdout": "3\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

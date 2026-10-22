@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-algorithms-concurrency-condition-variable",
+  "questions": [
+    {
+      "id": "cpp-algorithms-concurrency-condition-variable-k01",
+      "type": "knowledge",
+      "prompt": "谓词版 wait(lock, pred) 相比无谓词 wait 的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "无谓词版本更安全"
+        },
+        {
+          "id": "b",
+          "text": "循环检查条件，防虚假唤醒"
+        },
+        {
+          "id": "c",
+          "text": "让 notify 不再需要修改共享状态"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-condition-variable-k02",
+      "type": "knowledge",
+      "prompt": "线程调用 wait 进入等待时对互斥量的处理是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "把锁转让给通知线程"
+        },
+        {
+          "id": "b",
+          "text": "一直持有锁睡眠"
+        },
+        {
+          "id": "c",
+          "text": "释放锁并阻塞，醒来后重新持有"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-condition-variable-k03",
+      "type": "knowledge",
+      "prompt": "notify_one 之前的正确做法是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "先调用 wait 清空等待队列"
+        },
+        {
+          "id": "b",
+          "text": "先销毁互斥量"
+        },
+        {
+          "id": "c",
+          "text": "先修改共享状态再 notify"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-condition-variable-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 1..1000，含两端）与 n 个整数（每个合同范围 -10000..10000，含两端）存入 vector。创建一个 worker 线程累加全部元素，把结果写入受 std::mutex 保护的共享 long long 并置 ready 标志，随后 notify；主线程用 std::condition_variable 的谓词版 wait 等待 ready 后 join 并输出总和。任一输入无法解析或越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <condition_variable>\n#include <iostream>\n#include <mutex>\n#include <thread>\n#include <vector>\n\nint main() {\n    // 读取 n 与 n 个整数，worker 求和后条件变量握手输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 n=4 与 1 2 3 4 时输出 10。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <condition_variable>\n#include <iostream>\n#include <mutex>\n#include <thread>\n#include <vector>\n\nint main() {\n    int n = 0;\n    if (!(std::cin >> n)) return 1;\n    if (n < 1 || n > 1000) return 1;\n    std::vector<long long> values;\n    for (int i = 0; i < n; i++) {\n        long long value = 0;\n        if (!(std::cin >> value)) return 1;\n        if (value < -10000 || value > 10000) return 1;\n        values.push_back(value);\n    }\n    std::mutex guard;\n    std::condition_variable signal;\n    bool ready = false;\n    long long total = 0;\n    std::thread worker([&]() {\n        long long local = 0;\n        for (long long value : values) local += value;\n        {\n            std::lock_guard<std::mutex> locked(guard);\n            total = local;\n            ready = true;\n        }\n        signal.notify_one();\n    });\n    {\n        std::unique_lock<std::mutex> locked(guard);\n        signal.wait(locked, [&] { return ready; });\n    }\n    worker.join();\n    std::cout << total << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "n=1 时 worker 累加唯一元素。",
+          "含负数时总和保留符号。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "4 1 2 3 4\n",
+            "stdout": "10\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1 7\n",
+            "stdout": "7\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3 -1 2 -3\n",
+            "stdout": "-2\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

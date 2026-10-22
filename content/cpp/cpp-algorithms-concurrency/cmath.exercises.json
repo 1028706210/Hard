@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-algorithms-concurrency-cmath",
+  "questions": [
+    {
+      "id": "cpp-algorithms-concurrency-cmath-k01",
+      "type": "knowledge",
+      "prompt": "std::pow(2.0, 10.0) 的返回类型是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "long long"
+        },
+        {
+          "id": "b",
+          "text": "int"
+        },
+        {
+          "id": "c",
+          "text": "double"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-cmath-k02",
+      "type": "knowledge",
+      "prompt": "把浮点幂结果四舍五入为整数的函数是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "std::floor"
+        },
+        {
+          "id": "b",
+          "text": "std::ceil"
+        },
+        {
+          "id": "c",
+          "text": "std::llround"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-cmath-k03",
+      "type": "knowledge",
+      "prompt": "负底数配非整数指数的 pow 结果是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "编译错误"
+        },
+        {
+          "id": "b",
+          "text": "0"
+        },
+        {
+          "id": "c",
+          "text": "NaN"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-cmath-c01",
+      "type": "code",
+      "prompt": "读取整数底数 b（合同范围 1..10，含两端）与指数 e（合同范围 0..10，含两端），用 std::pow(double(b), double(e)) 计算后以 std::llround 取整，输出 b 的 e 次幂（long long）。任一输入无法解析或越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cmath>\n#include <iostream>\n\nint main() {\n    // 读取 b 与 e，pow 计算幂并输出整数结果\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 2 10 时输出 1024。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <cmath>\n#include <iostream>\n\nint main() {\n    int b = 0, e = 0;\n    if (!(std::cin >> b >> e)) return 1;\n    if (b < 1 || b > 10) return 1;\n    if (e < 0 || e > 10) return 1;\n    long long power = std::llround(std::pow(static_cast<double>(b), static_cast<double>(e)));\n    std::cout << power << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "指数 0 输出 1。",
+          "10 的 10 次方输出 10000000000。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "2 10\n",
+            "stdout": "1024\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "5 0\n",
+            "stdout": "1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "10 10\n",
+            "stdout": "10000000000\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

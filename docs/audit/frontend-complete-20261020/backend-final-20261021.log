@@ -1,0 +1,67 @@
+........................................................................ [ 26%]
+........................................................................ [ 53%]
+........................................................................ [ 80%]
+.....................................................                    [100%]
+=============================== tests coverage ================================
+______________ coverage: platform win32, python 3.13.13-final-0 _______________
+
+Name                                             Stmts   Miss  Cover
+--------------------------------------------------------------------
+apps\api\src\hard_api\api\assessment.py             76      4    95%
+apps\api\src\hard_api\api\backup.py                 73     10    86%
+apps\api\src\hard_api\api\comparison.py             27      0   100%
+apps\api\src\hard_api\api\content.py                69      0   100%
+apps\api\src\hard_api\api\growth.py                 52      0   100%
+apps\api\src\hard_api\api\health.py                 37      0   100%
+apps\api\src\hard_api\api\lan.py                    36      2    94%
+apps\api\src\hard_api\api\progress.py               99      4    96%
+apps\api\src\hard_api\api\review.py                 32      0   100%
+apps\api\src\hard_api\api\runners.py                53      5    91%
+apps\api\src\hard_api\api\search.py                 18      0   100%
+apps\api\src\hard_api\backup\archive.py             97      5    95%
+apps\api\src\hard_api\backup\retention.py           18      0   100%
+apps\api\src\hard_api\backup\service.py            105      0   100%
+apps\api\src\hard_api\content\comparison.py         46      0   100%
+apps\api\src\hard_api\content\models.py            112      6    95%
+apps\api\src\hard_api\content\parser.py             77     19    75%
+apps\api\src\hard_api\content\repository.py        162     14    91%
+apps\api\src\hard_api\content\service.py            62      4    94%
+apps\api\src\hard_api\content\validation.py         77      4    95%
+apps\api\src\hard_api\core\config.py                35      1    97%
+apps\api\src\hard_api\core\errors.py                29      1    97%
+apps\api\src\hard_api\core\logging.py               10      0   100%
+apps\api\src\hard_api\core\network.py               79      2    97%
+apps\api\src\hard_api\core\readiness.py             30      0   100%
+apps\api\src\hard_api\db\base.py                     4      0   100%
+apps\api\src\hard_api\db\migrations.py              66      0   100%
+apps\api\src\hard_api\db\models.py                 117      0   100%
+apps\api\src\hard_api\db\session.py                 29      0   100%
+apps\api\src\hard_api\diagnostics\cpp.py            15      0   100%
+apps\api\src\hard_api\diagnostics\csharp.py         21      3    86%
+apps\api\src\hard_api\diagnostics\java.py           21      0   100%
+apps\api\src\hard_api\diagnostics\python.py         19      3    84%
+apps\api\src\hard_api\learning\achievements.py      16      1    94%
+apps\api\src\hard_api\learning\experience.py        32      0   100%
+apps\api\src\hard_api\learning\goals.py             16      1    94%
+apps\api\src\hard_api\learning\history.py           31      3    90%
+apps\api\src\hard_api\learning\mastery.py           26      1    96%
+apps\api\src\hard_api\learning\notes.py             31      4    87%
+apps\api\src\hard_api\learning\progress.py         103      3    97%
+apps\api\src\hard_api\learning\review.py            43      0   100%
+apps\api\src\hard_api\learning\scoring.py          143      0   100%
+apps\api\src\hard_api\learning\unlocking.py         48      5    90%
+apps\api\src\hard_api\learning\weakness.py          51      1    98%
+apps\api\src\hard_api\main.py                      144      5    97%
+apps\api\src\hard_api\runners\contracts.py          89      0   100%
+apps\api\src\hard_api\runners\cpp.py                95      2    98%
+apps\api\src\hard_api\runners\csharp.py            144      3    98%
+apps\api\src\hard_api\runners\java.py              171      0   100%
+apps\api\src\hard_api\runners\limits.py             26      0   100%
+apps\api\src\hard_api\runners\manager.py           111      0   100%
+apps\api\src\hard_api\runners\processes.py          97      2    98%
+apps\api\src\hard_api\runners\python.py             93      1    99%
+apps\api\src\hard_api\runners\workspace.py          58      1    98%
+apps\api\src\hard_api\search\service.py             70      7    90%
+--------------------------------------------------------------------
+TOTAL                                             3441    127    96%
+Required test coverage of 85% reached. Total coverage: 96.31%

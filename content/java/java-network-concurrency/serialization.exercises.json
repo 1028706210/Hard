@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-network-concurrency-serialization",
+  "questions": [
+    {
+      "id": "java-network-concurrency-serialization-k01",
+      "type": "knowledge",
+      "prompt": "序列化需要实现什么接口？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Cloneable"
+        },
+        {
+          "id": "b",
+          "text": "Serializable"
+        },
+        {
+          "id": "c",
+          "text": "Comparable"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-network-concurrency-serialization-k02",
+      "type": "knowledge",
+      "prompt": "transient 字段在序列化时怎样？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "正常序列化"
+        },
+        {
+          "id": "b",
+          "text": "被跳过"
+        },
+        {
+          "id": "c",
+          "text": "报错"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-network-concurrency-serialization-k03",
+      "type": "knowledge",
+      "prompt": "反序列化的核心类是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "ObjectOutputStream"
+        },
+        {
+          "id": "b",
+          "text": "ObjectInputStream"
+        },
+        {
+          "id": "c",
+          "text": "FileWriter"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-network-concurrency-serialization-c01",
+      "type": "code",
+      "prompt": "从标准输入读取 \"名称 年龄\"，输出 Person:名称:年龄（模拟序列化格式）。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\nclass Person implements java.io.Serializable {\n    String name; int age;\n    Person(String n, int a) { name = n; age = a; }\n}\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        String[] p = input.split(\"\\\\s+\");\n        Person person = new Person(p[0], Integer.parseInt(p[1]));\n        System.out.println(\"Person:\" + person.name + \":\" + person.age);\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "Alice 30\n",
+            "stdout": "Person:Alice:30\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "Bob 25\n",
+            "stdout": "Person:Bob:25\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

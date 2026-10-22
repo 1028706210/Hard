@@ -113,6 +113,12 @@ class ContentService:
             "exercises": [self._exercise_payload(question) for question in lesson.exercises.questions],
         }
 
+    def comparison(self) -> dict[str, object]:
+        return {
+            "content_version": self.repository.content_version,
+            "concepts": list(self.repository.comparison_concepts),
+        }
+
     def _course_payload(self, course: CourseRecord) -> dict[str, object]:
         return {
             "language": course.document.language,

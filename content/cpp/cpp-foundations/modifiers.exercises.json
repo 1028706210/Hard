@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-foundations-modifiers",
+  "questions": [
+    {
+      "id": "cpp-foundations-modifiers-k01",
+      "type": "knowledge",
+      "prompt": "unsigned 修饰符对整数类型的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "把类型改为浮点"
+        },
+        {
+          "id": "b",
+          "text": "使变量不可修改"
+        },
+        {
+          "id": "c",
+          "text": "去掉符号位，正数上限翻倍但不能表示负数"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-foundations-modifiers-k02",
+      "type": "knowledge",
+      "prompt": "在 32 位 unsigned int 下，把 -1 赋值后的结果是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "编译错误"
+        },
+        {
+          "id": "b",
+          "text": "4294967295（按 2^32 回绕）"
+        },
+        {
+          "id": "c",
+          "text": "-1"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-foundations-modifiers-k03",
+      "type": "knowledge",
+      "prompt": "有符号与无符号整数直接比较时的风险是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "有符号数可能被转换为无符号，负数变成极大正值"
+        },
+        {
+          "id": "b",
+          "text": "编译器总是拒绝编译"
+        },
+        {
+          "id": "c",
+          "text": "比较结果与类型无关"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-foundations-modifiers-c01",
+      "type": "code",
+      "prompt": "读取整数 n（可能是负数），将其显式转换为 unsigned int 后输出转换结果（32 位回绕语义）。",
+      "starter_code": "#include <iostream>\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    // 转换为 unsigned int 后输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 5 时输出 5。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    unsigned int wrapped = static_cast<unsigned int>(n);\n    std::cout << wrapped << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "输入 0 时输出 0。",
+          "输入 -1 时按 32 位回绕输出 4294967295。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "5\n",
+            "stdout": "5\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-1\n",
+            "stdout": "4294967295\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -50,7 +50,13 @@ for (const journey of journeys) {
         await page.getByRole("button", { name: "打开导航" }).click();
         await page.getByRole("link", { name: "当前课时", exact: true }).click();
       } else {
-        await page.locator("[data-continue-learning]").click();
+        // Verify the current homepage destination before entering this language's journey.
+        const continueLink = page.locator("[data-continue-learning]");
+        const destination = await continueLink.getAttribute("href");
+        expect(destination).toMatch(/^\/lesson\//);
+        await continueLink.click();
+        await expect(page).toHaveURL(new RegExp(destination! + "$"));
+        await page.goto("/lesson/python-foundations-hello-world");
       }
       await expect(page.getByRole("heading", { name: "Hello World", exact: true }).first()).toBeVisible();
       if (journey.name === "mobile") {
@@ -71,15 +77,15 @@ for (const journey of journeys) {
       await expect(page.locator(".result-snippet")).toContainText(new RegExp(`\\[Phase\\].*\\[D\\].*\\[${journey.name}\\]`));
 
       await page.goto("/assessment/python-foundations-hello-world");
-      await page.getByRole("button", { name: "input", exact: true }).click();
+      await page.getByRole("radio", { name: "input", exact: true }).check();
       await page.getByRole("button", { name: "提交答案", exact: true }).click();
       await expect(page.getByText("本题得分：0", { exact: true })).toBeVisible();
-      await page.getByRole("button", { name: "知识题", exact: true }).nth(1).click();
-      await page.getByRole("button", { name: "文件顶部", exact: true }).click();
+      await page.getByRole("button", { name: /^知识题(?:\s|$)/ }).nth(1).click();
+      await page.getByRole("radio", { name: "文件顶部", exact: true }).check();
       await page.getByRole("button", { name: "提交答案", exact: true }).click();
       await expect(page.getByText("本题得分：100", { exact: true })).toBeVisible();
-      await page.getByRole("button", { name: "知识题", exact: true }).nth(2).click();
-      await page.getByRole("button", { name: "是", exact: true }).click();
+      await page.getByRole("button", { name: /^知识题(?:\s|$)/ }).nth(2).click();
+      await page.getByRole("radio", { name: "是", exact: true }).check();
       await page.getByRole("button", { name: "提交答案", exact: true }).click();
       await expect(page.getByText("本题得分：100", { exact: true })).toBeVisible();
 
@@ -87,7 +93,7 @@ for (const journey of journeys) {
       await fillPythonCode(page, helloSource);
       await page.getByRole("button", { name: "运行代码", exact: true }).click();
       if (journey.name === "mobile") await page.getByRole("button", { name: "结果", exact: true }).click();
-      await expect(page.getByRole("heading", { name: "运行状态：succeeded" })).toBeVisible({ timeout: 15_000 });
+      await expect(page.getByRole("heading", { name: "运行状态：运行完成" })).toBeVisible({ timeout: 15_000 });
       await expect(page.getByText("本题得分：100", { exact: true })).toBeVisible();
       await capture(page, journey, "assessment");
 

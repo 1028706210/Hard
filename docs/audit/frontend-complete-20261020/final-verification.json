@@ -1,0 +1,754 @@
+{
+  "generated_utc": "2026-10-22T00:29:16.737324+00:00",
+  "browser_phases": [
+    {
+      "phase": "python",
+      "run_id": "run-1792628632100",
+      "files": [
+        "tests/e2e/python-journey.spec.ts"
+      ],
+      "exit_code": 0,
+      "stats": {
+        "startTime": "2026-10-22T00:23:56.486Z",
+        "duration": 7658.299000000001,
+        "expected": 2,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "processes": [
+        {
+          "label": "api",
+          "pid": 25800,
+          "create_time": 1792628632.1015432,
+          "command": [
+            "D:\\projects\\1\\Hard-trial-clean-20260910\\.venv\\Scripts\\python.exe",
+            "D:\\projects\\1\\Hard-trial-clean-20260910\\apps\\api\\tests\\e2e_server.py"
+          ]
+        },
+        {
+          "label": "web",
+          "pid": 19048,
+          "create_time": 1792628632.1057863,
+          "command": [
+            "C:\\Program Files\\nodejs\\node.exe",
+            "D:\\projects\\1\\Hard-trial-clean-20260910\\apps\\web\\node_modules\\vite\\bin\\vite.js",
+            "--host",
+            "127.0.0.1",
+            "--port",
+            "4173",
+            "--strictPort"
+          ]
+        }
+      ],
+      "cleanup_errors": []
+    },
+    {
+      "phase": "battery",
+      "run_id": "run-1792628644225",
+      "files": [
+        "tests/e2e/assessment.spec.ts",
+        "tests/e2e/backup.spec.ts",
+        "tests/e2e/comparison.spec.ts",
+        "tests/e2e/constellations.spec.ts",
+        "tests/e2e/core-types-contract.spec.ts",
+        "tests/e2e/cpp-journey.spec.ts",
+        "tests/e2e/csharp-final-audit.spec.ts",
+        "tests/e2e/final-content-contract.spec.ts",
+        "tests/e2e/flow-collections-contract.spec.ts",
+        "tests/e2e/foundations-contract.spec.ts",
+        "tests/e2e/frontend-refinement.spec.ts",
+        "tests/e2e/functions-contract.spec.ts",
+        "tests/e2e/java-final-audit.spec.ts",
+        "tests/e2e/knowledge-groups.spec.ts",
+        "tests/e2e/lan.spec.ts",
+        "tests/e2e/learning-constellation.spec.ts",
+        "tests/e2e/lesson.spec.ts",
+        "tests/e2e/lifecycle.spec.ts",
+        "tests/e2e/map.spec.ts",
+        "tests/e2e/modules-contract.spec.ts",
+        "tests/e2e/navigation.spec.ts",
+        "tests/e2e/release.spec.ts",
+        "tests/e2e/secondary-flows.spec.ts",
+        "tests/e2e/stdlib-numeric-contract.spec.ts",
+        "tests/e2e/vertical-live.spec.ts"
+      ],
+      "exit_code": 0,
+      "stats": {
+        "startTime": "2026-10-22T00:24:08.539Z",
+        "duration": 159420.818,
+        "expected": 51,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "processes": [
+        {
+          "label": "api",
+          "pid": 2000,
+          "create_time": 1792628644.2260163,
+          "command": [
+            "D:\\projects\\1\\Hard-trial-clean-20260910\\.venv\\Scripts\\python.exe",
+            "D:\\projects\\1\\Hard-trial-clean-20260910\\apps\\api\\tests\\e2e_server.py"
+          ]
+        },
+        {
+          "label": "web",
+          "pid": 26316,
+          "create_time": 1792628644.2289882,
+          "command": [
+            "C:\\Program Files\\nodejs\\node.exe",
+            "D:\\projects\\1\\Hard-trial-clean-20260910\\apps\\web\\node_modules\\vite\\bin\\vite.js",
+            "--host",
+            "127.0.0.1",
+            "--port",
+            "4173",
+            "--strictPort"
+          ]
+        }
+      ],
+      "cleanup_errors": []
+    }
+  ],
+  "browser_total_passed": 53,
+  "browser_total_skipped": 0,
+  "backend_tests": 269,
+  "backend_coverage": 96.31,
+  "core_coverage": {
+    "runners": 98.52,
+    "backup": 97.71,
+    "scoring": 100,
+    "review": 100
+  },
+  "frontend_tests": 117,
+  "frontend_line_coverage": 92.15,
+  "typecheck_exit_code": 0,
+  "build_exit_code": 0,
+  "diff_check_exit_code": 0,
+  "source_files": [
+    {
+      "path": "apps/web/src/api/client.ts",
+      "sha256": "d111d320d5cb223b3d0889cea87523487414df9f272e5d3a8a477be71f40043c",
+      "bytes": 4989
+    },
+    {
+      "path": "apps/web/src/app/AppShell.vue",
+      "sha256": "bb23cf3a6bfc68ad58c1673ff1dd2bc4df56d96b7b62bbea1b1c61bb5c30b184",
+      "bytes": 3590
+    },
+    {
+      "path": "apps/web/src/app/MobileNav.vue",
+      "sha256": "81ad1664eea30721b774b6a14031eb2bc2b07dcc70225d37870d0add45e1f751",
+      "bytes": 571
+    },
+    {
+      "path": "apps/web/src/app/offline-drafts.ts",
+      "sha256": "ac449f0701bb87898ef84f53db03cb2926b8baf4cd3b6a85b80f939282b691e9",
+      "bytes": 5869
+    },
+    {
+      "path": "apps/web/src/app/PrimaryNav.vue",
+      "sha256": "f634f4ec698369ead62080bfcee052e65e5a72a7e15cb39f8bb9899772b4877f",
+      "bytes": 489
+    },
+    {
+      "path": "apps/web/src/app/router.ts",
+      "sha256": "fa10f98aa5b8ccd6d01a4f705e430e780dc0e18063db2ece6248114244d90e6c",
+      "bytes": 2630
+    },
+    {
+      "path": "apps/web/src/App.vue",
+      "sha256": "d9aa0998328a49295e7b2d641f3988c12772e68f5ad15832b84f459d3d5378ab",
+      "bytes": 124
+    },
+    {
+      "path": "apps/web/src/design/base.css",
+      "sha256": "7334b5f6b4778605297e8db742de9eafef30b0910bcb7d117e89691d87187337",
+      "bytes": 4836
+    },
+    {
+      "path": "apps/web/src/design/motion.css",
+      "sha256": "1b4bdfd61e714b827de63fda4ca3085a278df5e61cfc06e7bf0cdc4de44bbbdc",
+      "bytes": 569
+    },
+    {
+      "path": "apps/web/src/design/tokens.css",
+      "sha256": "a3287425ca801ed466302343d584d29f30068d58baaa95617d52edecd7aa25b2",
+      "bytes": 1166
+    },
+    {
+      "path": "apps/web/src/env.d.ts",
+      "sha256": "424faf9241dd699dda995b367ed36665732da1e6ec1f33b2fd40394488ecac92",
+      "bytes": 39
+    },
+    {
+      "path": "apps/web/src/features/assessment/assessment.store.ts",
+      "sha256": "4660b896827c49e0c41b740bb01d010e48d4aab8acc061da9685971ec8340d17",
+      "bytes": 12214
+    },
+    {
+      "path": "apps/web/src/features/assessment/AssessmentPage.vue",
+      "sha256": "ebbe2e430ef2d41f6899895c25ca90ca0def3026241a9db45c43adf7f3120aba",
+      "bytes": 8859
+    },
+    {
+      "path": "apps/web/src/features/assessment/CodeExercise.vue",
+      "sha256": "f87ee1ed1d188cfcf326cae399de19aed4d8aeaf29fcdade097f06b981f18f23",
+      "bytes": 4081
+    },
+    {
+      "path": "apps/web/src/features/assessment/CodeWorkspace.vue",
+      "sha256": "9a429d133dabd18e2a5ac792eef2577de0e310ed96eaa8cbc6f99eb37dff8278",
+      "bytes": 7309
+    },
+    {
+      "path": "apps/web/src/features/assessment/editor-drafts.ts",
+      "sha256": "fec752a04668b1242c7b8257509d8d130bfd6778882d782ae3224d391c6a58fe",
+      "bytes": 1245
+    },
+    {
+      "path": "apps/web/src/features/assessment/KnowledgeQuestion.vue",
+      "sha256": "4d87107866a10d177d7708e0e56a1a6ca73e60e734707a7437fb7cf4a33cd64b",
+      "bytes": 5934
+    },
+    {
+      "path": "apps/web/src/features/assessment/RunResult.vue",
+      "sha256": "68fb53ae0fd6cb199a946c943f99c13cdea37526d3716616dcf16c5153e47a2d",
+      "bytes": 2492
+    },
+    {
+      "path": "apps/web/src/features/compare/ComparePage.vue",
+      "sha256": "8e167701c3caa270d0410a10f85ca607e3eebb8c638682e9d42bc8f6a1a592c6",
+      "bytes": 10556
+    },
+    {
+      "path": "apps/web/src/features/course/course.store.ts",
+      "sha256": "541b376d99a13fbafe76b385d4958fe40dc91503778a4c4214ab8dbf995be72f",
+      "bytes": 5487
+    },
+    {
+      "path": "apps/web/src/features/course/CoursePage.vue",
+      "sha256": "9bb4960b13b30bde803c8c6151a6a1d953495b65b98a5fe805b34ee84053267a",
+      "bytes": 10364
+    },
+    {
+      "path": "apps/web/src/features/course/LessonContent.vue",
+      "sha256": "c60aa7ab94d047c5cad9b4dd6bfdcc775a401e4807978cea1478a39cee649049",
+      "bytes": 5194
+    },
+    {
+      "path": "apps/web/src/features/course/LessonNav.vue",
+      "sha256": "e501149af0d4df97b118360733cac810858f55c47d8ca3faa3b22573756bd438",
+      "bytes": 4014
+    },
+    {
+      "path": "apps/web/src/features/course/LessonPage.vue",
+      "sha256": "f6fbc8ae313a8d46daa5ef6a71e1293b7d5af77bd133a0e457734592e6014ba4",
+      "bytes": 6571
+    },
+    {
+      "path": "apps/web/src/features/course/LessonTools.vue",
+      "sha256": "88a8a69e434644ed9cbe599e6d7c5148db64a9b3e4f611bf2f27b7819fb71a8b",
+      "bytes": 2346
+    },
+    {
+      "path": "apps/web/src/features/growth/GrowthPage.vue",
+      "sha256": "c3679c9bf4cbfd5270a261e2b83c0382d90cd95c59121486a6d42d0ff5d94ae1",
+      "bytes": 17078
+    },
+    {
+      "path": "apps/web/src/features/map/constellation.ts",
+      "sha256": "29687c7b51e8c0a350d74f3b6afb6cd775a7bbaf11a3d501cdc9f41273fe0855",
+      "bytes": 3575
+    },
+    {
+      "path": "apps/web/src/features/map/ConstellationPage.vue",
+      "sha256": "2ca6da1b3ec6afb0cc5ad2975c1a7fe92e8b9369cb4a51401ae68bd2b1cc7901",
+      "bytes": 25261
+    },
+    {
+      "path": "apps/web/src/features/map/HomeConstellations.vue",
+      "sha256": "5b42fe3c473426917b1b394f758be1bbc511828acc3ac9bc22d3a4384760483e",
+      "bytes": 12982
+    },
+    {
+      "path": "apps/web/src/features/map/KnowledgeMapPage.vue",
+      "sha256": "b76bd127d47dc08a94f61464f83f0f2692a72f75c2fd691fc07de20656d92384",
+      "bytes": 4659
+    },
+    {
+      "path": "apps/web/src/features/map/LessonProgress.vue",
+      "sha256": "7c874219761bb77626aac69ef8c0133d5e532ed4d6e15db0129ce4677cadf6c8",
+      "bytes": 653
+    },
+    {
+      "path": "apps/web/src/features/map/map-layout.ts",
+      "sha256": "c9b61095157724707e38d57c90b2644302ce375ee8ae8bd1b7400424e5ca3268",
+      "bytes": 785
+    },
+    {
+      "path": "apps/web/src/features/map/map.store.ts",
+      "sha256": "040db80c7a2a52553166b3a4878d9037af9dcf43b93245758be61b08de737d47",
+      "bytes": 6371
+    },
+    {
+      "path": "apps/web/src/features/map/MapWorld.vue",
+      "sha256": "1fb0d7508c1efce65514a6a26e50e76d6d4450e535425f8ec55b5518be2510d7",
+      "bytes": 2630
+    },
+    {
+      "path": "apps/web/src/features/map/MobileRouteMap.vue",
+      "sha256": "9f0284702df82a0108c0bdff0856654bb059914514836e9b56b9a423a75a3604",
+      "bytes": 2343
+    },
+    {
+      "path": "apps/web/src/features/map/OrbitalMap.vue",
+      "sha256": "15062959b8676aaa13e1efccc4db11636f0463c0ea96ac880c93e20dc4d1c3e1",
+      "bytes": 3670
+    },
+    {
+      "path": "apps/web/src/features/review/ReviewPage.vue",
+      "sha256": "ddb7d8c505822544f03d52cae384eefcfb0d9884467a651634ffdbf120c29945",
+      "bytes": 9759
+    },
+    {
+      "path": "apps/web/src/features/search/SearchPage.vue",
+      "sha256": "24c6391bcee45d4bb97cb5a28fcd31d0abd134dba9f1004f9a5d10da6bba11e0",
+      "bytes": 8899
+    },
+    {
+      "path": "apps/web/src/features/settings/DataManagement.vue",
+      "sha256": "fbb234b9d1bc323b1d95571b921811cab0e2efd341057ff05b321e8b2bff72c1",
+      "bytes": 5481
+    },
+    {
+      "path": "apps/web/src/features/settings/LanAccess.vue",
+      "sha256": "e4cd50acf8f2061d5b997abb296dfab6f27433369d42f997bd2fb74b3f6a63ff",
+      "bytes": 9771
+    },
+    {
+      "path": "apps/web/src/features/settings/SettingsPage.vue",
+      "sha256": "61e23e8198ea4063f460ed8c29ba9edc56a12d7651bf5245d68d962a5e4cdfad",
+      "bytes": 9344
+    },
+    {
+      "path": "apps/web/src/main.ts",
+      "sha256": "a12d76a04e3e50ecb0d94e23709572bf2c2e2ebf7e973d2bc19a29a3567963dc",
+      "bytes": 202
+    },
+    {
+      "path": "apps/web/tests/app-shell.spec.ts",
+      "sha256": "ded59f5dea84106d0c5471fe1573df53ff95626c6abd198869a5f84e53346f80",
+      "bytes": 5410
+    },
+    {
+      "path": "apps/web/tests/assessment/assessment-components.spec.ts",
+      "sha256": "8017abe2f8a41fa5add855290319bdc7ec0e7f81b3ee6effec7e06ed8d022702",
+      "bytes": 9849
+    },
+    {
+      "path": "apps/web/tests/assessment/assessment-store.spec.ts",
+      "sha256": "9785d6bf6d788e872c61bcab7ebe1162cbd9442f28540f3cb5c050b2fb405e83",
+      "bytes": 21375
+    },
+    {
+      "path": "apps/web/tests/assessment/code-workspace.spec.ts",
+      "sha256": "a91b09f60e49b459cd3c743d54f4dddfba1d932916c67b54ddd618da5dba3a84",
+      "bytes": 10723
+    },
+    {
+      "path": "apps/web/tests/compare/compare-page.spec.ts",
+      "sha256": "6eb241bb244b357e1c6f0eb4306193722d6123c23f432cf9548ad9ca0f2e94b6",
+      "bytes": 10822
+    },
+    {
+      "path": "apps/web/tests/course/course-store.spec.ts",
+      "sha256": "c0e51395156f354d358480ed974b6f123976214b51e38df9d18b70143a6e6049",
+      "bytes": 4271
+    },
+    {
+      "path": "apps/web/tests/course/lesson-components.spec.ts",
+      "sha256": "c71c471908f8e577a8e5ec6ece43a45a781893a837a2780ea77d1a3788f7c1a2",
+      "bytes": 2407
+    },
+    {
+      "path": "apps/web/tests/design-system.spec.ts",
+      "sha256": "c8498bc2d127fbaa2de55068c2ad8b7de4b8d8eb39883900a31248f8bbb5037b",
+      "bytes": 1477
+    },
+    {
+      "path": "apps/web/tests/e2e/assessment.spec.ts",
+      "sha256": "02f4987b90736bf5f746ae87908c79c2b08a42b9408fbf0be769c409b836657d",
+      "bytes": 2739
+    },
+    {
+      "path": "apps/web/tests/e2e/backup.spec.ts",
+      "sha256": "0f2544d1b8bb9f5474fc370a531bbd4ade02d8465c0b50269593e60e77765d34",
+      "bytes": 1675
+    },
+    {
+      "path": "apps/web/tests/e2e/comparison.spec.ts",
+      "sha256": "acb565e8e79601c1c91c04ec048be8a3c1a49c899b60574007d3a902fd696df3",
+      "bytes": 4864
+    },
+    {
+      "path": "apps/web/tests/e2e/constellations.spec.ts",
+      "sha256": "80f8cee05126895066a855e1d78760b3f371d73364aa2081a789b5b193a16773",
+      "bytes": 3004
+    },
+    {
+      "path": "apps/web/tests/e2e/core-types-contract.spec.ts",
+      "sha256": "c8804ebf46fd3c1c575f1452f73330a0493e991d43e3b39bc3a560b3c0221026",
+      "bytes": 3029
+    },
+    {
+      "path": "apps/web/tests/e2e/cpp-journey.spec.ts",
+      "sha256": "80cddcac3f80c81a6ab867d5331bf5976d54c2107d025c29cc9ea1f3fcc5ff79",
+      "bytes": 18724
+    },
+    {
+      "path": "apps/web/tests/e2e/csharp-final-audit.spec.ts",
+      "sha256": "82ca5d7be99cf0c2d70c03a9ecf402c163fd55feeb90ba62e638f783c8b396a9",
+      "bytes": 11410
+    },
+    {
+      "path": "apps/web/tests/e2e/final-content-contract.spec.ts",
+      "sha256": "67c7cebabe4c43d4ef3010aeffb72351d022f51d43d8dd3ce2533e0704d26980",
+      "bytes": 5363
+    },
+    {
+      "path": "apps/web/tests/e2e/flow-collections-contract.spec.ts",
+      "sha256": "3acea64450169d2514f4430ba0ec7478ae5b94145d51acb9603efd2fd3b8ca50",
+      "bytes": 3412
+    },
+    {
+      "path": "apps/web/tests/e2e/foundations-contract.spec.ts",
+      "sha256": "30e109e89094514f4917e02e8523be09b787513a1374c3e1d2f74d73a78b1332",
+      "bytes": 3160
+    },
+    {
+      "path": "apps/web/tests/e2e/frontend-refinement.spec.ts",
+      "sha256": "e4e8a491140812b1afefb638a54d3eb88456f6bb6757341c0403e5eaca98d693",
+      "bytes": 4240
+    },
+    {
+      "path": "apps/web/tests/e2e/functions-contract.spec.ts",
+      "sha256": "f2553d24add90c1e1590d9be48cb3d4f27e692fd100f985c70052486f3afcce0",
+      "bytes": 3590
+    },
+    {
+      "path": "apps/web/tests/e2e/java-final-audit.spec.ts",
+      "sha256": "69300fb3e746b9c74013e55cd7671d5e7748f2738494ac065552b5f987b4fdb1",
+      "bytes": 10752
+    },
+    {
+      "path": "apps/web/tests/e2e/knowledge-groups.spec.ts",
+      "sha256": "621a36f0279f721e93117fe3da6a079926300e7b44fa960d408faa71e04ae163",
+      "bytes": 1490
+    },
+    {
+      "path": "apps/web/tests/e2e/lan.spec.ts",
+      "sha256": "fc49cf15a073694ce2c182c74d33ca798728e568f121ca9ddbf35e4734d274aa",
+      "bytes": 2403
+    },
+    {
+      "path": "apps/web/tests/e2e/learning-constellation.spec.ts",
+      "sha256": "5b7f9534ad1431edb6dc9fb5844828650f0849512f12bdfcc39a33ce3dff540e",
+      "bytes": 1998
+    },
+    {
+      "path": "apps/web/tests/e2e/lesson.spec.ts",
+      "sha256": "339b5f2355f37e6981135949af28a9f8458d58fb01cbb069251864b2db1a58fb",
+      "bytes": 3259
+    },
+    {
+      "path": "apps/web/tests/e2e/lifecycle.spec.ts",
+      "sha256": "c78e7fa2898042f93ef666248386e85513e99bfdededbf423f09008ba635880b",
+      "bytes": 417
+    },
+    {
+      "path": "apps/web/tests/e2e/map.spec.ts",
+      "sha256": "eb30171054723a8de1aceb94fb68f1b9f45f1428b169e090d00d8a11d1ad06ca",
+      "bytes": 4927
+    },
+    {
+      "path": "apps/web/tests/e2e/modules-contract.spec.ts",
+      "sha256": "a19ac22e76b859620de4cfc3d4124ce4ff1e5f828dd09c68ed5edbbd34740260",
+      "bytes": 3088
+    },
+    {
+      "path": "apps/web/tests/e2e/navigation.spec.ts",
+      "sha256": "b0c9da736f202ded7d014dff947abc9689d0578a45febf72e1eb7e8dceb256b9",
+      "bytes": 2681
+    },
+    {
+      "path": "apps/web/tests/e2e/python-journey.spec.ts",
+      "sha256": "6e2b81958c08c8e43c50a7214bb938ff4a7137930333abc914ff6cbbb1ddc8b5",
+      "bytes": 7910
+    },
+    {
+      "path": "apps/web/tests/e2e/release.spec.ts",
+      "sha256": "3a93b2cb56bc44c63ec003444fd8a04f42ebb0a1d55ca66645acee38e57e9518",
+      "bytes": 13512
+    },
+    {
+      "path": "apps/web/tests/e2e/secondary-flows.spec.ts",
+      "sha256": "fd2017755127b72a37869f0a25380c8e7e68f58e798023d259ae1286676d3c9c",
+      "bytes": 6814
+    },
+    {
+      "path": "apps/web/tests/e2e/stdlib-numeric-contract.spec.ts",
+      "sha256": "8abd052ad981efa65cb0bcad38bbcf956c847e041dd6413be1c6b424e631536e",
+      "bytes": 2976
+    },
+    {
+      "path": "apps/web/tests/e2e/vertical-live.spec.ts",
+      "sha256": "f3781302a51e5681f4f43e9da4c14b3ed133870ae50051f702477951b737084e",
+      "bytes": 2083
+    },
+    {
+      "path": "apps/web/tests/growth/growth-page.spec.ts",
+      "sha256": "464d798c024c6f0ea1be9f41f8a61e8365c18ac4956bd2f7694b4096408f3488",
+      "bytes": 7000
+    },
+    {
+      "path": "apps/web/tests/map/constellation.spec.ts",
+      "sha256": "c80a82b71ada44d35e802a7388c01620194b917ee7bbc32b264b20c8c3e2d7be",
+      "bytes": 8310
+    },
+    {
+      "path": "apps/web/tests/map/knowledge-map.spec.ts",
+      "sha256": "693061c223661448d56889977b44e2518562dd2000802e7ae9f14f97b5abc201",
+      "bytes": 5233
+    },
+    {
+      "path": "apps/web/tests/map/map-layout.spec.ts",
+      "sha256": "b07bf479a45e7e39e9fa570989e17f70d8ca3d77e330766d2fbdb35a4828be72",
+      "bytes": 526
+    },
+    {
+      "path": "apps/web/tests/navigation-context.spec.ts",
+      "sha256": "08682bdbbf83f97621e5e858b8158925941f29bdd7e03b464202e93a03e99668",
+      "bytes": 2554
+    },
+    {
+      "path": "apps/web/tests/offline-drafts.spec.ts",
+      "sha256": "0119b1c2904b22004ac83a95d4cf339a967df17bebd8f5896aef3c4499bf7e15",
+      "bytes": 7647
+    },
+    {
+      "path": "apps/web/tests/review/review-page.spec.ts",
+      "sha256": "ec25f412c4cc331ab36f8dfa911b3c34997765653d2bc9e2706536459c0d219a",
+      "bytes": 3349
+    },
+    {
+      "path": "apps/web/tests/search/search-page.spec.ts",
+      "sha256": "354101a1ee309f429c39781bd383a3c73b4f48645210b520e8523fe00ade9d5d",
+      "bytes": 2375
+    },
+    {
+      "path": "apps/web/tests/settings/data-management.spec.ts",
+      "sha256": "13dc18c61e33d9cde45e7236687fd811151035377ba3d6f9bc70d8849e878833",
+      "bytes": 2034
+    },
+    {
+      "path": "apps/web/tests/settings/lan-access.spec.ts",
+      "sha256": "481df8dd553ceda2be5d4acfead81255fad03a34fea7c4f3da80af18375cfdd2",
+      "bytes": 2601
+    },
+    {
+      "path": "apps/web/tests/settings/settings-page.spec.ts",
+      "sha256": "a96f8f8c477eb03aea624041d4ba4da173a4f6443db7045a522e814f97695706",
+      "bytes": 2250
+    }
+  ],
+  "screenshot_count": 136,
+  "screenshots": [
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/comparison/desktop-compare-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/comparison/mobile-compare-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/flows/task-15/desktop-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/flows/task-15/mobile-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/flows/task-16/desktop-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/flows/task-16/desktop-reference-1586x992.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/flows/task-16/mobile-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/flows/task-17/desktop-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/flows/task-17/mobile-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/flows/task-19/desktop-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/flows/task-19/mobile-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/maps/star-chain-1440.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/maps/star-chain-390.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-conversion.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-cpp-assessment-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-cpp-assessment-terminal-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-cpp-capstone-challenge-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-cpp-capstone-lesson-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-cpp-course-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-cpp-growth-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-cpp-lesson-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-cpp-review-before-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-cpp-review-updated-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-csharp-assessment-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-csharp-assessment-terminal-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-csharp-course-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-csharp-growth-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-csharp-lesson-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-dependencies.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-java-assessment-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-java-assessment-terminal-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-java-course-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-java-foundations-basic-data-types.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-java-foundations-conditions.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-java-growth-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-java-lesson-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-learning-constellation.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-python-automation-ui-web-markdown.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-python-capstone-examples.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-python-concurrency-network-asyncio.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-python-database-deployment-pymysql.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-python-flow-collections-conditions.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-python-flow-collections-data-structures.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-python-flow-collections-while-loop.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-python-functions-iteration-decorators.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-python-functions-iteration-iterators.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-python-functions-iteration-scope.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-python-modules-io-oop-classes.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-python-modules-io-oop-files.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-python-stdlib-data-date-time.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-python-stdlib-data-hashlib.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-python-stdlib-data-re.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-python-stdlib-data-statistics.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-release-compare-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-release-courses-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-release-growth-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-release-home-start-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-release-restore-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-release-review-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-release-run-cpp-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-release-run-csharp-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-release-run-java-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-release-run-python-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/desktop-summary.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-conversion.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-cpp-assessment-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-cpp-assessment-terminal-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-cpp-capstone-challenge-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-cpp-capstone-lesson-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-cpp-course-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-cpp-growth-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-cpp-lesson-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-cpp-review-before-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-cpp-review-updated-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-csharp-assessment-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-csharp-assessment-terminal-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-csharp-course-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-csharp-growth-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-csharp-lesson-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-dependencies.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-java-assessment-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-java-assessment-terminal-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-java-course-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-java-foundations-basic-data-types.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-java-foundations-conditions.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-java-growth-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-java-lesson-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-learning-constellation.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-python-automation-ui-web-markdown.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-python-capstone-examples.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-python-concurrency-network-asyncio.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-python-database-deployment-pymysql.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-python-flow-collections-conditions.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-python-flow-collections-data-structures.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-python-flow-collections-while-loop.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-python-functions-iteration-decorators.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-python-functions-iteration-iterators.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-python-functions-iteration-scope.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-python-modules-io-oop-classes.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-python-modules-io-oop-files.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-python-stdlib-data-date-time.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-python-stdlib-data-hashlib.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-python-stdlib-data-re.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-python-stdlib-data-statistics.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-release-courses-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-release-draft-restored-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-release-growth-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-release-home-start-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-release-restore-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/mobile-summary.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/responsive-390/assessment.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/responsive-390/compare.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/responsive-390/course.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/responsive-390/growth.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/responsive-390/home.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/responsive-390/lesson.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/responsive-390/review.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/responsive-390/search.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/responsive-390/settings.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/responsive-768/assessment.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/responsive-768/compare.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/responsive-768/course.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/responsive-768/growth.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/responsive-768/home.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/responsive-768/lesson.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/responsive-768/review.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/responsive-768/search.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/battery/screenshots/responsive-768/settings.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/python/screenshots/desktop-assessment-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/python/screenshots/desktop-growth-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/python/screenshots/desktop-home-start-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/python/screenshots/desktop-lesson-1440x1024.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/python/screenshots/mobile-assessment-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/python/screenshots/mobile-growth-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/python/screenshots/mobile-home-start-390x844.png",
+    "docs/audit/frontend-complete-20261020/browser-owned-1792628632100/python/screenshots/mobile-lesson-390x844.png"
+  ],
+  "trial_health": {
+    "api": {
+      "status": 200,
+      "bytes": 573,
+      "body": {
+        "status": "ok",
+        "checks": {
+          "database": {
+            "healthy": true,
+            "path": "D:\\projects\\1\\Hard-trial-clean-20260910\\data\\hard.db"
+          },
+          "migrations": {
+            "healthy": true
+          },
+          "fts": {
+            "healthy": true
+          },
+          "content": {
+            "healthy": true,
+            "path": "D:\\projects\\1\\Hard-trial-clean-20260910\\content"
+          },
+          "python": {
+            "healthy": true,
+            "path": "D:\\DevTools\\python\\python.exe"
+          },
+          "java": {
+            "healthy": true,
+            "path": "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath\\javac.exe"
+          },
+          "csharp": {
+            "healthy": true,
+            "path": "D:\\DevTools\\dotnet\\dotnet.exe"
+          },
+          "cpp": {
+            "healthy": true,
+            "path": "D:\\DevTools\\msys64\\ucrt64\\bin\\g++.exe"
+          }
+        }
+      }
+    },
+    "web": {
+      "status": 200,
+      "bytes": 361
+    },
+    "checked_utc": "2026-10-22T00:28:20.413917+00:00",
+    "database_sha256_after_start": "241781f41a44cbabdff0350f7eae410832ca0fd464f5a2c545cfda11016084fc"
+  },
+  "node_actual": "24.8.0",
+  "node_project_pin": "24.17.0",
+  "formal_pinned_toolchain_release_certified": false
+}

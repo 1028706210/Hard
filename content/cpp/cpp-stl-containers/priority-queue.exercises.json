@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-stl-containers-priority-queue",
+  "questions": [
+    {
+      "id": "cpp-stl-containers-priority-queue-k01",
+      "type": "knowledge",
+      "prompt": "默认配置下 std::priority_queue<int> 的 top() 返回？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "当前最大值"
+        },
+        {
+          "id": "b",
+          "text": "最早入队的值"
+        },
+        {
+          "id": "c",
+          "text": "当前最小值"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-priority-queue-k02",
+      "type": "knowledge",
+      "prompt": "要得到最小堆，模板第三参数应传？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "std::less<int>"
+        },
+        {
+          "id": "b",
+          "text": "std::greater<int>"
+        },
+        {
+          "id": "c",
+          "text": "std::minus<int>"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-priority-queue-k03",
+      "type": "knowledge",
+      "prompt": "priority_queue 能保证的是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "遍历时输出完全有序"
+        },
+        {
+          "id": "b",
+          "text": "每次 top() 是当前最值"
+        },
+        {
+          "id": "c",
+          "text": "元素按入队顺序出队"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-priority-queue-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 2..1000，含两端）与 n 个整数（每个合同范围 -10000..10000，含两端），全部入默认最大堆 std::priority_queue<int> 后 pop() 一次，再输出 top()（即次大值）。n 或任一值无法解析或越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <iostream>\n#include <queue>\n\nint main() {\n    // 读取 n 与 n 个整数，弹堆顶后输出新堆顶\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 n=4 与 5 1 9 3 时输出 5。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <queue>\n\nint main() {\n    int n = 0;\n    if (!(std::cin >> n)) return 1;\n    if (n < 2 || n > 1000) return 1;\n    std::priority_queue<int> heap;\n    for (int i = 0; i < n; i++) {\n        int value = 0;\n        if (!(std::cin >> value)) return 1;\n        if (value < -10000 || value > 10000) return 1;\n        heap.push(value);\n    }\n    heap.pop();\n    std::cout << heap.top() << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "含重复最大值时次大仍等于最大值。",
+          "负数场景下次大为较大负数。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "4 5 1 9 3\n",
+            "stdout": "5\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "3 7 7 2\n",
+            "stdout": "7\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3 -1 -5 -3\n",
+            "stdout": "-3\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

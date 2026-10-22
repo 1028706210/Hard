@@ -1,0 +1,17 @@
+[
+  "content/csharp/csharp-io-metadata/preprocessor-directives.md",
+  "content/csharp/csharp-io-metadata/reflection.md",
+  "content/csharp/csharp-language-features/anonymous-methods.md",
+  "content/csharp/csharp-language-features/collections.md",
+  "content/csharp/csharp-language-features/delegates.md",
+  "content/csharp/csharp-language-features/events.md",
+  "content/csharp/csharp-language-features/generics.md",
+  "content/csharp/csharp-language-features/indexer.md",
+  "content/csharp/csharp-language-features/properties.md",
+  "content/csharp/csharp-oop/classes.md",
+  "content/csharp/csharp-oop/inheritance.md",
+  "content/csharp/csharp-oop/interfaces.md",
+  "content/csharp/csharp-oop/nullable.md",
+  "content/csharp/csharp-oop/polymorphism.md",
+  "content/csharp/csharp-oop/structs.md"
+]

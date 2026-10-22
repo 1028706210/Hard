@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-collections-generics-hashmap",
+  "questions": [
+    {
+      "id": "java-collections-generics-hashmap-k01",
+      "type": "knowledge",
+      "prompt": "HashMap 的 put 平均复杂度是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "O(n)"
+        },
+        {
+          "id": "b",
+          "text": "O(1)"
+        },
+        {
+          "id": "c",
+          "text": "O(log n)"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-collections-generics-hashmap-k02",
+      "type": "knowledge",
+      "prompt": "相同键的 put 会怎样？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "报错"
+        },
+        {
+          "id": "b",
+          "text": "覆盖旧值"
+        },
+        {
+          "id": "c",
+          "text": "忽略"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-collections-generics-hashmap-k03",
+      "type": "knowledge",
+      "prompt": "HashMap 保证迭代顺序吗？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "是"
+        },
+        {
+          "id": "b",
+          "text": "否"
+        },
+        {
+          "id": "c",
+          "text": "仅键有序"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-collections-generics-hashmap-c01",
+      "type": "code",
+      "prompt": "从标准输入读取逗号分隔字符串，用 HashMap 统计后输出唯一词数量。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\nimport java.util.HashMap;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        HashMap<String, Integer> map = new HashMap<>();\n        for (String p : input.split(\",\")) map.put(p.trim(), 1);\n        System.out.println(map.size());\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "a,b,a\n",
+            "stdout": "2\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "x,y,x,y,z\n",
+            "stdout": "3\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

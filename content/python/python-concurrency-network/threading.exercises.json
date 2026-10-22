@@ -73,33 +73,59 @@
     {
       "id": "python-concurrency-network-threading-c01",
       "type": "code",
-      "prompt": "使用 threading.Lock 保护计数器；输入为线程数，零是边界，负数拒绝。",
-      "starter_code": "import threading\nimport sys\n# 使用 Lock 保护共享计数器\n",
+      "prompt": "读取线程数 n，必须为 0 到 8（含端点）的整数。创建 n 个本地线程，每个线程在同一把 Lock 保护下将共享计数器加一；启动全部线程后 join 全部，再输出计数。0 输出 0。非法输入无输出，退出码 1。禁止用 sleep 猜测完成时间，不进行网络操作。支架已验证 n。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    n = int(text)\nexcept ValueError:\n    raise SystemExit(1)\nimport threading\nif not 0 <= n <= 8:\n    raise SystemExit(1)\n# 按题面实现本课操作\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '2'，输出 '2\\n'，退出码 0。",
+        "输入 '3'，输出 '3\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\nimport threading\ncount = int(sys.stdin.read().strip())\nif count < 0 or count > 8:\n    raise ValueError('count out of range')\nstate = {'value': 0}\nlock = threading.Lock()\ndef increment():\n    with lock:\n        state['value'] += 1\nthreads = [threading.Thread(target=increment) for _ in range(count)]\nfor thread in threads: thread.start()\nfor thread in threads: thread.join()\nprint(state['value'])\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    n = int(text)\nexcept ValueError:\n    raise SystemExit(1)\nimport threading\nif not 0 <= n <= 8:\n    raise SystemExit(1)\nstate = {\"value\": 0}\nlock = threading.Lock()\ndef increment():\n    with lock:\n        state[\"value\"] += 1\nthreads = [threading.Thread(target=increment) for _ in range(n)]\nfor thread in threads:\n    thread.start()\nfor thread in threads:\n    thread.join()\nprint(state[\"value\"])\n",
         "hidden_tests": [
-          "边界输入必须返回主题定义的结果。",
-          "无效输入必须进入可预期的失败分支。"
+          "检查题面规定的有效边界和失败行为。",
+          "输出格式、类型和顺序以题面约定为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "2\n",
+            "stdin": "2",
             "stdout": "2\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3",
+            "stdout": "3\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "0\n",
+            "stdin": "0",
             "stdout": "0\n",
             "exit_code": 0
           },
           {
-            "stdin": "__invalid__\n",
+            "stdin": "8",
+            "stdout": "8\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-1",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "9",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "2.5",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
             "stdout": "",
             "exit_code": 1
           }

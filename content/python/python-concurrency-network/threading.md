@@ -2,7 +2,7 @@
 id: python-concurrency-network-threading
 title: Python threading
 concepts: [concurrency, security]
-objectives: [识别锁保护共享状态的目的, 在无真实线程的 fixture 中验证临界区语义]
+objectives: [识别锁保护共享状态的目的, 使用有限本地线程验证临界区与等待语义]
 prerequisites: [python-concurrency-network-multithreading]
 difficulty: intermediate
 experience_points: 30
@@ -36,12 +36,12 @@ print(events)
 
 ## 概念定义与适用场景
 
-线程允许多个执行流共享同一进程内存，适合与阻塞 I/O 协作或维护既有线程接口。共享可变数据需要 `threading.Lock` 保护临界区；锁并不让业务逻辑更快，它只保证一次读改写不会交错。
+锁保护共享状态的一次完整更新，join 确保结果读取前所有线程已完成。输出测试验证计数结果，不足以证明任意并发程序无竞争，因此还需检查源代码中的锁和等待位置。
 
 ## 语法、API 与边界
 
-`Thread(target=...)` 创建工作线程，`start()` 启动，`join()` 等待完成。`with lock:` 保证即使函数中途抛错也会释放锁。线程数、队列容量和取消策略必须有界；本课只启动有限的本地 fixture 线程，不调用网络或外部命令。
+读取线程数 n，必须为 0 到 8（含端点）的整数。创建 n 个本地线程，每个线程在同一把 Lock 保护下将共享计数器加一；启动全部线程后 join 全部，再输出计数。0 输出 0。非法输入无输出，退出码 1。禁止用 sleep 猜测完成时间，不进行网络操作。支架已验证 n。
 
 ## 常见错误与实践建议
 
-不要在持锁状态下等待外部资源，也不要依赖 sleep 制造“正确”顺序。用小计数器和多个线程验证锁的效果，覆盖零任务、最大允许任务和非法任务数；失败路径同样必须释放资源。
+先验证结构和字段，再执行结果计算；使用题面中的正常值、边界值和不同输出分支核对行为。在线判题观察运行结果，不能据此推断已经完成真实外部服务集成。

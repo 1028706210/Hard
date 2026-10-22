@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-collections-generics-data-structures",
+  "questions": [
+    {
+      "id": "java-collections-generics-data-structures-k01",
+      "type": "knowledge",
+      "prompt": "Stack 的访问模式是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "先进先出"
+        },
+        {
+          "id": "b",
+          "text": "后进先出"
+        },
+        {
+          "id": "c",
+          "text": "随机访问"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-collections-generics-data-structures-k02",
+      "type": "knowledge",
+      "prompt": "Queue 的 offer 方法作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "出队"
+        },
+        {
+          "id": "b",
+          "text": "入队"
+        },
+        {
+          "id": "c",
+          "text": "查看队首"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-collections-generics-data-structures-k03",
+      "type": "knowledge",
+      "prompt": "现代 Java 推荐用什么替代 Stack？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "ArrayList"
+        },
+        {
+          "id": "b",
+          "text": "Deque"
+        },
+        {
+          "id": "c",
+          "text": "HashMap"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-collections-generics-data-structures-c01",
+      "type": "code",
+      "prompt": "从标准输入读取逗号分隔整数，用栈结构反转后空格分隔输出。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\nimport java.util.ArrayDeque;\nimport java.util.Deque;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        Deque<Integer> stack = new ArrayDeque<>();\n        for (String p : input.split(\",\")) stack.push(Integer.parseInt(p.trim()));\n        StringBuilder sb = new StringBuilder();\n        while (!stack.isEmpty()) { if (sb.length() > 0) sb.append(\" \"); sb.append(stack.pop()); }\n        System.out.println(sb);\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1,2,3\n",
+            "stdout": "3 2 1\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "5,6\n",
+            "stdout": "6 5\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

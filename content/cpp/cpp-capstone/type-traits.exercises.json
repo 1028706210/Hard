@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-capstone-type-traits",
+  "questions": [
+    {
+      "id": "cpp-capstone-type-traits-k01",
+      "type": "knowledge",
+      "prompt": "std::is_integral_v<int> 的求值时机是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "运行期每次调用求值"
+        },
+        {
+          "id": "b",
+          "text": "编译期常量，无运行开销"
+        },
+        {
+          "id": "c",
+          "text": "链接期由链接器决定"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-capstone-type-traits-k02",
+      "type": "knowledge",
+      "prompt": "if constexpr (std::is_floating_point_v<T>) 中不成立分支的代码？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "推迟到运行期再编译"
+        },
+        {
+          "id": "b",
+          "text": "照常实例化并可能报编译错"
+        },
+        {
+          "id": "c",
+          "text": "被丢弃，不参与实例化"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-type-traits-k03",
+      "type": "knowledge",
+      "prompt": "char 在 std::is_integral_v 看来属于？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "既非整型也非浮点"
+        },
+        {
+          "id": "b",
+          "text": "浮点类型"
+        },
+        {
+          "id": "c",
+          "text": "整型"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-type-traits-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 1..20，含两端），随后 n 个类型名（每个只能是 int、double 或 char）。对每个类型名按模板实参实例化并用 if constexpr 配合 is_integral_v/is_floating_point_v 输出一行「<类型名>:<sizeof 字节数>:<integral 或 floating 或 other>」，例如 int:4:integral。类型名非法、n 越界或输入缺失时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cstdio>\n#include <string>\n#include <type_traits>\n\nint main() {\n    // 读取类型名，按 if constexpr 谓词输出尺寸与类别\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 2 与 int double 时输出 int:4:integral 与 double:8:floating 两行。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <cstdio>\n#include <string>\n#include <type_traits>\n\ntemplate <typename T>\nvoid describe(const std::string& name) {\n    const char* kind = \"other\";\n    if constexpr (std::is_integral_v<T>) {\n        kind = \"integral\";\n    } else if constexpr (std::is_floating_point_v<T>) {\n        kind = \"floating\";\n    }\n    std::printf(\"%s:%zu:%s\\n\", name.c_str(), sizeof(T), kind);\n}\n\nint main() {\n    int n = 0;\n    if (std::scanf(\"%d\", &n) != 1) return 1;\n    if (n < 1 || n > 20) return 1;\n    for (int i = 0; i < n; i++) {\n        char buffer[32];\n        if (std::scanf(\"%31s\", buffer) != 1) return 1;\n        std::string name(buffer);\n        if (name == \"int\") {\n            describe<int>(name);\n        } else if (name == \"double\") {\n            describe<double>(name);\n        } else if (name == \"char\") {\n            describe<char>(name);\n        } else {\n            return 1;\n        }\n    }\n    return 0;\n}\n",
+        "hidden_tests": [
+          "char 类型按整型类别输出且尺寸为 1。",
+          "int double char 混合输入逐行输出。",
+          "未知类型名 boolx 不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "2 int double\n",
+            "stdout": "int:4:integral\ndouble:8:floating\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1 char\n",
+            "stdout": "char:1:integral\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3 int double char\n",
+            "stdout": "int:4:integral\ndouble:8:floating\nchar:1:integral\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1 boolx\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

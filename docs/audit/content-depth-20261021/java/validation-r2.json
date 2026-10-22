@@ -1,0 +1,13 @@
+{
+  "command": [
+    "D:\\projects\\1\\Hard-trial-clean-20260910\\.venv\\Scripts\\python.exe",
+    "tools/content/validate.py",
+    "--language",
+    "java",
+    "--require-complete"
+  ],
+  "exit_code": 0,
+  "stdout_file": "validation-r2.stdout.txt",
+  "stderr_file": "validation-r2.stderr.txt",
+  "scope": "static content/schema/provenance, not Java compilation, browser or pedagogical completeness"
+}

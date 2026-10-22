@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-collections-generics-hashset",
+  "questions": [
+    {
+      "id": "java-collections-generics-hashset-k01",
+      "type": "knowledge",
+      "prompt": "HashSet 允许重复元素吗？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "是"
+        },
+        {
+          "id": "b",
+          "text": "否"
+        },
+        {
+          "id": "c",
+          "text": "仅 null"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-collections-generics-hashset-k02",
+      "type": "knowledge",
+      "prompt": "HashSet 的 contains 平均复杂度是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "O(n)"
+        },
+        {
+          "id": "b",
+          "text": "O(1)"
+        },
+        {
+          "id": "c",
+          "text": "O(log n)"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-collections-generics-hashset-k03",
+      "type": "knowledge",
+      "prompt": "HashSet 保证迭代顺序吗？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "是"
+        },
+        {
+          "id": "b",
+          "text": "否"
+        },
+        {
+          "id": "c",
+          "text": "仅插入顺序"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-collections-generics-hashset-c01",
+      "type": "code",
+      "prompt": "从标准输入读取逗号分隔字符串，用 HashSet 去重后输出唯一元素数量。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\nimport java.util.HashSet;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        HashSet<String> set = new HashSet<>();\n        for (String p : input.split(\",\")) set.add(p.trim());\n        System.out.println(set.size());\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "a,b,a\n",
+            "stdout": "2\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "x,x,x\n",
+            "stdout": "1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

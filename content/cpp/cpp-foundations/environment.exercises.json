@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-foundations-environment",
+  "questions": [
+    {
+      "id": "cpp-foundations-environment-k01",
+      "type": "knowledge",
+      "prompt": "C++ 源代码变成可执行程序需要经历哪两个主要阶段？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "解释与即时运行"
+        },
+        {
+          "id": "b",
+          "text": "编译与链接"
+        },
+        {
+          "id": "c",
+          "text": "打包与上传"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-foundations-environment-k02",
+      "type": "knowledge",
+      "prompt": "哪个命令可以查看 g++ 编译器的版本信息？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "g++ --version"
+        },
+        {
+          "id": "b",
+          "text": "g++ --language"
+        },
+        {
+          "id": "c",
+          "text": "cpp --standard"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-foundations-environment-k03",
+      "type": "knowledge",
+      "prompt": "项目希望使用 C++20 特性但编译器版本很旧，常见结果是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "自动升级到更新的语言并保证编译成功"
+        },
+        {
+          "id": "b",
+          "text": "编译器不认识新语法并报告错误"
+        },
+        {
+          "id": "c",
+          "text": "程序跳过编译直接运行"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-foundations-environment-c01",
+      "type": "code",
+      "prompt": "依次读取本机已安装的编译器主版本号 installed 和项目要求的最低主版本号 required；当 installed 不低于 required 时输出 READY，否则输出 UPDATE。",
+      "starter_code": "#include <iostream>\n\nint main() {\n    int installed = 0;\n    int required = 0;\n    std::cin >> installed >> required;\n    // 判断工具链是否就绪\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 16 和 16 时输出 READY。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n\nint main() {\n    int installed = 0;\n    int required = 0;\n    std::cin >> installed >> required;\n    std::cout << (installed >= required ? \"READY\" : \"UPDATE\") << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "已安装版本低于要求时输出 UPDATE。",
+          "已安装版本高于要求时输出 READY。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "16 16\n",
+            "stdout": "READY\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "11 16\n",
+            "stdout": "UPDATE\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "20 16\n",
+            "stdout": "READY\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

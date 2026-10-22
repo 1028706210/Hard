@@ -73,35 +73,66 @@
     {
       "id": "python-modules-io-oop-input-output-c01",
       "type": "code",
-      "prompt": "定义 score 为 90 并输出 Score: 90。",
-      "starter_code": "score = 90\n# 输出格式化文本",
+      "prompt": "读取一个 0 到 100（含端点）的整数成绩 n，输出 Score: 后接一个空格和成绩，例如 90 输出 Score: 90。输入可带首尾空白；输出使用整数格式。非整数、空输入或越界时不输出内容，退出码为 1。起始代码已解析校验 n，请完成格式化输出。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    n = int(text)\nexcept ValueError:\n    raise SystemExit(1)\nif not 0 <= n <= 100:\n    raise SystemExit(1)\n# 按题面完成操作并输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '90'，输出 'Score: 90\\n'，退出码 0。",
+        "输入 '75'，输出 'Score: 75\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-modules-io-oop-input-output-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    score = 90\n    print(f'Score: {score}')\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    n = int(text)\nexcept ValueError:\n    raise SystemExit(1)\nif not 0 <= n <= 100:\n    raise SystemExit(1)\nprint(f\"Score: {n}\")\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "验证题面声明的边界与正常结果。",
+          "输入有效性和退出码以题面为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "90",
             "stdout": "Score: 90\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "75",
+            "stdout": "Score: 75\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-modules-io-oop-input-output-c01\n",
+            "stdin": "0",
+            "stdout": "Score: 0\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "100",
+            "stdout": "Score: 100\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": " 007 \n",
+            "stdout": "Score: 7\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-1",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "101",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "90.0",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

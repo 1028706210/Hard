@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-core-api-arrays",
+  "questions": [
+    {
+      "id": "java-core-api-arrays-k01",
+      "type": "knowledge",
+      "prompt": "int[] nums = {3,1,2}; nums.length 的值是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "2"
+        },
+        {
+          "id": "b",
+          "text": "3"
+        },
+        {
+          "id": "c",
+          "text": "4"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-arrays-k02",
+      "type": "knowledge",
+      "prompt": "数组第一个元素的索引是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "1"
+        },
+        {
+          "id": "b",
+          "text": "0"
+        },
+        {
+          "id": "c",
+          "text": "-1"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-arrays-k03",
+      "type": "knowledge",
+      "prompt": "Arrays.sort 的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "创建新数组"
+        },
+        {
+          "id": "b",
+          "text": "就地排序"
+        },
+        {
+          "id": "c",
+          "text": "反转数组"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-arrays-c01",
+      "type": "code",
+      "prompt": "从标准输入读取逗号分隔整数，升序排序后用空格分隔输出。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // 读取CSV整数，排序输出\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\nimport java.util.Arrays;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        String[] parts = input.split(\",\");\n        int[] nums = new int[parts.length];\n        for (int i = 0; i < parts.length; i++) nums[i] = Integer.parseInt(parts[i].trim());\n        Arrays.sort(nums);\n        StringBuilder sb = new StringBuilder();\n        for (int i = 0; i < nums.length; i++) {\n            if (i > 0) sb.append(\" \");\n            sb.append(nums[i]);\n        }\n        System.out.println(sb);\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3,1,2\n",
+            "stdout": "1 2 3\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "5,5,1\n",
+            "stdout": "1 5 5\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

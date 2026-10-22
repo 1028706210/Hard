@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-capstone-exception",
+  "questions": [
+    {
+      "id": "cpp-capstone-exception-k01",
+      "type": "knowledge",
+      "prompt": "按什么方式捕获 std::exception 才能避免对象切片？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "按值捕获"
+        },
+        {
+          "id": "b",
+          "text": "按 const 引用捕获"
+        },
+        {
+          "id": "c",
+          "text": "按指针数组捕获"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-capstone-exception-k02",
+      "type": "knowledge",
+      "prompt": "catch (const std::exception&) 能接住 std::runtime_error 的原因是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "runtime_error 继承自 std::exception"
+        },
+        {
+          "id": "b",
+          "text": "两者同名"
+        },
+        {
+          "id": "c",
+          "text": "编译器按 catch 顺序猜测"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-capstone-exception-k03",
+      "type": "knowledge",
+      "prompt": "catch 块内单独的 throw; 语句作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "抛出一个新的空异常"
+        },
+        {
+          "id": "b",
+          "text": "终止程序"
+        },
+        {
+          "id": "c",
+          "text": "原样重新抛出当前异常"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-exception-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 -100..100，含两端）。n 为非负时输出 2*n；n 为负数时抛出 std::runtime_error，并用 catch (const std::exception&) 捕获后输出 error。n 越界、无法解析或缺失时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cstdio>\n#include <stdexcept>\n\nint main() {\n    // 读取 n，非负翻倍输出，负数走抛出-捕获路径\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 5 时输出 10。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <cstdio>\n#include <stdexcept>\n\nint main() {\n    int n = 0;\n    if (std::scanf(\"%d\", &n) != 1) return 1;\n    if (n < -100 || n > 100) return 1;\n    try {\n        if (n < 0) {\n            throw std::runtime_error(\"negative\");\n        }\n        std::printf(\"%d\\n\", n * 2);\n    } catch (const std::exception&) {\n        std::printf(\"error\\n\");\n    }\n    return 0;\n}\n",
+        "hidden_tests": [
+          "负数 -3 走异常路径输出 error。",
+          "0 边界输出 0。",
+          "101 越界不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "5\n",
+            "stdout": "10\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "-3\n",
+            "stdout": "error\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "101\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

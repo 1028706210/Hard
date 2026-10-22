@@ -1,4 +1,4 @@
-import { mount } from "@vue/test-utils";
+import { mount, RouterLinkStub } from "@vue/test-utils";
 import { describe, expect, it, vi } from "vitest";
 
 import ReviewPage from "../../src/features/review/ReviewPage.vue";
@@ -9,6 +9,16 @@ function response(body: unknown) {
 }
 
 describe("review page", () => {
+  it("does not announce an empty review queue before a response arrives or after failure", async () => {
+    let resolve!: (value: Response) => void;
+    vi.stubGlobal("fetch", vi.fn(() => new Promise<Response>(done => { resolve = done; })));
+    const wrapper = mount(ReviewPage, { global: { stubs: { RouterLink: RouterLinkStub } } });
+    expect(wrapper.text()).toContain("正在读取复习数据");
+    expect(wrapper.find(".review-empty").exists()).toBe(false);
+    resolve(new Response("{}", { status: 500 }));
+    await vi.waitFor(() => expect(wrapper.find("[role='alert']").exists()).toBe(true));
+    expect(wrapper.find(".review-empty").exists()).toBe(false);
+  });
   it("keeps scheduled reviews separate from ordinary weak-answer links and scores only queue items", async () => {
     const fetchMock = vi.fn(async (input: RequestInfo | URL, init?: RequestInit) => {
       const url = String(input);
@@ -23,7 +33,7 @@ describe("review page", () => {
     });
     vi.stubGlobal("fetch", fetchMock);
 
-    const wrapper = mount(ReviewPage);
+    const wrapper = mount(ReviewPage, { global: { stubs: { RouterLink: RouterLinkStub } } });
     await vi.waitFor(() => expect(wrapper.find('[data-review-queue="true"]').text()).toContain("python-output"));
     expect(wrapper.text()).toContain("普通错题浏览");
     expect(wrapper.find('[data-review-queue="true"]').text()).toContain("python-output");
@@ -36,7 +46,7 @@ describe("review page", () => {
   it("fails closed to empty sections when a late refresh has no item arrays", async () => {
     vi.stubGlobal("fetch", vi.fn(async () => response({})));
 
-    const wrapper = mount(ReviewPage);
+    const wrapper = mount(ReviewPage, { global: { stubs: { RouterLink: RouterLinkStub } } });
     await vi.waitFor(() => expect(wrapper.find('[data-review-queue="true"]').text()).toContain("当前没有到期复习"));
     expect(wrapper.find('[data-wrong-answer-browser="true"]').text()).toContain("还没有普通错题线索");
   });

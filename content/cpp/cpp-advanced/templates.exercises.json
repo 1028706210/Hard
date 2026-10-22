@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-advanced-templates",
+  "questions": [
+    {
+      "id": "cpp-advanced-templates-k01",
+      "type": "knowledge",
+      "prompt": "函数模板的实例化发生在？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "编译期，按实际使用的类型生成代码"
+        },
+        {
+          "id": "b",
+          "text": "运行期动态生成"
+        },
+        {
+          "id": "c",
+          "text": "链接期由操作系统完成"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-advanced-templates-k02",
+      "type": "knowledge",
+      "prompt": "相对用宏实现类型无关算法，模板的优势是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "有类型检查且支持作用域与重载解析"
+        },
+        {
+          "id": "b",
+          "text": "永远不参与编译"
+        },
+        {
+          "id": "c",
+          "text": "可以随意重定义关键字"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-advanced-templates-k03",
+      "type": "knowledge",
+      "prompt": "std::vector<int> 中 vector 是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "类模板，int 是模板实参"
+        },
+        {
+          "id": "b",
+          "text": "函数模板的返回类型"
+        },
+        {
+          "id": "c",
+          "text": "宏名称"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-advanced-templates-c01",
+      "type": "code",
+      "prompt": "编写函数模板 max_of<T> 返回两值中较大者。读取两个整数，用 max_of 输出较大值；再读取两个浮点数（一行两个 double），用同一模板输出较大者（直接输出 double 值，无需格式化）。",
+      "starter_code": "#include <iostream>\n\n// 定义函数模板 max_of\n\nint main() {\n    int a = 0;\n    int b = 0;\n    double x = 0.0;\n    double y = 0.0;\n    std::cin >> a >> b;\n    std::cin >> x >> y;\n    // 用同一模板输出两个较大值\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3 9 与 1.5 2.5 时第一行输出 9、第二行输出 2.5。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n\ntemplate <typename T>\nT max_of(T a, T b) {\n    return a > b ? a : b;\n}\n\nint main() {\n    int a = 0;\n    int b = 0;\n    double x = 0.0;\n    double y = 0.0;\n    std::cin >> a >> b;\n    std::cin >> x >> y;\n    std::cout << max_of(a, b) << std::endl;\n    std::cout << max_of(x, y) << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "两整数相等时输出该值。",
+          "浮点比较按数值大小输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 9\n1.5 2.5\n",
+            "stdout": "9\n2.5\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "7 7\n0.25 0.5\n",
+            "stdout": "7\n0.5\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-5 2\n3.5 1.25\n",
+            "stdout": "2\n3.5\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

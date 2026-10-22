@@ -986,7 +986,7 @@ sources:
 - title: C# 运算符重载
   url: https://www.runoob.com/csharp/csharp-operator-overloading.html
   group: C# 教程
-  module_id: csharp-foundations
+  module_id: csharp-oop
   content_type: lesson
   snapshot_date: '2026-08-23'
 - title: C# 接口（Interface）

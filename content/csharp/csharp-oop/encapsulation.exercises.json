@@ -1,0 +1,122 @@
+{
+  "lesson_id": "csharp-oop-encapsulation",
+  "questions": [
+    {
+      "id": "csharp-oop-encapsulation-k01",
+      "type": "knowledge",
+      "prompt": "封装最直接的目的是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "让外部代码可以随意修改对象的每个字段"
+        },
+        {
+          "id": "b",
+          "text": "把状态细节藏起来，只暴露受约束的操作入口"
+        },
+        {
+          "id": "c",
+          "text": "缩短程序的编译时间"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-oop-encapsulation-k02",
+      "type": "knowledge",
+      "prompt": "字段声明为 `private int _value;` 后，其他类直接执行 `_value = 99;` 的结果是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "编译错误：无法访问私有成员"
+        },
+        {
+          "id": "b",
+          "text": "运行时抛出访问异常"
+        },
+        {
+          "id": "c",
+          "text": "静默成功并修改字段"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-encapsulation-k03",
+      "type": "knowledge",
+      "prompt": "账户余额需要保证永不为负，哪种设计更符合封装？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "public int Balance; 由调用方自行保证合法"
+        },
+        {
+          "id": "b",
+          "text": "private 余额字段，配一个校验失败返回 false 的取款方法"
+        },
+        {
+          "id": "c",
+          "text": "不建类型，用全局变量存余额"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-oop-encapsulation-c01",
+      "type": "code",
+      "prompt": "读取一行，用空格分隔的两个整数 initial 和 amount（initial 在 0..1000000 含两端）。用带 private 余额字段的类封装账户：amount 非负且不超过余额时完成扣款并输出剩余余额，否则输出 DENIED。解析失败或 initial 越界时不输出并以退出码 1 结束。",
+      "starter_code": "var tokens = (Console.ReadLine() ?? \"\").Split(' ', StringSplitOptions.RemoveEmptyEntries);\n// 校验输入，用封装了余额的类完成取款判定并输出\n",
+      "visible_tests": [
+        "输入 100 30 时输出 70。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var tokens = (Console.ReadLine() ?? \"\").Split(' ', StringSplitOptions.RemoveEmptyEntries);\nif (tokens.Length != 2) Environment.Exit(1);\nif (!int.TryParse(tokens[0], out var initial)) Environment.Exit(1);\nif (!int.TryParse(tokens[1], out var amount)) Environment.Exit(1);\nif (initial < 0 || initial > 1000000) Environment.Exit(1);\nvar account = new Account(initial);\nif (account.TryWithdraw(amount)) Console.WriteLine(account.GetBalance());\nelse Console.WriteLine(\"DENIED\");\n\nclass Account\n{\n    private int _balance;\n\n    public Account(int initialBalance) => _balance = initialBalance;\n\n    public int GetBalance() => _balance;\n\n    public bool TryWithdraw(int amount)\n    {\n        if (amount < 0 || amount > _balance) return false;\n        _balance -= amount;\n        return true;\n    }\n}\n",
+        "hidden_tests": [
+          "取款额恰好等于余额时输出 0。",
+          "取款额大于余额时输出 DENIED。",
+          "取款额为负数时输出 DENIED。",
+          "初始余额越界时无输出并以退出码 1 结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "100 30\n",
+            "stdout": "70\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "100 100\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "50 60\n",
+            "stdout": "DENIED\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "80 -5\n",
+            "stdout": "DENIED\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2000000 1\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

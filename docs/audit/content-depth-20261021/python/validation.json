@@ -1,0 +1,14 @@
+{
+  "command": ".venv/Scripts/python.exe -X utf8 tools/content/validate.py --language python --require-complete",
+  "observed_exit_code": 0,
+  "observed_result": {
+    "valid": true,
+    "counts": {
+      "courses": 1,
+      "lessons": 84,
+      "exercises": 84
+    },
+    "errors": []
+  },
+  "scope": "static content schema/required fields/completeness checks only; not semantic or runtime acceptance"
+}

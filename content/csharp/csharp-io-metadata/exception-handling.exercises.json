@@ -1,0 +1,140 @@
+{
+  "lesson_id": "csharp-io-metadata-exception-handling",
+  "questions": [
+    {
+      "id": "csharp-io-metadata-exception-handling-k01",
+      "type": "knowledge",
+      "prompt": "当 try 块中执行了 return 之后，同一 try 对应的 finally 块会怎样？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "不会再执行"
+        },
+        {
+          "id": "b",
+          "text": "只有返回值是引用类型时才执行"
+        },
+        {
+          "id": "c",
+          "text": "仍然会执行"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "csharp-io-metadata-exception-handling-k02",
+      "type": "knowledge",
+      "prompt": "为什么要先写 catch (DivideByZeroException) 再写 catch (Exception)？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "catch 按顺序匹配，具体异常必须放在笼统的 Exception 之前才能被单独处理"
+        },
+        {
+          "id": "b",
+          "text": "顺序无关紧要，编译器会自动排序"
+        },
+        {
+          "id": "c",
+          "text": "笼统的 Exception 必须放最前面才能兜底"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-io-metadata-exception-handling-k03",
+      "type": "knowledge",
+      "prompt": "在默认（未 checked）的 int 算术里，2147483647 + 1 的行为是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "抛出 OverflowException"
+        },
+        {
+          "id": "b",
+          "text": "静默回绕为负数 -2147483648，不抛异常"
+        },
+        {
+          "id": "c",
+          "text": "编译错误"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-io-metadata-exception-handling-c01",
+      "type": "code",
+      "prompt": "实现一个带异常兜底的整数计算器。输入可能有多行，每行形如 `左操作数 运算符 右操作数`（单个空格分隔），运算符为 +、-、*、/。对每一行输出计算结果；运算数为非法整数（FormatException）、除数为零（DivideByZeroException）、checked 运算溢出（OverflowException）、运算符未知或字段数不是 3 时，该行输出 ERR。使用 checked 上下文执行运算。空行忽略；输出后以退出码 0 结束。",
+      "starter_code": "using System.Globalization;\n\n// 逐行解析：int.Parse 放在 try 内，checked 包住运算，按具体异常分别兜底\n",
+      "visible_tests": [
+        "输入 12 + 30 时输出 42。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "using System.Globalization;\n\nvar text = Console.In.ReadToEnd();\nif (text.Length > 0)\n{\n    var inputLines = text.Replace(\"\\r\\n\", \"\\n\").Split('\\n');\n    if (inputLines[^1].Length == 0) inputLines = inputLines[..^1];\n    foreach (var line in inputLines)\n    {\n        if (line.Length == 0) continue;\n        Console.WriteLine(Evaluate(line));\n    }\n}\n\nstatic string Evaluate(string line)\n{\n    var tokens = line.Split(' ');\n    if (tokens.Length != 3) return \"ERR\";\n    try\n    {\n        checked\n        {\n            var left = int.Parse(tokens[0], CultureInfo.InvariantCulture);\n            var right = int.Parse(tokens[2], CultureInfo.InvariantCulture);\n            return tokens[1] switch\n            {\n                \"+\" => (left + right).ToString(CultureInfo.InvariantCulture),\n                \"-\" => (left - right).ToString(CultureInfo.InvariantCulture),\n                \"*\" => (left * right).ToString(CultureInfo.InvariantCulture),\n                \"/\" => (left / right).ToString(CultureInfo.InvariantCulture),\n                _ => \"ERR\"\n            };\n        }\n    }\n    catch (DivideByZeroException) { return \"ERR\"; }\n    catch (OverflowException) { return \"ERR\"; }\n    catch (FormatException) { return \"ERR\"; }\n}\n",
+        "hidden_tests": [
+          "输入 7 / 2 时整数除法截断输出 3。",
+          "输入 5 / 0 时输出 ERR。",
+          "输入 2147483647 + 1 时 checked 溢出输出 ERR。",
+          "输入 abc + 1 时解析失败输出 ERR。",
+          "输入 12 % 5 时未知运算符输出 ERR。",
+          "输入只有两个字段（如 12 +）时输出 ERR。",
+          "输入 -3 * -4 时输出 12。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "12 + 30\n",
+            "stdout": "42\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "7 / 2\n",
+            "stdout": "3\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "5 / 0\n",
+            "stdout": "ERR\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2147483647 + 1\n",
+            "stdout": "ERR\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "abc + 1\n",
+            "stdout": "ERR\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "12 % 5\n",
+            "stdout": "ERR\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "12 +\n",
+            "stdout": "ERR\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-3 * -4\n",
+            "stdout": "12\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

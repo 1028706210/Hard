@@ -73,35 +73,66 @@
     {
       "id": "python-foundations-vscode-c01",
       "type": "code",
-      "prompt": "按顺序输出“Select interpreter”和“Run file”。",
-      "starter_code": "# 输出两步",
+      "prompt": "为工作区生成两行运行步骤，不执行命令。标准输入恰好两行，逐行去掉首尾空白：第一行是解释器标签（ASCII 字母或数字开头，后续只含字母、数字、点、下划线、连字符），第二行是单个 .py 文件名（ASCII 字母或下划线开头，后续只含字母、数字、下划线，扩展名小写 .py）。按顺序输出 Select interpreter: 标签 和 Run file: 文件名，两行前缀后各有一个空格。行数不对或字段无效时不输出内容，退出码为 1。起始代码提供解析与校验。",
+      "starter_code": "import sys\nlines = [line.strip() for line in sys.stdin.read().splitlines()]\nimport re\nif len(lines) != 2:\n    raise SystemExit(1)\ninterpreter, entry = lines\nif re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]*', interpreter) is None or re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*\\.py', entry) is None:\n    raise SystemExit(1)\n# 按题面补上结果计算与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'python3\\nmain.py'，输出 'Select interpreter: python3\\nRun file: main.py'，退出码 0。",
+        "输入 'study-env\\ncheck.py'，输出 'Select interpreter: study-env\\nRun file: check.py'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-foundations-vscode-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    print('Select interpreter')\n    print('Run file')\n",
+        "reference_solution": "import sys\nlines = [line.strip() for line in sys.stdin.read().splitlines()]\nimport re\nif len(lines) != 2:\n    raise SystemExit(1)\ninterpreter, entry = lines\nif re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]*', interpreter) is None or re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*\\.py', entry) is None:\n    raise SystemExit(1)\nprint(f\"Select interpreter: {interpreter}\")\nprint(f\"Run file: {entry}\")\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面声明的有效边界。",
+          "不符合约定的输入不得产生输出，退出码为 1。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
-            "stdout": "Select interpreter\nRun file\n",
+            "stdin": "python3\nmain.py\n",
+            "stdout": "Select interpreter: python3\nRun file: main.py\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "study-env\ncheck.py\n",
+            "stdout": "Select interpreter: study-env\nRun file: check.py\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-foundations-vscode-c01\n",
+            "stdin": " python3.13 \n _check2.py \n",
+            "stdout": "Select interpreter: python3.13\nRun file: _check2.py\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "python3\n",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "python3\nmain.py\nextra\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "\nmain.py\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "python3\n../main.py\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "python3;run\nmain.py\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

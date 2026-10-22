@@ -73,35 +73,51 @@
     {
       "id": "python-capstone-openai-c01",
       "type": "code",
-      "prompt": "实现 extract_text(payload)：从本地 payload 的 choices 第一项取 content；输出 fixture 的内容。",
-      "starter_code": "def extract_text(payload):\n    # 只解析已给字典，不调用网络\n    pass\n\nfixture = {'choices': [{'message': {'content': 'Local result'}}]}\nprint(extract_text(fixture))",
+      "prompt": "读取一个本地JSON响应fixture，choices必须为非空列表，第一项的message.content必须为字符串。提取并打印content，允许空字符串，保留内部内容；其他choice不参与。缺失结构、类型不符或非法JSON无输出，退出码1。这是题目指定的离线响应结构，不调用任何AI服务、不读取密钥，不声称涵盖所有API返回类型。",
+      "starter_code": "import sys, json\ntry:\n    data = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif not isinstance(data, dict):\n    raise SystemExit(1)\ntry:\n    content = data[\"choices\"][0][\"message\"][\"content\"]\nexcept (KeyError, IndexError, TypeError):\n    raise SystemExit(1)\nif not isinstance(data.get(\"choices\"), list) or not isinstance(content,str):\n    raise SystemExit(1)\n# 按题面实现本课操作\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '{\"choices\":[{\"message\":{\"content\":\"Local result\"}}]}'，输出 'Local result\\n'，退出码 0。",
+        "输入 '{\"choices\":[{\"message\":{\"content\":\"你好\"}}]}'，输出 '你好\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-capstone-openai-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    def extract_text(payload):\n        return payload['choices'][0]['message']['content']\n\n    fixture = {'choices': [{'message': {'content': 'Local result'}}]}\n    print(extract_text(fixture))\n",
+        "reference_solution": "import sys, json\ntry:\n    data = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif not isinstance(data, dict):\n    raise SystemExit(1)\ntry:\n    content = data[\"choices\"][0][\"message\"][\"content\"]\nexcept (KeyError, IndexError, TypeError):\n    raise SystemExit(1)\nif not isinstance(data.get(\"choices\"), list) or not isinstance(content,str):\n    raise SystemExit(1)\ndef extract_text(payload):\n    return payload[\"choices\"][0][\"message\"][\"content\"]\nprint(extract_text(data))\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面规定的有效边界和失败行为。",
+          "输出格式、类型和顺序以题面约定为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "{\"choices\":[{\"message\":{\"content\":\"Local result\"}}]}",
             "stdout": "Local result\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"choices\":[{\"message\":{\"content\":\"你好\"}}]}",
+            "stdout": "你好\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-capstone-openai-c01\n",
+            "stdin": "{\"choices\":[{\"message\":{\"content\":\"\"}}]}",
+            "stdout": "\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "{\"choices\":[]}",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "{\"choices\":[{\"message\":{\"content\":null}}]}",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "{}",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

@@ -73,35 +73,56 @@
     {
       "id": "python-database-deployment-uwsgi-c01",
       "type": "code",
-      "prompt": "实现 safe_config(config)：当键中不含 password、secret、debug 时返回 True。打印只含 module 的配置检查结果。",
-      "starter_code": "def safe_config(config):\n    # 拒绝不安全的配置键\n    pass\n\nprint(safe_config({'module': 'app:app'}))",
+      "prompt": "输入JSON配置对象。仅做顶层键检查：只要出现 password、secret、debug 中任意一个键即输出False，否则True，键名大小写敏感。值不参与判断，debug:false 仍为False。非法JSON或非对象无输出，退出码1。只是简化审查规则，不启动uWSGI，不证明整个配置安全。",
+      "starter_code": "import sys, json\ntry:\n    data = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif not isinstance(data, dict):\n    raise SystemExit(1)\n# 按题面实现本课操作\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '{\"module\":\"app:app\"}'，输出 'True\\n'，退出码 0。",
+        "输入 '{\"debug\":false}'，输出 'False\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-database-deployment-uwsgi-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    def safe_config(config):\n        return not ({'password', 'secret', 'debug'} & set(config))\n\n    print(safe_config({'module': 'app:app'}))\n",
+        "reference_solution": "import sys, json\ntry:\n    data = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif not isinstance(data, dict):\n    raise SystemExit(1)\ndef safe_config(config):\n    return not ({\"password\", \"secret\", \"debug\"} & set(config))\nprint(safe_config(data))\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面规定的有效边界和失败行为。",
+          "输出格式、类型和顺序以题面约定为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "{\"module\":\"app:app\"}",
             "stdout": "True\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"debug\":false}",
+            "stdout": "False\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-database-deployment-uwsgi-c01\n",
+            "stdin": "{}",
+            "stdout": "True\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "{\"password\":\"\"}",
+            "stdout": "False\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"secret\":null}",
+            "stdout": "False\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"Debug\":true}",
+            "stdout": "True\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "[]",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
           }
         ]
       }

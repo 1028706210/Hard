@@ -1,0 +1,136 @@
+{
+  "lesson_id": "java-foundations-basic-data-types",
+  "questions": [
+    {
+      "id": "java-foundations-basic-data-types-k01",
+      "type": "knowledge",
+      "prompt": "Java 基本数据类型最需要先明确什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "int、boolean、char 与范围的输入、规则和输出"
+        },
+        {
+          "id": "b",
+          "text": "公开样例的固定输出"
+        },
+        {
+          "id": "c",
+          "text": "在线服务响应"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "java-foundations-basic-data-types-k02",
+      "type": "knowledge",
+      "prompt": "为什么要保留边界输入？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "让程序忽略错误"
+        },
+        {
+          "id": "b",
+          "text": "验证空值或异常状态下规则仍明确"
+        },
+        {
+          "id": "c",
+          "text": "减少测试"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-foundations-basic-data-types-k03",
+      "type": "knowledge",
+      "prompt": "哪个做法更可靠？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "只输出公开答案"
+        },
+        {
+          "id": "b",
+          "text": "跳过失败分支"
+        },
+        {
+          "id": "c",
+          "text": "用不同输入断言不同结果或失败状态"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "java-foundations-basic-data-types-c01",
+      "type": "code",
+      "prompt": "读取一个Java long范围内整数n，判断它能否无损放入int，即Integer.MIN_VALUE到Integer.MAX_VALUE（含端点），输出true或false。超过long范围、非整数或空输入无输出，退出码1。不要先强制转换再判断。",
+      "starter_code": "import java.nio.charset.StandardCharsets;\npublic class Main {\n    \n    public static void main(String[] args) throws Exception {\n        String text = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        long n;\n        try { n = Long.parseLong(text); } catch (NumberFormatException error) { System.exit(1); return; }\n        // 按题面完成本课操作与输出\n    }\n}\n",
+      "visible_tests": [
+        "输入 '42'，输出 'true\\n'，退出码 0。",
+        "输入 '2147483648'，输出 'false\\n'，退出码 0。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\npublic class Main {\n    \n    public static void main(String[] args) throws Exception {\n        String text = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        long n;\n        try { n = Long.parseLong(text); } catch (NumberFormatException error) { System.exit(1); return; }\n        boolean fits = n >= Integer.MIN_VALUE && n <= Integer.MAX_VALUE;\n        System.out.println(fits);\n    }\n}\n",
+        "hidden_tests": [
+          "覆盖真实主题边界，不使用未声明的特殊标记。",
+          "校验输入、输出格式和退出码。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "42",
+            "stdout": "true\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2147483648",
+            "stdout": "false\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "-2147483648",
+            "stdout": "true\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2147483647",
+            "stdout": "true\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-2147483649",
+            "stdout": "false\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "0",
+            "stdout": "true\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "9223372036854775808",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -10,10 +10,42 @@ class ContentModel(BaseModel):
     model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
 
 
+class ConceptCompareSlot(ContentModel):
+    """跨语言对照的单语言槽位；available 提供完整人工解释，missing 只携带真实缺失说明。"""
+
+    status: Literal["available", "missing"] = "available"
+    summary: str = ""
+    difference: str = ""
+    code: str | None = None
+    lesson_id: str | None = None
+    note: str | None = None
+
+    @model_validator(mode="after")
+    def check_slot_consistency(self) -> "ConceptCompareSlot":
+        if self.status == "available":
+            if not self.summary or not self.difference or not self.code or not self.lesson_id:
+                raise ValueError("可比较槽位必须包含 summary、difference、code 与 lesson_id。")
+            if self.note is not None:
+                raise ValueError("可比较槽位不应携带 note。")
+        else:
+            if not self.note:
+                raise ValueError("缺失槽位必须提供真实缺失说明 note。")
+            if self.summary or self.difference or self.code is not None or self.lesson_id is not None:
+                raise ValueError("缺失槽位不应包含 summary、difference、code 或 lesson_id。")
+        return self
+
+
 class Concept(ContentModel):
     id: str = Field(min_length=1)
     name: str = Field(min_length=1)
     description: str = Field(min_length=1)
+    compare: dict[Literal["python", "java", "csharp", "cpp"], ConceptCompareSlot] | None = None
+
+    @model_validator(mode="after")
+    def check_compare_slots(self) -> "Concept":
+        if self.compare is not None and set(self.compare) != {"python", "java", "csharp", "cpp"}:
+            raise ValueError("compare 必须恰好包含 python、java、csharp、cpp 四个槽位。")
+        return self
 
 
 class ConceptsDocument(ContentModel):

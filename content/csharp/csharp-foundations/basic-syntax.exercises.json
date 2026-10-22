@@ -1,0 +1,110 @@
+{
+  "lesson_id": "csharp-foundations-basic-syntax",
+  "questions": [
+    {
+      "id": "csharp-foundations-basic-syntax-k01",
+      "type": "knowledge",
+      "prompt": "C# 标识符用于表示什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "只能表示数字字面量"
+        },
+        {
+          "id": "b",
+          "text": "变量、方法、类型等程序元素的名称"
+        },
+        {
+          "id": "c",
+          "text": "只能表示代码注释"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-foundations-basic-syntax-k02",
+      "type": "knowledge",
+      "prompt": "哪一组分别是合法的 decimal、char 和 string 字面量？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "12.5、\"A\"、'text'"
+        },
+        {
+          "id": "b",
+          "text": "12m、\"A\"、@A"
+        },
+        {
+          "id": "c",
+          "text": "12.5m、'A'、\"text\""
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "csharp-foundations-basic-syntax-k03",
+      "type": "knowledge",
+      "prompt": "直接把关键字 class 当作普通变量名会怎样？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "产生编译错误；若确有需要可写成 @class"
+        },
+        {
+          "id": "b",
+          "text": "自动转换成类型声明"
+        },
+        {
+          "id": "c",
+          "text": "始终等价于名为 Class 的变量"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-foundations-basic-syntax-c01",
+      "type": "code",
+      "prompt": "读取整数 count，使用标识符 language、marker 和 count 保存字符串字面量 \"C#\"、字符字面量 '#' 与输入值，输出 C#:#count。",
+      "starter_code": "var count = int.Parse(Console.ReadLine() ?? \"\");\n// 声明 language 与 marker，并按格式输出\n",
+      "visible_tests": [
+        "输入 3 时输出 C#:#3。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var count = int.Parse(Console.ReadLine() ?? \"\");\nvar language = \"C#\";\nvar marker = '#';\nConsole.WriteLine($\"{language}:{marker}{count}\");\n",
+        "hidden_tests": [
+          "零值保持数字字面含义。",
+          "多位整数完整输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3\n",
+            "stdout": "C#:#3\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "C#:#0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "12\n",
+            "stdout": "C#:#12\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

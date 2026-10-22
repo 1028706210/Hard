@@ -44,6 +44,8 @@ test("navigation keeps keyboard focus, 44px targets, and reduced-motion support"
   await page.goto("/");
 
   await page.keyboard.press("Tab");
+  await expect(page.getByRole("link", { name: "跳到主要内容" })).toBeFocused();
+  await page.keyboard.press("Tab");
   await expect(page.getByRole("link", { name: "Hard 知识星图主页" })).toBeFocused();
   const courseLink = page.getByRole("link", { name: "课程", exact: true });
   const box = await courseLink.boundingBox();

@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-algorithms-concurrency-valarray",
+  "questions": [
+    {
+      "id": "cpp-algorithms-concurrency-valarray-k01",
+      "type": "knowledge",
+      "prompt": "valarray * 2 的结果是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "只修改第一个元素"
+        },
+        {
+          "id": "b",
+          "text": "每个元素都乘 2 的新数组"
+        },
+        {
+          "id": "c",
+          "text": "编译错误，数组不能整体运算"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-valarray-k02",
+      "type": "knowledge",
+      "prompt": "valarray 最适合的场景是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "数值批量运算与聚合"
+        },
+        {
+          "id": "b",
+          "text": "需要频繁插入删除的队列"
+        },
+        {
+          "id": "c",
+          "text": "键值查找"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-valarray-k03",
+      "type": "knowledge",
+      "prompt": "valarray 与 STL 容器的关系是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "完全等价，可互相替换"
+        },
+        {
+          "id": "b",
+          "text": "valarray 不参与 STL 迭代器/算法体系，定位为数值数组"
+        },
+        {
+          "id": "c",
+          "text": "valarray 是 vector 的子类"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-valarray-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 1..1000，含两端）与 n 个整数（每个合同范围 -10000..10000，含两端），存入 std::valarray<long long> 后整体乘 2，输出翻倍后的总和（long long）。n 或任一值无法解析或越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <valarray>\n#include <iostream>\n\nint main() {\n    // 读取 n 与 n 个整数，整体翻倍后求和\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 n=3 与 1 2 3 时输出 12。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <valarray>\n\nint main() {\n    int n = 0;\n    if (!(std::cin >> n)) return 1;\n    if (n < 1 || n > 1000) return 1;\n    std::valarray<long long> values(0LL, static_cast<std::size_t>(n));\n    for (int i = 0; i < n; i++) {\n        long long value = 0;\n        if (!(std::cin >> value)) return 1;\n        if (value < -10000 || value > 10000) return 1;\n        values[static_cast<std::size_t>(i)] = value;\n    }\n    std::valarray<long long> doubled = values * 2LL;\n    std::cout << doubled.sum() << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "含负数时翻倍求和保留符号。",
+          "n=1 时输出两倍元素值。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 1 2 3\n",
+            "stdout": "12\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "2 -3 4\n",
+            "stdout": "2\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1 5\n",
+            "stdout": "10\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

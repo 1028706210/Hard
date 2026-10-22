@@ -73,35 +73,71 @@
     {
       "id": "python-functions-iteration-type-hints-c01",
       "type": "code",
-      "prompt": "定义带 int 注解的 add，输出 3。",
-      "starter_code": "def add(left, right):\n    # 返回和\n    pass",
+      "prompt": "定义 add(left: int, right: int) -> int，返回两数之和。读取恰好两个以空白分隔的整数，调用 add 并输出返回值。零与负数有效；非整数、空输入或字段数量错误时不输出内容，退出码为 1。起始代码已提供输入解析。注解表达接口意图，不代替 int 转换与输入校验；在线判题检查运行结果，不执行静态类型检查。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    left, right = map(int, text.split())\nexcept ValueError:\n    raise SystemExit(1)\n# 按题面定义函数并调用输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '1 2'，输出 '3\\n'，退出码 0。",
+        "输入 '4 5'，输出 '9\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-functions-iteration-type-hints-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    def add(left: int, right: int) -> int:\n        return left + right\n    print(add(1, 2))\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    left, right = map(int, text.split())\nexcept ValueError:\n    raise SystemExit(1)\ndef add(left: int, right: int) -> int:\n    return left + right\nprint(add(left, right))\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的有效输入与边界。",
+          "无效输入不输出内容，以退出码 1 结束。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "1 2",
             "stdout": "3\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "4 5",
+            "stdout": "9\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-functions-iteration-type-hints-c01\n",
+            "stdin": "0 0",
+            "stdout": "0\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "-2 5",
+            "stdout": "3\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-3 -4",
+            "stdout": "-7\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "1 2 3",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "x 2",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "1.5 2",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }
@@ -109,35 +145,56 @@
     {
       "id": "python-functions-iteration-type-hints-challenge",
       "type": "challenge",
-      "prompt": "定义 greeting(name: str) -> str 并输出 Hello, Hard。",
-      "starter_code": "def greeting(name):\n    # 返回问候\n    pass",
+      "prompt": "定义 greeting(name: str) -> str，返回 Hello, 后接一个空格和 name。读取一段名称文本，去掉首尾空白、保留内部空格，调用函数并输出结果。中文有效；空白输入不输出内容，退出码为 1。起始代码已读取校验 text。注解不替代输入检查，在线判题只验证运行结果。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\nif not text:\n    raise SystemExit(1)\n# 按题面定义函数并调用输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'Hard'，输出 'Hello, Hard\\n'，退出码 0。",
+        "输入 'Ada'，输出 'Hello, Ada\\n'，退出码 0。"
       ],
       "experience_points": 30,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-functions-iteration-type-hints-challenge')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    def greeting(name: str) -> str:\n        return f'Hello, {name}'\n    print(greeting('Hard'))\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\nif not text:\n    raise SystemExit(1)\ndef greeting(name: str) -> str:\n    return f\"Hello, {name}\"\nprint(greeting(text))\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的有效输入与边界。",
+          "无效输入不输出内容，以退出码 1 结束。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "Hard",
             "stdout": "Hello, Hard\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "Ada",
+            "stdout": "Hello, Ada\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-functions-iteration-type-hints-challenge\n",
+            "stdin": "  Ada  Li \n",
+            "stdout": "Hello, Ada  Li\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "学习",
+            "stdout": "Hello, 学习\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__",
+            "stdout": "Hello, __invalid__\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": " \n",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

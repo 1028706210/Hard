@@ -73,33 +73,49 @@
     {
       "id": "python-concurrency-network-asyncio-c01",
       "type": "code",
-      "prompt": "真实运行 async def、await 与 asyncio.run：普通文本转大写，cancel 返回取消状态。",
-      "starter_code": "import asyncio\nimport sys\n# 用 async def、await 和 asyncio.run 处理输入\n",
+      "prompt": "读取非空文本并去掉首尾空白。普通文本通过本地 async render 协程转大写；文本恰好为 cancel 时创建任务并取消，捕获 CancelledError 后输出 cancelled。其他文本包括 __invalid__ 均按普通文本处理。空白输入无输出，退出码 1。使用 asyncio.run、await，不发请求；支架已读取 text。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\nimport asyncio\nif not text:\n    raise SystemExit(1)\n# 按题面实现本课操作\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'hard'，输出 'HARD\\n'，退出码 0。",
+        "输入 'cancel'，输出 'cancelled\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import asyncio\nimport sys\nasync def render(text):\n    await asyncio.sleep(0)\n    return text.upper()\nasync def main(text):\n    if text == '__invalid__':\n        raise ValueError('invalid job')\n    if text == 'cancel':\n        task = asyncio.create_task(render('late'))\n        task.cancel()\n        try:\n            await task\n        except asyncio.CancelledError:\n            return 'cancelled'\n    if not text:\n        raise ValueError('text required')\n    return await asyncio.wait_for(render(text), timeout=0.1)\nprint(asyncio.run(main(sys.stdin.read().strip())))\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\nimport asyncio\nif not text:\n    raise SystemExit(1)\nasync def render(value):\n    await asyncio.sleep(0)\n    return value.upper()\nasync def main(value):\n    if value == \"cancel\":\n        task = asyncio.create_task(render(value))\n        task.cancel()\n        try:\n            await task\n        except asyncio.CancelledError:\n            return \"cancelled\"\n    return await render(value)\nprint(asyncio.run(main(text)))\n",
         "hidden_tests": [
-          "边界输入必须返回主题定义的结果。",
-          "无效输入必须进入可预期的失败分支。"
+          "检查题面规定的有效边界和失败行为。",
+          "输出格式、类型和顺序以题面约定为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "hard\n",
+            "stdin": "hard",
             "stdout": "HARD\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "cancel",
+            "stdout": "cancelled\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "cancel\n",
-            "stdout": "cancelled\n",
+            "stdin": "__invalid__",
+            "stdout": "__INVALID__\n",
             "exit_code": 0
           },
           {
-            "stdin": "__invalid__\n",
+            "stdin": " 学习 Python ",
+            "stdout": "学习 PYTHON\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "A  b",
+            "stdout": "A  B\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "",
             "stdout": "",
             "exit_code": 1
           }
@@ -109,35 +125,51 @@
     {
       "id": "python-concurrency-network-asyncio-challenge",
       "type": "challenge",
-      "prompt": "判断 cancelled 是否属于终态集合，并输出 True。",
-      "starter_code": "terminal = {'done', 'cancelled'}\n# 输出检查结果",
+      "prompt": "读取状态文本并去掉首尾空白，判断它是否恰好属于终态集合 done、cancelled，输出True或False。大小写敏感，空文本与未知状态都为False，正常结束。只验证状态规则，不创建任务。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\n# 按题面实现本课操作\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'cancelled'，输出 'True\\n'，退出码 0。",
+        "输入 'running'，输出 'False\\n'，退出码 0。"
       ],
       "experience_points": 30,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-concurrency-network-asyncio-challenge')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    terminal = {'done', 'cancelled'}\n    print('cancelled' in terminal)\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\nterminal = {\"done\", \"cancelled\"}\nprint(text in terminal)\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面规定的有效边界和失败行为。",
+          "输出格式、类型和顺序以题面约定为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "cancelled",
             "stdout": "True\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "running",
+            "stdout": "False\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-concurrency-network-asyncio-challenge\n",
+            "stdin": "done",
+            "stdout": "True\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
-            "stdout": "",
-            "exit_code": 2
+            "stdin": "Done",
+            "stdout": "False\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "",
+            "stdout": "False\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__",
+            "stdout": "False\n",
+            "exit_code": 0
           }
         ]
       }

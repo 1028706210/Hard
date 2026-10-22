@@ -1,0 +1,110 @@
+{
+  "lesson_id": "csharp-foundations-program-structure",
+  "questions": [
+    {
+      "id": "csharp-foundations-program-structure-k01",
+      "type": "knowledge",
+      "prompt": "一个可执行 C# 控制台程序从哪里开始执行？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "从顶级语句或约定的 Main 入口开始"
+        },
+        {
+          "id": "b",
+          "text": "从文件中最后一个类型开始"
+        },
+        {
+          "id": "c",
+          "text": "从任意注释行开始"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-foundations-program-structure-k02",
+      "type": "knowledge",
+      "prompt": "C# 中花括号 { } 的主要结构作用是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "声明 NuGet 依赖"
+        },
+        {
+          "id": "b",
+          "text": "界定类型、方法或控制语句等代码块"
+        },
+        {
+          "id": "c",
+          "text": "自动创建新进程"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-foundations-program-structure-k03",
+      "type": "knowledge",
+      "prompt": "采用顶级语句组织程序时，哪种放置方式会导致编译错误？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "先写 using 指令再写顶级语句"
+        },
+        {
+          "id": "b",
+          "text": "在顶级语句后声明类型"
+        },
+        {
+          "id": "c",
+          "text": "先声明类型，再在其后追加顶级语句"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "csharp-foundations-program-structure-c01",
+      "type": "code",
+      "prompt": "顶级入口依次读取 section 与 block 两行文本，调用局部函数 Compose 组织结果，并输出 section::block。",
+      "starter_code": "var section = Console.ReadLine() ?? \"\";\nvar block = Console.ReadLine() ?? \"\";\nConsole.WriteLine(Compose(section, block));\n\nstring Compose(string left, string right)\n{\n    // 在独立代码块中组织结果\n    return \"\";\n}\n",
+      "visible_tests": [
+        "输入 Entry 和 Body 时输出 Entry::Body。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var section = Console.ReadLine() ?? \"\";\nvar block = Console.ReadLine() ?? \"\";\nConsole.WriteLine(Compose(section, block));\n\nstring Compose(string left, string right)\n{\n    return $\"{left}::{right}\";\n}\n",
+        "hidden_tests": [
+          "不同入口名称仍由 Compose 组合。",
+          "空字符串作为其中一段时保留分隔符。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "Entry\nBody\n",
+            "stdout": "Entry::Body\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "Main\nHelpers\n",
+            "stdout": "Main::Helpers\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "\nBlock\n",
+            "stdout": "::Block\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

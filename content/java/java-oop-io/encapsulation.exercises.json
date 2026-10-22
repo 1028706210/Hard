@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-oop-io-encapsulation",
+  "questions": [
+    {
+      "id": "java-oop-io-encapsulation-k01",
+      "type": "knowledge",
+      "prompt": "封装的核心是使用什么修饰字段？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "public"
+        },
+        {
+          "id": "b",
+          "text": "private"
+        },
+        {
+          "id": "c",
+          "text": "static"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-oop-io-encapsulation-k02",
+      "type": "knowledge",
+      "prompt": "getter 方法的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "修改字段"
+        },
+        {
+          "id": "b",
+          "text": "读取字段值"
+        },
+        {
+          "id": "c",
+          "text": "删除字段"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-oop-io-encapsulation-k03",
+      "type": "knowledge",
+      "prompt": "为什么在 setter 中校验输入？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "提高性能"
+        },
+        {
+          "id": "b",
+          "text": "保护字段完整性"
+        },
+        {
+          "id": "c",
+          "text": "减少代码"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-oop-io-encapsulation-c01",
+      "type": "code",
+      "prompt": "从标准输入读取金额（整数），大于0输出 DEPOSITED:金额，否则输出 REJECTED。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\nclass Account {\n    private int balance;\n    void deposit(int amount) {\n        if (amount > 0) balance += amount;\n    }\n    int getBalance() { return balance; }\n}\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        int amount = Integer.parseInt(input);\n        Account a = new Account();\n        if (amount > 0) { a.deposit(amount); System.out.println(\"DEPOSITED:\" + amount); }\n        else System.out.println(\"REJECTED\");\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "100\n",
+            "stdout": "DEPOSITED:100\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "-5\n",
+            "stdout": "REJECTED\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

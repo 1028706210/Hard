@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-stl-containers-array",
+  "questions": [
+    {
+      "id": "cpp-stl-containers-array-k01",
+      "type": "knowledge",
+      "prompt": "std::array 的长度在什么时候确定？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "首次 push_back 时"
+        },
+        {
+          "id": "b",
+          "text": "运行时可随时改变"
+        },
+        {
+          "id": "c",
+          "text": "编译期，模板参数 N"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-array-k02",
+      "type": "knowledge",
+      "prompt": "访问越界会抛 std::out_of_range 的成员函数是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "operator[]"
+        },
+        {
+          "id": "b",
+          "text": "at()"
+        },
+        {
+          "id": "c",
+          "text": "front()"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-array-k03",
+      "type": "knowledge",
+      "prompt": "运行时才知道元素个数时应改用？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "std::array<T, 0>"
+        },
+        {
+          "id": "b",
+          "text": "更大的 std::array"
+        },
+        {
+          "id": "c",
+          "text": "std::vector"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-array-c01",
+      "type": "code",
+      "prompt": "读取 5 个整数（每个合同范围 -1000..1000，含两端）存入 std::array<int, 5>，随后按逆序输出，每个数占一行。任一值无法解析或越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <array>\n#include <iostream>\n\nint main() {\n    // 读取 5 个整数，逆序输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 1 2 3 4 5 时依次输出 5、4、3、2、1 各占一行。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <array>\n#include <iostream>\n\nint main() {\n    std::array<int, 5> values = {};\n    for (int i = 0; i < 5; i++) {\n        if (!(std::cin >> values[i])) return 1;\n        if (values[i] < -1000 || values[i] > 1000) return 1;\n    }\n    for (int i = 4; i >= 0; i--) {\n        std::cout << values[i] << \"\\n\";\n    }\n    return 0;\n}\n",
+        "hidden_tests": [
+          "含负数时逆序保留符号。",
+          "重复元素原样逆序输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1 2 3 4 5\n",
+            "stdout": "5\n4\n3\n2\n1\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "-1 0 7 7 3\n",
+            "stdout": "3\n7\n7\n0\n-1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2 2 2 2 2\n",
+            "stdout": "2\n2\n2\n2\n2\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

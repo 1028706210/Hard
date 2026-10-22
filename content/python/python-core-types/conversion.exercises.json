@@ -73,35 +73,71 @@
     {
       "id": "python-core-types-conversion-c01",
       "type": "code",
-      "prompt": "将文本 12 转为整数后输出加一的结果。",
-      "starter_code": "text = \"12\"\n# 转换并输出",
+      "prompt": "读取标准输入并去掉首尾空白，用 int 将文本转换成整数，输出该整数加 1 的结果。例如输入 12 输出 13，输入 -1 输出 0。接受 int 能解析的整数文本；空输入或不能转换的文本（如 3.5、abc）不输出任何内容，以退出码 1 结束。起始代码提供读取，请完成转换及 ValueError 处理。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\n# 尝试 int(text)，失败时退出码为 1；成功时输出加一结果\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '12'，输出 '13'，退出码 0。",
+        "输入 '4'，输出 '5'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-core-types-conversion-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    text = '12'\n    print(int(text) + 1)\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    value = int(text)\nexcept ValueError:\n    raise SystemExit(1)\nprint(value + 1)\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面声明的有效边界输入。",
+          "非法输入不输出内容，退出码为 1。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "12\n",
             "stdout": "13\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "4\n",
+            "stdout": "5\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-core-types-conversion-c01\n",
+            "stdin": "0\n",
+            "stdout": "1\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "-1\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": " +7 \n",
+            "stdout": "8\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1000\n",
+            "stdout": "1001\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3.5\n",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "abc\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": " \n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

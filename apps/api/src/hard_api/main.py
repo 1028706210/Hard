@@ -14,6 +14,7 @@ from fastapi import FastAPI, Request
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from hard_api.api.content import router as content_router
+from hard_api.api.comparison import router as comparison_router
 from hard_api.api.health import router as health_router
 from hard_api.api.assessment import router as assessment_router
 from hard_api.api.growth import router as growth_router
@@ -37,6 +38,9 @@ from hard_api.core.errors import (
 from hard_api.core.logging import configure_logging
 from hard_api.search.service import SearchService
 from hard_api.runners.manager import RunManager
+from hard_api.runners.cpp import CppRunner
+from hard_api.runners.csharp import CSharpRunner
+from hard_api.runners.java import JavaRunner
 from hard_api.runners.python import PythonRunner
 
 
@@ -115,7 +119,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.state.search_service = SearchService(app.state.settings.database_path, content_repository)
     app.state.runner_manager = RunManager(
         app.state.settings.runner_work_dir,
-        adapters={"python": PythonRunner()},
+        adapters={"python": PythonRunner(), "java": JavaRunner(), "csharp": CSharpRunner(), "cpp": CppRunner()},
         protected_paths=(app.state.settings.data_dir, app.state.settings.backup_dir, app.state.settings.export_dir),
     )
     app.state.backup_service = LocalBackupService(app.state.settings.backup_dir)
@@ -156,6 +160,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.add_exception_handler(Exception, unhandled_error_handler)
     app.include_router(health_router)
     app.include_router(content_router)
+    app.include_router(comparison_router)
     app.include_router(assessment_router)
     app.include_router(growth_router)
     app.include_router(progress_router)

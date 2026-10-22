@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-algorithms-concurrency-thread",
+  "questions": [
+    {
+      "id": "cpp-algorithms-concurrency-thread-k01",
+      "type": "knowledge",
+      "prompt": "对一个 std::thread 既不 join 也不 detach 就让它析构，会？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "静默忽略"
+        },
+        {
+          "id": "b",
+          "text": "调用 std::terminate 终止程序"
+        },
+        {
+          "id": "c",
+          "text": "自动 join"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-thread-k02",
+      "type": "knowledge",
+      "prompt": "向线程函数传引用参数需要？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "直接传变量名"
+        },
+        {
+          "id": "b",
+          "text": "用 std::ref 包装"
+        },
+        {
+          "id": "c",
+          "text": "声明为 static"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-thread-k03",
+      "type": "knowledge",
+      "prompt": "join() 的语义是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "阻塞等待线程结束"
+        },
+        {
+          "id": "b",
+          "text": "立即杀死线程"
+        },
+        {
+          "id": "c",
+          "text": "把线程挂起"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-thread-c01",
+      "type": "code",
+      "prompt": "读取两个整数 a 与 b（合同范围 -1000..1000，含两端），用 std::thread 启动 worker 线程计算 a 的平方并写入共享变量，主线程同时计算 b 的平方，join 后输出两平方之和（long long）。任一输入无法解析或越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <iostream>\n#include <thread>\n\nint main() {\n    // 读取 a b，线程算 a²、主线程算 b²，输出和\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3 4 时输出 25。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <thread>\n\nint main() {\n    long long a = 0, b = 0;\n    if (!(std::cin >> a >> b)) return 1;\n    if (a < -1000 || a > 1000) return 1;\n    if (b < -1000 || b > 1000) return 1;\n    long long a_square = 0;\n    std::thread worker([&a_square, a]() {\n        a_square = a * a;\n    });\n    long long b_square = b * b;\n    worker.join();\n    std::cout << a_square + b_square << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "负数平方为正。",
+          "两数相同输出两倍平方。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 4\n",
+            "stdout": "25\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "-3 4\n",
+            "stdout": "25\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "5 5\n",
+            "stdout": "50\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

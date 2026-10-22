@@ -73,35 +73,86 @@
     {
       "id": "python-core-types-data-types-c01",
       "type": "code",
-      "prompt": "定义 label 为 Hard，并输出其类型名称。",
-      "starter_code": "label = \"\"\n# 输出类型",
+      "prompt": "从标准输入读取一个 JSON 基本值，输出该值在 Python 中的类型名：整数为 int，小数为 float，布尔值为 bool，带双引号的文本为 str。例如输入 \"Hard\"（含双引号），输出 str；输入 8，输出 int。仅接受这四种类型；空输入、无效 JSON、null、数组或对象都不输出内容，以退出码 1 结束。已提供安全解析代码，勿使用 eval；补上 type(value).__name__ 的输出。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\nimport json\ntry:\n    value = json.loads(text)\nexcept ValueError:\n    raise SystemExit(1)\nif type(value) not in (int, float, bool, str):\n    raise SystemExit(1)\n# 输出 value 的运行时类型名\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '\"Hard\"'，输出 'str'，退出码 0。",
+        "输入 '8'，输出 'int'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-core-types-data-types-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    label = 'Hard'\n    print(type(label).__name__)\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\nimport json\ntry:\n    value = json.loads(text)\nexcept ValueError:\n    raise SystemExit(1)\nif type(value) not in (int, float, bool, str):\n    raise SystemExit(1)\nprint(type(value).__name__)\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面声明的有效边界输入。",
+          "非法输入不输出内容，退出码为 1。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "\"Hard\"\n",
             "stdout": "str\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "8\n",
+            "stdout": "int\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-core-types-data-types-c01\n",
+            "stdin": "0\n",
+            "stdout": "int\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "-3\n",
+            "stdout": "int\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "0.5\n",
+            "stdout": "float\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "true\n",
+            "stdout": "bool\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "false\n",
+            "stdout": "bool\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "\"\"\n",
+            "stdout": "str\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "null\n",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "[]\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "{}\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "Hard\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

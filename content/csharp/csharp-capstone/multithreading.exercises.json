@@ -1,0 +1,71 @@
+{
+  "lesson_id": "csharp-capstone-multithreading",
+  "questions": [
+    {
+      "id": "csharp-capstone-multithreading-k01",
+      "type": "knowledge",
+      "prompt": "Thread.Join 的核心作用是什么？",
+      "choices": [
+        {"id": "a", "text": "强制两个线程按相同速度执行"},
+        {"id": "b", "text": "立即终止目标线程并释放其结果"},
+        {"id": "c", "text": "等待目标线程完成，使调用线程之后可以读取已经完成的结果"}
+      ],
+      "experience_points": 5,
+      "private": {"reference_answer": "c"}
+    },
+    {
+      "id": "csharp-capstone-multithreading-k02",
+      "type": "knowledge",
+      "prompt": "为什么两个线程同时执行 shared++ 可能丢失更新？",
+      "choices": [
+        {"id": "a", "text": "整数在 C# 中不能被线程访问"},
+        {"id": "b", "text": "读取、加一和写回不是一个不可分割操作，线程步骤可能交错"},
+        {"id": "c", "text": "Join 会把 shared 自动重置为零"}
+      ],
+      "experience_points": 5,
+      "private": {"reference_answer": "b"}
+    },
+    {
+      "id": "csharp-capstone-multithreading-k03",
+      "type": "knowledge",
+      "prompt": "本课为什么让两个线程写入不同的结果槽位？",
+      "choices": [
+        {"id": "a", "text": "每个槽位只有一个写入者，Join 后由主线程合并，可避免共享写入竞态"},
+        {"id": "b", "text": "数组槽位会自动创建更多 CPU 核心"},
+        {"id": "c", "text": "这样就不需要验证输入"}
+      ],
+      "experience_points": 5,
+      "private": {"reference_answer": "a"}
+    },
+    {
+      "id": "csharp-capstone-multithreading-c01",
+      "type": "code",
+      "prompt": "输入一行 1..50 个以空格分隔的整数，每个范围为 -1000000..1000000。启动两个 Thread：第一个处理索引 0、2、4...，第二个处理索引 1、3、5...；每个线程只写自己的 partialSum 和 evenCount 槽位。主线程 Start 后必须 Join 两个线程，再输出 sum=<全部元素总和> even=<偶数元素数量>。空输入、数量超限、非整数或越界值均不输出并以退出码 1 结束。",
+      "starter_code": "// 两个线程处理互不重叠的索引，并把结果写入各自槽位；Join 后统一输出\n",
+      "visible_tests": ["输入 1 2 3 4 5 时输出 sum=15 even=2。"],
+      "experience_points": 25,
+      "private": {
+        "reference_solution": "var tokens = (Console.ReadLine() ?? \"\").Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);\nif (tokens.Length < 1 || tokens.Length > 50) Environment.Exit(1);\nvar values = new int[tokens.Length];\nfor (var index = 0; index < tokens.Length; index++)\n{\n    if (!int.TryParse(tokens[index], out var value) || value < -1000000 || value > 1000000) Environment.Exit(1);\n    values[index] = value;\n}\nvar partialSums = new long[2];\nvar evenCounts = new int[2];\nvar workers = new Thread[2];\nfor (var workerIndex = 0; workerIndex < workers.Length; workerIndex++)\n{\n    var slot = workerIndex;\n    workers[slot] = new Thread(() =>\n    {\n        long sum = 0;\n        var even = 0;\n        for (var index = slot; index < values.Length; index += 2)\n        {\n            sum += values[index];\n            if (values[index] % 2 == 0) even++;\n        }\n        partialSums[slot] = sum;\n        evenCounts[slot] = even;\n    });\n}\nforeach (var worker in workers) worker.Start();\nforeach (var worker in workers) worker.Join();\nConsole.WriteLine($\"sum={partialSums[0] + partialSums[1]} even={evenCounts[0] + evenCounts[1]}\");\n",
+        "hidden_tests": [
+          "单个奇数由第一个线程处理。",
+          "负偶数和零都计入偶数数量。",
+          "全部为偶数时汇总数量正确。",
+          "非整数 token 被拒绝。",
+          "空输入被拒绝。",
+          "51 个整数超过数量上限时被拒绝。"
+        ],
+        "visible_test_cases": [
+          {"stdin": "1 2 3 4 5\n", "stdout": "sum=15 even=2\n", "exit_code": 0}
+        ],
+        "hidden_test_cases": [
+          {"stdin": "7\n", "stdout": "sum=7 even=0\n", "exit_code": 0},
+          {"stdin": "-2 -3 0 5\n", "stdout": "sum=0 even=2\n", "exit_code": 0},
+          {"stdin": "2 4 6 8\n", "stdout": "sum=20 even=4\n", "exit_code": 0},
+          {"stdin": "1 nope\n", "stdout": "", "exit_code": 1},
+          {"stdin": "\n", "stdout": "", "exit_code": 1},
+          {"stdin": "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1\n", "stdout": "", "exit_code": 1}
+        ]
+      }
+    }
+  ]
+}

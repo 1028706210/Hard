@@ -1,69 +1,52 @@
-import { mkdirSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-import { dirname, resolve } from "node:path";
+import { expect, test, type Page } from "@playwright/test";
 
-import { expect, test } from "@playwright/test";
+const lessonId = "python-foundations-hello-world";
+const helloSource = `import sys
+name = sys.stdin.read().strip()
+if name == "__invalid__" or (name and not name.isalpha()):
+    raise ValueError("name must contain letters only")
+print(f"Hello, {name or 'World'}!")`;
 
-
-const auditDirectory = process.env.HARD_AUDIT_SCREENSHOT_DIR ? resolve(process.env.HARD_AUDIT_SCREENSHOT_DIR, "task-18") : resolve(dirname(fileURLToPath(import.meta.url)), "../../../../.tool-cache/playwright-audit/task-18");
-const lesson = {
-  id: "python-foundations-hello-world",
-  language: "python",
-  exercises: [
-    { id: "python-foundations-hello-world-k01", type: "knowledge", prompt: "哪个函数输出文本？", choices: [{ id: "a", text: "print" }], starter_code: null, visible_tests: [], experience_points: 10 },
-    { id: "python-foundations-hello-world-c01", type: "code", prompt: "输出 Hello", choices: [], starter_code: "print('')", visible_tests: ["输出 Hello"], experience_points: 20 },
-  ],
-};
-
-function codeEditor(page: import("@playwright/test").Page) {
-  return page.locator(".monaco-editor").or(page.locator("#python-editor"));
-}
-
-async function replaceCode(page: import("@playwright/test").Page, source: string) {
-  await codeEditor(page).click();
+async function fillPythonCode(page: Page) {
+  const fallback = page.locator("[data-code-editor] #python-editor:visible");
+  if (await fallback.count()) {
+    await fallback.fill(helloSource);
+    return;
+  }
+  const editor = page.locator("[data-code-editor] .monaco-editor:visible").last();
+  await editor.click();
   await page.keyboard.press("Control+A");
-  await page.keyboard.type(source);
+  await page.keyboard.type(helloSource);
 }
 
-
-test.beforeEach(async ({ page }) => {
-  await page.route(`**/api/content/lessons/${lesson.id}`, (route) => route.fulfill({ json: lesson }));
-  await page.route("**/api/runners/submissions", (route) => route.fulfill({ json: { id: "job-1", status: "succeeded", result: { status: "succeeded", stdout: "Hello", diagnostics: [], duration_ms: 8, tests: { visible_passed: 1, visible_total: 1, hidden_passed: 0, hidden_total: 1 } } } }));
-  await page.route("**/api/assessment/attempts", (route) => route.fulfill({ json: { question_score: 100, total_score: 70, passed: true, mastery: "passed", newly_unlocked: [], experience_candidate: true, review_status: "none" } }));
-});
-
-
-test("scores knowledge and trusted code runs without exposing private runner data", async ({ page }) => {
+test("uses the real API for assessment scoring without exposing private runner data", async ({ page }) => {
+  await expect.poll(async () => (await page.request.get("/api/v1/health/live")).status()).toBe(200);
   await page.setViewportSize({ width: 1440, height: 1024 });
-  await page.goto(`/assessment/${lesson.id}`);
+  await page.goto(`/assessment/${lessonId}`);
 
-  await page.getByRole("button", { name: "print" }).click();
-  await page.getByRole("button", { name: "提交答案" }).click();
-  await expect(page.getByText("本题得分：100")).toBeVisible();
-  await page.getByRole("button", { name: "代码题" }).click();
-  await expect(page.locator(".monaco-editor")).toBeVisible();
-  await replaceCode(page, "print('Hello')");
-  await page.getByRole("button", { name: "运行代码" }).click();
-  await expect(page.getByText("隐藏测试失败：1")).toBeVisible();
+  await page.getByRole("radio", { name: "print", exact: true }).check();
+  await page.getByRole("button", { name: "提交答案", exact: true }).click();
+  await expect(page.getByText("本题得分：100", { exact: true })).toBeVisible();
+
+  await page.getByRole("button", { name: /^代码题(?:\s|$)/ }).click();
+  await fillPythonCode(page);
+  await page.getByRole("button", { name: "运行代码", exact: true }).click();
+  await expect(page.getByRole("heading", { name: "运行状态：运行完成" })).toBeVisible({ timeout: 15_000 });
+  await expect(page.getByText("公开测试：1 / 1 通过", { exact: true })).toBeVisible();
+  expect(await page.content()).not.toContain("hidden_");
   expect(await page.content()).not.toContain("reference_solution");
-  expect(await page.content()).not.toContain("hidden_tests");
-
-  mkdirSync(auditDirectory, { recursive: true });
-  await page.screenshot({ path: resolve(auditDirectory, "desktop-1440x1024.png"), fullPage: true });
+  expect(await page.content()).not.toContain("stdout");
+  expect(await page.content()).not.toContain("stderr");
 });
 
-
-test("mobile uses explicit editor and result panels", async ({ page }) => {
+test("uses explicit mobile editor and result panels with the real assessment", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto(`/assessment/${lesson.id}`);
+  await page.goto(`/assessment/${lessonId}`);
 
-  await page.getByRole("button", { name: "代码题" }).click();
-  await page.getByRole("button", { name: "结果" }).click();
-  await expect(page.getByText("等待运行结果")).toBeVisible();
-  await page.getByRole("button", { name: "编辑器" }).click();
-  await expect(codeEditor(page)).toBeVisible();
+  await page.getByRole("button", { name: /^代码题(?:\s|$)/ }).click();
+  await page.getByRole("button", { name: "结果", exact: true }).click();
+  await expect(page.getByText("等待运行结果", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "编辑器", exact: true }).click();
+  await expect(page.locator("[data-code-editor] #python-editor, [data-code-editor] .monaco-editor").first()).toBeVisible();
   expect(await page.locator("html").evaluate((element) => element.scrollWidth <= window.innerWidth)).toBeTruthy();
-
-  mkdirSync(auditDirectory, { recursive: true });
-  await page.screenshot({ path: resolve(auditDirectory, "mobile-390x844.png"), fullPage: true });
 });

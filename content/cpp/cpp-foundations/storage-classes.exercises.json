@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-foundations-storage-classes",
+  "questions": [
+    {
+      "id": "cpp-foundations-storage-classes-k01",
+      "type": "knowledge",
+      "prompt": "函数内 static 局部变量的生命周期是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "仅当次函数调用期间"
+        },
+        {
+          "id": "b",
+          "text": "由调用者手动管理"
+        },
+        {
+          "id": "c",
+          "text": "从初始化起存活到整个程序结束"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-foundations-storage-classes-k02",
+      "type": "knowledge",
+      "prompt": "static 局部变量 counter = 0 的初始化会发生几次？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "每次函数调用都执行一次"
+        },
+        {
+          "id": "b",
+          "text": "只执行一次，后续调用跳过初始化"
+        },
+        {
+          "id": "c",
+          "text": "由编译器随机决定"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-foundations-storage-classes-k03",
+      "type": "knowledge",
+      "prompt": "auto count = 10; 在现代 C++ 中的含义是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "声明一个自动存储期的变量，等价于旧式 auto"
+        },
+        {
+          "id": "b",
+          "text": "从初始化表达式推导 count 的类型"
+        },
+        {
+          "id": "c",
+          "text": "声明一个动态分配的变量"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-foundations-storage-classes-c01",
+      "type": "code",
+      "prompt": "编写函数 step()，其内部用 static 局部计数器在每次调用时自增 1 并返回新值；读取非负整数 n，调用 step() 共 n 次，输出最后一次的返回值（n 为 0 时输出 0）。",
+      "starter_code": "#include <iostream>\n\nint step() {\n    // 用 static 局部计数器实现\n    return 0;\n}\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    // 调用 step() n 次并输出结果\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3 时输出 3。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n\nint step() {\n    static int counter = 0;\n    return ++counter;\n}\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    int last = 0;\n    for (int i = 0; i < n; i++) {\n        last = step();\n    }\n    std::cout << last << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "输入 0 时不调用且输出 0。",
+          "输入其他次数时输出与调用次数一致。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3\n",
+            "stdout": "3\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "7\n",
+            "stdout": "7\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

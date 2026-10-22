@@ -1,0 +1,19 @@
+{
+  "changed_lesson_bodies": [
+    "content/cpp/cpp-advanced/dynamic-memory.md",
+    "content/cpp/cpp-advanced/exceptions.md",
+    "content/cpp/cpp-advanced/threads.md",
+    "content/cpp/cpp-algorithms-concurrency/atomic.md",
+    "content/cpp/cpp-algorithms-concurrency/condition-variable.md",
+    "content/cpp/cpp-algorithms-concurrency/future.md",
+    "content/cpp/cpp-algorithms-concurrency/mutex.md",
+    "content/cpp/cpp-capstone/examples.md",
+    "content/cpp/cpp-foundations/modifiers.md",
+    "content/cpp/cpp-foundations/operators.md",
+    "content/cpp/cpp-stl-containers/import.md"
+  ],
+  "unchanged_front_matter_count": 99,
+  "unchanged_course_and_exercise_files": 100,
+  "expand_lessons_matching_current_bodies": 11,
+  "compiled_or_runtime_tests": false
+}

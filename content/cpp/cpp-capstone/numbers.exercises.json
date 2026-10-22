@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-capstone-numbers",
+  "questions": [
+    {
+      "id": "cpp-capstone-numbers-k01",
+      "type": "knowledge",
+      "prompt": "std::numbers::pi 的求值时机与精度是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "宏展开，任意精度"
+        },
+        {
+          "id": "b",
+          "text": "运行期函数调用，float 精度"
+        },
+        {
+          "id": "c",
+          "text": "constexpr 编译期常量，double 精度"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-numbers-k02",
+      "type": "knowledge",
+      "prompt": "pi_v<float> 与 pi 的关系是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "两者类型必须相同"
+        },
+        {
+          "id": "b",
+          "text": "pi_v<float> 是 float 精度的变量模板特化"
+        },
+        {
+          "id": "c",
+          "text": "pi_v<float> 精度更高"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-capstone-numbers-k03",
+      "type": "knowledge",
+      "prompt": "std::numbers::e 的近似值是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "1.41421…"
+        },
+        {
+          "id": "b",
+          "text": "3.14159…"
+        },
+        {
+          "id": "c",
+          "text": "2.71828…"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-numbers-c01",
+      "type": "code",
+      "prompt": "读取整数半径 r（合同范围 1..100，含两端），用 std::numbers::pi 计算圆面积 pi×r×r，以 %.5f 格式输出一行（保留 5 位小数）。r 越界、无法解析或缺失时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cstdio>\n#include <numbers>\n\nint main() {\n    // 读取半径，numbers::pi 计算面积保留 5 位小数\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 1 时输出 3.14159。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <cstdio>\n#include <numbers>\n\nint main() {\n    int r = 0;\n    if (std::scanf(\"%d\", &r) != 1) return 1;\n    if (r < 1 || r > 100) return 1;\n    std::printf(\"%.5f\\n\", std::numbers::pi * r * r);\n    return 0;\n}\n",
+        "hidden_tests": [
+          "半径 2 输出 12.56637。",
+          "上边界 100 输出 31415.92654。",
+          "越界 101 不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1\n",
+            "stdout": "3.14159\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "2\n",
+            "stdout": "12.56637\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "100\n",
+            "stdout": "31415.92654\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "101\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

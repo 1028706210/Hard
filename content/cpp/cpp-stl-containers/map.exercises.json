@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-stl-containers-map",
+  "questions": [
+    {
+      "id": "cpp-stl-containers-map-k01",
+      "type": "knowledge",
+      "prompt": "对 map 中不存在的 key 使用 m[key] 会？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "抛出 out_of_range"
+        },
+        {
+          "id": "b",
+          "text": "插入该 key 与值默认构造的结果"
+        },
+        {
+          "id": "c",
+          "text": "返回 0 且不改变 map"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-map-k02",
+      "type": "knowledge",
+      "prompt": "遍历 std::map<std::string, int> 的顺序是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "按 key 字典序"
+        },
+        {
+          "id": "b",
+          "text": "按插入顺序"
+        },
+        {
+          "id": "c",
+          "text": "无任何保证"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-map-k03",
+      "type": "knowledge",
+      "prompt": "只判断 key 是否存在且不想改动 map，应使用？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "m[key]"
+        },
+        {
+          "id": "b",
+          "text": "m.count(key) 或 m.find(key)"
+        },
+        {
+          "id": "c",
+          "text": "m.at(key)"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-map-c01",
+      "type": "code",
+      "prompt": "读取一行以空格分隔的单词（个数 1..100，含两端，每个单词无空格且长度 1..20，含两端），用 std::map<std::string, int> 统计词频，随后按 key 字典序逐行输出 \"<单词> <次数>\"。无输入行、或个数与长度越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <iostream>\n#include <map>\n#include <sstream>\n#include <string>\n#include <vector>\n\nint main() {\n    // 读取一行单词，map 统计词频按字典序输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 to be or not to be 时依次输出 be 2、not 1、or 1、to 2 各占一行。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <map>\n#include <sstream>\n#include <string>\n#include <vector>\n\nint main() {\n    std::string line;\n    if (!std::getline(std::cin, line)) return 1;\n    std::istringstream reader(line);\n    std::vector<std::string> words;\n    std::string word;\n    while (reader >> word) {\n        if (word.size() < 1 || word.size() > 20) return 1;\n        words.push_back(word);\n    }\n    if (words.size() < 1 || words.size() > 100) return 1;\n    std::map<std::string, int> counts;\n    for (const std::string& item : words) {\n        counts[item]++;\n    }\n    for (const auto& entry : counts) {\n        std::cout << entry.first << \" \" << entry.second << \"\\n\";\n    }\n    return 0;\n}\n",
+        "hidden_tests": [
+          "全部相同单词输出一行且计数为总数。",
+          "已按字典序输入时输出顺序不变。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "to be or not to be\n",
+            "stdout": "be 2\nnot 1\nor 1\nto 2\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "go go go\n",
+            "stdout": "go 3\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "apple banana\n",
+            "stdout": "apple 1\nbanana 1\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

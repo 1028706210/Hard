@@ -1,0 +1,90 @@
+[
+  {
+    "lesson": "cpp-oop/classes",
+    "passed": true,
+    "status": "succeeded",
+    "diagnostics": "",
+    "expected": "25 25\n",
+    "actual": "25 25\n"
+  },
+  {
+    "lesson": "cpp-oop/inheritance",
+    "passed": true,
+    "status": "succeeded",
+    "diagnostics": "",
+    "expected": "2 1 150\n",
+    "actual": "2 1 150\n"
+  },
+  {
+    "lesson": "cpp-oop/polymorphism",
+    "passed": true,
+    "status": "succeeded",
+    "diagnostics": "",
+    "expected": "88 1 88\n",
+    "actual": "88 1 88\n"
+  },
+  {
+    "lesson": "cpp-core-memory/pointers",
+    "passed": true,
+    "status": "succeeded",
+    "diagnostics": "",
+    "expected": "7 9\n",
+    "actual": "7 9\n"
+  },
+  {
+    "lesson": "cpp-core-memory/references",
+    "passed": true,
+    "status": "succeeded",
+    "diagnostics": "",
+    "expected": "8 10 3\n",
+    "actual": "8 10 3\n"
+  },
+  {
+    "lesson": "cpp-advanced/templates",
+    "passed": true,
+    "status": "succeeded",
+    "diagnostics": "",
+    "expected": "7 3 orbit\n",
+    "actual": "7 3 orbit\n"
+  },
+  {
+    "lesson": "cpp-advanced/dynamic-memory",
+    "passed": true,
+    "status": "succeeded",
+    "diagnostics": "",
+    "expected": "1 7 7\n",
+    "actual": "1 7 7\n"
+  },
+  {
+    "lesson": "cpp-advanced/exceptions",
+    "passed": true,
+    "status": "succeeded",
+    "diagnostics": "",
+    "expected": "42\ninvalid\nrange\n",
+    "actual": "42\ninvalid\nrange\n"
+  },
+  {
+    "lesson": "cpp-core-memory/vector",
+    "passed": true,
+    "status": "succeeded",
+    "diagnostics": "",
+    "expected": "0 1\n4 11\n",
+    "actual": "0 1\n4 11\n"
+  },
+  {
+    "lesson": "cpp-stl-containers/vector",
+    "passed": true,
+    "status": "succeeded",
+    "diagnostics": "",
+    "expected": "1 3 5 \n",
+    "actual": "1 3 5 \n"
+  },
+  {
+    "lesson": "cpp-oop/interfaces",
+    "passed": true,
+    "status": "succeeded",
+    "diagnostics": "",
+    "expected": "12\n",
+    "actual": "12\n"
+  }
+]

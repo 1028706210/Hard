@@ -215,6 +215,7 @@ def learning_summary(database_path: Path, today: date | None = None) -> dict[str
                 "ORDER BY updated_at DESC LIMIT 1"
             )
         ).mappings().first()
+        lesson_statuses = dict(connection.execute(text("SELECT lesson_id, status FROM lesson_progress")).all())
         review_count = connection.execute(
             text("SELECT COUNT(*) FROM review_items WHERE status = 'scheduled' AND due_on <= :day"),
             {"day": day_value},
@@ -247,6 +248,7 @@ def learning_summary(database_path: Path, today: date | None = None) -> dict[str
         },
         "streak_days": streak_for_dates(activity_dates, current_day),
         "continue_learning": dict(continuing) if continuing else None,
+        "lesson_statuses": lesson_statuses,
         "due_review_count": int(review_count),
         "current_experience": int(total_experience),
         "current_level": 1 + int(total_experience) // 100,

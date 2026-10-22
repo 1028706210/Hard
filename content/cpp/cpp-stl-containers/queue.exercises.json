@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-stl-containers-queue",
+  "questions": [
+    {
+      "id": "cpp-stl-containers-queue-k01",
+      "type": "knowledge",
+      "prompt": "std::queue 的出入规则是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "先进先出"
+        },
+        {
+          "id": "b",
+          "text": "后进先出"
+        },
+        {
+          "id": "c",
+          "text": "按优先级出队"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-queue-k02",
+      "type": "knowledge",
+      "prompt": "queue 中 front() 返回的是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "最早入队、即将出队的元素"
+        },
+        {
+          "id": "b",
+          "text": "最近入队的元素"
+        },
+        {
+          "id": "c",
+          "text": "值最大的元素"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-queue-k03",
+      "type": "knowledge",
+      "prompt": "queue 的 pop() 作用在？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "队尾"
+        },
+        {
+          "id": "b",
+          "text": "队首"
+        },
+        {
+          "id": "c",
+          "text": "值最小的位置"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-queue-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 1..1000，含两端）、n 个整数（每个合同范围 -10000..10000，含两端）与整数 k（合同范围 0..n-1，含两端），把 n 个整数入队后出队 k 次，输出此时队首元素。任一输入无法解析或越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <iostream>\n#include <queue>\n\nint main() {\n    // 读取 n、n 个整数与 k，出队 k 次后输出队首\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 n=3、10 20 30 与 k=2 时输出 30。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <queue>\n\nint main() {\n    int n = 0;\n    if (!(std::cin >> n)) return 1;\n    if (n < 1 || n > 1000) return 1;\n    std::queue<int> waiting;\n    for (int i = 0; i < n; i++) {\n        int value = 0;\n        if (!(std::cin >> value)) return 1;\n        if (value < -10000 || value > 10000) return 1;\n        waiting.push(value);\n    }\n    int k = 0;\n    if (!(std::cin >> k)) return 1;\n    if (k < 0 || k >= n) return 1;\n    for (int i = 0; i < k; i++) {\n        waiting.pop();\n    }\n    std::cout << waiting.front() << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "k=0 时输出原队首。",
+          "k=n-1 时输出最后一个元素。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 10 20 30 2\n",
+            "stdout": "30\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "2 5 9 0\n",
+            "stdout": "5\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "4 1 2 3 4 3\n",
+            "stdout": "4\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

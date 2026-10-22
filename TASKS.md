@@ -542,271 +542,14 @@ Hard/
 
 ## Phase F — C# 路线
 
-**正式起始基线：** `6246473bf565be308c1505921ec1219beb30803c`
+### Task 41: .NET 10 C# runner 适配器
 
-**阶段状态：** Hard 当前范围为单用户、本地、个人编程学习平台，仅执行用户本人编写和信任的学习代码。`Task 41-RMT-PRE = CANCELLED_AS_NOT_REQUIRED_FOR_CURRENT_PRODUCT_SCOPE`；E2B/Remote Runner/生产级 Sandbox 路线停止且不再阻塞 Phase F。`Task 41 = READY FOR DISPATCH`，Task 42–46 继续等待 Task 41、独立审计和前端门禁；Phase G 为 `FROZEN`。
+**Files:** `apps/api/src/hard_api/runners/csharp.py`、`diagnostics/csharp.py`、`apps/api/tests/runners/test_csharp.py`、`fixtures/csharp/**`
 
-**唯一允许的执行顺序：**
-
-```text
-历史生产级 Sandbox 研究（保留证据，不再是当前前置门禁）
-→ Task 41-RMT-PRE（CANCELLED_AS_NOT_REQUIRED_FOR_CURRENT_PRODUCT_SCOPE）
-→ Task 41 — C# Runner / Trusted Local Learning Environment（READY FOR DISPATCH）
-→ Task 41 独立审计
-→ 前端 C# 编辑器兼容门禁
-→ 前端独立验收
-→ Task 42
-→ Task 43
-→ Task 44
-→ Task 45
-→ Task 46
-→ C# 内容统一验收
-→ Phase F 完整 E2E
-→ Phase F 最终统一审计
-```
-
-任一当前门禁出现 P0/P1、前序验证失败、公共合同缺口、未授权文件修改需求、安装/下载/提权需求或冻结架构变更需求时，立即停止后续步骤。不得并行或越序。Task 41 必须明确标注 `TRUSTED_LOCAL_LEARNING_ONLY`，不得宣传或暗示具备 hostile/untrusted code sandbox 能力。
-
-### Task 41-PRE: .NET 10 Runner 安全可行性门禁
-
-**性质：** 独立 PRE-GATE，只验证安全可行性，不实现 C# Runner，不修改产品源码。
-
-**起始基线：** `6246473bf565be308c1505921ec1219beb30803c`
-
-**允许产物：** 只读审计记录、一次性安全验证脚本/测试夹具和可复核证据；正式任务包必须单独限定允许路径。不得创建或修改 `apps/api/src/**`、`apps/web/src/**`、`content/**` 等产品实现。
-
-- [ ] 在当前 Windows 权限、当前 Hard Runner 基础设施、不安装额外沙箱、不提升管理员权限的条件下，证明存在可靠的 OS / process / sandbox 层文件访问隔离。
-- [ ] 证明 C# 用户进程允许 workspace 内相对文件读写。
-- [ ] 证明用户进程拒绝访问 `C:\Windows\win.ini`、任意绝对路径和 `..` 规范化逃逸。
-- [ ] 证明 `Path.Combine` / `Path.GetFullPath`、字符串拼接、Base64/编码构造路径、`System.IO` 全限定 API、Reflection、Delegate、Dynamic 等方式均不能绕过隔离。
-- [ ] 禁止以源码关键词扫描、API 名称黑名单或编码特征扫描冒充文件隔离。
-- [ ] 保存环境、机制、测试矩阵、原始输出、失败关闭行为和可复核结论。
-
-**结论枚举只能是：** `PASS` 或 `BLOCKED`。
-
-- `PASS`：所有允许/拒绝场景均由可靠的 OS / process / sandbox 层机制强制满足，且证据可复核；随后才可下发 Task 41。
-- `BLOCKED`：现有基础设施无法提供 hostile/untrusted code 隔离。该结论继续有效，但 2026-08-30 的 trusted-local 产品范围裁决使其不再阻塞当前 Task 41；未来多人在线/不可信执行仍受此结论约束。
-
-**2026-08-29 正式结果：`BLOCKED`。**
-
-外部 Agent 在 Windows 普通用户权限、固定 .NET SDK `10.0.100`、Hard 等价进程启动条件下完成验证：workspace 相对读写为 `ALLOW`；15 个应拒绝场景为 `0/15 DENY`。`C:\Windows\win.ini`、`..` 逃逸、`Path.GetFullPath`、字符串/`char[]`/Base64 构造路径、`System.IO` 全限定 API、`FileStream`/`FileInfo`/`Directory`、Reflection/Delegate/InvokeMember 均可访问或绕过。
-
-现有 host-side workspace path validation、cwd/env 控制、timeout、output limit 和 process-tree cleanup 无法形成 .NET 子进程的文件系统权限边界。本轮未修改正式项目文件或 `.git`，未安装软件，未创建 `CSharpRunner`，未产生 commit。
-
-当前状态：**Task 41-PRE / Task 41-SBX / Tier 3-PRE 历史结果保留；Task 41-RMT-PRE = CANCELLED_AS_NOT_REQUIRED_FOR_CURRENT_PRODUCT_SCOPE；E2B/Remote Runner 当前停止；Task 41 = READY FOR DISPATCH；Task 42–46 等待 Task 41 与前端门禁；Phase G = FROZEN。**
-
-### Phase F 安全决策项: Untrusted Runner filesystem isolation architecture
-
-**主责：** 架构与管理 Session；策划总控参与必要的合同裁决。
-
-**状态：** Tier 1 / Tier 2 已完成验证但均无可用候选；`Task 41-SBX = BLOCKED`，转入 Tier 3 架构决策。
-
-**已验证的 Tier 1 / Tier 2 候选架构（当前主机不可作为通过方案）：**
-
-```text
-Hard API / Runner Manager
-→ local sandbox broker
-→ AppContainer / LPAC / Windows Sandbox API
-→ 最小 ACL / capability
-→ dotnet build/run inside temporary workspace
-```
-
-真正的安全边界必须来自 Windows OS access check。`cwd`、`TEMP/TMP`、`PATH`、host-side path validation、Job Object、源码扫描、API 黑名单、字符串/Base64 特征扫描只能作为辅助控制，不能作为文件系统隔离依据。
-
-**实现路径优先级：**
-
-1. Tier 1：只读探测当前主机是否支持 Windows 官方 Create Process In Sandbox / `Experimental_CreateProcessInSandbox` 能力；支持时优先构造最小 AppContainer sandbox prototype。
-2. Tier 2：Classic AppContainer / LPAC + local sandbox broker + 最小 ACL 授权。
-3. Tier 3：本机 Hyper-V-isolated Windows Container 因 `Tier 3-PRE = HOST_UNSUPPORTED_EDITION` 停止；Remote Runner 随后也因 trusted-local 当前范围取消。两者均只保留为未来多人在线版本强化参考。
-
-- [ ] 比较并验证独立/远程隔离 Runner（Container / VM / sandbox service）。
-- [ ] 比较并验证 Windows AppContainer。
-- [ ] 比较并验证其他能够真正强制 workspace-only 文件访问的 OS 级方案。
-- [ ] 每个候选方案必须说明当前 Windows 与 .NET 10.0.100 可行性、强制边界、所需权限/安装/下载/网络变化、生命周期、清理、运维成本、失败关闭方式和同等级 PRE-GATE 复测方法。
-- [ ] Job Object 单独、cwd/TEMP/PATH、源码扫描/API 黑名单均不得作为文件系统隔离方案。
-- [ ] “低权限独立用户 + workspace ACL”只有在实验证明所有 workspace 外路径均不可访问后才可候选；普通低权限用户仍可读取 `C:\Windows` 等公共可读文件，不能凭推断通过。
-- [x] 形成推荐方案、拒绝方案及证据缺口；涉及安装、下载、管理员权限、系统配置或公共合同变化时停止并请求用户授权。
-
-上述生产级隔离研究结论继续作为历史证据保留。根据 2026-08-30 产品范围裁决，当前 Phase F 不以 hostile/untrusted code execution 为验收目标，独立 Sandbox / Remote Runner 不再是 Task 41 前置条件；如未来开放多人在线代码执行，必须重新启用独立安全项目。
-
-### Task 41-SBX: Windows Sandbox / AppContainer Prototype Gate
-
-**性质：** 独立安全原型门禁；不是 CSharpRunner 实现任务，不修改业务源码，不创建 Task 41 工作树。
-
-**状态：** `BLOCKED`
-
-**目标：** 证明一个真实的 OS 级 workspace-only 隔离原型是否可行。必须先验证最小原生/探针进程，再验证 .NET runtime，最后验证固定 .NET SDK build。
-
-**允许范围：** 安全原型、探针、测试夹具、审计证据和必要架构记录。不得修改 `apps/api/src/**`、`apps/web/src/**`、`content/**` 或公共 API；不得实现 `CSharpRunner`。
-
-**权限模型：**
-
-- workspace：`READ / WRITE`。
-- 本次运行专属 `TEMP`：`READ / WRITE`。
-- `D:\DevTools\dotnet\`：`READ / EXECUTE ONLY`。
-- 必要 runtime / sdk / packs：`READ / EXECUTE ONLY`。
-- NuGet/cache：优先 `READ ONLY`；如确需写缓存，必须使用本次运行独享的临时 cache，不允许多个 Submission 共享可写 cache。
-- 宿主其他路径：`DENY`。
-
-**必须拒绝：** `C:\Windows\win.ini`、任意绝对路径、`..` 逃逸、`Path.GetFullPath` 规范化逃逸、字符串拼接路径、`char[]` 构造路径、Base64/编码构造路径、`Environment` + `Path` API、`System.IO` 全限定 API、`FileStream`、`FileInfo`、`Directory`、`DirectoryInfo`、Reflection、Delegate、Dynamic / InvokeMember。
-
-**禁止 PASS 依据：** 扫描 `File.ReadAllText`、`System.IO`、`C:\`、`..`、Reflection，或任何正则/AST 黑名单。必须由 Windows OS access check 实际拒绝。
-
-**分阶段门禁：**
-
-- Gate A — Host capability：只读检查 `processmodel.dll`、`Experimental_CreateProcessInSandbox` / 对应 sandbox API 和当前 Windows build 支持情况；不得安装组件。不支持时仅标记该路径 `UNSUPPORTED_FOR_THIS_PATH`，继续 Tier 2。
-- Gate B — Minimal sandbox probe：先运行最小探针，验证 workspace 相对 read/write 为 `ALLOW`，`C:\Windows\win.ini` 与 `..` escape 为 `DENY`。
-- Gate C — Full bypass matrix：重新执行 Task 41-PRE 同等级安全矩阵，必须达到 `15/15 DENY` + workspace `ALLOW` 全部通过。
-- Gate D — .NET runtime：验证 `dotnet app.dll` 可正常运行，同时 workspace 外读取仍为 `DENY`。
-- Gate E — .NET SDK：固定 `D:\DevTools\dotnet\dotnet.exe` 与 `.NET SDK 10.0.100`，验证受控离线 `dotnet build --no-restore`，同时 filesystem isolation 不退化。
-
-**网络隔离：** 默认不得授予网络 capability。至少验证 HTTP、TCP、DNS、localhost、`127.0.0.1:8000`、`127.0.0.1:4173`、LAN 均为 `DENY`。除非未来受控题目另有正式合同，普通 C# Runner 无网络权限。
-
-**Handle / IPC 门禁：** sandbox broker 默认禁止继承宿主全部 handle，不得使用无约束 `inheritHandles = true`。只允许显式白名单 `stdin`、`stdout`、`stderr` 和必要 IPC handle；不得把文件、socket、token 或其他敏感宿主 handle 泄漏给 sandbox 子进程。
-
-**Job Object 定位：** Job Object 可以继续用于 process tree、kill-on-close、timeout、CPU / memory 和 cleanup；但 `Job Object != filesystem isolation`，不能单独作为 `Task 41-SBX PASS` 依据。
-
-**AppContainer 判定：** “采用 AppContainer”本身不是 PASS。只有真实实验同时满足 workspace `ALLOW`、全部 workspace 外路径 `DENY`、绕过矩阵 `DENY`、网络 `DENY`、handle 不泄漏，才能视为隔离原型通过。必要时应比较 AppContainer 与 LPAC 的实际权限差异。
-
-**结论枚举只能是：** `PASS`、`BLOCKED`、`UNSUPPORTED_FOR_THIS_PATH`。
-
-- `PASS`：证明所选 sandbox 实现满足完整安全合同。
-- `BLOCKED`：当前可行方案无法满足安全合同，或必须降低门禁。
-- `UNSUPPORTED_FOR_THIS_PATH`：仅表示某一具体实现路径当前主机不可用，应继续下一优先级方案。
-
-### 2026-08-29 Gate A / Gate B-DIAG 最终登记
-
-- Gate A：`COMPLETE`。
-- Tier 1 Create Process In Sandbox / `Experimental_CreateProcessInSandbox`：`UNSUPPORTED_FOR_THIS_PATH`；当前主机缺少 `processmodel.dll`，对应 sandbox API 无法加载。
-- Tier 2 Classic AppContainer：`FAIL`。workspace relative read/write 为 `ALLOW`，`..` 与 `Path.GetFullPath` 逃逸为 `DENY`，但 `C:\Windows\win.ini` 仍为 `ALLOW`，因此安全合同失败。
-- Tier 2 LPAC Gate B 初始为 `LAUNCH BLOCKED`；Gate B-DIAG（LPAC Launch Viability Diagnostic）已完成。
-- LPAC launch path：`UNSUPPORTED_ON_CURRENT_HOST`。Microsoft 签名的 `where.exe` / `cmd.exe` 通过 LPAC 创建路径均在 `CreateProcessW` 返回 `ERROR_NOT_SUPPORTED (50)`；相同映像在 Classic AppContainer 下可启动。
-- 未签名 .NET TinyProbe + LPAC 返回 `ERROR_INVALID_IMAGE_HASH (577)`。
-- 已核对官方 LPAC attribute 模型：`SECURITY_CAPABILITIES`、`ALL_APPLICATION_PACKAGES_POLICY`、`OPT_OUT=1`、`AttributeCount=2`、`EXTENDED_STARTUPINFO_PRESENT`，以及结构大小和生命周期。capability、appName、Unicode env 等变体不能消除错误 50。
-- 未通过安装证书、关闭 Code Integrity、修改 Defender、修改系统策略、修改系统目录 ACL、安装 Feature 或把提权作为最终依赖来绕过。
-- Gate C 未启动；当前 Tier 2 没有有效候选。
-
-**正式裁决：** Classic AppContainer = `security contract FAIL`。LPAC security contract = `UNPROVEN`，因为 LPAC 子进程未能启动；LPAC launch path = `UNSUPPORTED_ON_CURRENT_HOST`。不得泛化为“LPAC 技术本身不安全”或“LPAC 在所有平台不可用”。
-
-**Task 41-SBX 最终状态：`BLOCKED`。**
-
-**当前范围裁决：** 上述解冻条件仅适用于未来 hostile/untrusted 或多人在线执行版本。当前可信本地学习范围已由用户正式放行，Task 41 直接登记为 `READY FOR DISPATCH`。
-
-### Tier 3 隔离架构决策项
-
-**共同主责：** 策划总控 + 架构与管理 Session。
-
-**用户授权：** 2026-08-29 已授权进入 Tier 3。授权范围是完成候选比较、选择一个推荐方案，并为该方案形成最小、可回滚、可审计的原型任务包。授权不等于 Task 41 解冻，也不允许在未选定方案时同时实施多个 Tier 3 基础设施路径。
-
-**候选至少包括：**
-
-1. 隔离 Runner Service / Remote Sandbox；
-2. Windows Container；
-3. 本地 VM / Hyper-V；
-4. Windows Sandbox 类方案。
-
-Tier 3-PRE 已正式返回 `HOST_UNSUPPORTED_EDITION`。Hyper-V-isolated Windows Container 作为当前本机主路线停止推进；不得继续安装 runtime、启用 Containers/Hyper-V 或处理本机 Windows container image。
-
-Remote Runner / 独立远程沙箱已转为未来多人在线版本的安全强化事项，不再是当前 Phase F 主路线。
-
-```text
-Hard API
-→ authenticated Runner Client
-→ Remote Runner Service
-→ per-submission isolated sandbox
-→ pinned .NET SDK 10.0.100 runtime/image
-→ ephemeral workspace
-→ sanitized result
-```
-
-Tier 3 原型必须执行 host filesystem allowlist isolation：只允许 per-run workspace、per-run TEMP 与明确授权的 trusted SDK/toolchain，未显式 mount 的 host filesystem 必须不可见；guest image 自身 `C:\Windows` 不属于 host leak。用户代码必须无法到达 host localhost、Hard `8000`、frontend `4173`、LAN 与 Internet；guest 自身 loopback 可以存在。最终 runner image 必须包含精确 .NET SDK `10.0.100` 并锁定 digest，不得使用 rolling `10.0` tag。Docker Desktop 仅是 prototype runtime 候选，用户代码不得获得 Docker daemon、host named pipe 或 runtime control capability。
-
-相关历史合同继续保留于 `docs/superpowers/specs/2026-08-29-remote-runner-service-architecture.md` 和 `docs/superpowers/plans/2026-08-29-task41-rmt-pre-remote-runner-viability.md`，状态均由当前范围裁决覆盖。
-
-### Tier 3-PRE: Windows Container Host Compatibility Gate
-
-**性质：** 独立只读主机门禁；不安装 runtime、不启用 Feature、不处理 image、不修改产品源码。
-
-**状态：** `HOST_UNSUPPORTED_EDITION`；已完成。Hyper-V-isolated Windows Container 本机主路线停止推进。
-
-**主责：** 部署与运维 Session；架构与管理 Session 复核合同映射；策划总控登记唯一门禁结论。
-
-**必须核对：** Windows Edition、build、Containers Feature availability、Hyper-V Feature availability、SLAT、BIOS virtualization、RAM、Docker Windows-container eligibility。
-
-**唯一结论：** `HOST_SUPPORTED`、`HOST_UNSUPPORTED_EDITION`、`HOST_UNSUPPORTED_HARDWARE`、`HOST_REQUIRES_OS_CHANGE`。
-
-当前结论不是 `HOST_SUPPORTED`，因此不得安装本机 container runtime、启用 Feature 或处理 image。
-
-### Task 41-RMT-PRE: Remote Runner Viability Gate
-
-**性质：** 独立远程沙箱可行性与安全门禁；不是 `CSharpRunner` 实现。
-
-**状态：** `CANCELLED_AS_NOT_REQUIRED_FOR_CURRENT_PRODUCT_SCOPE`。
-
-**处置：** 停止 E2B Provider、Remote Runner prototype、Firecracker、20 项 hostile-code matrix、cross-submission、host-secret、control-plane/runtime-socket 和 hostile path bypass 工作。不得创建 E2B Account/API Key/Sandbox/Template。
-
-**未来恢复条件：** Hard 开放多人在线执行、陌生用户提交或不可信第三方代码时，必须重新建立独立 Sandbox / Remote Runner 安全项目并重新授权。
-
-**历史说明：** 原 20 项矩阵、停止条件和执行计划仅供未来多人在线/不可信代码版本恢复安全项目时参考；当前不得执行。
-
-### Task 41: C# Runner — Trusted Local Learning Environment
-
-**Files:** `apps/api/src/hard_api/runners/csharp.py`、`apps/api/src/hard_api/diagnostics/csharp.py`、`apps/api/src/hard_api/main.py`、`apps/api/tests/runners/test_csharp.py`、`apps/api/tests/runners/fixtures/csharp/**`，以及任务确需的既有 RunnerManager/contract 测试。
-
-- [x] 前置条件：用户已正式将当前范围限定为单用户、本地、用户本人可信学习代码；Task 41 = `READY FOR DISPATCH`。
-- [ ] 1. 实现 C# compile/run。
-- [ ] 2. 支持 top-level statements。
-- [ ] 3. 支持标准 `Program` / `Main`。
-- [ ] 4. 使用 `dotnet build --no-restore`。
-- [ ] 5. 使用完全由服务端控制的固定离线 project/template。
-- [ ] 6. 禁止任意 NuGet packages / `PackageReference`。
-- [ ] 7. 禁止用户提供 NuGet Source。
-- [ ] 8. 禁止用户 `.csproj` 注入、`Import`、`Exec`、`UsingTask` 和自定义项目路径。
-- [ ] 9. 禁止用户 MSBuild / compiler argument 注入。
-- [ ] 10. 每次运行使用独立临时 workspace。
-- [ ] 11. 支持 stdin。
-- [ ] 12. 支持 UTF-8 源码、输入和输出。
-- [ ] 13. 正确 capture stdout / stderr。
-- [ ] 14. 正确分类 compile error 并返回安全诊断。
-- [ ] 15. 正确分类 runtime error。
-- [ ] 16. 执行 hidden tests。
-- [ ] 17. Hidden test / reference content 不得通过公共 API、诊断、stdout/stderr 或日志泄漏。
-- [ ] 18. timeout 必须终止执行并返回稳定分类。
-- [ ] 19. output limit 必须终止执行并返回稳定分类。
-- [ ] 20. process-tree cleanup 必须覆盖超时、输出超限、取消和异常路径。
-- [ ] 21. workspace cleanup 必须覆盖成功和所有失败路径。
-- [ ] 22. 固定 `D:\DevTools\dotnet\dotnet.exe` 与 SDK `10.0.100`；缺失或错误版本显式失败，不得自动安装、下载或切换 SDK。
-- [ ] 23. 保持 RunnerManager queue/cancel 兼容性，取消等待中/执行中任务不得遗留进程或 workspace。
-- [ ] 24. 运行既有 PythonRunner、JavaRunner 和后端回归，禁止破坏现有语言路径。
-- [ ] 固定 `DOTNET_CLI_TELEMETRY_OPTOUT=1`、`DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1`、`DOTNET_NOLOGO=1`，并将 `NUGET_PACKAGES` 指向 D 盘受控目录；普通执行不得联网 restore。
-- [ ] 预留服务端内部 `allow_unsafe` capability：普通 Exercise 固定 `false`，只有服务端私有 Exercise Metadata / 内部 allowlist 可以设为 `true`。
-- [ ] 用户 Submission、前端、源码内容、用户 `.csproj`、MSBuild 参数和编译器参数均不得提供、控制或自动开启 `allow_unsafe`；默认必须关闭。
-- [ ] 在文档、接口说明或用户提示中明确：`TRUSTED_LOCAL_LEARNING_ONLY`，不是恶意代码安全沙箱；不得宣称可安全运行陌生用户、恶意或不可信第三方代码。
+- [ ] 先测试构建/运行、编译诊断、测试失败、stdin、超时、输出限制、进程清理和缺 SDK。
+- [ ] 使用固定离线 console 模板与 `D:\DevTools\dotnet\dotnet.exe`；NuGet 缓存位于 D 盘，exercise 不允许包引用或自定义 MSBuild 参数。
+- [ ] 禁用首次体验、遥测与网络 restore；隐藏 harness 位于临时项目受控文件。
 - [ ] 提交 `feat(runner): execute CSharp exercises` 后停止。
-
-### Task 41 独立审计
-
-**主责：** 测试与审计 Session；不得由 Task 41 实施者自审替代。
-
-- [ ] 从正式 Task 41 提交核对固定本地 SDK 10.0.100、离线模板、compile/run、top-level/Main、禁止项目/参数注入、错误分类、stdin/UTF-8、隐藏内容保密、timeout/output/process/workspace cleanup、RunnerManager queue/cancel、`allow_unsafe` 和 Python/Java 回归。
-- [ ] 核对产品和文档明确声明 `TRUSTED_LOCAL_LEARNING_ONLY`，没有任何 hostile/untrusted sandbox 安全宣传。
-- [ ] 结论为 `PASS` 或 `BLOCKED`；`BLOCKED` 时冻结后续前端与内容任务。
-
-### 前端 C# 编辑器兼容门禁
-
-**主责：** 前端 Session；仅在 Task 41 独立审计 `PASS` 后开始。
-
-- [ ] 编辑器语言映射必须显式为 `python → python`、`java → java`、`csharp → csharp`。
-- [ ] 未知语言不得自动伪装为 Python；使用 `plaintext` 或现有产品合同明确规定的 unsupported fallback。
-- [ ] 前端不得展示、提交或控制 `allow_unsafe`，不得提供 `.csproj`、NuGet、MSBuild 或编译器参数入口。
-- [ ] 为三种已支持语言和未知语言 fallback 添加可复核测试。
-
-### 前端独立验收
-
-**主责：** 测试与审计 Session；不得由前端实施者自验替代。
-
-- [ ] 独立验证显式语言映射、未知语言 fallback、编辑器交互、提交合同与 `allow_unsafe` 不可控。
-- [ ] 结论 `PASS` 后才允许 Task 42；否则冻结 C# 内容链。
 
 ### Task 42: C# 入门、类型与控制流
 
@@ -814,8 +557,7 @@ Tier 3 原型必须执行 host filesystem allowlist isolation：只允许 per-ru
 
 **Sources:** 教程、简介、开发环境、程序结构、基本语法、数据类型、类型转换、变量、变量作用域、常量、运算符、判断、循环。
 
-- [ ] 按内容合同完成并用已通过独立审计的 C# runner 验证。
-- [ ] 普通 `+`、`-`、`*`、`/`、`%` 运算符基础知识只在本模块出现；不得包含用户自定义 `operator overload` 课时。
+- [ ] 按内容合同完成并用 C# runner 验证。
 - [ ] 提交 `content(csharp): add foundations module` 后停止。
 
 ### Task 43: C# 数据结构与面向对象
@@ -824,8 +566,7 @@ Tier 3 原型必须执行 host filesystem allowlist isolation：只允许 per-ru
 
 **Sources:** 封装、方法、可空类型、数组、字符串、结构体、枚举、类、继承、多态、运算符重载、接口、命名空间。
 
-- [ ] 按内容合同完成；用户自定义 `operator overload` 唯一归属本任务和 `csharp-oop`。
-- [ ] 与 Task 42 不重复生成 lesson，来源覆盖必须恰好一次且 `unassigned == 0`；内容执行 Agent 无权改变该归属。
+- [ ] 按内容合同完成。
 - [ ] 提交 `content(csharp): add oop module` 后停止。
 
 ### Task 44: C# IO、异常与元数据
@@ -852,59 +593,17 @@ Tier 3 原型必须执行 host filesystem allowlist isolation：只允许 per-ru
 
 **Sources:** 不安全代码、多线程、语言测验，以及来源清单中尚未归入前述模块的 C# 目录项。
 
-- [ ] 按内容合同完成；普通题 `allow_unsafe = false`，仅服务端私有 Exercise Metadata / 内部 allowlist 可为隔离专用题设置 `true`。
-- [ ] 用户 Submission、前端、源码、`.csproj`、MSBuild 参数和编译器参数均不得开启 `/unsafe`。
-- [ ] 添加全路线分级测试与结业挑战，断言 C# 来源覆盖 100% 且 `unassigned == 0`；本任务不代替后续统一验收或完整 E2E。
+- [ ] 按内容合同完成；不安全代码仅在隔离的专用题模板允许 `/unsafe`，普通题保持禁用。
+- [ ] 添加全路线分级测试与结业挑战，断言 C# 覆盖 100%，运行路线 E2E。
 - [ ] 提交 `content(csharp): complete CSharp route` 后停止。
-
-### C# 内容统一验收
-
-**主责：** 内容与课程 Session 提交完整内容报告，测试与审计 Session 独立验收。
-
-- [ ] 验证 Task 42–46 每个模块、lesson、exercise、reference solution、来源映射和模块间依赖。
-- [ ] 验证普通运算符只在 `csharp-foundations`，用户自定义运算符重载只在 `csharp-oop`，无重复 lesson、无多归属、`unassigned == 0`。
-- [ ] 验证普通 Exercise 均未取得 `allow_unsafe=true`，专用不安全代码题仅通过服务端私有 allowlist 获权。
-
-### Phase F 完整 E2E
-
-**唯一启动者：** 测试与审计 Session。
-
-- [ ] 在冻结的 Phase F 候选基线上执行真实 .NET 10 Runner、前端编辑器、Task 42–46 内容、评分、进度、恢复与安全边界的完整 E2E。
-- [ ] 保留命令、环境、结果、失败、截图/日志定位和工作树状态证据；不得由内容或实施会话自行宣告替代。
-
-### Phase F 最终统一审计
-
-**主责：** 策划总控汇总专业报告并维护门禁，最终阶段放行由用户决定。
-
-- [ ] 核对 trusted-local 范围声明、Task 41 独立审计、前端独立验收、Task 42–46 独立提交、C# 内容统一验收和完整 E2E；历史 Task 41-PRE/RMT-PRE 不作为当前 PASS 前置。
-- [ ] 只有 P0/P1 为 0、全部合同和回归通过、证据完整、候选工作树干净时，才能形成 Phase F `FINAL PASS` 候选结论。
-- [x] Phase G 在用户明确放行前继续冻结；P001 已于 2026-09-02 明确放行，后续按 Phase G 串行门禁执行。
 
 ---
 
 ## Phase G — C++ 路线
 
-**正式起始基线：** `2106d8432da3a892bcfda7a12b95a35638796afd`
-
-**阶段状态：** P001 已于 2026-09-02 登记 `PHASE_F: ACCEPTED`、`START_PHASE_G: YES`。`Task 47 = READY FOR DISPATCH`；Task 48–54 必须等待各自直接前置任务的接受提交后逐项解锁；Phase H 继续冻结。
-
-**唯一允许的执行顺序：**
-
-```text
-Task 47 → Task 47 独立审计与 P001 接受
-→ Task 48 → P001 接受
-→ Task 49 → P001 接受
-→ Task 50 → P001 接受
-→ Task 51 → P001 接受
-→ Task 52 → P001 接受
-→ Task 53 → P001 接受
-→ Task 54 → C++ 路线统一验收与 E2E
-→ Phase G 最终统一审计 → P001 决定是否启动 Phase H
-```
-
 ### Task 47: MSYS2 UCRT64 C++20 runner 适配器
 
-**Files:** `apps/api/src/hard_api/runners/cpp.py`、`apps/api/src/hard_api/diagnostics/cpp.py`、`apps/api/src/hard_api/main.py`（仅注册 `CppRunner`）、`apps/api/tests/runners/test_cpp.py`、`apps/api/tests/runners/fixtures/cpp/**`，以及任务确需的既有 RunnerManager/contract 集成测试。`main.py` 是完成产品 API 语言注册所需的最小范围修正，不授权其他接口或架构重构。
+**Files:** `apps/api/src/hard_api/runners/cpp.py`、`diagnostics/cpp.py`、`apps/api/tests/runners/test_cpp.py`、`fixtures/cpp/**`
 
 - [ ] 先测试编译/运行、多个源文件、编译诊断、测试失败、stdin、超时、输出限制、进程清理和缺 g++。
 - [ ] 固定调用 `D:\DevTools\msys64\ucrt64\bin\g++.exe`，参数固定为 C++20、警告开启、输出到临时目录；用户不得传编译/链接参数。
@@ -978,8 +677,6 @@ Task 47 → Task 47 独立审计与 P001 接受
 ---
 
 ## Phase H — 跨语言整合与发布审计
-
-> 2026-09-05 当前门禁：用户已批准启动Phase H并发放任务。Task55从dc84ecad066cceceadabbae7fc9247bae9015d89开始，任务包交用户转发，尚未实际执行；Task56等待Task55正式接受，不继承Phase G批量特批。正式范围与必要接入补充见 `项目md/Phase-H-Task55-56-Trae任务包.md`。Phase G浏览器E2E例外不自动豁免Phase H发布检查。较早的Phase H冻结记录由此更新覆盖。
 
 ### Task 55: 跨语言概念对照完整映射
 

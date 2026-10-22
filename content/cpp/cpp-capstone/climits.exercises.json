@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-capstone-climits",
+  "questions": [
+    {
+      "id": "cpp-capstone-climits-k01",
+      "type": "knowledge",
+      "prompt": "INT_MAX 在 32 位 int 平台的值是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "2147483647"
+        },
+        {
+          "id": "b",
+          "text": "2147483648"
+        },
+        {
+          "id": "c",
+          "text": "4294967295"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-capstone-climits-k02",
+      "type": "knowledge",
+      "prompt": "CHAR_BIT 表示？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "一个字节的位数"
+        },
+        {
+          "id": "b",
+          "text": "字符集大小"
+        },
+        {
+          "id": "c",
+          "text": "int 的位数"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-capstone-climits-k03",
+      "type": "knowledge",
+      "prompt": "检查「输入是否超出 int 范围」的正确做法是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "读入更大类型再与 INT_MIN/INT_MAX 比较"
+        },
+        {
+          "id": "b",
+          "text": "先塞进 int 再判断是否溢出"
+        },
+        {
+          "id": "c",
+          "text": "与 CHAR_BIT 比较"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-capstone-climits-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 1..1000，含两端）与 n 个整数（每个合同范围 -2147483648..2147483647，即 int 全范围，含两端）。统计其中等于 INT_MAX 的个数与等于 INT_MIN 的个数，输出一行「max=<INT_MAX 个数> min=<INT_MIN 个数>」。任一输入无法解析、越界（小于 INT_MIN 或大于 INT_MAX）或缺失时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <climits>\n#include <cstdio>\n\nint main() {\n    // 读取 n 个 int 范围整数，统计边界值个数\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 4 与 2147483647 -2147483648 0 2147483647 时输出 max=2 min=1。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <climits>\n#include <cstdio>\n\nint main() {\n    int n = 0;\n    if (std::scanf(\"%d\", &n) != 1) return 1;\n    if (n < 1 || n > 1000) return 1;\n    long long max_count = 0;\n    long long min_count = 0;\n    for (int i = 0; i < n; i++) {\n        long long value = 0;\n        if (std::scanf(\"%lld\", &value) != 1) return 1;\n        if (value < INT_MIN || value > INT_MAX) return 1;\n        if (value == INT_MAX) max_count++;\n        if (value == INT_MIN) min_count++;\n    }\n    std::printf(\"max=%lld min=%lld\\n\", max_count, min_count);\n    return 0;\n}\n",
+        "hidden_tests": [
+          "无边界值时输出 max=0 min=0。",
+          "超出 INT_MAX 的 2147483648 不输出并以非零退出码结束。",
+          "小于 INT_MIN 的 -2147483649 不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "4 2147483647 -2147483648 0 2147483647\n",
+            "stdout": "max=2 min=1\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "2 5 -7\n",
+            "stdout": "max=0 min=0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1 2147483648\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "1 -2147483649\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

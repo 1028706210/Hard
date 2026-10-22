@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-advanced-files",
+  "questions": [
+    {
+      "id": "cpp-advanced-files-k01",
+      "type": "knowledge",
+      "prompt": "使用 std::ofstream 与 std::ifstream 分别完成？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "两者都只能读文件"
+        },
+        {
+          "id": "b",
+          "text": "读文件与写文件"
+        },
+        {
+          "id": "c",
+          "text": "写文件与读文件"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-advanced-files-k02",
+      "type": "knowledge",
+      "prompt": "文件打开失败时的正确做法是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "继续读取，失败会自动返回空文件内容"
+        },
+        {
+          "id": "b",
+          "text": "用 is_open() 或流状态检查后明确处理"
+        },
+        {
+          "id": "c",
+          "text": "立即格式化磁盘重试"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-advanced-files-k03",
+      "type": "knowledge",
+      "prompt": "文件流对象析构时会？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "把缓冲内容追加到别的文件"
+        },
+        {
+          "id": "b",
+          "text": "删除对应磁盘文件"
+        },
+        {
+          "id": "c",
+          "text": "自动关闭所关联的文件"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-advanced-files-c01",
+      "type": "code",
+      "prompt": "用 std::getline 读取一整行文本，用 ofstream 写入当前目录的 note.txt（相对路径），再用 ifstream 读回该文件并输出读到的内容。",
+      "starter_code": "#include <fstream>\n#include <iostream>\n#include <string>\n\nint main() {\n    std::string line;\n    std::getline(std::cin, line);\n    // 写入 note.txt 再读回输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 hello 时输出 hello。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <fstream>\n#include <iostream>\n#include <string>\n\nint main() {\n    std::string line;\n    std::getline(std::cin, line);\n    {\n        std::ofstream out(\"note.txt\");\n        out << line << std::endl;\n    }\n    std::ifstream in(\"note.txt\");\n    std::string restored;\n    std::getline(in, restored);\n    std::cout << restored << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "含空格文本整行写读回。",
+          "空行写入后读回输出空行。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "hello\n",
+            "stdout": "hello\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "a b c\n",
+            "stdout": "a b c\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "\n",
+            "stdout": "\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

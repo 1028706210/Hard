@@ -1,0 +1,47 @@
+{
+  "api": {
+    "status": 200,
+    "bytes": 573,
+    "body": {
+      "status": "ok",
+      "checks": {
+        "database": {
+          "healthy": true,
+          "path": "D:\\projects\\1\\Hard-trial-clean-20260910\\data\\hard.db"
+        },
+        "migrations": {
+          "healthy": true
+        },
+        "fts": {
+          "healthy": true
+        },
+        "content": {
+          "healthy": true,
+          "path": "D:\\projects\\1\\Hard-trial-clean-20260910\\content"
+        },
+        "python": {
+          "healthy": true,
+          "path": "D:\\DevTools\\python\\python.exe"
+        },
+        "java": {
+          "healthy": true,
+          "path": "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath\\javac.exe"
+        },
+        "csharp": {
+          "healthy": true,
+          "path": "D:\\DevTools\\dotnet\\dotnet.exe"
+        },
+        "cpp": {
+          "healthy": true,
+          "path": "D:\\DevTools\\msys64\\ucrt64\\bin\\g++.exe"
+        }
+      }
+    }
+  },
+  "web": {
+    "status": 200,
+    "bytes": 361
+  },
+  "checked_utc": "2026-10-22T00:28:20.413917+00:00",
+  "database_sha256_after_start": "241781f41a44cbabdff0350f7eae410832ca0fd464f5a2c545cfda11016084fc"
+}

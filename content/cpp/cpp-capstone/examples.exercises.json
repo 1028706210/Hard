@@ -1,0 +1,158 @@
+{
+  "lesson_id": "cpp-capstone-examples",
+  "questions": [
+    {
+      "id": "cpp-capstone-examples-k01",
+      "type": "knowledge",
+      "prompt": "min_element 对空区间调用会？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "返回 end()，解引用是未定义行为"
+        },
+        {
+          "id": "b",
+          "text": "返回 0"
+        },
+        {
+          "id": "c",
+          "text": "抛出 std::invalid_argument"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-capstone-examples-k02",
+      "type": "knowledge",
+      "prompt": "std::accumulate(v.begin(), v.end(), 0LL) 初值 0LL 的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "决定求和的累加类型为 long long"
+        },
+        {
+          "id": "b",
+          "text": "表示从第 0 个元素开始"
+        },
+        {
+          "id": "c",
+          "text": "过滤值为 0 的元素"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-capstone-examples-k03",
+      "type": "knowledge",
+      "prompt": "把需求变成可验证程序的第一步是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "先约定输入范围与输出格式合同"
+        },
+        {
+          "id": "b",
+          "text": "先写完代码再补输入"
+        },
+        {
+          "id": "c",
+          "text": "先选择编译器优化等级"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-capstone-examples-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 1..1000，含两端）与 n 个整数（每个合同范围 -10000..10000，含两端），输出一行「sum=<总和> max=<最大值> min=<最小值>」。任一输入无法解析、越界或缺失时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cstdio>\n#include <vector>\n\nint main() {\n    // 读取 n 个整数，一次输出 sum/max/min 三项汇总\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 4 与 3 1 4 1 时输出 sum=9 max=4 min=1。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <cstdio>\n#include <vector>\n\nint main() {\n    int n = 0;\n    if (std::scanf(\"%d\", &n) != 1) return 1;\n    if (n < 1 || n > 1000) return 1;\n    std::vector<long long> values;\n    for (int i = 0; i < n; i++) {\n        long long value = 0;\n        if (std::scanf(\"%lld\", &value) != 1) return 1;\n        if (value < -10000 || value > 10000) return 1;\n        values.push_back(value);\n    }\n    long long total = 0;\n    long long best = values[0];\n    long long worst = values[0];\n    for (long long value : values) {\n        total += value;\n        if (value > best) best = value;\n        if (value < worst) worst = value;\n    }\n    std::printf(\"sum=%lld max=%lld min=%lld\\n\", total, best, worst);\n    return 0;\n}\n",
+        "hidden_tests": [
+          "单个负数 -5 输出 sum=-5 max=-5 min=-5。",
+          "全部相等 7 7 7 时三项一致。",
+          "元素 10001 越界不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "4 3 1 4 1\n",
+            "stdout": "sum=9 max=4 min=1\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1 -5\n",
+            "stdout": "sum=-5 max=-5 min=-5\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3 7 7 7\n",
+            "stdout": "sum=21 max=7 min=7\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1 10001\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "cpp-capstone-examples-challenge",
+      "type": "challenge",
+      "prompt": "模块挑战——词频汇总器：读取整数 n（合同范围 1..1000，含两端），随后 n 个单词（每个仅由小写字母 a..z 组成，长度 1..30，含两端）。第一行输出不同单词的个数；第二行输出出现次数最多的单词及其频次，格式「<word>:<count>」，频次并列时输出字典序最小的那个单词。任一输入无法解析、单词非法或缺失时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cstdio>\n#include <map>\n#include <string>\n\nint main() {\n    // 读取 n 个单词，map 统计词频后输出两行汇总\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 5 与 apple pear apple fig pear 时输出 3 与 apple:2 两行。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "#include <cstdio>\n#include <map>\n#include <string>\n\nint main() {\n    int n = 0;\n    if (std::scanf(\"%d\", &n) != 1) return 1;\n    if (n < 1 || n > 1000) return 1;\n    std::map<std::string, long long> counts;\n    for (int i = 0; i < n; i++) {\n        char buffer[64];\n        if (std::scanf(\"%63s\", buffer) != 1) return 1;\n        std::string word(buffer);\n        if (word.size() < 1 || word.size() > 30) return 1;\n        for (char ch : word) {\n            if (ch < 'a' || ch > 'z') return 1;\n        }\n        counts[word]++;\n    }\n    std::string best_word;\n    long long best_count = -1;\n    for (const auto& entry : counts) {\n        if (entry.second > best_count) {\n            best_count = entry.second;\n            best_word = entry.first;\n        }\n    }\n    std::printf(\"%zu\\n%s:%lld\\n\", counts.size(), best_word.c_str(), best_count);\n    return 0;\n}\n",
+        "hidden_tests": [
+          "全部相同单词时第一行输出 1。",
+          "频次并列 b a a b 时输出字典序最小的 a:2。",
+          "含大写字母的单词不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "5 apple pear apple fig pear\n",
+            "stdout": "3\napple:2\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "3 run run run\n",
+            "stdout": "1\nrun:3\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "4 b a a b\n",
+            "stdout": "2\na:2\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1 Hard\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

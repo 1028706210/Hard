@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-collections-generics-iterator",
+  "questions": [
+    {
+      "id": "java-collections-generics-iterator-k01",
+      "type": "knowledge",
+      "prompt": "Iterator.hasNext() 的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "取出元素"
+        },
+        {
+          "id": "b",
+          "text": "判断是否有后续"
+        },
+        {
+          "id": "c",
+          "text": "删除元素"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-collections-generics-iterator-k02",
+      "type": "knowledge",
+      "prompt": "Iterator.next() 的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "取出当前并前进"
+        },
+        {
+          "id": "b",
+          "text": "查看但不前进"
+        },
+        {
+          "id": "c",
+          "text": "删除当前"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "java-collections-generics-iterator-k03",
+      "type": "knowledge",
+      "prompt": "遍历时修改集合应使用什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "直接 add"
+        },
+        {
+          "id": "b",
+          "text": "Iterator.remove"
+        },
+        {
+          "id": "c",
+          "text": "clear"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-collections-generics-iterator-c01",
+      "type": "code",
+      "prompt": "从标准输入读取逗号分隔整数，用 Iterator 遍历求和输出。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\nimport java.util.*;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        List<Integer> list = new ArrayList<>();\n        for (String p : input.split(\",\")) list.add(Integer.parseInt(p.trim()));\n        Iterator<Integer> it = list.iterator();\n        int sum = 0;\n        while (it.hasNext()) sum += it.next();\n        System.out.println(sum);\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1,2,3\n",
+            "stdout": "6\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "10,20\n",
+            "stdout": "30\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

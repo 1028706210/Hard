@@ -1,0 +1,134 @@
+{
+  "lesson_id": "csharp-language-features-generics",
+  "questions": [
+    {
+      "id": "csharp-language-features-generics-k01",
+      "type": "knowledge",
+      "prompt": "List<int> 中类型参数 int 的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "编译期保证只放得下 int，取出也无需强转"
+        },
+        {
+          "id": "b",
+          "text": "只是注释，运行期仍可放任意对象"
+        },
+        {
+          "id": "c",
+          "text": "把 int 自动转换成 string 存储"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-language-features-generics-k02",
+      "type": "knowledge",
+      "prompt": "where T : IComparable<T> 约束的含义是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "要求 T 是引用类型"
+        },
+        {
+          "id": "b",
+          "text": "要求 T 必须有公共无参构造函数"
+        },
+        {
+          "id": "c",
+          "text": "类型实参必须实现 IComparable<T>，泛型代码内即可调用 CompareTo 比较"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "csharp-language-features-generics-k03",
+      "type": "knowledge",
+      "prompt": "泛型相比 object 存储 + 强转方案的主要好处是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "泛型代码运行不需要内存"
+        },
+        {
+          "id": "b",
+          "text": "类型错误在编译期被拦下，值类型免去装箱拆箱，取出无需显式强转"
+        },
+        {
+          "id": "c",
+          "text": "泛型可以让一个容器同时混装任意不同类型"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-language-features-generics-c01",
+      "type": "code",
+      "prompt": "实现泛型类 MyStack<T>：方法 Push(T item)；方法 Pop() 移除并返回栈顶、方法 Peek() 返回栈顶不移除，两者在空栈时抛出 InvalidOperationException；属性 Count { get; }。输入一行以单个空格分隔的命令（1..50 条，小写）：push:<n> 入栈；pop 输出 pop=<弹出值>；peek 输出 peek=<栈顶值>；count 输出 count=<当前元素数>。命令依次作用于同一个 MyStack<int> 实例。对空栈执行 pop 或 peek 时：捕获 InvalidOperationException，输出 error=empty 并结束程序（退出码 0，后续命令不再执行）。以下情形不输出并以退出码 1 结束：命令个数超过 50；未知命令；push 参数不是整数；空 token。",
+      "starter_code": "// 实现泛型 MyStack<T> 并按命令序列驱动一个 MyStack<int> 实例\n",
+      "visible_tests": [
+        "输入 push:1 push:2 peek pop count 时输出 peek=2、pop=2、count=1 三行。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var commands = (Console.ReadLine() ?? \"\").Trim().Split(' ');\nif (commands.Length > 50) Environment.Exit(1);\nvar stack = new MyStack<int>();\nforeach (var command in commands)\n{\n    if (command.Length == 0) Environment.Exit(1);\n    if (command.StartsWith(\"push:\"))\n    {\n        if (!int.TryParse(command[5..], out var item)) Environment.Exit(1);\n        stack.Push(item);\n    }\n    else if (command == \"pop\")\n    {\n        try\n        {\n            Console.WriteLine(\"pop=\" + stack.Pop());\n        }\n        catch (InvalidOperationException)\n        {\n            Console.WriteLine(\"error=empty\");\n            return;\n        }\n    }\n    else if (command == \"peek\")\n    {\n        try\n        {\n            Console.WriteLine(\"peek=\" + stack.Peek());\n        }\n        catch (InvalidOperationException)\n        {\n            Console.WriteLine(\"error=empty\");\n            return;\n        }\n    }\n    else if (command == \"count\")\n    {\n        Console.WriteLine(\"count=\" + stack.Count);\n    }\n    else\n    {\n        Environment.Exit(1);\n    }\n}\n\nsealed class MyStack<T>\n{\n    private readonly List<T> _items = new();\n\n    public int Count => _items.Count;\n\n    public void Push(T item) => _items.Add(item);\n\n    public T Pop()\n    {\n        if (_items.Count == 0) throw new InvalidOperationException();\n        var item = _items[^1];\n        _items.RemoveAt(_items.Count - 1);\n        return item;\n    }\n\n    public T Peek()\n    {\n        if (_items.Count == 0) throw new InvalidOperationException();\n        return _items[^1];\n    }\n}\n",
+        "hidden_tests": [
+          "首条命令就是对空栈 pop 时输出 error=empty 并以退出码 0 结束。",
+          "弹出全部元素后再 peek 时输出 error=empty。",
+          "未知命令时不输出并以退出码 1 结束。",
+          "push 参数不是整数时不输出并以退出码 1 结束。",
+          "push 负数后 count 输出 1。",
+          "连续三次 push 再连续三次 pop 时按后进先出顺序输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "push:1 push:2 peek pop count\n",
+            "stdout": "peek=2\npop=2\ncount=1\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "pop\n",
+            "stdout": "error=empty\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "push:5 pop peek\n",
+            "stdout": "pop=5\nerror=empty\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "push:1 top\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "push:x\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "push:-3 count\n",
+            "stdout": "count=1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "push:1 push:2 push:3 pop pop pop\n",
+            "stdout": "pop=3\npop=2\npop=1\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -73,35 +73,76 @@
     {
       "id": "python-stdlib-data-xml-c01",
       "type": "code",
-      "prompt": "解析 item 元素并输出 Hard。",
-      "starter_code": "# 解析内嵌 XML",
+      "prompt": "读取一个至多 4096 个字符的简单 XML 文本，去掉首尾空白。根元素必须是 item，不允许属性或子元素；禁止任何 <! 声明（包括 DTD、注释和 CDATA）。输出根节点文本，保留内部空格；空元素输出一个换行，标准字符实体如 &amp; 按 XML 解析。格式错误或不符合限制时不输出内容，退出码 1。只解析输入文本，不访问文件或网络；起始代码已提供 root 并校验。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\nfrom xml.etree import ElementTree as ET\nif len(text) > 4096 or \"<!\" in text:\n    raise SystemExit(1)\ntry:\n    root = ET.fromstring(text)\nexcept ET.ParseError:\n    raise SystemExit(1)\nif root.tag != \"item\" or root.attrib or len(root):\n    raise SystemExit(1)\n# 完成本课操作与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '<item>Hard</item>'，输出 'Hard\\n'，退出码 0。",
+        "输入 '<item>学习</item>'，输出 '学习\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-stdlib-data-xml-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    from xml.etree import ElementTree as ET\n    print(ET.fromstring('<item>Hard</item>').text)\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\nfrom xml.etree import ElementTree as ET\nif len(text) > 4096 or \"<!\" in text:\n    raise SystemExit(1)\ntry:\n    root = ET.fromstring(text)\nexcept ET.ParseError:\n    raise SystemExit(1)\nif root.tag != \"item\" or root.attrib or len(root):\n    raise SystemExit(1)\nprint(root.text or \"\")\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的正常边界。",
+          "输入、输出和退出状态必须符合题面。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "<item>Hard</item>",
             "stdout": "Hard\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "<item>学习</item>",
+            "stdout": "学习\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-stdlib-data-xml-c01\n",
+            "stdin": "<item/>",
+            "stdout": "\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "<item> A  B </item>",
+            "stdout": " A  B \n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "<item>A &amp; B</item>",
+            "stdout": "A & B\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "<other>x</other>",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "<item id=\"1\">x</item>",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "<item><child/></item>",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "<!DOCTYPE item><item>x</item>",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "<item>",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

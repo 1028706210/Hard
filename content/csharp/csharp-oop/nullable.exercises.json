@@ -1,0 +1,122 @@
+{
+  "lesson_id": "csharp-oop-nullable",
+  "questions": [
+    {
+      "id": "csharp-oop-nullable-k01",
+      "type": "knowledge",
+      "prompt": "`int?` 在运行时的本质是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Nullable<int>：一个可以包含 null 的值类型"
+        },
+        {
+          "id": "b",
+          "text": "一种新的引用类型"
+        },
+        {
+          "id": "c",
+          "text": "int 的别名，行为完全相同"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-nullable-k02",
+      "type": "knowledge",
+      "prompt": "启用可空引用类型后，`string?` 表达的含义是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "编译器知道该引用可能为 null，要求先判空再使用"
+        },
+        {
+          "id": "b",
+          "text": "运行时会自动把 null 替换成空字符串"
+        },
+        {
+          "id": "c",
+          "text": "与不带 ? 的 string 完全等价"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-nullable-k03",
+      "type": "knowledge",
+      "prompt": "执行 `int? x = null; Console.WriteLine(x.Value);` 的结果是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "输出 0"
+        },
+        {
+          "id": "b",
+          "text": "抛出 InvalidOperationException"
+        },
+        {
+          "id": "c",
+          "text": "输出空行"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-oop-nullable-c01",
+      "type": "code",
+      "prompt": "读取一行：该行为 null 或全是空白时输出 missing；否则尝试解析为整数，成功时用可空类型保存并输出其两倍值，失败时输出 invalid。",
+      "starter_code": "var line = Console.ReadLine();\nint? value = int.TryParse(line, out var parsed) ? parsed : null;\n// 依次处理 missing、invalid 和正常两倍值三个分支\n",
+      "visible_tests": [
+        "输入 21 时输出 42。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var line = Console.ReadLine();\nif (string.IsNullOrWhiteSpace(line))\n{\n    Console.WriteLine(\"missing\");\n    return;\n}\nint? value = int.TryParse(line, out var parsed) ? parsed : null;\nConsole.WriteLine(value.HasValue ? (value.Value * 2).ToString() : \"invalid\");\n",
+        "hidden_tests": [
+          "空输入（读到文件末尾）时输出 missing。",
+          "整行只有空格时输出 missing。",
+          "输入 3.5 这类无法整体解析的文本时输出 invalid。",
+          "输入负数 -4 时输出 -8。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "21\n",
+            "stdout": "42\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "",
+            "stdout": "missing\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "   \n",
+            "stdout": "missing\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3.5\n",
+            "stdout": "invalid\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-4\n",
+            "stdout": "-8\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

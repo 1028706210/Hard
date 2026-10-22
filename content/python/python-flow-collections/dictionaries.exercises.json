@@ -73,35 +73,76 @@
     {
       "id": "python-flow-collections-dictionaries-c01",
       "type": "code",
-      "prompt": "建立 name 为 Hard 的字典并输出 name。",
-      "starter_code": "profile = {}\n# 输出 name",
+      "prompt": "输入一个 JSON 对象作为 profile，输出 name 字段；字段缺失时输出 unknown。若 name 存在，必须是去掉首尾空白后非空的字符串，输出时去掉首尾空白、保留内部空格。其他字段不参与计算。非法 JSON、非对象、无效 name 不输出内容，退出码为 1。起始代码已解析校验 profile，只需通过字典读取并输出。",
+      "starter_code": "import sys, json\ntry:\n    profile = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif not isinstance(profile, dict) or (\"name\" in profile and (not isinstance(profile[\"name\"], str) or not profile[\"name\"].strip())):\n    raise SystemExit(1)\n# 按题面完成本课操作与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '{\"name\":\"Hard\"}\\n'，输出 'Hard\\n'，退出码 0。",
+        "输入 '{}\\n'，输出 'unknown\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-flow-collections-dictionaries-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    profile = {'name': 'Hard'}\n    print(profile['name'])\n",
+        "reference_solution": "import sys, json\ntry:\n    profile = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif not isinstance(profile, dict) or (\"name\" in profile and (not isinstance(profile[\"name\"], str) or not profile[\"name\"].strip())):\n    raise SystemExit(1)\nprint(profile.get(\"name\", \"unknown\").strip())\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的边界、顺序和重复项处理。",
+          "输入有效性与退出码按题面约定检查。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "{\"name\":\"Hard\"}\n",
             "stdout": "Hard\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{}\n",
+            "stdout": "unknown\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-flow-collections-dictionaries-c01\n",
+            "stdin": "{\"name\":\" Ada  Li \",\"level\":2}",
+            "stdout": "Ada  Li\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "{\"city\":\"北京\"}",
+            "stdout": "unknown\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"name\":\"学习\"}",
+            "stdout": "学习\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"name\":null}",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "{\"name\":3}",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "{\"name\":\" \"}",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "[]",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "bad",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

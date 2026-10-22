@@ -1,0 +1,128 @@
+{
+  "lesson_id": "csharp-oop-polymorphism",
+  "questions": [
+    {
+      "id": "csharp-oop-polymorphism-k01",
+      "type": "knowledge",
+      "prompt": "通过基类引用调用 virtual 方法时，实际执行哪个版本由什么决定？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "运行期对象的真实类型"
+        },
+        {
+          "id": "b",
+          "text": "编译期引用的静态类型"
+        },
+        {
+          "id": "c",
+          "text": "总是执行基类的版本"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-polymorphism-k02",
+      "type": "knowledge",
+      "prompt": "多态分派与方法重载的关键区别是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "重载在编译期按参数类型选择，多态在运行期按对象类型分派"
+        },
+        {
+          "id": "b",
+          "text": "两者都是运行期行为"
+        },
+        {
+          "id": "c",
+          "text": "两者都要求方法标记为 virtual"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-polymorphism-k03",
+      "type": "knowledge",
+      "prompt": "派生类没有 override 某个 virtual 方法时，通过基类引用调用该方法的结果是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "执行基类的实现"
+        },
+        {
+          "id": "b",
+          "text": "编译错误"
+        },
+        {
+          "id": "c",
+          "text": "运行时抛出异常"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-polymorphism-c01",
+      "type": "code",
+      "prompt": "第一行读入 n（0..100 含两端）；随后 n 行，每行要么是 `r w h`（矩形，w、h 为 0..1000000 的非负整数），要么是 `s side`（正方形）。把各对象放进 Shape 数组，用多态方法求面积总和并输出一行；n 为 0 时输出 0。任何一行格式非法、数值越界或类型未知时不输出并以退出码 1 结束。",
+      "starter_code": "if (!int.TryParse(Console.ReadLine(), out var count) || count < 0 || count > 100) Environment.Exit(1);\n// 逐行解析为 Shape 数组，再用多态循环累加面积\n",
+      "visible_tests": [
+        "输入 2、r 2 3、s 4 三行时输出 22。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "if (!int.TryParse(Console.ReadLine(), out var count) || count < 0 || count > 100) Environment.Exit(1);\nvar shapes = new Shape[count];\nfor (var i = 0; i < count; i++)\n{\n    var tokens = (Console.ReadLine() ?? \"\").Split(' ', StringSplitOptions.RemoveEmptyEntries);\n    Shape? shape = null;\n    if (tokens.Length == 3 && tokens[0] == \"r\"\n        && int.TryParse(tokens[1], out var width) && int.TryParse(tokens[2], out var height)\n        && width >= 0 && height >= 0)\n    {\n        shape = new Rectangle(width, height);\n    }\n    else if (tokens.Length == 2 && tokens[0] == \"s\"\n        && int.TryParse(tokens[1], out var side) && side >= 0)\n    {\n        shape = new Square(side);\n    }\n    if (shape is null) Environment.Exit(1);\n    shapes[i] = shape;\n}\nlong total = 0;\nforeach (var shape in shapes)\n{\n    total += shape.Area();\n}\nConsole.WriteLine(total);\n\nclass Shape\n{\n    public virtual long Area() => 0;\n}\n\nclass Rectangle : Shape\n{\n    private readonly long _width;\n    private readonly long _height;\n\n    public Rectangle(long width, long height)\n    {\n        _width = width;\n        _height = height;\n    }\n\n    public override long Area() => _width * _height;\n}\n\nclass Square : Rectangle\n{\n    public Square(long side) : base(side, side)\n    {\n    }\n}\n",
+        "hidden_tests": [
+          "n 为 0 时输出 0。",
+          "单个矩形面积为 100 时输出 100。",
+          "三个正方形边长 1、2、3 时输出 14。",
+          "出现未知类型行时无输出并以退出码 1 结束。",
+          "某行参数不足时无输出并以退出码 1 结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "2\nr 2 3\ns 4\n",
+            "stdout": "22\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1\nr 10 10\n",
+            "stdout": "100\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3\ns 1\ns 2\ns 3\n",
+            "stdout": "14\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1\nt 1 2\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "2\nr 1\ns 2\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

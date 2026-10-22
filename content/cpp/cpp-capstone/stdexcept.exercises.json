@@ -1,0 +1,122 @@
+{
+  "lesson_id": "cpp-capstone-stdexcept",
+  "questions": [
+    {
+      "id": "cpp-capstone-stdexcept-k01",
+      "type": "knowledge",
+      "prompt": "vector::at() 越界时的行为是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "未定义行为"
+        },
+        {
+          "id": "b",
+          "text": "返回最后一个元素"
+        },
+        {
+          "id": "c",
+          "text": "抛出 std::out_of_range"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-stdexcept-k02",
+      "type": "knowledge",
+      "prompt": "vector::operator[] 越界时的行为是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "抛出 std::out_of_range"
+        },
+        {
+          "id": "b",
+          "text": "未定义行为"
+        },
+        {
+          "id": "c",
+          "text": "返回 0"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-capstone-stdexcept-k03",
+      "type": "knowledge",
+      "prompt": "表示「实参值非法」的标准异常是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "std::bad_alloc"
+        },
+        {
+          "id": "b",
+          "text": "std::overflow_error"
+        },
+        {
+          "id": "c",
+          "text": "std::invalid_argument"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-stdexcept-c01",
+      "type": "code",
+      "prompt": "程序内已有 vector<int>{10, 20, 30}。读取整数 k（可为任意 32 位整数，含负数）。用 at(k) 访问：合法下标 0..2 输出对应元素一行；越界（含负数）由 catch (const std::out_of_range&) 捕获后输出 out_of_range 一行。k 无法解析或缺失时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cstdio>\n#include <stdexcept>\n#include <vector>\n\nint main() {\n    std::vector<int> values{10, 20, 30};\n    // 读取 k，at() 访问并捕获 out_of_range\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 1 时输出 20。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <cstdio>\n#include <stdexcept>\n#include <vector>\n\nint main() {\n    std::vector<int> values{10, 20, 30};\n    int k = 0;\n    if (std::scanf(\"%d\", &k) != 1) return 1;\n    try {\n        std::printf(\"%d\\n\", values.at(k));\n    } catch (const std::out_of_range&) {\n        std::printf(\"out_of_range\\n\");\n    }\n    return 0;\n}\n",
+        "hidden_tests": [
+          "下标 0 输出首元素 10。",
+          "下标 3 越界输出 out_of_range。",
+          "下标 -1 越界输出 out_of_range。",
+          "非数字输入不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1\n",
+            "stdout": "20\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "10\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3\n",
+            "stdout": "out_of_range\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-1\n",
+            "stdout": "out_of_range\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "abc\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

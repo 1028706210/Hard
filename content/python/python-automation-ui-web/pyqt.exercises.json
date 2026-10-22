@@ -73,35 +73,46 @@
     {
       "id": "python-automation-ui-web-pyqt-c01",
       "type": "code",
-      "prompt": "把界面保存条件抽为纯函数；不启动 GUI，空白标题不可保存。",
-      "starter_code": "import sys\ndef can_save(title):\n    # 返回是否可保存\n    pass\n",
+      "prompt": "读取标题文本，can_save(title) 返回去掉首尾空白后是否非空，输出 True 或 False。中文和 __invalid__ 都是普通文本；空白标题为 False，退出码0。只验证保存按钮条件，不启动 GUI。",
+      "starter_code": "import sys\ntext = sys.stdin.read().rstrip(\"\\n\")\n# 按题面实现本课操作\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '学习计划'，输出 'True\\n'，退出码 0。",
+        "输入 ' '，输出 'False\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\ndef can_save(title):\n    return bool(title.strip())\ntitle = sys.stdin.read().rstrip('\\n')\nif title == '__invalid__':\n    raise ValueError('reserved invalid marker')\nprint(can_save(title))\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().rstrip(\"\\n\")\ndef can_save(title):\n    return bool(title.strip())\nprint(can_save(text))\n",
         "hidden_tests": [
-          "边界输入必须返回主题定义的结果。",
-          "无效输入必须进入可预期的失败分支。"
+          "检查题面规定的有效边界和失败行为。",
+          "输出格式、类型和顺序以题面约定为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "学习计划\n",
+            "stdin": "学习计划",
             "stdout": "True\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": " ",
+            "stdout": "False\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "   \n",
+            "stdin": "__invalid__",
+            "stdout": "True\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "",
             "stdout": "False\n",
             "exit_code": 0
           },
           {
-            "stdin": "__invalid__\n",
-            "stdout": "",
-            "exit_code": 1
+            "stdin": " a ",
+            "stdout": "True\n",
+            "exit_code": 0
           }
         ]
       }
@@ -109,35 +120,46 @@
     {
       "id": "python-automation-ui-web-pyqt-challenge",
       "type": "challenge",
-      "prompt": "编写 apply_action(state, title)：标题非空时把 saved 设为 True；用 {'saved': False} 和 '结业项目' 输出 True。",
-      "starter_code": "def apply_action(state, title):\n    # 返回更新后的状态\n    pass\n\n# 输出 saved",
+      "prompt": "输入JSON对象，state必须是含布尔saved字段的对象，title必须为字符串。apply_action返回state副本，标题去掉空白后非空则把副本saved设为True，否则保留原值。逐行输出新状态saved和原状态saved，证明未修改输入。错误结构无输出，退出码1；不启动GUI。",
+      "starter_code": "import sys, json\ntry:\n    data = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif not isinstance(data, dict):\n    raise SystemExit(1)\nif not isinstance(data.get(\"state\"),dict) or type(data[\"state\"].get(\"saved\")) is not bool or not isinstance(data.get(\"title\"),str):\n    raise SystemExit(1)\n# 按题面实现本课操作\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '{\"state\":{\"saved\":false},\"title\":\"学习\"}'，输出 'True\\nFalse\\n'，退出码 0。",
+        "输入 '{\"state\":{\"saved\":false},\"title\":\" \"}'，输出 'False\\nFalse\\n'，退出码 0。"
       ],
       "experience_points": 30,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-automation-ui-web-pyqt-challenge')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    def apply_action(state, title):\n        next_state = dict(state)\n        if title.strip():\n            next_state['saved'] = True\n        return next_state\n\n    print(apply_action({'saved': False}, '结业项目')['saved'])\n",
+        "reference_solution": "import sys, json\ntry:\n    data = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif not isinstance(data, dict):\n    raise SystemExit(1)\nif not isinstance(data.get(\"state\"),dict) or type(data[\"state\"].get(\"saved\")) is not bool or not isinstance(data.get(\"title\"),str):\n    raise SystemExit(1)\ndef apply_action(state,title):\n    result = dict(state)\n    if title.strip():\n        result[\"saved\"] = True\n    return result\nprint(apply_action(data[\"state\"],data[\"title\"])[\"saved\"])\nprint(data[\"state\"][\"saved\"])\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面规定的有效边界和失败行为。",
+          "输出格式、类型和顺序以题面约定为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
-            "stdout": "True\n",
+            "stdin": "{\"state\":{\"saved\":false},\"title\":\"学习\"}",
+            "stdout": "True\nFalse\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"state\":{\"saved\":false},\"title\":\" \"}",
+            "stdout": "False\nFalse\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-automation-ui-web-pyqt-challenge\n",
+            "stdin": "{\"state\":{\"saved\":true},\"title\":\"\"}",
+            "stdout": "True\nTrue\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "{\"state\":{\"saved\":0},\"title\":\"x\"}",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "{}",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

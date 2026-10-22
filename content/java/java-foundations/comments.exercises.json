@@ -1,0 +1,131 @@
+{
+  "lesson_id": "java-foundations-comments",
+  "questions": [
+    {
+      "id": "java-foundations-comments-k01",
+      "type": "knowledge",
+      "prompt": "Java 注释最需要先明确什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "行注释、块注释与文档注释的输入、规则和输出"
+        },
+        {
+          "id": "b",
+          "text": "公开样例的固定输出"
+        },
+        {
+          "id": "c",
+          "text": "在线服务响应"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "java-foundations-comments-k02",
+      "type": "knowledge",
+      "prompt": "为什么要保留边界输入？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "让程序忽略错误"
+        },
+        {
+          "id": "b",
+          "text": "验证空值或异常状态下规则仍明确"
+        },
+        {
+          "id": "c",
+          "text": "减少测试"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-foundations-comments-k03",
+      "type": "knowledge",
+      "prompt": "哪个做法更可靠？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "只输出公开答案"
+        },
+        {
+          "id": "b",
+          "text": "跳过失败分支"
+        },
+        {
+          "id": "c",
+          "text": "用不同输入断言不同结果或失败状态"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "java-foundations-comments-c01",
+      "type": "code",
+      "prompt": "读取两个0到1000000的整数left、right，计算矩形面积并输出long结果。为计算语句添加说明单位或假设的行注释。非法数量、负数、越界或非整数无输出，退出码1。自动判题只检查面积，不评价注释质量。支架已校验参数。",
+      "starter_code": "import java.nio.charset.StandardCharsets;\npublic class Main {\n    \n    public static void main(String[] args) throws Exception {\n        String text = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        String[] parts = text.split(\"\\s+\");\n        long left, right;\n        try {\n            if (parts.length != 2) throw new NumberFormatException();\n            left = Long.parseLong(parts[0]); right = Long.parseLong(parts[1]);\n        } catch (NumberFormatException error) { System.exit(1); return; }\n        if (left < 0 || right < 0 || left > 1000000 || right > 1000000) { System.exit(1); return; }\n        // 按题面完成本课操作与输出\n    }\n}\n",
+      "visible_tests": [
+        "输入 '2 3'，输出 '6\\n'，退出码 0。",
+        "输入 '4 5'，输出 '20\\n'，退出码 0。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\npublic class Main {\n    \n    public static void main(String[] args) throws Exception {\n        String text = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        String[] parts = text.split(\"\\s+\");\n        long left, right;\n        try {\n            if (parts.length != 2) throw new NumberFormatException();\n            left = Long.parseLong(parts[0]); right = Long.parseLong(parts[1]);\n        } catch (NumberFormatException error) { System.exit(1); return; }\n        if (left < 0 || right < 0 || left > 1000000 || right > 1000000) { System.exit(1); return; }\n        // 两边使用相同单位，面积使用对应平方单位。\n        long area = left * right;\n        System.out.println(area);\n    }\n}\n",
+        "hidden_tests": [
+          "覆盖真实主题边界，不使用未声明的特殊标记。",
+          "校验输入、输出格式和退出码。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "2 3",
+            "stdout": "6\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "4 5",
+            "stdout": "20\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0 8",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1000000 1000000",
+            "stdout": "1000000000000\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-1 2",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "1",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

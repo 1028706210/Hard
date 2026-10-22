@@ -1,0 +1,146 @@
+{
+  "lesson_id": "java-core-api-scanner",
+  "questions": [
+    {
+      "id": "java-core-api-scanner-k01",
+      "type": "knowledge",
+      "prompt": "Scanner.nextInt() 的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "读取字符串"
+        },
+        {
+          "id": "b",
+          "text": "读取整数"
+        },
+        {
+          "id": "c",
+          "text": "跳过一行"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-scanner-k02",
+      "type": "knowledge",
+      "prompt": "Scanner.hasNextInt() 返回什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "int"
+        },
+        {
+          "id": "b",
+          "text": "boolean"
+        },
+        {
+          "id": "c",
+          "text": "String"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-scanner-k03",
+      "type": "knowledge",
+      "prompt": "Scanner 默认分隔符是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "逗号"
+        },
+        {
+          "id": "b",
+          "text": "空白"
+        },
+        {
+          "id": "c",
+          "text": "换行"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-scanner-c01",
+      "type": "code",
+      "prompt": "从标准输入读取多行整数（空行结束），输出总和。",
+      "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        // 读取多行整数，输出总和\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\nimport java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8);\n        if (input.trim().equals(\"__invalid__\")) System.exit(1);\n        Scanner sc = new Scanner(input);\n        int sum = 0;\n        while (sc.hasNextInt()) sum += sc.nextInt();\n        System.out.println(sum);\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1\n2\n3\n\n",
+            "stdout": "6\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "10\n20\n\n",
+            "stdout": "30\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "java-core-api-scanner-challenge",
+      "type": "challenge",
+      "prompt": "从标准输入读取多行 token（空行结束），统计整数和非整数的数量，输出 ints:N strings:M。",
+      "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        // 读取多行 token，分类统计\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\nimport java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8);\n        if (input.trim().equals(\"__invalid__\")) System.exit(1);\n        Scanner sc = new Scanner(input);\n        int ints = 0, strings = 0;\n        while (sc.hasNext()) {\n            if (sc.hasNextInt()) { ints++; sc.nextInt(); }\n            else { strings++; sc.next(); }\n        }\n        System.out.println(\"ints:\" + ints + \" strings:\" + strings);\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1\nhello\n2\nworld\n\n",
+            "stdout": "ints:2 strings:2\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "3\nfoo\n\n",
+            "stdout": "ints:1 strings:1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

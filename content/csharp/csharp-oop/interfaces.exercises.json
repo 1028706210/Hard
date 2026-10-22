@@ -1,0 +1,122 @@
+{
+  "lesson_id": "csharp-oop-interfaces",
+  "questions": [
+    {
+      "id": "csharp-oop-interfaces-k01",
+      "type": "knowledge",
+      "prompt": "接口成员的默认访问级别是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "public，实现类也必须公开实现这些成员"
+        },
+        {
+          "id": "b",
+          "text": "private，仅接口内部可见"
+        },
+        {
+          "id": "c",
+          "text": "internal，仅同一程序集可见"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-interfaces-k02",
+      "type": "knowledge",
+      "prompt": "一个类可以实现多少个接口？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "可以实现多个，还可以同时继承一个基类"
+        },
+        {
+          "id": "b",
+          "text": "最多实现一个"
+        },
+        {
+          "id": "c",
+          "text": "实现接口后就不能再继承任何类"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-interfaces-k03",
+      "type": "knowledge",
+      "prompt": "接口与抽象基类的主要差别是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "接口只描述合同，不保存实例状态"
+        },
+        {
+          "id": "b",
+          "text": "接口可以声明实例字段"
+        },
+        {
+          "id": "c",
+          "text": "接口不能被类实现"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-interfaces-c01",
+      "type": "code",
+      "prompt": "读取一行，用空格分隔两个词：mode 和 text。定义接口 ITransform 的 Apply(string) 方法，并实现三个类：mode 为 upper 时输出 text 的不变区域大写；为 lower 时输出不变区域小写；为 len 时输出 text 的字符数。mode 不是这三个词或字段数不对时不输出并以退出码 1 结束。",
+      "starter_code": "var tokens = (Console.ReadLine() ?? \"\").Split(' ', StringSplitOptions.RemoveEmptyEntries);\n// 根据模式选择 ITransform 实现，再调用 Apply 输出结果\n",
+      "visible_tests": [
+        "输入 upper Hard 时输出 HARD。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var tokens = (Console.ReadLine() ?? \"\").Split(' ', StringSplitOptions.RemoveEmptyEntries);\nif (tokens.Length != 2) Environment.Exit(1);\nITransform? transform = tokens[0] switch\n{\n    \"upper\" => new UpperCaseTransform(),\n    \"lower\" => new LowerCaseTransform(),\n    \"len\" => new LengthTransform(),\n    _ => null\n};\nif (transform is null) Environment.Exit(1);\nConsole.WriteLine(transform.Apply(tokens[1]));\n\ninterface ITransform\n{\n    string Apply(string text);\n}\n\nclass UpperCaseTransform : ITransform\n{\n    public string Apply(string text) => text.ToUpperInvariant();\n}\n\nclass LowerCaseTransform : ITransform\n{\n    public string Apply(string text) => text.ToLowerInvariant();\n}\n\nclass LengthTransform : ITransform\n{\n    public string Apply(string text) => text.Length.ToString();\n}\n",
+        "hidden_tests": [
+          "模式为 lower 时输出小写结果。",
+          "模式为 len 时输出字符个数。",
+          "模式未知（如 trim）时无输出并以退出码 1 结束。",
+          "缺少 text 字段时无输出并以退出码 1 结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "upper Hard\n",
+            "stdout": "HARD\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "lower AbC\n",
+            "stdout": "abc\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "len hello\n",
+            "stdout": "5\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "trim abc\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "upper\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

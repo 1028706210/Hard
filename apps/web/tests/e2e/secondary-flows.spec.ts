@@ -13,10 +13,26 @@ test.beforeEach(async ({ page }) => {
   await page.route("**/api/review/items/7", (route) => route.fulfill({ json: { id: 7, score: 80, interval_days: 3, due_on: "2026-08-28", experience_candidate: false } }));
   await page.route("**/api/growth/weaknesses", (route) => route.fulfill({ json: { items: [{ concept_id: "python-output", score: 4, lesson_id: lessonId, exercise_id: `${lessonId}-c01` }] } }));
   await page.route("**/api/search?*", (route) => route.fulfill({ json: { results: [{ source_type: "note", language: "python", lesson_id: lessonId, title: "Hello World", snippet: "print 输出文本", anchor: "output" }] } }));
-  await page.route("**/api/growth/summary", (route) => route.fulfill({ json: { total_experience: 120, level: 2, current_level_progress: 20, next_level_remaining: 80, streak_days: 3, badges: ["first_lesson"], mastery: [{ scope: "lesson", id: lessonId, score: 80 }], new_badges: [], route_completion: [] } }));
+  await page.route("**/api/growth/summary", (route) => route.fulfill({ json: { total_experience: 120, level: 2, current_level_progress: 20, next_level_remaining: 80, streak_days: 3, badges: ["first_lesson"], mastery: [{ scope_type: "lesson", scope_id: lessonId, score: 80 }], new_badges: [], route_completion: [] } }));
   await page.route("**/api/growth/history", (route) => route.fulfill({ json: { items: [{ id: "s1", exercise_id: `${lessonId}-c01`, language: "python", source_code: "print('safe')", normalized_result: { score: 80 }, score: 80, duration_ms: 5, created_at: "2026-08-25", diff: "+print('safe')" }] } }));
   await page.route("**/api/content/catalog", (route) => route.fulfill({ json: { courses: [{ language: "python", modules: [{ lessons: [{ id: lessonId }] }] }] } }));
   await page.route(`**/api/content/lessons/${lessonId}`, (route) => route.fulfill({ json: { id: lessonId, language: "python", title: "Hello World", concepts: ["python-output"] } }));
+  await page.route("**/api/compare/concepts", (route) => route.fulfill({
+    json: {
+      content_version: "e2e",
+      concepts: [{
+        id: "python-output",
+        name: "输出",
+        description: "把程序结果写给用户。",
+        slots: {
+          python: { status: "available", summary: "print 把文本写向标准输出。", difference: "内建函数，无需导入。", code: "print('Hello World')", lesson_id: lessonId, lesson_title: "Hello World", note: null },
+          java: { status: "missing", summary: "", difference: "", code: null, lesson_id: null, lesson_title: null, note: "Java 路线内没有输出概念的标注课时。" },
+          csharp: { status: "missing", summary: "", difference: "", code: null, lesson_id: null, lesson_title: null, note: "C# 路线内没有输出概念的标注课时。" },
+          cpp: { status: "missing", summary: "", difference: "", code: null, lesson_id: null, lesson_title: null, note: "C++ 路线内没有输出概念的标注课时。" },
+        },
+      }],
+    },
+  }));
   await page.route("**/api/v1/health/ready", (route) => route.fulfill({ json: { status: "ok", checks: { database: { healthy: true, path: "D:/projects/1/Hard-task1/data/hard.db" }, python: { healthy: true, path: "D:/DevTools/python/python.exe" } } } }));
   await page.route("**/api/progress/summary", (route) => route.fulfill({ json: { daily_goal: { target_minutes: 25, target_exercises: 2 }, streak_days: 0, due_review_count: 0, current_experience: 0, current_level: 1 } }));
   await page.route("**/api/progress/daily-goal", (route) => route.fulfill({ json: { date: "2026-08-25", configured: true, target_minutes: 30, target_exercises: 3 } }));
@@ -40,10 +56,11 @@ test("desktop completes review, search, growth, comparison, and settings seconda
   await expect(page.getByText("热力图数据尚不可用")).toBeVisible();
 
   await page.goto("/compare");
-  await expect(page.getByText("python-output")).toBeVisible();
-  await expect(page.locator('[data-language="java"]')).toContainText("尚无内容");
+  await expect(page.getByText("print 把文本写向标准输出。")).toBeVisible();
+  await expect(page.locator('[data-language="java"]')).toContainText("路线内没有输出概念的标注课时");
 
   await page.goto("/settings");
+  await page.locator('summary').filter({ hasText: "查看工具健康与本机路径" }).click();
   await expect(page.getByText("D:/DevTools/python/python.exe")).toBeVisible();
   await page.getByLabel("每日学习分钟").fill("30");
   await page.getByLabel("每日练习数量").fill("3");

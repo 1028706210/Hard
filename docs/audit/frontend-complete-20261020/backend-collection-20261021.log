@@ -1,0 +1,64 @@
+tests/backup/test_api.py: 1
+tests/backup/test_backup.py: 5
+tests/backup/test_import.py: 11
+tests/backup/test_retention.py: 2
+tests/content/test_catalog.py: 15
+tests/content/test_comparison.py: 9
+tests/content/test_lesson.py: 2
+tests/db/test_migrations.py: 10
+tests/db/test_transactions.py: 2
+tests/learning/test_experience.py: 5
+tests/learning/test_goals.py: 3
+tests/learning/test_history.py: 2
+tests/learning/test_mastery.py: 4
+tests/learning/test_progress.py: 2
+tests/learning/test_review.py: 8
+tests/learning/test_scoring.py: 26
+tests/learning/test_unlocking.py: 2
+tests/learning/test_weakness.py: 11
+tests/runners/test_cpp.py: 16
+tests/runners/test_csharp.py: 18
+tests/runners/test_java.py: 37
+tests/runners/test_limits.py: 7
+tests/runners/test_manager.py: 15
+tests/runners/test_processes.py: 5
+tests/runners/test_python.py: 22
+tests/runners/test_workspace.py: 7
+tests/search/test_search.py: 1
+tests/test_core_coverage_gate.py: 2
+tests/test_errors.py: 2
+tests/test_health.py: 10
+tests/test_lan.py: 7
+
+============================== warnings summary ===============================
+.venv\Lib\site-packages\fastapi\testclient.py:1
+  D:\projects\1\Hard-trial-clean-20260910\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+apps\api\src\hard_api\main.py:128
+  D:\projects\1\Hard-trial-clean-20260910\apps\api\src\hard_api\main.py:128: DeprecationWarning: 
+          on_event is deprecated, use lifespan event handlers instead.
+  
+          Read more about it in the
+          [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+          
+    @app.on_event("shutdown")
+
+.venv\Lib\site-packages\fastapi\applications.py:4681
+  D:\projects\1\Hard-trial-clean-20260910\.venv\Lib\site-packages\fastapi\applications.py:4681: DeprecationWarning: 
+          on_event is deprecated, use lifespan event handlers instead.
+  
+          Read more about it in the
+          [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+          
+    return self.router.on_event(event_type)  # ty: ignore[deprecated]
+
+apps\api\src\hard_api\runners\contracts.py:48
+  D:\projects\1\Hard-trial-clean-20260910\apps\api\src\hard_api\runners\contracts.py:48: PytestCollectionWarning: cannot collect test class 'TestResult' because it has a __init__ constructor (from: tests/runners/test_java.py)
+    @dataclass(frozen=True, slots=True)
+
+apps\api\src\hard_api\runners\contracts.py:48
+  D:\projects\1\Hard-trial-clean-20260910\apps\api\src\hard_api\runners\contracts.py:48: PytestCollectionWarning: cannot collect test class 'TestResult' because it has a __init__ constructor (from: tests/runners/test_python.py)
+    @dataclass(frozen=True, slots=True)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html

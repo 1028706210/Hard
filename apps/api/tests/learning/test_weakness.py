@@ -42,6 +42,64 @@ def test_weaknesses_use_only_recent_allowed_signals_and_keep_hidden_details_priv
     assert "hidden_tests" not in response.text
 
 
+def test_weaknesses_exclude_perfect_attempts_without_weakness_signals(tmp_path: Path) -> None:
+    client, database_path = learning_client(tmp_path)
+    with closing(sqlite3.connect(database_path)) as connection:
+        with connection:
+            connection.execute(
+                "INSERT INTO attempts "
+                "(id, lesson_id, score, exercise_id, question_type, hint_level, raw_score, final_score, passed, placement, normalized_result, created_at) "
+                "VALUES ('perfect', 'python-foundations-hello-world', 100, "
+                "'python-foundations-hello-world-k01', 'knowledge', 'none', 100, 100, 1, 0, "
+                "'{\"hidden_test_failures\": 0}', CURRENT_TIMESTAMP)"
+            )
+
+    with client:
+        response = client.get("/api/growth/weaknesses")
+
+    assert response.status_code == 200
+    assert response.json() == {"items": []}
+
+
+def test_a_later_perfect_answer_does_not_move_an_existing_weakness_link(tmp_path: Path) -> None:
+    client, database_path = learning_client(tmp_path)
+    with closing(sqlite3.connect(database_path)) as connection:
+        with connection:
+            for key, exercise, score, created in [
+                ("failed", "python-foundations-hello-world-k01", 0, datetime.now() - timedelta(minutes=1)),
+                ("perfect", "python-foundations-hello-world-k02", 100, datetime.now()),
+            ]:
+                connection.execute(
+                    "INSERT INTO attempts (id, lesson_id, exercise_id, question_type, hint_level, raw_score, final_score, passed, placement, normalized_result, created_at) "
+                    "VALUES (?, 'python-foundations-hello-world', ?, 'knowledge', 'none', ?, ?, ?, 0, '{}', ?)",
+                    (key, exercise, score, score, int(score == 100), created),
+                )
+    with client:
+        result = client.get("/api/growth/weaknesses")
+    assert result.status_code == 200
+    assert result.json()["items"][0]["exercise_id"] == "python-foundations-hello-world-k01"
+    assert result.json()["items"][0]["score"] == 4
+
+
+def test_weakness_link_uses_event_time_when_rows_are_inserted_out_of_order(tmp_path: Path) -> None:
+    client, database_path = learning_client(tmp_path)
+    with closing(sqlite3.connect(database_path)) as connection:
+        with connection:
+            for key, exercise, created in [
+                ("newer", "python-foundations-hello-world-k02", datetime.now()),
+                ("older", "python-foundations-hello-world-k01", datetime.now() - timedelta(minutes=1)),
+            ]:
+                connection.execute(
+                    "INSERT INTO attempts (id, lesson_id, exercise_id, question_type, hint_level, raw_score, final_score, passed, placement, normalized_result, created_at) "
+                    "VALUES (?, 'python-foundations-hello-world', ?, 'knowledge', 'none', 0, 0, 0, 0, '{}', ?)",
+                    (key, exercise, created),
+                )
+    with client:
+        items = client.get("/api/growth/weaknesses").json()["items"]
+    assert items[0]["exercise_id"] == "python-foundations-hello-world-k02"
+    assert items[0]["score"] == 8
+
+
 @pytest.mark.parametrize(
     ("raw_score", "hint_level", "hidden_failures", "expected_score"),
     [

@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-network-concurrency-multithreading",
+  "questions": [
+    {
+      "id": "java-network-concurrency-multithreading-k01",
+      "type": "knowledge",
+      "prompt": "实现线程任务的接口是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Callable"
+        },
+        {
+          "id": "b",
+          "text": "Runnable"
+        },
+        {
+          "id": "c",
+          "text": "Comparable"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-network-concurrency-multithreading-k02",
+      "type": "knowledge",
+      "prompt": "Thread.join() 的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "启动线程"
+        },
+        {
+          "id": "b",
+          "text": "等待线程结束"
+        },
+        {
+          "id": "c",
+          "text": "暂停线程"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-network-concurrency-multithreading-k03",
+      "type": "knowledge",
+      "prompt": "共享数据在多线程下需要什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "同步"
+        },
+        {
+          "id": "b",
+          "text": "无特殊处理"
+        },
+        {
+          "id": "c",
+          "text": "final 修饰"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "java-network-concurrency-multithreading-c01",
+      "type": "code",
+      "prompt": "从标准输入读取整数 N，输出 1 到 N 的总和。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        int n = Integer.parseInt(input);\n        System.out.println(n * (n + 1) / 2);\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "5\n",
+            "stdout": "15\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "3\n",
+            "stdout": "6\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

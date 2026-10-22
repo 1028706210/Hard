@@ -1,0 +1,9 @@
+{
+  "valid": true,
+  "counts": {
+    "courses": 1,
+    "lessons": 57,
+    "exercises": 57
+  },
+  "errors": []
+}

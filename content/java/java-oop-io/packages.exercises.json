@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-oop-io-packages",
+  "questions": [
+    {
+      "id": "java-oop-io-packages-k01",
+      "type": "knowledge",
+      "prompt": "package 声明的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "导入类"
+        },
+        {
+          "id": "b",
+          "text": "定义命名空间"
+        },
+        {
+          "id": "c",
+          "text": "创建对象"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-oop-io-packages-k02",
+      "type": "knowledge",
+      "prompt": "import 语句用于什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "声明包"
+        },
+        {
+          "id": "b",
+          "text": "导入其他包的类"
+        },
+        {
+          "id": "c",
+          "text": "创建实例"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-oop-io-packages-k03",
+      "type": "knowledge",
+      "prompt": "包名应遵循什么命名规范？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "大驼峰"
+        },
+        {
+          "id": "b",
+          "text": "全小写"
+        },
+        {
+          "id": "c",
+          "text": "混合大小写"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-oop-io-packages-c01",
+      "type": "code",
+      "prompt": "从标准输入读取全限定类名(如 com.example.Main)，输出包名(如 com.example)。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        int dot = input.lastIndexOf('.');\n        System.out.println(dot > 0 ? input.substring(0, dot) : \"\");\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "com.example.Main\n",
+            "stdout": "com.example\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "java.util.List\n",
+            "stdout": "java.util\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

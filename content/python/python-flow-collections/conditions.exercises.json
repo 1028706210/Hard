@@ -73,35 +73,71 @@
     {
       "id": "python-flow-collections-conditions-c01",
       "type": "code",
-      "prompt": "当 score 为 80 时输出 pass。",
-      "starter_code": "score = 80\n# 判断并输出",
+      "prompt": "读取一个 0 到 100（含端点）的整数成绩。成绩大于或等于 70 时输出 pass，否则输出 retry。非整数、空输入或越界成绩不输出内容，退出码为 1。起始代码提供已校验的 n，请用条件分支输出结果。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    n = int(text)\nexcept ValueError:\n    raise SystemExit(1)\nif not 0 <= n <= 100:\n    raise SystemExit(1)\n# 按题面完成本课操作与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '80\\n'，输出 'pass\\n'，退出码 0。",
+        "输入 '60\\n'，输出 'retry\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-flow-collections-conditions-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    score = 80\n    if score >= 70:\n        print('pass')\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    n = int(text)\nexcept ValueError:\n    raise SystemExit(1)\nif not 0 <= n <= 100:\n    raise SystemExit(1)\nif n >= 70:\n    print(\"pass\")\nelse:\n    print(\"retry\")\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的边界、顺序和重复项处理。",
+          "输入有效性与退出码按题面约定检查。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "80\n",
             "stdout": "pass\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "60\n",
+            "stdout": "retry\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-flow-collections-conditions-c01\n",
+            "stdin": "70",
+            "stdout": "pass\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "69",
+            "stdout": "retry\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "0",
+            "stdout": "retry\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "100",
+            "stdout": "pass\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-1",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "101",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "70.5",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

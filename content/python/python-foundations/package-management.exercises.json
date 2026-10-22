@@ -73,35 +73,76 @@
     {
       "id": "python-foundations-package-management-c01",
       "type": "code",
-      "prompt": "从“demo==2.0”中取出包名并输出 demo。",
-      "starter_code": "requirement = 'demo==2.0'\n# 输出包名",
+      "prompt": "读取一条简化的固定版本依赖声明，去掉首尾空白后按 包名==版本 解析并仅输出包名。例如 demo==2.0 输出 demo。包名以 ASCII 字母或数字开头，后续只含字母、数字、点、下划线或连字符；版本必须恰好为两段 ASCII 数字，以一个点分隔。内部空白、缺少字段、其他比较符号或多余字段无效，不输出内容，退出码为 1。起始代码已校验得到 package 和 version，只需输出 package。此简化格式不是完整 pip 规范，不联网安装任何包。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\nimport re\nmatch = re.fullmatch(r'([A-Za-z0-9][A-Za-z0-9._-]*)==([0-9]+\\.[0-9]+)', text)\nif match is None:\n    raise SystemExit(1)\npackage, version = match.groups()\n# 按题面补上结果计算与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'demo==2.0'，输出 'demo'，退出码 0。",
+        "输入 'test-runner==1.4'，输出 'test-runner'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-foundations-package-management-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    requirement = 'demo==2.0'\n    print(requirement.split('==')[0])\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\nimport re\nmatch = re.fullmatch(r'([A-Za-z0-9][A-Za-z0-9._-]*)==([0-9]+\\.[0-9]+)', text)\nif match is None:\n    raise SystemExit(1)\npackage, version = match.groups()\nprint(package)\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面声明的有效边界。",
+          "不符合约定的输入不得产生输出，退出码为 1。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "demo==2.0\n",
             "stdout": "demo\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "test-runner==1.4\n",
+            "stdout": "test-runner\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-foundations-package-management-c01\n",
+            "stdin": " demo_tool==0.0 \n",
+            "stdout": "demo_tool\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "lib.name==12.34\n",
+            "stdout": "lib.name\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "demo>=2.0\n",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "==2.0\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "demo==\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "demo==2.0==3.0\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "demo ==2.0\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "demo==2.0.1\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

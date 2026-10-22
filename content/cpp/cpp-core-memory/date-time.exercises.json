@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-core-memory-date-time",
+  "questions": [
+    {
+      "id": "cpp-core-memory-date-time-k01",
+      "type": "knowledge",
+      "prompt": "std::chrono 中不同单位的 duration 之间换算应使用？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "duration_cast 显式转换"
+        },
+        {
+          "id": "b",
+          "text": "static_cast<bool>"
+        },
+        {
+          "id": "c",
+          "text": "隐式赋值即可"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-core-memory-date-time-k02",
+      "type": "knowledge",
+      "prompt": "duration_cast<hours>(seconds(3661)) 的结果是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "1 小时（小数截断）"
+        },
+        {
+          "id": "b",
+          "text": "1.017 小时"
+        },
+        {
+          "id": "c",
+          "text": "2 小时（四舍五入）"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-core-memory-date-time-k03",
+      "type": "knowledge",
+      "prompt": "从 duration 取出底层整数值应调用？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "value()"
+        },
+        {
+          "id": "b",
+          "text": "count()"
+        },
+        {
+          "id": "c",
+          "text": "size()"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-core-memory-date-time-c01",
+      "type": "code",
+      "prompt": "读取非负整数秒数 total，使用 <chrono> 的 duration 与 duration_cast 换算并以 h:m:s 格式输出（如 3661 输出 1:1:1）。",
+      "starter_code": "#include <chrono>\n#include <iostream>\n\nint main() {\n    int total = 0;\n    std::cin >> total;\n    // 用 chrono 换算并输出 h:m:s\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3661 时输出 1:1:1。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <chrono>\n#include <iostream>\n\nint main() {\n    int total = 0;\n    std::cin >> total;\n    std::chrono::seconds duration(total);\n    auto hours = std::chrono::duration_cast<std::chrono::hours>(duration);\n    auto minutes = std::chrono::duration_cast<std::chrono::minutes>(duration % std::chrono::hours(1));\n    auto seconds = duration % std::chrono::minutes(1);\n    std::cout << hours.count() << \":\" << minutes.count() << \":\" << seconds.count() << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "输入 0 时输出 0:0:0。",
+          "整小时数换算分秒为 0。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3661\n",
+            "stdout": "1:1:1\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "0:0:0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "7200\n",
+            "stdout": "2:0:0\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

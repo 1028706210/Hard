@@ -1,9 +1,13 @@
-"""Local-only API process used by the no-mock web vertical E2E."""
+"""Local-only, full-lifespan API process for the no-mock web vertical E2E."""
+from __future__ import annotations
+
+from contextlib import AsyncExitStack, asynccontextmanager
 from pathlib import Path
-import sys
-import asyncio
 import os
-from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+import sys
+
+import uvicorn
+from fastapi import FastAPI
 
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / "apps" / "api" / "src"))
@@ -13,20 +17,23 @@ from hard_api.core.config import Settings
 from hard_api.db import migrations
 from hard_api.main import create_app
 
-run_id = os.environ.get("HARD_E2E_RUN_ID")
-if not run_id:
+RUN_ID = os.environ.get("HARD_E2E_RUN_ID")
+if not RUN_ID:
     raise RuntimeError("HARD_E2E_RUN_ID is required for isolated E2E data.")
-temporary = ROOT / ".tool-cache" / f"live-e2e-{run_id}"
-applications: dict[str, object] = {}
+
+WORKSPACE = ROOT / ".tool-cache" / f"live-e2e-{RUN_ID}"
+CLIENTS = ("default", "desktop", "mobile")
+applications: dict[str, FastAPI] = {}
 
 
-def application_for(client: str) -> object:
-    if client not in {"default", "desktop", "mobile"}:
+def application_for(client: str) -> FastAPI:
+    if client not in CLIENTS:
         raise ValueError("invalid isolated E2E client")
     application = applications.get(client)
     if application is not None:
         return application
-    workspace = temporary / client
+
+    workspace = WORKSPACE / client
     settings = Settings(
         ROOT,
         workspace / "data",
@@ -42,29 +49,51 @@ def application_for(client: str) -> object:
     applications[client] = application
     return application
 
+
+@asynccontextmanager
+async def full_lifespan(application: FastAPI):
+    async with AsyncExitStack() as stack:
+        for client in CLIENTS:
+            client_application = application_for(client)
+            await stack.enter_async_context(client_application.router.lifespan_context(client_application))
+        application.state.e2e_lifespan_ready = True
+        yield
+        application.state.e2e_lifespan_ready = False
+
+
+control = FastAPI(lifespan=full_lifespan)
+
+
+@control.get("/_e2e/lifecycle")
+def lifecycle() -> dict[str, object]:
+    return {
+        "lifespan": "started" if control.state.e2e_lifespan_ready else "stopped",
+        "clients": list(CLIENTS),
+        "application_count": len(applications),
+    }
+
+
+class IsolatedE2EApplication:
+    async def __call__(self, scope: dict[str, object], receive: object, send: object) -> None:
+        if scope["type"] == "lifespan":
+            await control(scope, receive, send)  # type: ignore[arg-type]
+            return
+        if scope["type"] != "http":
+            return
+
+        path = str(scope["path"])
+        if path == "/api/_e2e/lifecycle":
+            control_scope = {**scope, "path": "/_e2e/lifecycle", "raw_path": b"/_e2e/lifecycle"}
+            await control(control_scope, receive, send)  # type: ignore[arg-type]
+            return
+
+        headers = dict(scope.get("headers", []))  # type: ignore[arg-type]
+        client = headers.get(b"x-hard-e2e-client", b"default").decode("ascii")
+        await application_for(client)(scope, receive, send)  # type: ignore[arg-type]
+
+
+app = IsolatedE2EApplication()
+
+
 if __name__ == "__main__":
-    class Handler(BaseHTTPRequestHandler):
-        def log_message(self, format: str, *args: object) -> None: pass
-        def _handle(self) -> None:
-            length = int(self.headers.get("content-length", "0"))
-            body = self.rfile.read(length)
-            messages: list[dict[str, object]] = []
-            async def receive() -> dict[str, object]: return {"type": "http.request", "body": body, "more_body": False}
-            async def send(message: dict[str, object]) -> None: messages.append(message)
-            scope = {"type": "http", "asgi": {"version": "3.0"}, "http_version": "1.1", "method": self.command, "scheme": "http", "path": self.path.split("?", 1)[0], "raw_path": self.path.split("?", 1)[0].encode(), "query_string": self.path.partition("?")[2].encode(), "headers": [(key.lower().encode(), value.encode()) for key, value in self.headers.items()], "client": ("127.0.0.1", 0), "server": ("127.0.0.1", 8000), "root_path": ""}
-            try:
-                client = self.headers.get("X-Hard-E2E-Client", "default")
-                asyncio.run(application_for(client)(scope, receive, send))
-            except ValueError:
-                self.send_response(400)
-                self.send_header("content-type", "application/json")
-                self.end_headers()
-                self.wfile.write(b'{"detail":"invalid isolated E2E client"}')
-                return
-            start = next(message for message in messages if message["type"] == "http.response.start")
-            self.send_response(int(start["status"]))
-            for key, value in start.get("headers", []): self.send_header(bytes(key).decode(), bytes(value).decode())
-            self.end_headers()
-            self.wfile.write(b"".join(bytes(message.get("body", b"")) for message in messages if message["type"] == "http.response.body"))
-        do_GET = do_POST = do_PUT = do_PATCH = do_DELETE = _handle
-    ThreadingHTTPServer(("127.0.0.1", 8000), Handler).serve_forever()
+    uvicorn.run(app, host="127.0.0.1", port=8000, log_level="warning")

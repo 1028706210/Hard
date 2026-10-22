@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-core-api-constructors",
+  "questions": [
+    {
+      "id": "java-core-api-constructors-k01",
+      "type": "knowledge",
+      "prompt": "构造方法的名称必须与什么相同？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "字段名"
+        },
+        {
+          "id": "b",
+          "text": "类名"
+        },
+        {
+          "id": "c",
+          "text": "包名"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-constructors-k02",
+      "type": "knowledge",
+      "prompt": "构造方法有返回类型吗？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "有"
+        },
+        {
+          "id": "b",
+          "text": "没有"
+        },
+        {
+          "id": "c",
+          "text": "仅void"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-constructors-k03",
+      "type": "knowledge",
+      "prompt": "this() 在构造方法中的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "调用字段"
+        },
+        {
+          "id": "b",
+          "text": "调用同类其他构造"
+        },
+        {
+          "id": "c",
+          "text": "调用父类构造"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-constructors-c01",
+      "type": "code",
+      "prompt": "从标准输入读取 \"名称 年龄\"（空格分隔），构造对象后输出 Name:名称 Age:年龄。",
+      "starter_code": "class Person {\n    String name;\n    int age;\n    Person(String name, int age) {\n        // 初始化字段\n    }\n}\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        // 读取输入，构造对象，输出描述\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\nclass Person {\n    String name;\n    int age;\n    Person(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n}\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        String[] parts = input.split(\"\\\\s+\");\n        Person p = new Person(parts[0], Integer.parseInt(parts[1]));\n        System.out.println(\"Name:\" + p.name + \" Age:\" + p.age);\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "Alice 30\n",
+            "stdout": "Name:Alice Age:30\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "Bob 25\n",
+            "stdout": "Name:Bob Age:25\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

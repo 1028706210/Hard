@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-core-memory-functions",
+  "questions": [
+    {
+      "id": "cpp-core-memory-functions-k01",
+      "type": "knowledge",
+      "prompt": "函数原型 int add(int a, int b); 中 int add 部分约定的是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "参数类型为 int、返回值名为 add"
+        },
+        {
+          "id": "b",
+          "text": "add 是一个 int 变量声明"
+        },
+        {
+          "id": "c",
+          "text": "返回类型为 int、函数名为 add"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-core-memory-functions-k02",
+      "type": "knowledge",
+      "prompt": "默认按值传递时，函数内修改形参会怎样？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "调用方的实参同步被修改"
+        },
+        {
+          "id": "b",
+          "text": "只修改副本，调用方数据不受影响"
+        },
+        {
+          "id": "c",
+          "text": "编译错误，函数不允许修改形参"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-core-memory-functions-k03",
+      "type": "knowledge",
+      "prompt": "函数返回局部变量的引用会导致？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "返回值被自动复制所以安全"
+        },
+        {
+          "id": "b",
+          "text": "编译器自动延长局部变量生命周期"
+        },
+        {
+          "id": "c",
+          "text": "悬垂引用，函数返回后对象已销毁"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-core-memory-functions-c01",
+      "type": "code",
+      "prompt": "编写函数 int add(int a, int b) 返回两数之和，在 main 中读取两个整数并输出 add 的返回值。",
+      "starter_code": "#include <iostream>\n\n// 在此定义 add 函数\n\nint main() {\n    int a = 0;\n    int b = 0;\n    std::cin >> a >> b;\n    // 调用 add 并输出结果\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3 4 时输出 7。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n\nint add(int a, int b) {\n    return a + b;\n}\n\nint main() {\n    int a = 0;\n    int b = 0;\n    std::cin >> a >> b;\n    std::cout << add(a, b) << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "两个 0 相加输出 0。",
+          "含负数时按有符号加法输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 4\n",
+            "stdout": "7\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0 0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-2 5\n",
+            "stdout": "3\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

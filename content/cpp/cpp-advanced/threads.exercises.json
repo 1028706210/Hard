@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-advanced-threads",
+  "questions": [
+    {
+      "id": "cpp-advanced-threads-k01",
+      "type": "knowledge",
+      "prompt": "std::thread 对象启动后不调用 join（或 detach）就析构会？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "触发 std::terminate 终止程序"
+        },
+        {
+          "id": "b",
+          "text": "线程自动安全回收"
+        },
+        {
+          "id": "c",
+          "text": "线程暂停但程序继续"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-advanced-threads-k02",
+      "type": "knowledge",
+      "prompt": "多线程无保护地并发修改同一变量属于？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "数据竞争，未定义行为"
+        },
+        {
+          "id": "b",
+          "text": "安全的并行加速"
+        },
+        {
+          "id": "c",
+          "text": "编译错误"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-advanced-threads-k03",
+      "type": "knowledge",
+      "prompt": "std::lock_guard 的价值是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "作用域结束自动解锁，避免忘记 unlock"
+        },
+        {
+          "id": "b",
+          "text": "让锁永远不被获取"
+        },
+        {
+          "id": "c",
+          "text": "把线程绑定到固定核心"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-advanced-threads-c01",
+      "type": "code",
+      "prompt": "读取非负整数 n，创建一个线程累计 1..n/2，主线程同时累计 n/2+1..n，join 后输出两段之和（long long）。",
+      "starter_code": "#include <iostream>\n#include <thread>\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    long long lower_total = 0;\n    long long upper_total = 0;\n    // 启动线程累计下半段，主线程累计上半段，join 后输出总和\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 4 时输出 10。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <thread>\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    long long lower_total = 0;\n    long long upper_total = 0;\n    std::thread worker([&lower_total, n]() {\n        for (int i = 1; i <= n / 2; i++) {\n            lower_total += i;\n        }\n    });\n    for (int i = n / 2 + 1; i <= n; i++) {\n        upper_total += i;\n    }\n    worker.join();\n    std::cout << lower_total + upper_total << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "n 为 1 时下半段为空输出 1。",
+          "较大 n 按等差求和输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "4\n",
+            "stdout": "10\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1\n",
+            "stdout": "1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "10\n",
+            "stdout": "55\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

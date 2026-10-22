@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-advanced-preprocessor",
+  "questions": [
+    {
+      "id": "cpp-advanced-preprocessor-k01",
+      "type": "knowledge",
+      "prompt": "预处理器的处理时机与方式是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "链接期修改机器码"
+        },
+        {
+          "id": "b",
+          "text": "运行期动态解释执行"
+        },
+        {
+          "id": "c",
+          "text": "编译前对源代码做文本级替换与裁剪"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-advanced-preprocessor-k02",
+      "type": "knowledge",
+      "prompt": "#define STEP 5 末尾不应加分号的原因是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "分号会导致预处理器崩溃"
+        },
+        {
+          "id": "b",
+          "text": "分号会作为替换文本的一部分带入表达式"
+        },
+        {
+          "id": "c",
+          "text": "分号会使命令变成条件编译"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-advanced-preprocessor-k03",
+      "type": "knowledge",
+      "prompt": "定义带类型常量时相对 #define 更推荐？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "#ifdef 嵌套"
+        },
+        {
+          "id": "b",
+          "text": "更长的宏名"
+        },
+        {
+          "id": "c",
+          "text": "constexpr（有类型检查且受作用域约束）"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-advanced-preprocessor-c01",
+      "type": "code",
+      "prompt": "用 #define 定义常量 STEP 为 5，读取整数 n，输出 n + STEP 的值。",
+      "starter_code": "#include <iostream>\n\n// 用 #define 定义 STEP 为 5\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    // 输出 n + STEP\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 1 时输出 6。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n\n#define STEP 5\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    std::cout << n + STEP << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "零输入输出常量本身。",
+          "负数输入按加法语义输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1\n",
+            "stdout": "6\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "5\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-10\n",
+            "stdout": "-5\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

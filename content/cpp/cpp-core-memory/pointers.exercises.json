@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-core-memory-pointers",
+  "questions": [
+    {
+      "id": "cpp-core-memory-pointers-k01",
+      "type": "knowledge",
+      "prompt": "表达式 &value 和 *ptr 分别表示？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "按位与；乘法"
+        },
+        {
+          "id": "b",
+          "text": "取 value 的值；取 ptr 的地址"
+        },
+        {
+          "id": "c",
+          "text": "取 value 的地址；解引用 ptr 访问所指对象"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-core-memory-pointers-k02",
+      "type": "knowledge",
+      "prompt": "解引用未初始化或空指针会导致？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "编译错误"
+        },
+        {
+          "id": "b",
+          "text": "未定义行为，结果不可预测"
+        },
+        {
+          "id": "c",
+          "text": "自动返回 0"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-core-memory-pointers-k03",
+      "type": "knowledge",
+      "prompt": "函数形参写成 int* p 的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "p 持有实参的副本地址，修改不影响调用方"
+        },
+        {
+          "id": "b",
+          "text": "强制实参必须为常量"
+        },
+        {
+          "id": "c",
+          "text": "函数内通过 *p 修改的是调用方的原对象"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-core-memory-pointers-c01",
+      "type": "code",
+      "prompt": "读取两个整数 a 与 b，编写以指针为参数的 swap(int*, int*) 函数交换二者，输出交换后的结果（空格分隔）。",
+      "starter_code": "#include <iostream>\n\n// 定义以指针为参数的 swap 函数\n\nint main() {\n    int a = 0;\n    int b = 0;\n    std::cin >> a >> b;\n    // 通过指针交换并输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3 7 时输出 7 3。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n\nvoid swap(int* a, int* b) {\n    int temp = *a;\n    *a = *b;\n    *b = temp;\n}\n\nint main() {\n    int a = 0;\n    int b = 0;\n    std::cin >> a >> b;\n    swap(&a, &b);\n    std::cout << a << \" \" << b << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "两个 0 交换后不变。",
+          "正负混合输入按交换语义输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 7\n",
+            "stdout": "7 3\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0 0\n",
+            "stdout": "0 0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-1 5\n",
+            "stdout": "5 -1\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

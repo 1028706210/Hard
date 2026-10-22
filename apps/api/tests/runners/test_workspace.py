@@ -57,3 +57,25 @@ def test_workspace_rejects_protected_or_reparse_roots(tmp_path: Path) -> None:
     else:
         with pytest.raises(WorkspaceError, match="unsafe_workspace_root"):
             WorkspaceFactory(linked).create()
+
+
+def test_workspace_rejects_invalid_file_payloads_and_reparse_points_during_lifecycle(tmp_path: Path) -> None:
+    workspace = WorkspaceFactory(tmp_path / "runner-work").create()
+    for files in ({}, {"main.py": 1}, {"bad name.py": "pass"}):
+        with pytest.raises(WorkspaceError, match="invalid_submission_path"):
+            write_submission_files(workspace, files)
+
+    with patch("hard_api.runners.workspace._is_reparse_point", side_effect=(False, False, True)):
+        with pytest.raises(WorkspaceError, match="unsafe_workspace_root"):
+            WorkspaceFactory(tmp_path / "late-reparse").create()
+
+    with patch("hard_api.runners.workspace._is_within", return_value=False):
+        with pytest.raises(WorkspaceError, match="invalid_submission_path"):
+            write_submission_files(workspace, {"main.py": "pass"})
+
+    with patch("hard_api.runners.workspace._is_reparse_point", return_value=True):
+        cleanup_workspace(workspace)
+    assert workspace.exists()
+
+    with patch("hard_api.runners.workspace._is_reparse_point", return_value=False):
+        cleanup_workspace(workspace)

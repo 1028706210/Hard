@@ -1,0 +1,437 @@
+{
+  "baseline_scope": "this agent task start; earlier uncommitted repairs retained",
+  "changed_markdown_files": 23,
+  "deepened_lessons": 20,
+  "narrow_factual_fixes": 3,
+  "lessons_unchanged": 34,
+  "original_frontmatters_restored_by_java_agent_before_root_integration": true,
+  "root_confirmed_metadata_changes": [
+    {
+      "path": "content/java/java-foundations/basic-data-types.md",
+      "owner": "root",
+      "changes": {
+        "concepts": {
+          "before": [
+            "variables",
+            "control-flow"
+          ],
+          "after": [
+            "variables",
+            "control-flow",
+            "types"
+          ]
+        }
+      }
+    },
+    {
+      "path": "content/java/java-foundations/objects-classes.md",
+      "owner": "root",
+      "changes": {
+        "concepts": {
+          "before": [
+            "variables",
+            "control-flow"
+          ],
+          "after": [
+            "variables",
+            "control-flow",
+            "classes"
+          ]
+        }
+      }
+    },
+    {
+      "path": "content/java/java-oop-io/encapsulation.md",
+      "owner": "root",
+      "changes": {
+        "concepts": {
+          "before": [
+            "classes",
+            "security"
+          ],
+          "after": [
+            "classes",
+            "security",
+            "encapsulation"
+          ]
+        }
+      }
+    },
+    {
+      "path": "content/java/java-oop-io/interfaces.md",
+      "owner": "root",
+      "changes": {
+        "concepts": {
+          "before": [
+            "classes",
+            "polymorphism"
+          ],
+          "after": [
+            "classes",
+            "polymorphism",
+            "interfaces"
+          ]
+        }
+      }
+    }
+  ],
+  "all_other_frontmatter_fields_unchanged": true,
+  "all_57_exercise_files_sha256_unchanged": true,
+  "course_yaml_sha256_unchanged": true,
+  "example_manifest_code_still_current_count": 39,
+  "example_code_checks": [
+    {
+      "lesson_path": "content/java/java-foundations/objects-classes.md",
+      "example_index": 1,
+      "code_sha256": "eb3e43e9587efb75d776d23c50171ef58f3e2121fdc67a7359c0bf065f4e89ee",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-foundations/objects-classes.md",
+      "example_index": 2,
+      "code_sha256": "85a5cda3be8f684a0841b87737e77319d09541da307cdb0d9647029e40e34884",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-foundations/basic-data-types.md",
+      "example_index": 1,
+      "code_sha256": "e913c9c3088a6f1b1cfb2ed60545e7423524458b17bac4094233a30fded72f7e",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-foundations/basic-data-types.md",
+      "example_index": 2,
+      "code_sha256": "2f6cf750b3133716e42c96530fad8705449bd3641b423aaded683833efcf1c63",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-foundations/variable-types.md",
+      "example_index": 1,
+      "code_sha256": "1a154b9036f837f1026f893cf4eb8a0c37f6e56d8ce7834cea44f1aafda296c3",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-foundations/variable-types.md",
+      "example_index": 2,
+      "code_sha256": "ee090f18cb78bacd0d8f9c9b34cba78b529ddaf0fc6415b30618fd213c6656e2",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-core-api/constructors.md",
+      "example_index": 1,
+      "code_sha256": "bcda10aed0bcea7efe218acc7d253bd1eb47699e0c3ed67c9dee669379b9be06",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-core-api/constructors.md",
+      "example_index": 2,
+      "code_sha256": "8723916a58abdbb4d231ec80d1afd9f292ae2ebc366bdc88e684fef607ffed9d",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-oop-io/inheritance.md",
+      "example_index": 1,
+      "code_sha256": "cc8a28838b0948289572e92529459eada889c2f45e0822a65f535f850c33c1b3",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-oop-io/inheritance.md",
+      "example_index": 2,
+      "code_sha256": "76bfeb76cd0167b26abe247e33083fefe2bc14cc617866c5525a514359a66a65",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-oop-io/override-overload.md",
+      "example_index": 1,
+      "code_sha256": "0af8b2bf6c03f7bb28280796ff52789363374ddf73883d0a1aa9c3715c23f83f",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-oop-io/override-overload.md",
+      "example_index": 2,
+      "code_sha256": "6947ddba5a4896a505c87d74efc499c24a50b43f2ae5310809a87c24e2513f54",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-oop-io/polymorphism.md",
+      "example_index": 1,
+      "code_sha256": "8d14dfbfe07dcfadbc99523a7cc5243ce37e9f52efc77daec3fbdfaaae07d21f",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-oop-io/polymorphism.md",
+      "example_index": 2,
+      "code_sha256": "c009856411e3310fcabcef0b7ef8535a6e30716d63096f830692629f72bbc758",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-oop-io/abstraction.md",
+      "example_index": 1,
+      "code_sha256": "acb27a6fbd9c6e946bf3b1a4df787ab45efa878e901998e7c3489706a75ee8ea",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-oop-io/abstraction.md",
+      "example_index": 2,
+      "code_sha256": "a485b1387ee0e600865ee95d96eb8d94270073ef4c335f193b4329bb50263a3e",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-oop-io/interfaces.md",
+      "example_index": 1,
+      "code_sha256": "716cfef044849b2041b1419c151f38abbd263002acdff0c8b825676ed94bce94",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-oop-io/interfaces.md",
+      "example_index": 2,
+      "code_sha256": "cac74f66f9aa95013249730b7765efddba48741d2a3f6905088e0bfeb2680697",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-oop-io/encapsulation.md",
+      "example_index": 1,
+      "code_sha256": "dc3e45c0984b695139e4de7eb5a3506c60060e2b4a52f81e26531d9fd96ce0ee",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-oop-io/encapsulation.md",
+      "example_index": 2,
+      "code_sha256": "18f375a13529014abbb8eb01485bdcc018d59364121eacb8840520e2f899d2b3",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-oop-io/exceptions.md",
+      "example_index": 1,
+      "code_sha256": "0759ce81c296cbe64890c0c10803a9fcaa572beb57a3c6fd1082f5712d9ea12a",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-oop-io/exceptions.md",
+      "example_index": 2,
+      "code_sha256": "a90ff8da1a4c94f9df29449bbf8112d36ce743893e884e7ea1c8efddafca8eaa",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-collections-generics/generics.md",
+      "example_index": 1,
+      "code_sha256": "01d06fe7939517b2da0334507cb7b6ea441a22e377c7a81fe5d7554b775b5c3e",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-collections-generics/generics.md",
+      "example_index": 2,
+      "code_sha256": "ae673a8f59cf1ec13bf18d4a1ab772f44a5cd2b2e2af8eee3b38820eb6a647fb",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-collections-generics/collections-framework.md",
+      "example_index": 1,
+      "code_sha256": "ba609afd836a11ffd04af3878f9c80bfe699daa0b997f9767a7c42e075f956ee",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-collections-generics/collections-framework.md",
+      "example_index": 2,
+      "code_sha256": "2f61195ad661f04d3418a3d9c2c17102a55daa5870ab8e41fa8b7ebe5eb63640",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-collections-generics/arraylist.md",
+      "example_index": 1,
+      "code_sha256": "a6c3451e7eb269e987ddbcfe9f4ec06fd065bfc0f756aab3f087ff8a3ff0e736",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-collections-generics/arraylist.md",
+      "example_index": 2,
+      "code_sha256": "7a6fe5d0c6949d5e7508bdbf9ef4310d8e537cc869c0dc7f8911c01a3dfc22d5",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-collections-generics/linkedlist.md",
+      "example_index": 1,
+      "code_sha256": "e7935c8ed76265a5a1f1c5b1d4cf343ed3016f5e67c70ada205f0dd40b28810f",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-collections-generics/linkedlist.md",
+      "example_index": 2,
+      "code_sha256": "67257a87f22f31094545649626793c06ce9dbf4d838aad1e892de16685d2c39c",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-collections-generics/hashset.md",
+      "example_index": 1,
+      "code_sha256": "6032e1605f0a1f7567f35905020c800ecc5fded42db13e2025d481e6482bc525",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-collections-generics/hashset.md",
+      "example_index": 2,
+      "code_sha256": "f597e4b6dbb5fbfbe82b3426bff99aa4edaae62969f8acd4396afd004760a25d",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-collections-generics/hashmap.md",
+      "example_index": 1,
+      "code_sha256": "bc5fe9de0e8f5966a035b172a64ce9b2226a4e475f3dd0a36061e78539c0e5eb",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-collections-generics/hashmap.md",
+      "example_index": 2,
+      "code_sha256": "018ffaee6afff199e4cbe5baf5ab449dc2d8469de3fae69851870e929181cd8a",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-collections-generics/iterator.md",
+      "example_index": 1,
+      "code_sha256": "e34e62d14ab5334703a0bfbf79f37adf614bf7717e840b224ed3b03fb449ccb5",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-collections-generics/iterator.md",
+      "example_index": 2,
+      "code_sha256": "c8d989deaae8c5dfdec631902d61446b8a36f81c7979704f13724c356b6c1a8f",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-collections-generics/object-class.md",
+      "example_index": 1,
+      "code_sha256": "85c0ef465388c1e8da0b592c85de54d9f9a622a0e4b8a89147158d64f05b3d9d",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-collections-generics/object-class.md",
+      "example_index": 2,
+      "code_sha256": "78b14eea9933744c563598866aa5ec38b01f6758886540a8af60d1c5bc14e221",
+      "current_code_matches_run_manifest": true
+    },
+    {
+      "lesson_path": "content/java/java-foundations/documentation.md",
+      "example_index": 1,
+      "code_sha256": "984b9ce25fa2de9d196ef74c241c212909458c08c5f0dc34057907582b572742",
+      "current_code_matches_run_manifest": true
+    }
+  ],
+  "changed": [
+    {
+      "path": "content/java/java-collections-generics/arraylist.md",
+      "before_sha256": "2abfc57e73f19fbd8428e5a6757a7cef0e73b103f4d23ce1441e047f5b1610ff",
+      "after_sha256": "f1cd985703720280c914cad712d40500962e5c3e51dc9b6d486dcf419bd18486"
+    },
+    {
+      "path": "content/java/java-collections-generics/collections-framework.md",
+      "before_sha256": "aac9b467c4d397a0d0cd9a082a6eda24b93cb3ff76c5ed3810a569669cb220cf",
+      "after_sha256": "989edf09ef76187370d7397bb9628ce347fe27ca41482a1bf602b452ffe6bd96"
+    },
+    {
+      "path": "content/java/java-collections-generics/data-structures.md",
+      "before_sha256": "2873bfc2f932744d077c12543f3d17d9f80a7fb025705ad9de8f27cb4d78473e",
+      "after_sha256": "a49d757da64ed4ca473268c537ec5dcd1a84ebe8ad97cb774bd1b7f511a3f890"
+    },
+    {
+      "path": "content/java/java-collections-generics/generics.md",
+      "before_sha256": "ce405278adbb004e4f354bee9ed37086021c4a04e86edcc66c5b14aa841233e9",
+      "after_sha256": "f821c3d3dfe3d73d688a8f9b0ed2c68db0bec30fad647fa5106884cdf010b147"
+    },
+    {
+      "path": "content/java/java-collections-generics/hashmap.md",
+      "before_sha256": "4603010d3e1de889fa9eb50a8c8f360ee0b642a35fda9aeecda4b634ed2a044e",
+      "after_sha256": "6de3dbdad9e64825953c2ac92c58c01654d4cab9a97397d7ddaebb5b902ce8f0"
+    },
+    {
+      "path": "content/java/java-collections-generics/hashset.md",
+      "before_sha256": "eba99417f49ea4dc65befcbf61832c26e7fbc86faf7eb31d1847db8feb4c15ff",
+      "after_sha256": "9317e8bbae44c34b477fcab44578ed897ef3696295bb3c9baff39c9f57183277"
+    },
+    {
+      "path": "content/java/java-collections-generics/iterator.md",
+      "before_sha256": "973ce479aa0c18d7774881182dfc361d64751691602943c40f619bea1b3c060d",
+      "after_sha256": "c31cb0ad227895812224d03a5daf3e2e1f73640b5bf9074ab6182331d1b2cf09"
+    },
+    {
+      "path": "content/java/java-collections-generics/linkedlist.md",
+      "before_sha256": "fc49bad094f4cb644460ad73af9ef62befdf79dd6bafa37377aeb1ef60ff9dd0",
+      "after_sha256": "a33ea5cea7a42babd533cbf9680d443b4ff6d6845bae3bb64eff57ac7651e462"
+    },
+    {
+      "path": "content/java/java-collections-generics/object-class.md",
+      "before_sha256": "8109ee788f665ea7c0225326b76106fb7dc80b1de8763df475be56c307aca702",
+      "after_sha256": "54f7b90d3c45032f8b73c8bd87b7c93ddbff3a2d02316257a480a76bf8d9a224"
+    },
+    {
+      "path": "content/java/java-core-api/constructors.md",
+      "before_sha256": "3a4a9234aaa796893ac0bede6691e7fa95be85098e8d01764754c3329ad29b00",
+      "after_sha256": "bd0be5fc890b6be75257b05989c35a4fdc7ed1594071eef49a4fe007cd46319c"
+    },
+    {
+      "path": "content/java/java-core-api/date-time.md",
+      "before_sha256": "a447897950455261d5982298fcd1855157fe301bf042bde6551293d2776fa624",
+      "after_sha256": "9a63eeaab9672939a2a0c434f8a01e6fc431b81d8c9cf612db8be6280780450b"
+    },
+    {
+      "path": "content/java/java-core-api/string.md",
+      "before_sha256": "59bf500ac5891974ab6cbd5cca0b1302dfc7f7e561202aa882adc6e42076acec",
+      "after_sha256": "63169a012ec5cb308e9bf7f6cbd09104e2d871d2fd83ae6299ddd12c2f14b1db"
+    },
+    {
+      "path": "content/java/java-foundations/basic-data-types.md",
+      "before_sha256": "8e71b91cf45531bc4882bc9d8e9379018fefe96ebe81e872b89ee4b46e42b4a9",
+      "after_sha256": "09456ed533aa708d331d0480f59e00b9a93914fd49712325cdbdf78d5283851e"
+    },
+    {
+      "path": "content/java/java-foundations/documentation.md",
+      "before_sha256": "a58e61a9a929aa8c51e59b74528b94f1301615f465dcee1bfe1da42a59ba8fe3",
+      "after_sha256": "5ed978c527587ada1c26d46402baaeaddd0ede171873fc654df13516b80ffd82"
+    },
+    {
+      "path": "content/java/java-foundations/objects-classes.md",
+      "before_sha256": "bedc060d4f9db9171605e128d6f5b7dde1145144e83c76279a8c1aa30c980476",
+      "after_sha256": "28bf3cf8e94e73498afac87678febb1a2c329ad67b8e98400870cb0a59c17a26"
+    },
+    {
+      "path": "content/java/java-foundations/variable-types.md",
+      "before_sha256": "c18c55f9097a2221d0276393aa1f6f8ee1018432a10744494eef13df9334ec2d",
+      "after_sha256": "7e7dd35cbde4a02ec693f2fdb82d1b6a8d0063664490d709f7a414582cd0de44"
+    },
+    {
+      "path": "content/java/java-oop-io/abstraction.md",
+      "before_sha256": "f72d524835a5cf9d386fd6db9dd567ed3fced2a7a8ea0a262efb5a8fc2513bbe",
+      "after_sha256": "ca51caa8fa620178d32488fb48de0bd6cb95aad9284e670ac1372778a8cc9347"
+    },
+    {
+      "path": "content/java/java-oop-io/encapsulation.md",
+      "before_sha256": "dc4bac5f4a76ea00146065ec804b320ce3a567e27906301d1a92539349c9ad4f",
+      "after_sha256": "83c07e5f02fb35e6a0abb2c95d82105e5c84956dbffa53d056e7143ef9e60a57"
+    },
+    {
+      "path": "content/java/java-oop-io/exceptions.md",
+      "before_sha256": "b7bc4a903153e6aea0193d32d6209c4c3b35adc7ba29cbb9dbbcb5d74127cca3",
+      "after_sha256": "49c04fa029f1f335ee6823ad1d7deaf8cc323f54ea626d5eef06db852a0e062d"
+    },
+    {
+      "path": "content/java/java-oop-io/inheritance.md",
+      "before_sha256": "5e8d5806736a5a67eb5242a2ca0de5d9f2f829324c05fc740b26844696c0e5af",
+      "after_sha256": "323615d29029e816c0287d916116e54479e5a62978921bf9d798cb9ef0d82e44"
+    },
+    {
+      "path": "content/java/java-oop-io/interfaces.md",
+      "before_sha256": "d55b55a0b354e7579f6247ac2763ed09101ac2aa323f73a8791d47144e9f10a0",
+      "after_sha256": "86fe54f1b84de1ab035c47e05ca382477d958abb721d62a9ded57f98018a2f43"
+    },
+    {
+      "path": "content/java/java-oop-io/override-overload.md",
+      "before_sha256": "00850d07a6152cad1ac145d8d0aaf734f7652ef695d82d49284d6a0bac5092b9",
+      "after_sha256": "1b91a03057e8cd58fdfd07df5ac8934dc1473eba0e0373f15f56729af4a43e62"
+    },
+    {
+      "path": "content/java/java-oop-io/polymorphism.md",
+      "before_sha256": "5d624ce6c383a1543a1b4bdae886b26684e3e00c13061d7ae56aba3df9dae2ed",
+      "after_sha256": "3d071ee6f2e945d18644eae2cad891938fc8b08487e593b1fa08d82c2f45cc02"
+    }
+  ],
+  "errors": [],
+  "previous_pass": "provenance.json records state before documentation correction and root tag integration"
+}

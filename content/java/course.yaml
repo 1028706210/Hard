@@ -1,0 +1,208 @@
+language: java
+title: Java
+growth:
+  review_milestone_points: 15
+  badge_points:
+    first_lesson: 20
+    first_module_mastery: 30
+    seven_day_streak: 40
+placement_tests:
+  - id: java-foundations-placement
+    module_id: java-foundations
+    question_ids:
+      - java-foundations-tutorial-k01
+      - java-foundations-basic-syntax-k02
+      - java-foundations-switch-k03
+    passing_score: 85
+  - id: java-core-api-placement
+    module_id: java-core-api
+    question_ids:
+      - java-core-api-number-math-k01
+      - java-core-api-string-k02
+      - java-core-api-scanner-k03
+    passing_score: 85
+  - id: java-oop-io-placement
+    module_id: java-oop-io
+    question_ids:
+      - java-oop-io-exceptions-k01
+      - java-oop-io-inheritance-k02
+      - java-oop-io-interfaces-k03
+    passing_score: 85
+  - id: java-collections-generics-placement
+    module_id: java-collections-generics
+    question_ids:
+      - java-collections-generics-collections-framework-k01
+      - java-collections-generics-hashmap-k02
+      - java-collections-generics-generics-k03
+    passing_score: 85
+  - id: java-network-concurrency-placement
+    module_id: java-network-concurrency
+    question_ids:
+      - java-network-concurrency-serialization-k01
+      - java-network-concurrency-networking-k02
+      - java-network-concurrency-multithreading-k03
+    passing_score: 85
+  - id: java-modern-ecosystem-placement
+    module_id: java-modern-ecosystem
+    question_ids:
+      - java-modern-ecosystem-java8-features-k01
+      - java-modern-ecosystem-mysql-connect-k02
+      - java-modern-ecosystem-libraries-k03
+    passing_score: 85
+  - id: java-capstone-placement
+    module_id: java-capstone
+    question_ids:
+      - java-capstone-examples-k01
+      - java-capstone-examples-k02
+      - java-capstone-quiz-k03
+    passing_score: 85
+modules:
+  - id: java-foundations
+    title: Java 入门与语言基础
+    prerequisites: []
+    source_coverage:
+      - {source_id: java-tutorial, lesson_id: java-foundations-tutorial}
+      - {source_id: java-intro, lesson_id: java-foundations-introduction}
+      - {source_id: java-environment-setup, lesson_id: java-foundations-environment}
+      - {source_id: java-basic-syntax, lesson_id: java-foundations-basic-syntax}
+      - {source_id: java-comments, lesson_id: java-foundations-comments}
+      - {source_id: java-object-classes, lesson_id: java-foundations-objects-classes}
+      - {source_id: java-basic-datatypes, lesson_id: java-foundations-basic-data-types}
+      - {source_id: java-variable-types, lesson_id: java-foundations-variable-types}
+      - {source_id: java-variable-naming-rules, lesson_id: java-foundations-variable-names}
+      - {source_id: java-modifier-types, lesson_id: java-foundations-modifiers}
+      - {source_id: java-operators, lesson_id: java-foundations-operators}
+      - {source_id: java-loop, lesson_id: java-foundations-loops}
+      - {source_id: java-if-else-switch, lesson_id: java-foundations-conditions}
+      - {source_id: java-switch-case, lesson_id: java-foundations-switch}
+      - {source_id: java-documentation, lesson_id: java-foundations-documentation}
+    lessons:
+      - {id: java-foundations-tutorial, path: java-foundations/tutorial.md}
+      - {id: java-foundations-introduction, path: java-foundations/introduction.md}
+      - {id: java-foundations-environment, path: java-foundations/environment.md}
+      - {id: java-foundations-basic-syntax, path: java-foundations/basic-syntax.md}
+      - {id: java-foundations-comments, path: java-foundations/comments.md}
+      - {id: java-foundations-objects-classes, path: java-foundations/objects-classes.md}
+      - {id: java-foundations-basic-data-types, path: java-foundations/basic-data-types.md}
+      - {id: java-foundations-variable-types, path: java-foundations/variable-types.md}
+      - {id: java-foundations-variable-names, path: java-foundations/variable-names.md}
+      - {id: java-foundations-modifiers, path: java-foundations/modifiers.md}
+      - {id: java-foundations-operators, path: java-foundations/operators.md}
+      - {id: java-foundations-loops, path: java-foundations/loops.md}
+      - {id: java-foundations-conditions, path: java-foundations/conditions.md}
+      - {id: java-foundations-switch, path: java-foundations/switch.md}
+      - {id: java-foundations-documentation, path: java-foundations/documentation.md}
+  - id: java-core-api
+    title: Java 核心 API 与方法
+    prerequisites: [java-foundations]
+    source_coverage:
+      - {source_id: java-number, lesson_id: java-core-api-number-math}
+      - {source_id: java-character, lesson_id: java-core-api-character}
+      - {source_id: java-string, lesson_id: java-core-api-string}
+      - {source_id: java-stringbuffer, lesson_id: java-core-api-stringbuffer}
+      - {source_id: java-array, lesson_id: java-core-api-arrays}
+      - {source_id: java-date-time, lesson_id: java-core-api-date-time}
+      - {source_id: java-regular-expressions, lesson_id: java-core-api-regex}
+      - {source_id: java-methods, lesson_id: java-core-api-methods}
+      - {source_id: java-constructor, lesson_id: java-core-api-constructors}
+      - {source_id: java-scanner-class, lesson_id: java-core-api-scanner}
+    lessons:
+      - {id: java-core-api-number-math, path: java-core-api/number-math.md}
+      - {id: java-core-api-character, path: java-core-api/character.md}
+      - {id: java-core-api-string, path: java-core-api/string.md}
+      - {id: java-core-api-stringbuffer, path: java-core-api/stringbuffer.md}
+      - {id: java-core-api-arrays, path: java-core-api/arrays.md}
+      - {id: java-core-api-date-time, path: java-core-api/date-time.md}
+      - {id: java-core-api-regex, path: java-core-api/regex.md}
+      - {id: java-core-api-methods, path: java-core-api/methods.md}
+      - {id: java-core-api-constructors, path: java-core-api/constructors.md}
+      - {id: java-core-api-scanner, path: java-core-api/scanner.md}
+  - id: java-oop-io
+    title: Java IO、异常与面向对象
+    prerequisites: [java-core-api]
+    source_coverage:
+      - {source_id: java-files-io, lesson_id: java-oop-io-files-io}
+      - {source_id: java-exceptions, lesson_id: java-oop-io-exceptions}
+      - {source_id: java-inheritance, lesson_id: java-oop-io-inheritance}
+      - {source_id: java-override-overload, lesson_id: java-oop-io-override-overload}
+      - {source_id: java-polymorphism, lesson_id: java-oop-io-polymorphism}
+      - {source_id: java-abstraction, lesson_id: java-oop-io-abstraction}
+      - {source_id: java-encapsulation, lesson_id: java-oop-io-encapsulation}
+      - {source_id: java-interfaces, lesson_id: java-oop-io-interfaces}
+      - {source_id: java-enum, lesson_id: java-oop-io-enums}
+      - {source_id: java-package, lesson_id: java-oop-io-packages}
+      - {source_id: java-nio-file, lesson_id: java-oop-io-nio-files}
+    lessons:
+      - {id: java-oop-io-files-io, path: java-oop-io/files-io.md}
+      - {id: java-oop-io-exceptions, path: java-oop-io/exceptions.md}
+      - {id: java-oop-io-inheritance, path: java-oop-io/inheritance.md}
+      - {id: java-oop-io-override-overload, path: java-oop-io/override-overload.md}
+      - {id: java-oop-io-polymorphism, path: java-oop-io/polymorphism.md}
+      - {id: java-oop-io-abstraction, path: java-oop-io/abstraction.md}
+      - {id: java-oop-io-encapsulation, path: java-oop-io/encapsulation.md}
+      - {id: java-oop-io-interfaces, path: java-oop-io/interfaces.md}
+      - {id: java-oop-io-enums, path: java-oop-io/enums.md}
+      - {id: java-oop-io-packages, path: java-oop-io/packages.md}
+      - {id: java-oop-io-nio-files, path: java-oop-io/nio-files.md}
+  - id: java-collections-generics
+    title: Java 集合、泛型与反射
+    prerequisites: [java-oop-io]
+    source_coverage:
+      - {source_id: java-reflection, lesson_id: java-collections-generics-reflection}
+      - {source_id: java-data-structures, lesson_id: java-collections-generics-data-structures}
+      - {source_id: java-collections, lesson_id: java-collections-generics-collections-framework}
+      - {source_id: java-arraylist, lesson_id: java-collections-generics-arraylist}
+      - {source_id: java-linkedlist, lesson_id: java-collections-generics-linkedlist}
+      - {source_id: java-hashset, lesson_id: java-collections-generics-hashset}
+      - {source_id: java-hashmap, lesson_id: java-collections-generics-hashmap}
+      - {source_id: java-iterator, lesson_id: java-collections-generics-iterator}
+      - {source_id: java-object-class, lesson_id: java-collections-generics-object-class}
+      - {source_id: java-generics, lesson_id: java-collections-generics-generics}
+    lessons:
+      - {id: java-collections-generics-reflection, path: java-collections-generics/reflection.md}
+      - {id: java-collections-generics-data-structures, path: java-collections-generics/data-structures.md}
+      - {id: java-collections-generics-collections-framework, path: java-collections-generics/collections-framework.md}
+      - {id: java-collections-generics-arraylist, path: java-collections-generics/arraylist.md}
+      - {id: java-collections-generics-linkedlist, path: java-collections-generics/linkedlist.md}
+      - {id: java-collections-generics-hashset, path: java-collections-generics/hashset.md}
+      - {id: java-collections-generics-hashmap, path: java-collections-generics/hashmap.md}
+      - {id: java-collections-generics-iterator, path: java-collections-generics/iterator.md}
+      - {id: java-collections-generics-object-class, path: java-collections-generics/object-class.md}
+      - {id: java-collections-generics-generics, path: java-collections-generics/generics.md}
+  - id: java-network-concurrency
+    title: Java 序列化、网络与并发
+    prerequisites: [java-collections-generics]
+    source_coverage:
+      - {source_id: java-serialization, lesson_id: java-network-concurrency-serialization}
+      - {source_id: java-networking, lesson_id: java-network-concurrency-networking}
+      - {source_id: java-sending-email, lesson_id: java-network-concurrency-sending-email}
+      - {source_id: java-multithreading, lesson_id: java-network-concurrency-multithreading}
+      - {source_id: java-applet-basics, lesson_id: java-network-concurrency-applet-basics}
+    lessons:
+      - {id: java-network-concurrency-serialization, path: java-network-concurrency/serialization.md}
+      - {id: java-network-concurrency-networking, path: java-network-concurrency/networking.md}
+      - {id: java-network-concurrency-sending-email, path: java-network-concurrency/sending-email.md}
+      - {id: java-network-concurrency-multithreading, path: java-network-concurrency/multithreading.md}
+      - {id: java-network-concurrency-applet-basics, path: java-network-concurrency/applet-basics.md}
+  - id: java-modern-ecosystem
+    title: Java 现代特性与生态
+    prerequisites: [java-network-concurrency]
+    source_coverage:
+      - {source_id: java8-new-features, lesson_id: java-modern-ecosystem-java8-features}
+      - {source_id: java9-new-features, lesson_id: java-modern-ecosystem-java9-features}
+      - {source_id: java-mysql-connect, lesson_id: java-modern-ecosystem-mysql-connect}
+      - {source_id: java-libs, lesson_id: java-modern-ecosystem-libraries}
+    lessons:
+      - {id: java-modern-ecosystem-java8-features, path: java-modern-ecosystem/java8-features.md}
+      - {id: java-modern-ecosystem-java9-features, path: java-modern-ecosystem/java9-features.md}
+      - {id: java-modern-ecosystem-mysql-connect, path: java-modern-ecosystem/mysql-connect.md}
+      - {id: java-modern-ecosystem-libraries, path: java-modern-ecosystem/libraries.md}
+  - id: java-capstone
+    title: Java 实例、测验与结业
+    prerequisites: [java-modern-ecosystem]
+    source_coverage:
+      - {source_id: java-examples, lesson_id: java-capstone-examples}
+      - {source_id: java-quiz, lesson_id: java-capstone-quiz}
+    lessons:
+      - {id: java-capstone-examples, path: java-capstone/examples.md}
+      - {id: java-capstone-quiz, path: java-capstone/quiz.md}

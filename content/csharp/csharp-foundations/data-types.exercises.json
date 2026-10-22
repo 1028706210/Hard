@@ -1,0 +1,110 @@
+{
+  "lesson_id": "csharp-foundations-data-types",
+  "questions": [
+    {
+      "id": "csharp-foundations-data-types-k01",
+      "type": "knowledge",
+      "prompt": "在 C# 中组合 int、decimal 与 bool 时，哪项理解正确？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "三者都只能保存文本"
+        },
+        {
+          "id": "b",
+          "text": "bool 可以直接参与任意算术"
+        },
+        {
+          "id": "c",
+          "text": "int 表示整数，decimal 适合十进制定点数，bool 表示真假"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "csharp-foundations-data-types-k02",
+      "type": "knowledge",
+      "prompt": "哪段声明同时正确使用了 decimal 和 bool 字面量？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "decimal price = 19.95m; bool active = true;"
+        },
+        {
+          "id": "b",
+          "text": "decimal price = 19.95; bool active = 1;"
+        },
+        {
+          "id": "c",
+          "text": "float price = 19.95m; bool active = \"true\";"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-foundations-data-types-k03",
+      "type": "knowledge",
+      "prompt": "两个 int 相乘后要可靠保存到 long，避免先在 int 范围内溢出，应怎么写？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "long total = a * b; 就总能避免溢出"
+        },
+        {
+          "id": "b",
+          "text": "先把至少一个操作数转换为 long，例如 (long)a * b"
+        },
+        {
+          "id": "c",
+          "text": "把结果先转换成 bool"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-foundations-data-types-c01",
+      "type": "code",
+      "prompt": "依次读取 int 数量、decimal 单价和 bool 启用状态，计算数量乘单价，并输出 count=n; total=x.xx; active=true|false。",
+      "starter_code": "var count = int.Parse(Console.ReadLine() ?? \"\");\nvar price = decimal.Parse(Console.ReadLine() ?? \"\", System.Globalization.CultureInfo.InvariantCulture);\nvar active = bool.Parse(Console.ReadLine() ?? \"\");\n// 组合三种数据类型并输出\n",
+      "visible_tests": [
+        "输入 3、2.50、true 时输出 count=3; total=7.50; active=true。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var count = int.Parse(Console.ReadLine() ?? \"\");\nvar price = decimal.Parse(Console.ReadLine() ?? \"\", System.Globalization.CultureInfo.InvariantCulture);\nvar active = bool.Parse(Console.ReadLine() ?? \"\");\nvar total = count * price;\nConsole.WriteLine($\"count={count}; total={total.ToString(\"F2\", System.Globalization.CultureInfo.InvariantCulture)}; active={active.ToString().ToLowerInvariant()}\");\n",
+        "hidden_tests": [
+          "数量为零时总价为 0.00。",
+          "false 状态按小写文本输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3\n2.50\ntrue\n",
+            "stdout": "count=3; total=7.50; active=true\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n9.99\ntrue\n",
+            "stdout": "count=0; total=0.00; active=true\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "4\n1.25\nfalse\n",
+            "stdout": "count=4; total=5.00; active=false\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -73,35 +73,56 @@
     {
       "id": "python-flow-collections-first-program-c01",
       "type": "code",
-      "prompt": "定义 name 为 Hard 并输出大写形式。",
-      "starter_code": "name = \"\"\n# 输出大写",
+      "prompt": "读取一段名称文本，去掉首尾空白保存到 name，输出 name.upper() 得到的大写文本。保留内部空格，中文等没有大写形式的字符保持原样；空白输入不输出内容，退出码为 1。起始代码已读取并检查非空。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\nif not text:\n    raise SystemExit(1)\nname = text\n# 按题面完成本课操作与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'Hard\\n'，输出 'HARD\\n'，退出码 0。",
+        "输入 'python\\n'，输出 'PYTHON\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-flow-collections-first-program-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    name = 'Hard'\n    print(name.upper())\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\nif not text:\n    raise SystemExit(1)\nname = text\nprint(name.upper())\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的边界、顺序和重复项处理。",
+          "输入有效性与退出码按题面约定检查。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "Hard\n",
             "stdout": "HARD\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "python\n",
+            "stdout": "PYTHON\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-flow-collections-first-program-c01\n",
+            "stdin": "  Ada  Li \n",
+            "stdout": "ADA  LI\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "学习 Python",
+            "stdout": "学习 PYTHON\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "123",
+            "stdout": "123\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": " \n",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

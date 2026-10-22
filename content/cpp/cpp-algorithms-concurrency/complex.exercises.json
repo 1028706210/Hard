@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-algorithms-concurrency-complex",
+  "questions": [
+    {
+      "id": "cpp-algorithms-concurrency-complex-k01",
+      "type": "knowledge",
+      "prompt": "std::abs 作用于 complex<double> 时返回？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "虚部的绝对值"
+        },
+        {
+          "id": "b",
+          "text": "实部的绝对值"
+        },
+        {
+          "id": "c",
+          "text": "模长 sqrt(re²+im²)"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-complex-k02",
+      "type": "knowledge",
+      "prompt": "complex 的 real() 与 imag() 分别返回？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "模长与辐角"
+        },
+        {
+          "id": "b",
+          "text": "实部与虚部"
+        },
+        {
+          "id": "c",
+          "text": "共轭与相反数"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-complex-k03",
+      "type": "knowledge",
+      "prompt": "std::norm 作用于复数返回？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "共轭复数"
+        },
+        {
+          "id": "b",
+          "text": "模长"
+        },
+        {
+          "id": "c",
+          "text": "模长的平方"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-complex-c01",
+      "type": "code",
+      "prompt": "读取两个浮点数 re 与 im（合同范围绝对值不超过 1000，含两端），构造 std::complex<double>(re, im)，输出其模长，保留两位小数（fixed 与 setprecision(2)）。任一输入无法解析或越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <complex>\n#include <iomanip>\n#include <iostream>\n\nint main() {\n    // 读取 re im，输出复数模长（两位小数）\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3 4 时输出 5.00。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <complex>\n#include <iomanip>\n#include <iostream>\n\nint main() {\n    double re = 0.0, im = 0.0;\n    if (!(std::cin >> re >> im)) return 1;\n    if (re < -1000 || re > 1000) return 1;\n    if (im < -1000 || im > 1000) return 1;\n    std::complex<double> point(re, im);\n    std::cout << std::fixed << std::setprecision(2) << std::abs(point) << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "负虚部不影响模长。",
+          "零向量模长输出 0.00。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 4\n",
+            "stdout": "5.00\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "3 -4\n",
+            "stdout": "5.00\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "0 0\n",
+            "stdout": "0.00\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

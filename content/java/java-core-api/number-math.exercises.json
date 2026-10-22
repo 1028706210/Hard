@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-core-api-number-math",
+  "questions": [
+    {
+      "id": "java-core-api-number-math-k01",
+      "type": "knowledge",
+      "prompt": "Math.max(3, 7) 返回什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "7"
+        },
+        {
+          "id": "b",
+          "text": "3"
+        },
+        {
+          "id": "c",
+          "text": "10"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "java-core-api-number-math-k02",
+      "type": "knowledge",
+      "prompt": "Math.abs(-5) 的结果是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "-5"
+        },
+        {
+          "id": "b",
+          "text": "5"
+        },
+        {
+          "id": "c",
+          "text": "0"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-number-math-k03",
+      "type": "knowledge",
+      "prompt": "Math.round(2.5) 返回哪个值？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "2"
+        },
+        {
+          "id": "b",
+          "text": "3"
+        },
+        {
+          "id": "c",
+          "text": "2.5"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-number-math-c01",
+      "type": "code",
+      "prompt": "从标准输入读取两个空格分隔整数，输出较大值的平方。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // 读取两个整数，输出较大值平方\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        String[] parts = input.split(\"\\\\s+\");\n        int a = Integer.parseInt(parts[0]);\n        int b = Integer.parseInt(parts[1]);\n        int max = Math.max(a, b);\n        System.out.println(max * max);\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 5\n",
+            "stdout": "25\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "-2 4\n",
+            "stdout": "16\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

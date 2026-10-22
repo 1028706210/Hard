@@ -1,0 +1,576 @@
+[
+  {
+    "path": "content/java/course.yaml",
+    "sha256": "6249d7d221b35d6ed07be8ecf29b757d1825bca1325f6f67777fb0ce8fab8c5d"
+  },
+  {
+    "path": "content/java/java-capstone/examples.exercises.json",
+    "sha256": "8f41fc8ef976e3c444112c32cebfebf3e02582c8e52543cfe9acdbd6e1dd2ac0"
+  },
+  {
+    "path": "content/java/java-capstone/examples.md",
+    "sha256": "eaaf0ac4e5d30deb0e6a6bff7b6c0153ce3fadc2ffbecfbf223f8ea606e2ad27",
+    "front_matter": "\r\nid: java-capstone-examples\r\ntitle: Java 实例\r\nconcepts: [control-flow, collections]\r\nobjectives:\r\n  - 掌握Java 实例的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证Java 实例。\r\nprerequisites: []\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-examples.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 973
+  },
+  {
+    "path": "content/java/java-capstone/quiz.exercises.json",
+    "sha256": "0d75a4434dd473696fa7ea28fefb5998a7e96008b53b1384725ae1125662751c"
+  },
+  {
+    "path": "content/java/java-capstone/quiz.md",
+    "sha256": "c9438328ac28944eb96af924e90d0b28ec1025a27e1b4dc3ad4673b678002d2f",
+    "front_matter": "\r\nid: java-capstone-quiz\r\ntitle: Java 测验\r\nconcepts: [types, control-flow]\r\nobjectives:\r\n  - 掌握Java 测验的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证Java 测验。\r\nprerequisites: [java-capstone-examples]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/quiz/java-quiz.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 861
+  },
+  {
+    "path": "content/java/java-collections-generics/arraylist.exercises.json",
+    "sha256": "f3c5a48f0f7094fd57f159a3502af8ffefda9309eed733f32cd2d566097597d7"
+  },
+  {
+    "path": "content/java/java-collections-generics/arraylist.md",
+    "sha256": "2abfc57e73f19fbd8428e5a6757a7cef0e73b103f4d23ce1441e047f5b1610ff",
+    "front_matter": "\r\nid: java-collections-generics-arraylist\r\ntitle: ArrayList\r\nconcepts: [collections, control-flow]\r\nobjectives:\r\n  - 掌握ArrayList的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证ArrayList。\r\nprerequisites: [java-collections-generics-collections-framework]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-arraylist.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1000
+  },
+  {
+    "path": "content/java/java-collections-generics/collections-framework.exercises.json",
+    "sha256": "7698e259dbc4d8c094900ba43d632fa2af676bcc9e57cc29b6238f076d83a058"
+  },
+  {
+    "path": "content/java/java-collections-generics/collections-framework.md",
+    "sha256": "aac9b467c4d397a0d0cd9a082a6eda24b93cb3ff76c5ed3810a569669cb220cf",
+    "front_matter": "\r\nid: java-collections-generics-collections-framework\r\ntitle: 集合框架\r\nconcepts: [collections, generics]\r\nobjectives:\r\n  - 掌握集合框架的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证集合框架。\r\nprerequisites: [java-collections-generics-data-structures]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-collections.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 874
+  },
+  {
+    "path": "content/java/java-collections-generics/data-structures.exercises.json",
+    "sha256": "3012fc23fe1ddfc14c5eea37f0ebba9b971550989ad3ad62373a322aef95ffd7"
+  },
+  {
+    "path": "content/java/java-collections-generics/data-structures.md",
+    "sha256": "2873bfc2f932744d077c12543f3d17d9f80a7fb025705ad9de8f27cb4d78473e",
+    "front_matter": "\r\nid: java-collections-generics-data-structures\r\ntitle: 数据结构\r\nconcepts: [data-structures, collections]\r\nobjectives:\r\n  - 掌握数据结构的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证数据结构。\r\nprerequisites: [java-collections-generics-reflection]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-data-structures.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 890
+  },
+  {
+    "path": "content/java/java-collections-generics/generics.exercises.json",
+    "sha256": "89a513cd34325720053ac645042da3d7707995f560f982951f50f4c8f8b588b6"
+  },
+  {
+    "path": "content/java/java-collections-generics/generics.md",
+    "sha256": "ce405278adbb004e4f354bee9ed37086021c4a04e86edcc66c5b14aa841233e9",
+    "front_matter": "\r\nid: java-collections-generics-generics\r\ntitle: 泛型\r\nconcepts: [generics, collections]\r\nobjectives:\r\n  - 掌握泛型的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证泛型。\r\nprerequisites: [java-collections-generics-object-class]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-generics.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 902
+  },
+  {
+    "path": "content/java/java-collections-generics/hashmap.exercises.json",
+    "sha256": "925b66369bf8203e4618747b28cc65f18c516a05cb48750c5a25128280d4ca69"
+  },
+  {
+    "path": "content/java/java-collections-generics/hashmap.md",
+    "sha256": "4603010d3e1de889fa9eb50a8c8f360ee0b642a35fda9aeecda4b634ed2a044e",
+    "front_matter": "\r\nid: java-collections-generics-hashmap\r\ntitle: HashMap\r\nconcepts: [collections, data-structures]\r\nobjectives:\r\n  - 掌握HashMap的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证HashMap。\r\nprerequisites: [java-collections-generics-hashset]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-hashmap.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 989
+  },
+  {
+    "path": "content/java/java-collections-generics/hashset.exercises.json",
+    "sha256": "93ad88fef32fb7b3b1bbcd3df11f81fc8a69a0a8977f3665640f3acdef1123b8"
+  },
+  {
+    "path": "content/java/java-collections-generics/hashset.md",
+    "sha256": "eba99417f49ea4dc65befcbf61832c26e7fbc86faf7eb31d1847db8feb4c15ff",
+    "front_matter": "\r\nid: java-collections-generics-hashset\r\ntitle: HashSet\r\nconcepts: [collections, generics]\r\nobjectives:\r\n  - 掌握HashSet的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证HashSet。\r\nprerequisites: [java-collections-generics-linkedlist]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-hashset.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 967
+  },
+  {
+    "path": "content/java/java-collections-generics/iterator.exercises.json",
+    "sha256": "41f69db7f7e82f459a754eb4792c614222dd79c49c390d7347ea08fb4b67284f"
+  },
+  {
+    "path": "content/java/java-collections-generics/iterator.md",
+    "sha256": "973ce479aa0c18d7774881182dfc361d64751691602943c40f619bea1b3c060d",
+    "front_matter": "\r\nid: java-collections-generics-iterator\r\ntitle: Iterator\r\nconcepts: [collections, control-flow]\r\nobjectives:\r\n  - 掌握Iterator的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证Iterator。\r\nprerequisites: [java-collections-generics-hashmap]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-iterator.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1071
+  },
+  {
+    "path": "content/java/java-collections-generics/linkedlist.exercises.json",
+    "sha256": "e2c3330516cae3bfac1f2fd563de58e20144c95bbdf019de0d2a6991d3a25f90"
+  },
+  {
+    "path": "content/java/java-collections-generics/linkedlist.md",
+    "sha256": "fc49bad094f4cb644460ad73af9ef62befdf79dd6bafa37377aeb1ef60ff9dd0",
+    "front_matter": "\r\nid: java-collections-generics-linkedlist\r\ntitle: LinkedList\r\nconcepts: [collections, data-structures]\r\nobjectives:\r\n  - 掌握LinkedList的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证LinkedList。\r\nprerequisites: [java-collections-generics-arraylist]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-linkedlist.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1034
+  },
+  {
+    "path": "content/java/java-collections-generics/object-class.exercises.json",
+    "sha256": "c2b45d4bd48eb981d566067147b9863d371dc23561670027ed6f85508e767edf"
+  },
+  {
+    "path": "content/java/java-collections-generics/object-class.md",
+    "sha256": "8109ee788f665ea7c0225326b76106fb7dc80b1de8763df475be56c307aca702",
+    "front_matter": "\r\nid: java-collections-generics-object-class\r\ntitle: Object 类\r\nconcepts: [classes, functions]\r\nobjectives:\r\n  - 掌握Object 类的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证Object 类。\r\nprerequisites: [java-collections-generics-iterator]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-object-class.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 931
+  },
+  {
+    "path": "content/java/java-collections-generics/reflection.exercises.json",
+    "sha256": "f0f2af31242b3e750b95d7d38cb52d3ed2166dcbd940eb4d170a9538759f3af5"
+  },
+  {
+    "path": "content/java/java-collections-generics/reflection.md",
+    "sha256": "70249779180f28155cc1f563abd505083148adfd2f2b19c9d479df730ce70b86",
+    "front_matter": "\r\nid: java-collections-generics-reflection\r\ntitle: 反射\r\nconcepts: [classes, tooling]\r\nobjectives:\r\n  - 掌握反射的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证反射。\r\nprerequisites: []\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-reflection.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 849
+  },
+  {
+    "path": "content/java/java-core-api/arrays.exercises.json",
+    "sha256": "81b35b17ccfaa038bf3857ef34a27a871950ae255f92f17cf996e50d34d09d60"
+  },
+  {
+    "path": "content/java/java-core-api/arrays.md",
+    "sha256": "48096e3c709a406bb74a1726e44f608a3d7882019e87ebf156faa62d65fe2f9e",
+    "front_matter": "\r\nid: java-core-api-arrays\r\ntitle: 数组\r\nconcepts: [collections, control-flow]\r\nobjectives:\r\n  - 掌握数组的核心 API 与使用方式。\r\n  - 用正常、边界和失败输入验证数组。\r\nprerequisites: [java-core-api-stringbuffer]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-array.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 879
+  },
+  {
+    "path": "content/java/java-core-api/character.exercises.json",
+    "sha256": "4619dbf14453b0f30af73285773efd405c0e9d84e60585cf4e7d7c34f12769fd"
+  },
+  {
+    "path": "content/java/java-core-api/character.md",
+    "sha256": "70a59da997bd102f65a388c7ed50f733281db73f6ef74738a4636eb4016aafcf",
+    "front_matter": "\r\nid: java-core-api-character\r\ntitle: Character 类\r\nconcepts: [types, strings]\r\nobjectives:\r\n  - 掌握Character 类的核心 API 与使用方式。\r\n  - 用正常、边界和失败输入验证Character 类。\r\nprerequisites: [java-core-api-number-math]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-character.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 922
+  },
+  {
+    "path": "content/java/java-core-api/constructors.exercises.json",
+    "sha256": "632175f7f51ec249ad63ac2e7091ed4b52c387e22328e98543ae199494695b05"
+  },
+  {
+    "path": "content/java/java-core-api/constructors.md",
+    "sha256": "3a4a9234aaa796893ac0bede6691e7fa95be85098e8d01764754c3329ad29b00",
+    "front_matter": "\r\nid: java-core-api-constructors\r\ntitle: 构造方法\r\nconcepts: [classes, functions]\r\nobjectives:\r\n  - 掌握构造方法的核心 API 与使用方式。\r\n  - 用正常、边界和失败输入验证构造方法。\r\nprerequisites: [java-core-api-methods]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-constructor.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 980
+  },
+  {
+    "path": "content/java/java-core-api/date-time.exercises.json",
+    "sha256": "0d3f236e7c0edda50a4dc52bd9663b96df826aa4d61af2b2e130f018e41769a5"
+  },
+  {
+    "path": "content/java/java-core-api/date-time.md",
+    "sha256": "a447897950455261d5982298fcd1855157fe301bf042bde6551293d2776fa624",
+    "front_matter": "\r\nid: java-core-api-date-time\r\ntitle: 日期时间\r\nconcepts: [types, io]\r\nobjectives:\r\n  - 掌握日期时间的核心 API 与使用方式。\r\n  - 用正常、边界和失败输入验证日期时间。\r\nprerequisites: [java-core-api-arrays]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-date-time.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 974
+  },
+  {
+    "path": "content/java/java-core-api/methods.exercises.json",
+    "sha256": "d16d6de5cb8058d99abc69938aeccf20731c674f4d8fa3a43696a7cc51034e8b"
+  },
+  {
+    "path": "content/java/java-core-api/methods.md",
+    "sha256": "64db566f06fd165459da7506e4a69eda43eff05bf72b05b65a2ddd42a0b47d0a",
+    "front_matter": "\r\nid: java-core-api-methods\r\ntitle: 方法\r\nconcepts: [functions, operators]\r\nobjectives:\r\n  - 掌握方法的核心 API 与使用方式。\r\n  - 用正常、边界和失败输入验证方法。\r\nprerequisites: [java-core-api-regex]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-methods.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 793
+  },
+  {
+    "path": "content/java/java-core-api/number-math.exercises.json",
+    "sha256": "b73eda12ab5b15f5f2f92829445ae16107f74775e44b25fc96c4cf0f4ab15f3d"
+  },
+  {
+    "path": "content/java/java-core-api/number-math.md",
+    "sha256": "4b433b4fe25d76c14dc27347900c31ab5ca7f07cda47961d32f34781cfc5bad2",
+    "front_matter": "\r\nid: java-core-api-number-math\r\ntitle: Number 与 Math 类\r\nconcepts: [types, operators]\r\nobjectives:\r\n  - 掌握Number 与 Math 类的核心 API 与使用方式。\r\n  - 用正常、边界和失败输入验证Number 与 Math 类。\r\nprerequisites: []\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-number.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 887
+  },
+  {
+    "path": "content/java/java-core-api/regex.exercises.json",
+    "sha256": "d9a1a9230e9c3176dad24e2bc13b31fa2c2604cd984928e1d74f0ad6a8887488"
+  },
+  {
+    "path": "content/java/java-core-api/regex.md",
+    "sha256": "1dbd90bee0dbbf3a115f082092be4775e7b0475f3d310c9a4e441ffc3477c9f9",
+    "front_matter": "\r\nid: java-core-api-regex\r\ntitle: 正则表达式\r\nconcepts: [strings, security]\r\nobjectives:\r\n  - 掌握正则表达式的核心 API 与使用方式。\r\n  - 用正常、边界和失败输入验证正则表达式。\r\nprerequisites: [java-core-api-date-time]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-regular-expressions.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 924
+  },
+  {
+    "path": "content/java/java-core-api/scanner.exercises.json",
+    "sha256": "2fe267c6cc1d71167dc44ac578f784b5d588058a17fcb69018ee9455e76557f7"
+  },
+  {
+    "path": "content/java/java-core-api/scanner.md",
+    "sha256": "9a64de8c61eccee2a5a850499ca91de5a66133cdf666f203dd850b83295632e0",
+    "front_matter": "\r\nid: java-core-api-scanner\r\ntitle: Scanner 类\r\nconcepts: [io, functions]\r\nobjectives:\r\n  - 掌握Scanner 类的核心 API 与使用方式。\r\n  - 用正常、边界和失败输入验证Scanner 类。\r\nprerequisites: [java-core-api-constructors]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-scanner-class.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1002
+  },
+  {
+    "path": "content/java/java-core-api/string.exercises.json",
+    "sha256": "11eaac31751d4fdfb57c3473ca0bbf2c47b0304031e624879d6bb0b532f9e3d8"
+  },
+  {
+    "path": "content/java/java-core-api/string.md",
+    "sha256": "59bf500ac5891974ab6cbd5cca0b1302dfc7f7e561202aa882adc6e42076acec",
+    "front_matter": "\r\nid: java-core-api-string\r\ntitle: String 类\r\nconcepts: [strings, operators]\r\nobjectives:\r\n  - 掌握String 类的核心 API 与使用方式。\r\n  - 用正常、边界和失败输入验证String 类。\r\nprerequisites: [java-core-api-character]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-string.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 880
+  },
+  {
+    "path": "content/java/java-core-api/stringbuffer.exercises.json",
+    "sha256": "16881b18205e9566aef2efaab686ec186ebe874183ad21e6c66d66bd01cff664"
+  },
+  {
+    "path": "content/java/java-core-api/stringbuffer.md",
+    "sha256": "352c1956086f915bf6c064cda7e96f686e51603984af1b555ef9627fce844a60",
+    "front_matter": "\r\nid: java-core-api-stringbuffer\r\ntitle: StringBuffer 类\r\nconcepts: [strings, collections]\r\nobjectives:\r\n  - 掌握StringBuffer 类的核心 API 与使用方式。\r\n  - 用正常、边界和失败输入验证StringBuffer 类。\r\nprerequisites: [java-core-api-string]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-stringbuffer.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 911
+  },
+  {
+    "path": "content/java/java-foundations/basic-data-types.exercises.json",
+    "sha256": "c95c4413409038793d2e7f740fa489264534abf3b360ba428ac5b6238a3e7864"
+  },
+  {
+    "path": "content/java/java-foundations/basic-data-types.md",
+    "sha256": "8e71b91cf45531bc4882bc9d8e9379018fefe96ebe81e872b89ee4b46e42b4a9",
+    "front_matter": "\r\nid: java-foundations-basic-data-types\r\ntitle: Java 基本数据类型\r\nconcepts: [variables, control-flow]\r\nobjectives:\r\n  - 解释int、boolean、char 与范围在 Java 程序中的作用。\r\n  - 用正常、边界和失败输入验证Java 基本数据类型。\r\nprerequisites: []\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-basic-datatypes.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 997
+  },
+  {
+    "path": "content/java/java-foundations/basic-syntax.exercises.json",
+    "sha256": "d7b060c7a421b98a1f131703120e336015e4e75e6bc93bf166766f3fd08a8176"
+  },
+  {
+    "path": "content/java/java-foundations/basic-syntax.md",
+    "sha256": "318fb73c89e9c5fcbab7c80ed584278410e959ad27e3be15ac9cda03fe73901c",
+    "front_matter": "\r\nid: java-foundations-basic-syntax\r\ntitle: Java 基础语法\r\nconcepts: [variables, control-flow]\r\nobjectives:\r\n  - 解释类、main 方法和语句在 Java 程序中的作用。\r\n  - 用正常、边界和失败输入验证Java 基础语法。\r\nprerequisites: []\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-basic-syntax.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 951
+  },
+  {
+    "path": "content/java/java-foundations/comments.exercises.json",
+    "sha256": "cf4f1ad96cca547e3f63a44c2d6f217a83c0c4c2749aa5aff9e6381fae04d245"
+  },
+  {
+    "path": "content/java/java-foundations/comments.md",
+    "sha256": "2960965f9ef1c8a92d95cef10a3644d4ca154a9058be38af1f4624e4888619eb",
+    "front_matter": "\r\nid: java-foundations-comments\r\ntitle: Java 注释\r\nconcepts: [variables, control-flow]\r\nobjectives:\r\n  - 解释行注释、块注释与文档注释在 Java 程序中的作用。\r\n  - 用正常、边界和失败输入验证Java 注释。\r\nprerequisites: []\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-comments.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1259
+  },
+  {
+    "path": "content/java/java-foundations/conditions.exercises.json",
+    "sha256": "859b0fb4c2808afb194f8800cfe36c1dd5bb52a39ad9dcb13a49dca5ee8aae6c"
+  },
+  {
+    "path": "content/java/java-foundations/conditions.md",
+    "sha256": "36abdf38b077df871e66273c21b5908d2bdc7ac5e4d6e43a5b815f7798332444",
+    "front_matter": "\r\nid: java-foundations-conditions\r\ntitle: Java 条件语句\r\nconcepts: [variables, control-flow]\r\nobjectives:\r\n  - 解释if/else 分支与兜底路径在 Java 程序中的作用。\r\n  - 用正常、边界和失败输入验证Java 条件语句。\r\nprerequisites: []\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-if-else-switch.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 954
+  },
+  {
+    "path": "content/java/java-foundations/documentation.exercises.json",
+    "sha256": "4e3436d4d2e83a03fa30cd63555123534b5cb63a0231504a3c71ec5deafb2716"
+  },
+  {
+    "path": "content/java/java-foundations/documentation.md",
+    "sha256": "a58e61a9a929aa8c51e59b74528b94f1301615f465dcee1bfe1da42a59ba8fe3",
+    "front_matter": "\r\nid: java-foundations-documentation\r\ntitle: Java 文档注释\r\nconcepts: [variables, control-flow]\r\nobjectives:\r\n  - 解释Javadoc 的公开契约在 Java 程序中的作用。\r\n  - 用正常、边界和失败输入验证Java 文档注释。\r\nprerequisites: []\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-documentation.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 720
+  },
+  {
+    "path": "content/java/java-foundations/environment.exercises.json",
+    "sha256": "3841be27803ee1f22770e4debaf0e7ac795861c8a5bcbd662a320fa02f424523"
+  },
+  {
+    "path": "content/java/java-foundations/environment.md",
+    "sha256": "9e5915a5fbeac57f0ee07563298490cf7e5e7cc1ef4627faac4cb3ec73e50ddd",
+    "front_matter": "\r\nid: java-foundations-environment\r\ntitle: Java 开发环境配置\r\nconcepts: [variables, control-flow]\r\nobjectives:\r\n  - 解释JDK、javac 与 java 工具链在 Java 程序中的作用。\r\n  - 用正常、边界和失败输入验证Java 开发环境配置。\r\nprerequisites: []\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-environment-setup.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 990
+  },
+  {
+    "path": "content/java/java-foundations/introduction.exercises.json",
+    "sha256": "e5aa5036c8555f2f94b560d432669979eeeb4c4c25b41559b62fad5fa09117e2"
+  },
+  {
+    "path": "content/java/java-foundations/introduction.md",
+    "sha256": "2bf24556a4ea7f9f91a164c8b76e3a8e997120d2e221685229c1cfaeb1674054",
+    "front_matter": "\r\nid: java-foundations-introduction\r\ntitle: Java 简介\r\nconcepts: [variables, control-flow]\r\nobjectives:\r\n  - 解释JVM、字节码和静态类型在 Java 程序中的作用。\r\n  - 用正常、边界和失败输入验证Java 简介。\r\nprerequisites: []\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-intro.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 995
+  },
+  {
+    "path": "content/java/java-foundations/loops.exercises.json",
+    "sha256": "defe5480787f0ccaf32ee82cc42f8917582cbc01def54b6699e6811f7b090c1b"
+  },
+  {
+    "path": "content/java/java-foundations/loops.md",
+    "sha256": "64c077b1f830b3ab6f20a8d506340dd9f8ec8c5e6ef319c0546052961da3c1f2",
+    "front_matter": "\r\nid: java-foundations-loops\r\ntitle: Java 循环结构\r\nconcepts: [variables, control-flow]\r\nobjectives:\r\n  - 解释for、while 与确定终止在 Java 程序中的作用。\r\n  - 用正常、边界和失败输入验证Java 循环结构。\r\nprerequisites: []\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-loop.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 950
+  },
+  {
+    "path": "content/java/java-foundations/modifiers.exercises.json",
+    "sha256": "2a511c670f47c37a617c9fe1c8c5b45e7edb133753169cba5a20ceec4e026756"
+  },
+  {
+    "path": "content/java/java-foundations/modifiers.md",
+    "sha256": "64fc4f3272910822c7e3c4cfd7e668668e4ea162f4cdf7ac1cb746798fed4c33",
+    "front_matter": "\r\nid: java-foundations-modifiers\r\ntitle: Java 修饰符\r\nconcepts: [variables, control-flow]\r\nobjectives:\r\n  - 解释public、private、static 与访问边界在 Java 程序中的作用。\r\n  - 用正常、边界和失败输入验证Java 修饰符。\r\nprerequisites: []\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-modifier-types.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1172
+  },
+  {
+    "path": "content/java/java-foundations/objects-classes.exercises.json",
+    "sha256": "a54a61916de9b378b762761beb4184dd408703779f6d2b4c46579dfcc20c9316"
+  },
+  {
+    "path": "content/java/java-foundations/objects-classes.md",
+    "sha256": "bedc060d4f9db9171605e128d6f5b7dde1145144e83c76279a8c1aa30c980476",
+    "front_matter": "\r\nid: java-foundations-objects-classes\r\ntitle: Java 对象和类\r\nconcepts: [variables, control-flow]\r\nobjectives:\r\n  - 解释字段、方法和对象状态在 Java 程序中的作用。\r\n  - 用正常、边界和失败输入验证Java 对象和类。\r\nprerequisites: []\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-object-classes.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1276
+  },
+  {
+    "path": "content/java/java-foundations/operators.exercises.json",
+    "sha256": "c424fb6ac870f8cdd78b29571096bc91e8911ac131e4046f4c0228f3e7bf5e4b"
+  },
+  {
+    "path": "content/java/java-foundations/operators.md",
+    "sha256": "bc528b838acebe93dd197d7a1e06f5a68df3b69c678a66603553fe8eec052996",
+    "front_matter": "\r\nid: java-foundations-operators\r\ntitle: Java 运算符\r\nconcepts: [variables, control-flow]\r\nobjectives:\r\n  - 解释算术、比较、逻辑与短路在 Java 程序中的作用。\r\n  - 用正常、边界和失败输入验证Java 运算符。\r\nprerequisites: []\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-operators.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1227
+  },
+  {
+    "path": "content/java/java-foundations/switch.exercises.json",
+    "sha256": "f6de6258cdffd6e33cb4486d441fac2052e2776852c09b85c250fe565c4b9edb"
+  },
+  {
+    "path": "content/java/java-foundations/switch.md",
+    "sha256": "bb29806292d55b8a2e69b59449d91a928492a58b8184981a728e83b511163e71",
+    "front_matter": "\r\nid: java-foundations-switch\r\ntitle: Java switch case\r\nconcepts: [variables, control-flow]\r\nobjectives:\r\n  - 解释case、default 和分支输出在 Java 程序中的作用。\r\n  - 用正常、边界和失败输入验证Java switch case。\r\nprerequisites: []\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-switch-case.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1208
+  },
+  {
+    "path": "content/java/java-foundations/tutorial.exercises.json",
+    "sha256": "454c947adb066696ff394c791ca08ddff15cbc7f7fc98f408e6a19e3461c67df"
+  },
+  {
+    "path": "content/java/java-foundations/tutorial.md",
+    "sha256": "c53d525a4c1d651907daddb57156751e4d9a833ce4991b0a28365033ea28d3e7",
+    "front_matter": "\r\nid: java-foundations-tutorial\r\ntitle: Java 教程\r\nconcepts: [variables, control-flow]\r\nobjectives:\r\n  - 解释程序入口、编译和运行在 Java 程序中的作用。\r\n  - 用正常、边界和失败输入验证Java 教程。\r\nprerequisites: []\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-tutorial.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 844
+  },
+  {
+    "path": "content/java/java-foundations/variable-names.exercises.json",
+    "sha256": "c7f72849fb1f6353e94f4a1bfe0d1c129f5ceebe1f69f38a8dfad83219947cb9"
+  },
+  {
+    "path": "content/java/java-foundations/variable-names.md",
+    "sha256": "1d133296ffe8cf0f4e82763d4557efa4450968ced4f3d56d833fa286cb80f983",
+    "front_matter": "\r\nid: java-foundations-variable-names\r\ntitle: Java 变量命名规则\r\nconcepts: [variables, control-flow]\r\nobjectives:\r\n  - 解释合法标识符和语义命名在 Java 程序中的作用。\r\n  - 用正常、边界和失败输入验证Java 变量命名规则。\r\nprerequisites: []\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-variable-naming-rules.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1110
+  },
+  {
+    "path": "content/java/java-foundations/variable-types.exercises.json",
+    "sha256": "b773be89f0afdcae558414f5fd15d6bbd552faec51143424313ed1f3c46aaa01"
+  },
+  {
+    "path": "content/java/java-foundations/variable-types.md",
+    "sha256": "c18c55f9097a2221d0276393aa1f6f8ee1018432a10744494eef13df9334ec2d",
+    "front_matter": "\r\nid: java-foundations-variable-types\r\ntitle: Java 变量类型\r\nconcepts: [variables, control-flow]\r\nobjectives:\r\n  - 解释局部变量、成员变量和生命周期在 Java 程序中的作用。\r\n  - 用正常、边界和失败输入验证Java 变量类型。\r\nprerequisites: []\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-variable-types.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1203
+  },
+  {
+    "path": "content/java/java-modern-ecosystem/java8-features.exercises.json",
+    "sha256": "3baf00862803fa0ceaa9b768bc9ed73794dbdc97d9b076e606eee0a46f907b63"
+  },
+  {
+    "path": "content/java/java-modern-ecosystem/java8-features.md",
+    "sha256": "87499227abfc1786dde9aa852986e4dc3087bd072f54cb56a3cf2387dce6bea9",
+    "front_matter": "\r\nid: java-modern-ecosystem-java8-features\r\ntitle: Java 8 新特性\r\nconcepts: [functions, collections]\r\nobjectives:\r\n  - 掌握Java 8 新特性的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证Java 8 新特性。\r\nprerequisites: []\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java8-new-features.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1007
+  },
+  {
+    "path": "content/java/java-modern-ecosystem/java9-features.exercises.json",
+    "sha256": "56d6a93a59a6cb322334a53cb0431578dd0fd1cdb4a4af3e2f74819a0b64235d"
+  },
+  {
+    "path": "content/java/java-modern-ecosystem/java9-features.md",
+    "sha256": "04f6ee859d96b6749b98b41eb6b61e80fcd892a09367160dcd7d773e4cddbf8f",
+    "front_matter": "\r\nid: java-modern-ecosystem-java9-features\r\ntitle: Java 9 新特性\r\nconcepts: [collections, functions]\r\nobjectives:\r\n  - 掌握Java 9 新特性的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证Java 9 新特性。\r\nprerequisites: [java-modern-ecosystem-java8-features]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java9-new-features.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 971
+  },
+  {
+    "path": "content/java/java-modern-ecosystem/libraries.exercises.json",
+    "sha256": "d8d404aef8384c4b16d1a5c7634a1bda5dbea3785f78ab44368e1c1ab785b610"
+  },
+  {
+    "path": "content/java/java-modern-ecosystem/libraries.md",
+    "sha256": "f7191de06c9c1548106292ce6b35f5919b4a569655bb8bbe5a6a2dba6e54536b",
+    "front_matter": "\r\nid: java-modern-ecosystem-libraries\r\ntitle: 常用类库\r\nconcepts: [packages, tooling]\r\nobjectives:\r\n  - 掌握常用类库的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证常用类库。\r\nprerequisites: [java-modern-ecosystem-mysql-connect]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-libs.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 986
+  },
+  {
+    "path": "content/java/java-modern-ecosystem/mysql-connect.exercises.json",
+    "sha256": "2d4c09c28516de11b1503ca40c242a51b847b6206b30e1e3d25e1e6d2494e4d1"
+  },
+  {
+    "path": "content/java/java-modern-ecosystem/mysql-connect.md",
+    "sha256": "2630e194753d3ccabb93e5292f2e5fe772ccd0d46437c3166a3906ddb5ce0973",
+    "front_matter": "\r\nid: java-modern-ecosystem-mysql-connect\r\ntitle: MySQL 连接\r\nconcepts: [databases, io]\r\nobjectives:\r\n  - 掌握MySQL 连接的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证MySQL 连接。\r\nprerequisites: [java-modern-ecosystem-java9-features]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-mysql-connect.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 959
+  },
+  {
+    "path": "content/java/java-network-concurrency/applet-basics.exercises.json",
+    "sha256": "306ad4e7fb993c88528013f3fb62dad11837858a3c255c4d255778ad0b8b5bac"
+  },
+  {
+    "path": "content/java/java-network-concurrency/applet-basics.md",
+    "sha256": "4b03f4b43bdd0e967304a4fc4b06c5c8f7c6b45813150682a494946be602fabb",
+    "front_matter": "\r\nid: java-network-concurrency-applet-basics\r\ntitle: Applet 基础\r\nconcepts: [io, types]\r\nobjectives:\r\n  - 掌握Applet 基础的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证Applet 基础。\r\nprerequisites: [java-network-concurrency-multithreading]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-applet-basics.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1095
+  },
+  {
+    "path": "content/java/java-network-concurrency/multithreading.exercises.json",
+    "sha256": "97ccba62d134dde30ac77b277dd28716423390a4a756f7be30b091caaa70148f"
+  },
+  {
+    "path": "content/java/java-network-concurrency/multithreading.md",
+    "sha256": "57a8fd0e2382417ae0111c24a9d573de8cdffbf925bc40637bdb81e968211907",
+    "front_matter": "\r\nid: java-network-concurrency-multithreading\r\ntitle: 多线程\r\nconcepts: [concurrency, control-flow]\r\nobjectives:\r\n  - 掌握多线程的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证多线程。\r\nprerequisites: [java-network-concurrency-sending-email]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-multithreading.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 906
+  },
+  {
+    "path": "content/java/java-network-concurrency/networking.exercises.json",
+    "sha256": "d87313f5bdf3c4e4278205a713618253db7c71a85e35f49ab42cfa1cb7e5c0eb"
+  },
+  {
+    "path": "content/java/java-network-concurrency/networking.md",
+    "sha256": "da9d3a7ba4f01e407eb1cee655ca41ebe3ac15de686d3ff466f4b3749775f0c7",
+    "front_matter": "\r\nid: java-network-concurrency-networking\r\ntitle: 网络编程\r\nconcepts: [io, web]\r\nobjectives:\r\n  - 掌握网络编程的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证网络编程。\r\nprerequisites: [java-network-concurrency-serialization]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-networking.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1109
+  },
+  {
+    "path": "content/java/java-network-concurrency/sending-email.exercises.json",
+    "sha256": "20d23d0317be1668841518af2791c94c40ca15a453c3f5ec264b1e11bca9cb88"
+  },
+  {
+    "path": "content/java/java-network-concurrency/sending-email.md",
+    "sha256": "6b764f4d05ef84e862fab09924a8cd09d4415dad296cdc3466145e53a6b4e3ed",
+    "front_matter": "\r\nid: java-network-concurrency-sending-email\r\ntitle: 发送邮件\r\nconcepts: [web, security]\r\nobjectives:\r\n  - 掌握发送邮件的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证发送邮件。\r\nprerequisites: [java-network-concurrency-networking]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-sending-email.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 879
+  },
+  {
+    "path": "content/java/java-network-concurrency/serialization.exercises.json",
+    "sha256": "667a58de047e57977f0014f3232d1483f4518a5fd7685df6073262c806a38827"
+  },
+  {
+    "path": "content/java/java-network-concurrency/serialization.md",
+    "sha256": "127a2b2798b4fda3064e73ac527a1532795d2481ae0f88141f4313957599a0d8",
+    "front_matter": "\r\nid: java-network-concurrency-serialization\r\ntitle: 序列化\r\nconcepts: [io, memory]\r\nobjectives:\r\n  - 掌握序列化的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证序列化。\r\nprerequisites: []\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-serialization.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1450
+  },
+  {
+    "path": "content/java/java-oop-io/abstraction.exercises.json",
+    "sha256": "e007109656e995251179308e16c8fc29c1aae1d3497e1136b8de7b0b0a2d6bca"
+  },
+  {
+    "path": "content/java/java-oop-io/abstraction.md",
+    "sha256": "f72d524835a5cf9d386fd6db9dd567ed3fced2a7a8ea0a262efb5a8fc2513bbe",
+    "front_matter": "\r\nid: java-oop-io-abstraction\r\ntitle: 抽象类\r\nconcepts: [classes, inheritance]\r\nobjectives:\r\n  - 掌握抽象类的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证抽象类。\r\nprerequisites: [java-oop-io-polymorphism]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-abstraction.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1083
+  },
+  {
+    "path": "content/java/java-oop-io/encapsulation.exercises.json",
+    "sha256": "9e61b4d60abc1b144c3b40e042914aea5aa5f86e4697aeca5a0152b76970e8ac"
+  },
+  {
+    "path": "content/java/java-oop-io/encapsulation.md",
+    "sha256": "dc4bac5f4a76ea00146065ec804b320ce3a567e27906301d1a92539349c9ad4f",
+    "front_matter": "\r\nid: java-oop-io-encapsulation\r\ntitle: 封装\r\nconcepts: [classes, security]\r\nobjectives:\r\n  - 掌握封装的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证封装。\r\nprerequisites: [java-oop-io-abstraction]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-encapsulation.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1149
+  },
+  {
+    "path": "content/java/java-oop-io/enums.exercises.json",
+    "sha256": "2d5a641e803177963ec2fd0d6721d8e52c2c746dd5cfa6b75bef0fe1f62bd5e0"
+  },
+  {
+    "path": "content/java/java-oop-io/enums.md",
+    "sha256": "5b4d7cfaa248929dff0e33791730a5e8cec96b17f50b94c40ffed90aab1eefc0",
+    "front_matter": "\r\nid: java-oop-io-enums\r\ntitle: 枚举\r\nconcepts: [types, classes]\r\nobjectives:\r\n  - 掌握枚举的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证枚举。\r\nprerequisites: [java-oop-io-interfaces]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-enum.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 916
+  },
+  {
+    "path": "content/java/java-oop-io/exceptions.exercises.json",
+    "sha256": "a29e8e222ca561194514c248fbde992c3f9448a590b217717a536f6d883ebbdf"
+  },
+  {
+    "path": "content/java/java-oop-io/exceptions.md",
+    "sha256": "b7bc4a903153e6aea0193d32d6209c4c3b35adc7ba29cbb9dbbcb5d74127cca3",
+    "front_matter": "\r\nid: java-oop-io-exceptions\r\ntitle: 异常处理\r\nconcepts: [exceptions, control-flow]\r\nobjectives:\r\n  - 掌握异常处理的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证异常处理。\r\nprerequisites: [java-oop-io-files-io]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-exceptions.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1030
+  },
+  {
+    "path": "content/java/java-oop-io/files-io.exercises.json",
+    "sha256": "dc68752673685c1dd92ed44b00152c9fb10c6a66a647e18a1737c8c8ff236151"
+  },
+  {
+    "path": "content/java/java-oop-io/files-io.md",
+    "sha256": "51652c757f28ed2235c230763a7b1d760733b3c038e46f05d1eb13902bf7d445",
+    "front_matter": "\r\nid: java-oop-io-files-io\r\ntitle: Stream/File/IO\r\nconcepts: [io, types]\r\nobjectives:\r\n  - 掌握Stream/File/IO的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证Stream/File/IO。\r\nprerequisites: []\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-files-io.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 880
+  },
+  {
+    "path": "content/java/java-oop-io/inheritance.exercises.json",
+    "sha256": "2496551d3c7a55d78353b985c0edf6ae1de26bd98911a84d4724a67ed66f533c"
+  },
+  {
+    "path": "content/java/java-oop-io/inheritance.md",
+    "sha256": "5e8d5806736a5a67eb5242a2ca0de5d9f2f829324c05fc740b26844696c0e5af",
+    "front_matter": "\r\nid: java-oop-io-inheritance\r\ntitle: 继承\r\nconcepts: [inheritance, classes]\r\nobjectives:\r\n  - 掌握继承的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证继承。\r\nprerequisites: [java-oop-io-exceptions]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-inheritance.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1170
+  },
+  {
+    "path": "content/java/java-oop-io/interfaces.exercises.json",
+    "sha256": "f7c7fa3136252ba4d2b7048710030fec64746e605363b489ec39904f44094612"
+  },
+  {
+    "path": "content/java/java-oop-io/interfaces.md",
+    "sha256": "d55b55a0b354e7579f6247ac2763ed09101ac2aa323f73a8791d47144e9f10a0",
+    "front_matter": "\r\nid: java-oop-io-interfaces\r\ntitle: 接口\r\nconcepts: [classes, polymorphism]\r\nobjectives:\r\n  - 掌握接口的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证接口。\r\nprerequisites: [java-oop-io-encapsulation]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-interfaces.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1040
+  },
+  {
+    "path": "content/java/java-oop-io/nio-files.exercises.json",
+    "sha256": "af5bfeca155e9673573028525cde9f566594c4396b22a4490455fa77b0771185"
+  },
+  {
+    "path": "content/java/java-oop-io/nio-files.md",
+    "sha256": "1ee398445319760893bfce9cca7d758b19bb23a408f7ec26bdf29a7b2899a6fd",
+    "front_matter": "\r\nid: java-oop-io-nio-files\r\ntitle: NIO Files\r\nconcepts: [io, types]\r\nobjectives:\r\n  - 掌握NIO Files的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证NIO Files。\r\nprerequisites: [java-oop-io-packages]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-nio-file.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1051
+  },
+  {
+    "path": "content/java/java-oop-io/override-overload.exercises.json",
+    "sha256": "33a0e6e4717b63f75a3b3ef0be43d22d7489fb8bde4e247e08e87372f4022a26"
+  },
+  {
+    "path": "content/java/java-oop-io/override-overload.md",
+    "sha256": "00850d07a6152cad1ac145d8d0aaf734f7652ef695d82d49284d6a0bac5092b9",
+    "front_matter": "\r\nid: java-oop-io-override-overload\r\ntitle: Override 与 Overload\r\nconcepts: [polymorphism, functions]\r\nobjectives:\r\n  - 掌握Override 与 Overload的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证Override 与 Overload。\r\nprerequisites: [java-oop-io-inheritance]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-override-overload.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 990
+  },
+  {
+    "path": "content/java/java-oop-io/packages.exercises.json",
+    "sha256": "0f5ee66efd52065f9ecb6901bd1ee2fadc6b1ae5447d3bcc84d0273b0efc18d0"
+  },
+  {
+    "path": "content/java/java-oop-io/packages.md",
+    "sha256": "e1debdc5ce49cd0a19ae90992652b1ab7ea5eac60d252626843f5a5b3b556635",
+    "front_matter": "\r\nid: java-oop-io-packages\r\ntitle: Package\r\nconcepts: [classes, tooling]\r\nobjectives:\r\n  - 掌握Package的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证Package。\r\nprerequisites: [java-oop-io-enums]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-package.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 801
+  },
+  {
+    "path": "content/java/java-oop-io/polymorphism.exercises.json",
+    "sha256": "aff92b5b4702f3216086b4b5b799f3eec87b382b9ccc17d68fe87811f1949196"
+  },
+  {
+    "path": "content/java/java-oop-io/polymorphism.md",
+    "sha256": "5d624ce6c383a1543a1b4bdae886b26684e3e00c13061d7ae56aba3df9dae2ed",
+    "front_matter": "\r\nid: java-oop-io-polymorphism\r\ntitle: 多态\r\nconcepts: [polymorphism, inheritance]\r\nobjectives:\r\n  - 掌握多态的核心概念与使用方式。\r\n  - 用正常、边界和失败输入验证多态。\r\nprerequisites: [java-oop-io-override-overload]\r\ndifficulty: beginner\r\nexperience_points: 30\r\nsource_url: https://www.runoob.com/java/java-polymorphism.html\r\nsource_snapshot_date: 2026-08-23\r\n",
+    "body_chars": 1102
+  }
+]

@@ -73,35 +73,61 @@
     {
       "id": "python-automation-ui-web-scrapy-c01",
       "type": "code",
-      "prompt": "用本地 URL fixture 去重并校验允许域名；外域 URL 拒绝。",
-      "starter_code": "import sys\n# 仅使用本地 fixture 验证请求计划\n",
+      "prompt": "输入每行一个 URL，去掉行首尾空白并忽略空行。必须符合已提供 allowed 函数：HTTPS、example.test 主机、无凭据、端口未指定或443、无空白或反斜杠。所有地址都合格后按完整字符串去重并输出数量；空清单输出0。任一不合格时无输出，退出码1。仅校验计划，不运行爬虫；不同路径或片段仍算不同字符串。",
+      "starter_code": "import sys\nurls = [line.strip() for line in sys.stdin.read().splitlines() if line.strip()]\nfrom urllib.parse import urlsplit\ndef allowed(raw):\n    try:\n        u = urlsplit(raw)\n        return not any(c.isspace() for c in raw) and \"\\\\\" not in raw and u.scheme == \"https\" and u.hostname == \"example.test\" and u.username is None and u.password is None and u.port in (None,443)\n    except ValueError:\n        return False\n# 按题面实现本课操作\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'https://example.test/a\\nhttps://example.test/a\\n'，输出 '1\\n'，退出码 0。",
+        "输入 'https://example.test/a\\nhttps://example.test/b'，输出 '2\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\nfrom urllib.parse import urlsplit\nurls = [line.strip() for line in sys.stdin.read().splitlines() if line.strip()]\nif urls == ['__invalid__']:\n    urls = ['https://outside.test/x']\nfor url in urls:\n    if urlsplit(url).netloc != 'example.test':\n        raise ValueError('domain not allowed')\nprint(len(set(urls)))\n",
+        "reference_solution": "import sys\nurls = [line.strip() for line in sys.stdin.read().splitlines() if line.strip()]\nfrom urllib.parse import urlsplit\ndef allowed(raw):\n    try:\n        u = urlsplit(raw)\n        return not any(c.isspace() for c in raw) and \"\\\\\" not in raw and u.scheme == \"https\" and u.hostname == \"example.test\" and u.username is None and u.password is None and u.port in (None,443)\n    except ValueError:\n        return False\nif not all(allowed(url) for url in urls):\n    raise SystemExit(1)\nprint(len(set(urls)))\n",
         "hidden_tests": [
-          "边界输入必须返回主题定义的结果。",
-          "无效输入必须进入可预期的失败分支。"
+          "检查题面规定的有效边界和失败行为。",
+          "输出格式、类型和顺序以题面约定为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "https://example.test/a\nhttps://example.test/a\nhttps://example.test/b\n",
+            "stdin": "https://example.test/a\nhttps://example.test/a\n",
+            "stdout": "1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "https://example.test/a\nhttps://example.test/b",
             "stdout": "2\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "\n",
+            "stdin": "",
             "stdout": "0\n",
             "exit_code": 0
           },
           {
-            "stdin": "__invalid__\n",
+            "stdin": "http://example.test/a",
             "stdout": "",
             "exit_code": 1
+          },
+          {
+            "stdin": "https://evil.test/a",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "https://user@example.test",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "__invalid__",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "https://example.test:443/a",
+            "stdout": "1\n",
+            "exit_code": 0
           }
         ]
       }

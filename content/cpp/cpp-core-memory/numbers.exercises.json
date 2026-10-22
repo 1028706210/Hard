@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-core-memory-numbers",
+  "questions": [
+    {
+      "id": "cpp-core-memory-numbers-k01",
+      "type": "knowledge",
+      "prompt": "使用 <cmath> 计算整数绝对值应选用？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "std::length"
+        },
+        {
+          "id": "b",
+          "text": "std::size"
+        },
+        {
+          "id": "c",
+          "text": "std::abs"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-core-memory-numbers-k02",
+      "type": "knowledge",
+      "prompt": "表达式 7 / 2 与 7.0 / 2 的结果分别是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "3 和 3.5"
+        },
+        {
+          "id": "b",
+          "text": "3.5 和 3.5"
+        },
+        {
+          "id": "c",
+          "text": "3 和 3"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-core-memory-numbers-k03",
+      "type": "knowledge",
+      "prompt": "比较两个经计算的 double 是否相等，推荐做法是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "直接用 == 严格比较"
+        },
+        {
+          "id": "b",
+          "text": "用 == 的反义 != 排除误差"
+        },
+        {
+          "id": "c",
+          "text": "给定误差容限比较差值的绝对值"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-core-memory-numbers-c01",
+      "type": "code",
+      "prompt": "读取整数 n（可能为负），使用 <cmath> 中的函数输出其绝对值。",
+      "starter_code": "#include <cmath>\n#include <iostream>\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    // 输出绝对值\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 -7 时输出 7。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <cmath>\n#include <iostream>\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    std::cout << std::abs(n) << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "输入正数时输出自身。",
+          "输入 0 时输出 0。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "-7\n",
+            "stdout": "7\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "5\n",
+            "stdout": "5\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

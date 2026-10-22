@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-oop-io-inheritance",
+  "questions": [
+    {
+      "id": "java-oop-io-inheritance-k01",
+      "type": "knowledge",
+      "prompt": "Java 中一个类可以直接继承几个父类？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "多个"
+        },
+        {
+          "id": "b",
+          "text": "一个"
+        },
+        {
+          "id": "c",
+          "text": "两个"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-oop-io-inheritance-k02",
+      "type": "knowledge",
+      "prompt": "super 关键字的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "调用子类方法"
+        },
+        {
+          "id": "b",
+          "text": "调用父类构造"
+        },
+        {
+          "id": "c",
+          "text": "创建对象"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-oop-io-inheritance-k03",
+      "type": "knowledge",
+      "prompt": "@Override 注解的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "标记重写"
+        },
+        {
+          "id": "b",
+          "text": "创建新方法"
+        },
+        {
+          "id": "c",
+          "text": "删除方法"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "java-oop-io-inheritance-c01",
+      "type": "code",
+      "prompt": "从标准输入读取名称，构造 Dog 对象，输出 Dog:名称:Woof。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\nclass Animal {\n    String name;\n    Animal(String name) { this.name = name; }\n    String speak() { return \"...\"; }\n}\nclass Dog extends Animal {\n    Dog(String name) { super(name); }\n    @Override String speak() { return \"Woof\"; }\n}\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        Dog d = new Dog(input);\n        System.out.println(\"Dog:\" + d.name + \":\" + d.speak());\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "Rex\n",
+            "stdout": "Dog:Rex:Woof\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "Max\n",
+            "stdout": "Dog:Max:Woof\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

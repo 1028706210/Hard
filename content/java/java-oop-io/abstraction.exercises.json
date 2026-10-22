@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-oop-io-abstraction",
+  "questions": [
+    {
+      "id": "java-oop-io-abstraction-k01",
+      "type": "knowledge",
+      "prompt": "抽象类能否实例化？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "能"
+        },
+        {
+          "id": "b",
+          "text": "不能"
+        },
+        {
+          "id": "c",
+          "text": "仅静态方法能"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-oop-io-abstraction-k02",
+      "type": "knowledge",
+      "prompt": "abstract 方法有方法体吗？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "有"
+        },
+        {
+          "id": "b",
+          "text": "没有"
+        },
+        {
+          "id": "c",
+          "text": "可选"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-oop-io-abstraction-k03",
+      "type": "knowledge",
+      "prompt": "子类必须实现什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "所有方法"
+        },
+        {
+          "id": "b",
+          "text": "所有抽象方法"
+        },
+        {
+          "id": "c",
+          "text": "构造方法"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-oop-io-abstraction-c01",
+      "type": "code",
+      "prompt": "从标准输入读取半径（整数），输出面积的整数四舍五入值。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\nabstract class Shape {\n    abstract double area();\n}\nclass Circle extends Shape {\n    double r;\n    Circle(double r) { this.r = r; }\n    @Override double area() { return Math.PI * r * r; }\n}\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        System.out.println(Math.round(new Circle(Integer.parseInt(input)).area()));\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1\n",
+            "stdout": "3\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "2\n",
+            "stdout": "13\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -13,7 +13,8 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 
-from hard_api.backup.archive import ArchiveError, inspect_archive
+from hard_api.backup.archive import ArchiveError, _digest, _load_manifest, inspect_archive
+import hard_api.backup.archive as archive_module
 import hard_api.backup.service as backup_service
 from hard_api.backup.service import LocalBackupService
 from hard_api.db import migrations
@@ -151,3 +152,68 @@ def test_import_validation_translates_a_failed_integrity_check_to_an_archive_err
 
     with pytest.raises(ArchiveError, match="完整性"):
         service._validate_candidate_database(tmp_path / "corrupt.db")
+
+
+@pytest.mark.parametrize(
+    "manifest",
+    [
+        b"not-json",
+        b"[]",
+        json.dumps({"format_version": 1, "files": {}}).encode("utf-8"),
+        json.dumps({"format_version": 1, "files": []}).encode("utf-8"),
+        json.dumps(
+            {"format_version": 1, "files": [{"path": "database.sqlite", "sha256": "short"}]}
+        ).encode("utf-8"),
+    ],
+)
+def test_archive_manifest_rejects_invalid_shapes_and_checksums(manifest: bytes) -> None:
+    with pytest.raises(ArchiveError):
+        _load_manifest(manifest)
+
+
+def _write_archive(path: Path, payload: dict[str, bytes]) -> None:
+    manifest = {
+        "format_version": 1,
+        "files": [
+            {"path": name, "sha256": _digest(payload[name])}
+            for name in ("database.sqlite", "settings.json", "content-version.json")
+        ],
+    }
+    with zipfile.ZipFile(path, "w") as archive:
+        for name, value in payload.items():
+            archive.writestr(name, value)
+        archive.writestr("manifest.json", json.dumps(manifest))
+
+
+def test_archive_rejects_size_allowlist_and_metadata_failures(tmp_path: Path, monkeypatch) -> None:
+    payload = {
+        "database.sqlite": b"database",
+        "settings.json": b"{}",
+        "content-version.json": b'{"content_version":"v1"}',
+    }
+    archive_path = tmp_path / "valid.zip"
+    _write_archive(archive_path, payload)
+
+    monkeypatch.setattr(archive_module, "MAX_ARCHIVE_BYTES", 1)
+    with pytest.raises(ArchiveError, match="体积"):
+        inspect_archive(archive_path)
+    monkeypatch.setattr(archive_module, "MAX_ARCHIVE_BYTES", 16 * 1024 * 1024)
+    monkeypatch.setattr(archive_module, "MAX_UNCOMPRESSED_BYTES", 1)
+    with pytest.raises(ArchiveError, match="解压"):
+        inspect_archive(archive_path)
+    monkeypatch.setattr(archive_module, "MAX_UNCOMPRESSED_BYTES", 32 * 1024 * 1024)
+
+    unexpected = tmp_path / "unexpected.zip"
+    _write_archive(unexpected, {**payload, "extra.txt": b"not allowed"})
+    with pytest.raises(ArchiveError, match="未允许"):
+        inspect_archive(unexpected)
+
+    invalid_metadata = tmp_path / "invalid-metadata.zip"
+    _write_archive(invalid_metadata, {**payload, "settings.json": b"[]"})
+    with pytest.raises(ArchiveError, match="元数据"):
+        inspect_archive(invalid_metadata)
+
+    invalid_version = tmp_path / "invalid-version.zip"
+    _write_archive(invalid_version, {**payload, "content-version.json": b'{"content_version":1}'})
+    with pytest.raises(ArchiveError, match="内容版本"):
+        inspect_archive(invalid_version)

@@ -33,6 +33,7 @@ STABLE_ID = re.compile(r"^(python|java|csharp|cpp)-[a-z0-9]+(?:-[a-z0-9]+)*$")
 PRIVATE_FIELDS = {"reference_answer", "reference_solution", "hidden_tests"}
 FENCED_CODE_BLOCK = re.compile(r"^```[^\n]*\n(?P<code>[\s\S]*?)^```", re.MULTILINE)
 REQUIRED_LESSON_SECTIONS = ("概念定义与适用场景", "语法、API 与边界", "常见错误与实践建议")
+GENERIC_LESSON_EXPLANATION = "解决的是把明确输入转换为可核验结果的问题。"
 
 
 def add_issue(report: ValidationReport, code: str, path: Path, message: str) -> None:
@@ -99,6 +100,8 @@ def validate_static_lesson_contract(
         add_issue(report, "empty_code_example", path, "代码示例不能为空。")
     if any(f"## {heading}" not in lesson.body for heading in REQUIRED_LESSON_SECTIONS):
         add_issue(report, "incomplete_lesson_explanation", path, "课时缺少定义、API 边界或实践建议章节。")
+    if GENERIC_LESSON_EXPLANATION in lesson.body:
+        add_issue(report, "generic_lesson_explanation", path, "课时说明不得复用与主题无关的泛化段落。")
     knowledge_questions = [question for question in exercises.questions if question.type == "knowledge"]
     if len(knowledge_questions) < 3:
         add_issue(report, "incomplete_knowledge_questions", path, "完整课时至少需要 3 道知识题。")
@@ -555,7 +558,9 @@ def validate_content(
                 )
             if module is None or placement_test.module_id == module:
                 for question_id in placement_test.question_ids:
-                    if question_id not in question_ids:
+                    if question_id not in question_ids and (
+                        module is None or question_id.startswith(f"{placement_test.module_id}-")
+                    ):
                         add_issue(
                             report,
                             "unknown_placement_question",

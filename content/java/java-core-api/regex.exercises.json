@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-core-api-regex",
+  "questions": [
+    {
+      "id": "java-core-api-regex-k01",
+      "type": "knowledge",
+      "prompt": "Pattern.compile 的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "匹配字符串"
+        },
+        {
+          "id": "b",
+          "text": "编译正则模式"
+        },
+        {
+          "id": "c",
+          "text": "分割字符串"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-regex-k02",
+      "type": "knowledge",
+      "prompt": "String.matches 返回什么类型？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "String"
+        },
+        {
+          "id": "b",
+          "text": "boolean"
+        },
+        {
+          "id": "c",
+          "text": "int"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-regex-k03",
+      "type": "knowledge",
+      "prompt": "Matcher.find() 的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "返回完整匹配"
+        },
+        {
+          "id": "b",
+          "text": "查找下一个匹配"
+        },
+        {
+          "id": "c",
+          "text": "替换匹配"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-regex-c01",
+      "type": "code",
+      "prompt": "从标准输入读取一行文本，如果匹配 [a-z]+@[a-z]+\\\\.[a-z]+ 格式输出 YES，否则输出 NO。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // 读取文本，判断邮箱格式\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        boolean match = input.matches(\"[a-z]+@[a-z]+\\\\.[a-z]+\");\n        System.out.println(match ? \"YES\" : \"NO\");\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "test@example.com\n",
+            "stdout": "YES\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "nope\n",
+            "stdout": "NO\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

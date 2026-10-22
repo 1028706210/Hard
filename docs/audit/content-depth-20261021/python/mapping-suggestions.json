@@ -1,0 +1,95 @@
+{
+  "shared_map_edited": false,
+  "purpose": "Root owner may apply after reviewing new lesson tags and teaching evidence; replace stale missing entries and stale MongoDB data-structures mapping.",
+  "suggestions": [
+    {
+      "concept_id": "inheritance",
+      "language": "python",
+      "observed_status_before": "missing",
+      "suggested_compare": {
+        "status": "available",
+        "summary": "子类继承属性并可重写方法；super() 按 MRO 协作调用。",
+        "difference": "允许多继承；super() 沿实际实例类型的方法解析顺序查找下一实现。",
+        "code": "class Learner:\n    def greet(self):\n        return \"learner\"\n\nclass Mentor(Learner):\n    def greet(self):\n        return super().greet() + \" mentor\"\n\nprint(Mentor().greet())\n",
+        "lesson_id": "python-modules-io-oop-classes"
+      },
+      "expected_stdout": "learner mentor\n",
+      "example_check": "pass"
+    },
+    {
+      "concept_id": "polymorphism",
+      "language": "python",
+      "observed_status_before": "missing",
+      "suggested_compare": {
+        "status": "available",
+        "summary": "同一方法调用会执行对象实际类型提供的实现。",
+        "difference": "支持鸭子类型，不要求声明同一接口；本课以继承与方法重写演示动态分派。",
+        "code": "class Learner:\n    def greet(self):\n        return \"learner\"\n\nclass Mentor(Learner):\n    def greet(self):\n        return \"mentor\"\n\nfor person in [Learner(), Mentor()]:\n    print(person.greet())\n",
+        "lesson_id": "python-modules-io-oop-classes"
+      },
+      "expected_stdout": "learner\nmentor\n",
+      "example_check": "pass"
+    },
+    {
+      "concept_id": "encapsulation",
+      "language": "python",
+      "observed_status_before": "missing",
+      "suggested_compare": {
+        "status": "available",
+        "summary": "用内部命名约定和方法集中管理对象状态。",
+        "difference": "_name 是约定，__name 进行名称改写，均不是访问权限或安全隔离。",
+        "code": "class Points:\n    def __init__(self, value):\n        self.__value = value\n\n    def __str__(self):\n        return f\"{self.__value} pts\"\n\nprint(Points(3))\n",
+        "lesson_id": "python-modules-io-oop-classes"
+      },
+      "expected_stdout": "3 pts\n",
+      "example_check": "pass"
+    },
+    {
+      "concept_id": "methods",
+      "language": "python",
+      "observed_status_before": "missing",
+      "suggested_compare": {
+        "status": "available",
+        "summary": "实例方法通过 self 访问当前对象，调用时自动绑定实例。",
+        "difference": "普通方法、classmethod 与 staticmethod 的绑定对象不同；最小示例只演示实例方法。",
+        "code": "class Notebook:\n    def __init__(self):\n        self.notes = []\n\n    def add(self, text):\n        self.notes.append(text)\n\nbook = Notebook()\nbook.add(\"read\")\nprint(book.notes)\n",
+        "lesson_id": "python-modules-io-oop-classes"
+      },
+      "expected_stdout": "['read']\n",
+      "example_check": "pass"
+    },
+    {
+      "concept_id": "operator-overloading",
+      "language": "python",
+      "observed_status_before": "missing",
+      "suggested_compare": {
+        "status": "available",
+        "summary": "以 __add__ 等特殊方法让对象参与含义明确的语言运算。",
+        "difference": "不支持的操作数返回 NotImplemented，由解释器继续运算分派或产生 TypeError。",
+        "code": "class Points:\n    def __init__(self, value):\n        self.value = value\n\n    def __add__(self, other):\n        if not isinstance(other, Points):\n            return NotImplemented\n        return Points(self.value + other.value)\n\nprint((Points(2) + Points(3)).value)\n",
+        "lesson_id": "python-modules-io-oop-classes"
+      },
+      "expected_stdout": "5\n",
+      "example_check": "pass"
+    },
+    {
+      "concept_id": "data-structures",
+      "language": "python",
+      "observed_status_before": "available",
+      "suggested_compare": {
+        "status": "available",
+        "summary": "按访问方式选择 list/tuple/dict/set，并用列表或 deque 表达栈与队列。",
+        "difference": "内建容器直接可用，deque 适合两端进出；保留顺序与重复项取决于业务语义。",
+        "code": "from collections import deque\n\nqueue = deque([\"first\", \"second\"])\nqueue.append(\"third\")\nprint(queue.popleft(), list(queue))\n",
+        "lesson_id": "python-flow-collections-data-structures"
+      },
+      "expected_stdout": "first ['second', 'third']\n",
+      "example_check": "pass"
+    }
+  ],
+  "not_suggested": [
+    "properties: property is not yet taught",
+    "indexer: __getitem__ is not taught",
+    "reflection: no dedicated depth pass"
+  ]
+}

@@ -1,5 +1,7 @@
 from collections.abc import Iterator
+from contextlib import closing
 import json
+import sqlite3
 import sys
 from tempfile import TemporaryDirectory
 from pathlib import Path
@@ -10,6 +12,8 @@ from fastapi.testclient import TestClient
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from hard_api.core.config import Settings
+from hard_api.backup.service import LocalBackupService
+from hard_api.db import migrations
 from hard_api.main import create_app
 
 
@@ -47,13 +51,15 @@ def test_ready_reports_each_dependency_and_a_missing_runner(d_temp_path: Path) -
         project_root=d_temp_path,
         environment={"HARD_TOOLCHAIN_LOCK": lock_path.name},
     )
+    settings.content_dir.mkdir()
+    migrations.migrate_database(settings.database_path, backup_provider=LocalBackupService(settings.backup_dir))
 
     with TestClient(create_app(settings)) as client:
         response = client.get("/api/v1/health/ready")
 
-    assert response.status_code == 200
     checks = response.json()["checks"]
-    assert set(checks) == {"database", "content", "python", "java", "csharp", "cpp"}
+    assert response.status_code == 503
+    assert set(checks) == {"database", "migrations", "fts", "content", "python", "java", "csharp", "cpp"}
     assert checks["csharp"]["healthy"] is False
     assert checks["csharp"]["path"] == "D:/DevTools/dotnet/dotnet.exe"
 
@@ -75,14 +81,45 @@ def test_ready_reads_a_utf8_bom_toolchain_lock(d_temp_path: Path) -> None:
         project_root=d_temp_path,
         environment={"HARD_TOOLCHAIN_LOCK": lock_path.name},
     )
+    settings.content_dir.mkdir()
+    migrations.migrate_database(settings.database_path, backup_provider=LocalBackupService(settings.backup_dir))
 
     with TestClient(create_app(settings)) as client:
         response = client.get("/api/v1/health/ready")
 
+    assert response.status_code == 200
     assert response.json()["checks"]["python"]["healthy"] is True
     assert response.json()["checks"]["java"]["healthy"] is True
     assert response.json()["checks"]["csharp"]["healthy"] is True
     assert response.json()["checks"]["cpp"]["healthy"] is True
+
+
+@pytest.mark.parametrize("failure", ["sqlite", "migration", "fts"])
+def test_ready_fails_closed_when_sqlite_migrations_or_fts_are_unavailable(
+    d_temp_path: Path, failure: str
+) -> None:
+    settings = Settings.from_environment(project_root=d_temp_path, environment={})
+    settings.content_dir.mkdir()
+    if failure == "sqlite":
+        settings.database_path.mkdir(parents=True)
+    else:
+        migrations.migrate_database(settings.database_path, backup_provider=LocalBackupService(settings.backup_dir))
+        if failure == "migration":
+            with closing(sqlite3.connect(settings.database_path)) as connection:
+                with connection:
+                    connection.execute("DELETE FROM alembic_version")
+        else:
+            with closing(sqlite3.connect(settings.database_path)) as connection:
+                with connection:
+                    connection.execute("DROP TABLE search_documents")
+
+    with TestClient(create_app(settings)) as client:
+        response = client.get("/api/v1/health/ready")
+
+    assert response.status_code == 503
+    assert response.json()["status"] == "degraded"
+    check_name = {"sqlite": "database", "migration": "migrations", "fts": "fts"}[failure]
+    assert response.json()["checks"][check_name]["healthy"] is False
 
 
 def test_settings_rejects_c_drive_data_directory() -> None:

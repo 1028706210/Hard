@@ -13,6 +13,12 @@ def _response(title: str) -> dict[int, dict[str, object]]:
     return {200: {"content": {"application/json": {"schema": {"type": "object", "title": title, "additionalProperties": True}}}}}
 
 
+class ActivityDayResponse(BaseModel):
+    date: str
+    time_spent_seconds: int
+    completed_exercises: int
+
+
 class GrowthSummaryResponse(BaseModel):
     total_experience: int
     level: int
@@ -23,6 +29,9 @@ class GrowthSummaryResponse(BaseModel):
     mastery: list[dict[str, object]]
     new_badges: list[str]
     route_completion: list[dict[str, object]]
+    activity_start_date: str
+    activity_end_date: str
+    activity_days: list[ActivityDayResponse]
 
 
 class WeaknessResponse(BaseModel):

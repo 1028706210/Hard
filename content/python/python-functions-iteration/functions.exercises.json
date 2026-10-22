@@ -73,35 +73,40 @@
     {
       "id": "python-functions-iteration-functions-c01",
       "type": "code",
-      "prompt": "定义 add，返回 2 与 3 的和并输出。",
-      "starter_code": "def add(left, right):\n    # 返回结果\n    pass",
+      "prompt": "定义 add(left, right)，返回两个整数的和。从标准输入读取两个空格分隔的整数，调用 add 并输出结果。输入不是恰好两个整数时不输出结果，并以退出码 1 结束。",
+      "starter_code": "import sys\n\ndef add(left, right):\n    # 返回两个参数的和\n    pass\n\n# 读取两个整数，调用 add 并输出；非法输入以退出码 1 结束。\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 2 3 时输出 5。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-functions-iteration-functions-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    def add(left, right):\n        return left + right\n    print(add(2, 3))\n",
+        "reference_solution": "import sys\n\ndef add(left, right):\n    return left + right\n\ntry:\n    left, right = map(int, sys.stdin.read().split())\nexcept ValueError:\n    raise SystemExit(1)\nprint(add(left, right))\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "零与负数同样按加法规则计算。",
+          "空输入或非整数以退出码 1 结束。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "2 3\n",
             "stdout": "5\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-functions-iteration-functions-c01\n",
+            "stdin": "0 -4\n",
+            "stdout": "-4\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "\n",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "two 3\n",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

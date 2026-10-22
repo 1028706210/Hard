@@ -1,0 +1,131 @@
+{
+  "lesson_id": "java-foundations-switch",
+  "questions": [
+    {
+      "id": "java-foundations-switch-k01",
+      "type": "knowledge",
+      "prompt": "Java switch case最需要先明确什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "case、default 和分支输出的输入、规则和输出"
+        },
+        {
+          "id": "b",
+          "text": "公开样例的固定输出"
+        },
+        {
+          "id": "c",
+          "text": "在线服务响应"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "java-foundations-switch-k02",
+      "type": "knowledge",
+      "prompt": "为什么要保留边界输入？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "让程序忽略错误"
+        },
+        {
+          "id": "b",
+          "text": "验证空值或异常状态下规则仍明确"
+        },
+        {
+          "id": "c",
+          "text": "减少测试"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-foundations-switch-k03",
+      "type": "knowledge",
+      "prompt": "哪个做法更可靠？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "只输出公开答案"
+        },
+        {
+          "id": "b",
+          "text": "跳过失败分支"
+        },
+        {
+          "id": "c",
+          "text": "用不同输入断言不同结果或失败状态"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "java-foundations-switch-c01",
+      "type": "code",
+      "prompt": "读取Java int范围整数n，switch将1映射为read、2映射为code、3映射为test，其余整数通过default输出unknown。非整数、超出int范围或空输入无输出，退出码1。支架已解析number。",
+      "starter_code": "import java.nio.charset.StandardCharsets;\npublic class Main {\n    \n    public static void main(String[] args) throws Exception {\n        String text = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        long n;\n        try { n = Long.parseLong(text); } catch (NumberFormatException error) { System.exit(1); return; }\n        if (n < Integer.MIN_VALUE || n > Integer.MAX_VALUE) { System.exit(1); return; }\n        int number = (int)n;\n        // 按题面完成本课操作与输出\n    }\n}\n",
+      "visible_tests": [
+        "输入 '1'，输出 'read\\n'，退出码 0。",
+        "输入 '2'，输出 'code\\n'，退出码 0。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\npublic class Main {\n    \n    public static void main(String[] args) throws Exception {\n        String text = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        long n;\n        try { n = Long.parseLong(text); } catch (NumberFormatException error) { System.exit(1); return; }\n        if (n < Integer.MIN_VALUE || n > Integer.MAX_VALUE) { System.exit(1); return; }\n        int number = (int)n;\n        String action = switch (number) { case 1 -> \"read\"; case 2 -> \"code\"; case 3 -> \"test\"; default -> \"unknown\"; };\n        System.out.println(action);\n    }\n}\n",
+        "hidden_tests": [
+          "覆盖真实主题边界，不使用未声明的特殊标记。",
+          "校验输入、输出格式和退出码。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1",
+            "stdout": "read\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2",
+            "stdout": "code\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "3",
+            "stdout": "test\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "0",
+            "stdout": "unknown\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-1",
+            "stdout": "unknown\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2147483648",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

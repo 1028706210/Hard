@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-stl-containers-import",
+  "questions": [
+    {
+      "id": "cpp-stl-containers-import-k01",
+      "type": "knowledge",
+      "prompt": "C++ 中导入标准库 vector 的正确写法是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "#include <vector.h>"
+        },
+        {
+          "id": "b",
+          "text": "#include <vector>"
+        },
+        {
+          "id": "c",
+          "text": "import vector;"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-import-k02",
+      "type": "knowledge",
+      "prompt": "C++ 里对应 C 语言 <stdlib.h> 的标准头是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "<stdlib>"
+        },
+        {
+          "id": "b",
+          "text": "<cppstdlib>"
+        },
+        {
+          "id": "c",
+          "text": "<cstdlib>"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-import-k03",
+      "type": "knowledge",
+      "prompt": "包含 `<cmath>` 后调用 sqrt 的正确形式是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "sqrt 直接可用，无需任何限定"
+        },
+        {
+          "id": "b",
+          "text": "c_sqrt(2.0)"
+        },
+        {
+          "id": "c",
+          "text": "std::sqrt(2.0)"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-import-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 0..1000000，含两端），包含 <cmath> 后输出 int(std::sqrt(double(n)))，即平方不超过 n 的最大整数。n 无法解析或越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cmath>\n#include <iostream>\n\nint main() {\n    // 读取 n 并输出整数平方根\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 9 时输出 3。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <cmath>\n#include <iostream>\n\nint main() {\n    long long n = 0;\n    if (!(std::cin >> n)) return 1;\n    if (n < 0 || n > 1000000) return 1;\n    int root = static_cast<int>(std::sqrt(static_cast<double>(n)));\n    while (static_cast<long long>(root) * root > n) root--;\n    while (static_cast<long long>(root + 1) * (root + 1) <= n) root++;\n    std::cout << root << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "输入 8（非完全平方）输出 2。",
+          "输入 0 输出 0。",
+          "输入 1000000 输出 1000。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "9\n",
+            "stdout": "3\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "8\n",
+            "stdout": "2\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1000000\n",
+            "stdout": "1000\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

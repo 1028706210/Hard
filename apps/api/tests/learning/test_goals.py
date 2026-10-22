@@ -60,6 +60,7 @@ def test_daily_goal_summary_notes_and_favorites_use_idempotency(tmp_path: Path) 
     assert body["daily_goal"]["completed_exercises"] == 0
     assert body["continue_learning"]["lesson_id"] == "python-foundations-hello-world"
     assert body["unlocked_lessons"] == {"python": ["python-foundations-hello-world"]}
+    assert body["lesson_statuses"] == {"python-foundations-hello-world": "in_progress"}
     assert body["current_experience"] == 0
     assert body["current_level"] == 1
 

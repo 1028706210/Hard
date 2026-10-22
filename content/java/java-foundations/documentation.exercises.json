@@ -1,0 +1,147 @@
+{
+  "lesson_id": "java-foundations-documentation",
+  "questions": [
+    {
+      "id": "java-foundations-documentation-k01",
+      "type": "knowledge",
+      "prompt": "Java 文档注释最需要先明确什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Javadoc 的公开契约的输入、规则和输出"
+        },
+        {
+          "id": "b",
+          "text": "公开样例的固定输出"
+        },
+        {
+          "id": "c",
+          "text": "在线服务响应"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "java-foundations-documentation-k02",
+      "type": "knowledge",
+      "prompt": "为什么要保留边界输入？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "让程序忽略错误"
+        },
+        {
+          "id": "b",
+          "text": "验证空值或异常状态下规则仍明确"
+        },
+        {
+          "id": "c",
+          "text": "减少测试"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-foundations-documentation-k03",
+      "type": "knowledge",
+      "prompt": "哪个做法更可靠？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "只输出公开答案"
+        },
+        {
+          "id": "b",
+          "text": "跳过失败分支"
+        },
+        {
+          "id": "c",
+          "text": "用不同输入断言不同结果或失败状态"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "java-foundations-documentation-c01",
+      "type": "code",
+      "prompt": "从标准输入读取一行文本并原样输出加注 Javadoc 风格前缀；空输入输出空行，非法标记 __invalid__ 以非零状态退出。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // 读取输入并输出\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        System.out.println(input);\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "Hello\n",
+            "stdout": "Hello\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "\n",
+            "stdout": "\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "java-foundations-documentation-challenge",
+      "type": "challenge",
+      "prompt": "读取逗号分隔整数并输出总和；空输入、非法标记和非整数必须失败。此挑战练习Javadoc 的公开契约。",
+      "starter_code": "public class Main {\\n    // 读取 CSV 并输出总和\\n}\\n",
+      "visible_tests": [
+        "普通输入必须完成主题指定的核心操作。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\") || input.isEmpty()) System.exit(1);\n        int total = 0;\n        for (String part : input.split(\",\")) total += Integer.parseInt(part.trim());\n        System.out.println(total);\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "2,3\n",
+            "stdout": "5\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1, 2, 3\n",
+            "stdout": "6\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}
+

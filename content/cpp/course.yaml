@@ -1,0 +1,256 @@
+language: cpp
+title: C++
+growth:
+  review_milestone_points: 15
+  badge_points:
+    first_lesson: 20
+    first_module_mastery: 30
+    seven_day_streak: 40
+placement_tests:
+  - id: cpp-capstone-placement
+    module_id: cpp-capstone
+    question_ids:
+      - cpp-foundations-tutorial-k01
+      - cpp-core-memory-functions-k01
+      - cpp-oop-classes-k01
+      - cpp-advanced-files-k01
+      - cpp-stl-containers-overview-k01
+      - cpp-algorithms-concurrency-algorithm-k01
+      - cpp-capstone-useful-resources-k01
+      - cpp-capstone-examples-k01
+      - cpp-capstone-quiz-k01
+    passing_score: 85
+modules:
+  - id: cpp-foundations
+    title: C++ 入门与语言基础
+    prerequisites: []
+    source_coverage:
+      - {source_id: cpp-tutorial, lesson_id: cpp-foundations-tutorial}
+      - {source_id: cpp-intro, lesson_id: cpp-foundations-introduction}
+      - {source_id: cpp-environment-setup, lesson_id: cpp-foundations-environment}
+      - {source_id: cpp-basic-syntax, lesson_id: cpp-foundations-basic-syntax}
+      - {source_id: cpp-comments, lesson_id: cpp-foundations-comments}
+      - {source_id: cpp-data-types, lesson_id: cpp-foundations-data-types}
+      - {source_id: cpp-variable-types, lesson_id: cpp-foundations-variables}
+      - {source_id: cpp-variable-scope, lesson_id: cpp-foundations-scope}
+      - {source_id: cpp-constants-literals, lesson_id: cpp-foundations-constants}
+      - {source_id: cpp-modifier-types, lesson_id: cpp-foundations-modifiers}
+      - {source_id: cpp-storage-classes, lesson_id: cpp-foundations-storage-classes}
+      - {source_id: cpp-operators, lesson_id: cpp-foundations-operators}
+      - {source_id: cpp-loops, lesson_id: cpp-foundations-loops}
+      - {source_id: cpp-decision, lesson_id: cpp-foundations-decisions}
+    lessons:
+      - {id: cpp-foundations-tutorial, path: cpp-foundations/tutorial.md}
+      - {id: cpp-foundations-introduction, path: cpp-foundations/introduction.md}
+      - {id: cpp-foundations-environment, path: cpp-foundations/environment.md}
+      - {id: cpp-foundations-basic-syntax, path: cpp-foundations/basic-syntax.md}
+      - {id: cpp-foundations-comments, path: cpp-foundations/comments.md}
+      - {id: cpp-foundations-data-types, path: cpp-foundations/data-types.md}
+      - {id: cpp-foundations-variables, path: cpp-foundations/variables.md}
+      - {id: cpp-foundations-scope, path: cpp-foundations/scope.md}
+      - {id: cpp-foundations-constants, path: cpp-foundations/constants.md}
+      - {id: cpp-foundations-modifiers, path: cpp-foundations/modifiers.md}
+      - {id: cpp-foundations-storage-classes, path: cpp-foundations/storage-classes.md}
+      - {id: cpp-foundations-operators, path: cpp-foundations/operators.md}
+      - {id: cpp-foundations-loops, path: cpp-foundations/loops.md}
+      - {id: cpp-foundations-decisions, path: cpp-foundations/decisions.md}
+  - id: cpp-core-memory
+    title: C++ 函数与内存核心
+    prerequisites: []
+    source_coverage:
+      - {source_id: cpp-functions, lesson_id: cpp-core-memory-functions}
+      - {source_id: cpp-numbers, lesson_id: cpp-core-memory-numbers}
+      - {source_id: cpp-arrays, lesson_id: cpp-core-memory-arrays}
+      - {source_id: cpp-strings, lesson_id: cpp-core-memory-strings}
+      - {source_id: cpp-pointers, lesson_id: cpp-core-memory-pointers}
+      - {source_id: cpp-references, lesson_id: cpp-core-memory-references}
+      - {source_id: cpp-date-time, lesson_id: cpp-core-memory-date-time}
+      - {source_id: cpp-basic-input-output, lesson_id: cpp-core-memory-input-output}
+      - {source_id: cpp-struct, lesson_id: cpp-core-memory-struct}
+      - {source_id: cpp-vector, lesson_id: cpp-core-memory-vector}
+      - {source_id: cpp-data-structures, lesson_id: cpp-core-memory-data-structures}
+    lessons:
+      - {id: cpp-core-memory-functions, path: cpp-core-memory/functions.md}
+      - {id: cpp-core-memory-numbers, path: cpp-core-memory/numbers.md}
+      - {id: cpp-core-memory-arrays, path: cpp-core-memory/arrays.md}
+      - {id: cpp-core-memory-strings, path: cpp-core-memory/strings.md}
+      - {id: cpp-core-memory-pointers, path: cpp-core-memory/pointers.md}
+      - {id: cpp-core-memory-references, path: cpp-core-memory/references.md}
+      - {id: cpp-core-memory-date-time, path: cpp-core-memory/date-time.md}
+      - {id: cpp-core-memory-input-output, path: cpp-core-memory/input-output.md}
+      - {id: cpp-core-memory-struct, path: cpp-core-memory/struct.md}
+      - {id: cpp-core-memory-vector, path: cpp-core-memory/vector.md}
+      - {id: cpp-core-memory-data-structures, path: cpp-core-memory/data-structures.md}
+  - id: cpp-oop
+    title: C++ 面向对象
+    prerequisites: []
+    source_coverage:
+      - {source_id: cpp-classes-objects, lesson_id: cpp-oop-classes}
+      - {source_id: cpp-inheritance, lesson_id: cpp-oop-inheritance}
+      - {source_id: cpp-overloading, lesson_id: cpp-oop-overloading}
+      - {source_id: cpp-polymorphism, lesson_id: cpp-oop-polymorphism}
+      - {source_id: cpp-data-abstraction, lesson_id: cpp-oop-abstraction}
+      - {source_id: cpp-data-encapsulation, lesson_id: cpp-oop-encapsulation}
+      - {source_id: cpp-interfaces, lesson_id: cpp-oop-interfaces}
+    lessons:
+      - {id: cpp-oop-classes, path: cpp-oop/classes.md}
+      - {id: cpp-oop-inheritance, path: cpp-oop/inheritance.md}
+      - {id: cpp-oop-overloading, path: cpp-oop/overloading.md}
+      - {id: cpp-oop-polymorphism, path: cpp-oop/polymorphism.md}
+      - {id: cpp-oop-abstraction, path: cpp-oop/abstraction.md}
+      - {id: cpp-oop-encapsulation, path: cpp-oop/encapsulation.md}
+      - {id: cpp-oop-interfaces, path: cpp-oop/interfaces.md}
+  - id: cpp-advanced
+    title: C++ 进阶主题
+    prerequisites: []
+    source_coverage:
+      - {source_id: cpp-files-streams, lesson_id: cpp-advanced-files}
+      - {source_id: cpp-exceptions-handling, lesson_id: cpp-advanced-exceptions}
+      - {source_id: cpp-dynamic-memory, lesson_id: cpp-advanced-dynamic-memory}
+      - {source_id: cpp-namespaces, lesson_id: cpp-advanced-namespaces}
+      - {source_id: cpp-templates, lesson_id: cpp-advanced-templates}
+      - {source_id: cpp-preprocessor, lesson_id: cpp-advanced-preprocessor}
+      - {source_id: cpp-signal-handling, lesson_id: cpp-advanced-signals}
+      - {source_id: cpp-multithreading, lesson_id: cpp-advanced-threads}
+      - {source_id: cpp-web-programming, lesson_id: cpp-advanced-web}
+    lessons:
+      - {id: cpp-advanced-files, path: cpp-advanced/files.md}
+      - {id: cpp-advanced-exceptions, path: cpp-advanced/exceptions.md}
+      - {id: cpp-advanced-dynamic-memory, path: cpp-advanced/dynamic-memory.md}
+      - {id: cpp-advanced-namespaces, path: cpp-advanced/namespaces.md}
+      - {id: cpp-advanced-templates, path: cpp-advanced/templates.md}
+      - {id: cpp-advanced-preprocessor, path: cpp-advanced/preprocessor.md}
+      - {id: cpp-advanced-signals, path: cpp-advanced/signals.md}
+      - {id: cpp-advanced-threads, path: cpp-advanced/threads.md}
+      - {id: cpp-advanced-web, path: cpp-advanced/web.md}
+  - id: cpp-stl-containers
+    title: C++ STL 与容器
+    prerequisites: []
+    source_coverage:
+      - {source_id: cpp-stl-tutorial, lesson_id: cpp-stl-containers-overview}
+      - {source_id: cppo-import-header-file, lesson_id: cpp-stl-containers-import}
+      - {source_id: cpp-standard-library, lesson_id: cpp-stl-containers-standard-library}
+      - {source_id: cpp-libs-iostream, lesson_id: cpp-stl-containers-iostream}
+      - {source_id: cpp-libs-fstream, lesson_id: cpp-stl-containers-fstream}
+      - {source_id: cpp-libs-sstream, lesson_id: cpp-stl-containers-sstream}
+      - {source_id: cpp-libs-iomanip, lesson_id: cpp-stl-containers-iomanip}
+      - {source_id: cpp-libs-array, lesson_id: cpp-stl-containers-array}
+      - {source_id: cpp-libs-vector, lesson_id: cpp-stl-containers-vector}
+      - {source_id: cpp-libs-list, lesson_id: cpp-stl-containers-list}
+      - {source_id: cpp-libs-forward_list, lesson_id: cpp-stl-containers-forward-list}
+      - {source_id: cpp-libs-deque, lesson_id: cpp-stl-containers-deque}
+      - {source_id: cpp-libs-stack, lesson_id: cpp-stl-containers-stack}
+      - {source_id: cpp-libs-queue, lesson_id: cpp-stl-containers-queue}
+      - {source_id: cpp-libs-priority_queue, lesson_id: cpp-stl-containers-priority-queue}
+      - {source_id: cpp-libs-set, lesson_id: cpp-stl-containers-set}
+      - {source_id: cpp-libs-unordered_set, lesson_id: cpp-stl-containers-unordered-set}
+      - {source_id: cpp-libs-map, lesson_id: cpp-stl-containers-map}
+      - {source_id: cpp-libs-unordered_map, lesson_id: cpp-stl-containers-unordered-map}
+      - {source_id: cpp-libs-bitset, lesson_id: cpp-stl-containers-bitset}
+    lessons:
+      - {id: cpp-stl-containers-overview, path: cpp-stl-containers/overview.md}
+      - {id: cpp-stl-containers-import, path: cpp-stl-containers/import.md}
+      - {id: cpp-stl-containers-standard-library, path: cpp-stl-containers/standard-library.md}
+      - {id: cpp-stl-containers-iostream, path: cpp-stl-containers/iostream.md}
+      - {id: cpp-stl-containers-fstream, path: cpp-stl-containers/fstream.md}
+      - {id: cpp-stl-containers-sstream, path: cpp-stl-containers/sstream.md}
+      - {id: cpp-stl-containers-iomanip, path: cpp-stl-containers/iomanip.md}
+      - {id: cpp-stl-containers-array, path: cpp-stl-containers/array.md}
+      - {id: cpp-stl-containers-vector, path: cpp-stl-containers/vector.md}
+      - {id: cpp-stl-containers-list, path: cpp-stl-containers/list.md}
+      - {id: cpp-stl-containers-forward-list, path: cpp-stl-containers/forward-list.md}
+      - {id: cpp-stl-containers-deque, path: cpp-stl-containers/deque.md}
+      - {id: cpp-stl-containers-stack, path: cpp-stl-containers/stack.md}
+      - {id: cpp-stl-containers-queue, path: cpp-stl-containers/queue.md}
+      - {id: cpp-stl-containers-priority-queue, path: cpp-stl-containers/priority-queue.md}
+      - {id: cpp-stl-containers-set, path: cpp-stl-containers/set.md}
+      - {id: cpp-stl-containers-unordered-set, path: cpp-stl-containers/unordered-set.md}
+      - {id: cpp-stl-containers-map, path: cpp-stl-containers/map.md}
+      - {id: cpp-stl-containers-unordered-map, path: cpp-stl-containers/unordered-map.md}
+      - {id: cpp-stl-containers-bitset, path: cpp-stl-containers/bitset.md}
+  - id: cpp-algorithms-concurrency
+    title: C++ 算法与并发
+    prerequisites: []
+    source_coverage:
+      - {source_id: cpp-libs-algorithm, lesson_id: cpp-algorithms-concurrency-algorithm}
+      - {source_id: cpp-libs-iterator, lesson_id: cpp-algorithms-concurrency-iterator}
+      - {source_id: cpp-libs-functional, lesson_id: cpp-algorithms-concurrency-functional}
+      - {source_id: cpp-libs-numeric, lesson_id: cpp-algorithms-concurrency-numeric}
+      - {source_id: cpp-libs-complex, lesson_id: cpp-algorithms-concurrency-complex}
+      - {source_id: cpp-libs-valarray, lesson_id: cpp-algorithms-concurrency-valarray}
+      - {source_id: cpp-libs-cmath, lesson_id: cpp-algorithms-concurrency-cmath}
+      - {source_id: cpp-libs-string, lesson_id: cpp-algorithms-concurrency-string}
+      - {source_id: cpp-libs-regex, lesson_id: cpp-algorithms-concurrency-regex}
+      - {source_id: cpp-libs-ctime, lesson_id: cpp-algorithms-concurrency-ctime}
+      - {source_id: cpp-libs-chrono, lesson_id: cpp-algorithms-concurrency-chrono}
+      - {source_id: cpp-libs-thread, lesson_id: cpp-algorithms-concurrency-thread}
+      - {source_id: cpp-libs-mutex, lesson_id: cpp-algorithms-concurrency-mutex}
+      - {source_id: cpp-libs-condition_variable, lesson_id: cpp-algorithms-concurrency-condition-variable}
+      - {source_id: cpp-libs-future, lesson_id: cpp-algorithms-concurrency-future}
+      - {source_id: cpp-libs-atomic, lesson_id: cpp-algorithms-concurrency-atomic}
+    lessons:
+      - {id: cpp-algorithms-concurrency-algorithm, path: cpp-algorithms-concurrency/algorithm.md}
+      - {id: cpp-algorithms-concurrency-iterator, path: cpp-algorithms-concurrency/iterator.md}
+      - {id: cpp-algorithms-concurrency-functional, path: cpp-algorithms-concurrency/functional.md}
+      - {id: cpp-algorithms-concurrency-numeric, path: cpp-algorithms-concurrency/numeric.md}
+      - {id: cpp-algorithms-concurrency-complex, path: cpp-algorithms-concurrency/complex.md}
+      - {id: cpp-algorithms-concurrency-valarray, path: cpp-algorithms-concurrency/valarray.md}
+      - {id: cpp-algorithms-concurrency-cmath, path: cpp-algorithms-concurrency/cmath.md}
+      - {id: cpp-algorithms-concurrency-string, path: cpp-algorithms-concurrency/string.md}
+      - {id: cpp-algorithms-concurrency-regex, path: cpp-algorithms-concurrency/regex.md}
+      - {id: cpp-algorithms-concurrency-ctime, path: cpp-algorithms-concurrency/ctime.md}
+      - {id: cpp-algorithms-concurrency-chrono, path: cpp-algorithms-concurrency/chrono.md}
+      - {id: cpp-algorithms-concurrency-thread, path: cpp-algorithms-concurrency/thread.md}
+      - {id: cpp-algorithms-concurrency-mutex, path: cpp-algorithms-concurrency/mutex.md}
+      - {id: cpp-algorithms-concurrency-condition-variable, path: cpp-algorithms-concurrency/condition-variable.md}
+      - {id: cpp-algorithms-concurrency-future, path: cpp-algorithms-concurrency/future.md}
+      - {id: cpp-algorithms-concurrency-atomic, path: cpp-algorithms-concurrency/atomic.md}
+  - id: cpp-capstone
+    title: C++ 工具、实例、测验与结业
+    prerequisites: [cpp-algorithms-concurrency]
+    source_coverage:
+      - {source_id: cpp-useful-resources, lesson_id: cpp-capstone-useful-resources}
+      - {source_id: cpp-examples, lesson_id: cpp-capstone-examples}
+      - {source_id: cpp-quiz, lesson_id: cpp-capstone-quiz}
+      - {source_id: cpp-libs-type_traits, lesson_id: cpp-capstone-type-traits}
+      - {source_id: cpp-libs-typeinfo, lesson_id: cpp-capstone-typeinfo}
+      - {source_id: cpp-libs-exception, lesson_id: cpp-capstone-exception}
+      - {source_id: cpp-libs-stdexcept, lesson_id: cpp-capstone-stdexcept}
+      - {source_id: cpp-libs-cstdio, lesson_id: cpp-capstone-cstdio}
+      - {source_id: cpp-libs-cstdint, lesson_id: cpp-capstone-cstdint}
+      - {source_id: cpp-libs-memory, lesson_id: cpp-capstone-memory}
+      - {source_id: cpp-libs-new, lesson_id: cpp-capstone-new}
+      - {source_id: cpp-libs-utility, lesson_id: cpp-capstone-utility}
+      - {source_id: cpp-libs-random, lesson_id: cpp-capstone-random}
+      - {source_id: cpp-libs-locale, lesson_id: cpp-capstone-locale}
+      - {source_id: cpp-libs-codecvt, lesson_id: cpp-capstone-codecvt}
+      - {source_id: cpp-libs-cassert, lesson_id: cpp-capstone-cassert}
+      - {source_id: cpp-libs-cwchar, lesson_id: cpp-capstone-cwchar}
+      - {source_id: cpp-libs-climits, lesson_id: cpp-capstone-climits}
+      - {source_id: cpp-libs-cfloat, lesson_id: cpp-capstone-cfloat}
+      - {source_id: cpp-libs-cstdlib, lesson_id: cpp-capstone-cstdlib}
+      - {source_id: cpp-libs-numbers, lesson_id: cpp-capstone-numbers}
+      - {source_id: cpp-opencv, lesson_id: cpp-capstone-opencv}
+    lessons:
+      - {id: cpp-capstone-useful-resources, path: cpp-capstone/useful-resources.md}
+      - {id: cpp-capstone-examples, path: cpp-capstone/examples.md}
+      - {id: cpp-capstone-quiz, path: cpp-capstone/quiz.md}
+      - {id: cpp-capstone-type-traits, path: cpp-capstone/type-traits.md}
+      - {id: cpp-capstone-typeinfo, path: cpp-capstone/typeinfo.md}
+      - {id: cpp-capstone-exception, path: cpp-capstone/exception.md}
+      - {id: cpp-capstone-stdexcept, path: cpp-capstone/stdexcept.md}
+      - {id: cpp-capstone-cstdio, path: cpp-capstone/cstdio.md}
+      - {id: cpp-capstone-cstdint, path: cpp-capstone/cstdint.md}
+      - {id: cpp-capstone-memory, path: cpp-capstone/memory.md}
+      - {id: cpp-capstone-new, path: cpp-capstone/new.md}
+      - {id: cpp-capstone-utility, path: cpp-capstone/utility.md}
+      - {id: cpp-capstone-random, path: cpp-capstone/random.md}
+      - {id: cpp-capstone-locale, path: cpp-capstone/locale.md}
+      - {id: cpp-capstone-codecvt, path: cpp-capstone/codecvt.md}
+      - {id: cpp-capstone-cassert, path: cpp-capstone/cassert.md}
+      - {id: cpp-capstone-cwchar, path: cpp-capstone/cwchar.md}
+      - {id: cpp-capstone-climits, path: cpp-capstone/climits.md}
+      - {id: cpp-capstone-cfloat, path: cpp-capstone/cfloat.md}
+      - {id: cpp-capstone-cstdlib, path: cpp-capstone/cstdlib.md}
+      - {id: cpp-capstone-numbers, path: cpp-capstone/numbers.md}
+      - {id: cpp-capstone-opencv, path: cpp-capstone/opencv.md}

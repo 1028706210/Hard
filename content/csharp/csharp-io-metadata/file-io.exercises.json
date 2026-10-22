@@ -1,0 +1,134 @@
+{
+  "lesson_id": "csharp-io-metadata-file-io",
+  "questions": [
+    {
+      "id": "csharp-io-metadata-file-io-k01",
+      "type": "knowledge",
+      "prompt": "对已存在的文件连续调用两次 File.WriteAllText，文件内容是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "两次内容拼接在一起"
+        },
+        {
+          "id": "b",
+          "text": "第二次的内容覆盖第一次，只保留最后一次写入"
+        },
+        {
+          "id": "c",
+          "text": "第二次调用直接抛出异常"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-io-metadata-file-io-k02",
+      "type": "knowledge",
+      "prompt": "使用 StreamReader 逐行读取文件时，防止文件句柄延迟释放的正确做法是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "把 StreamReader 放进 using 语句，确保 Dispose 被及时调用"
+        },
+        {
+          "id": "b",
+          "text": "读完后调用 GC.Collect 强制回收"
+        },
+        {
+          "id": "c",
+          "text": "不需要任何处理，进程退出时自动释放"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-io-metadata-file-io-k03",
+      "type": "knowledge",
+      "prompt": "处理一个远超内存容量的大文件并逐行统计时，应选用哪个 API？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "File.ReadAllLines，一次性读入最可靠"
+        },
+        {
+          "id": "b",
+          "text": "File.ReadLines，惰性逐行枚举，不把整个文件载入内存"
+        },
+        {
+          "id": "c",
+          "text": "File.ReadAllText，字符串处理最快"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-io-metadata-file-io-c01",
+      "type": "code",
+      "prompt": "实现词表归档。读入标准输入的所有行；空行忽略，每个非空行视为一个单词（区分大小写）。把去重后的单词按序（ordinal 字符序）用相对路径写入当前工作目录内的 words.txt（每次运行覆盖旧内容），随后从该文件读回，输出：第一行 count=单词数；单词数大于 0 时再输出 first=第一个单词 与 last=最后一个单词。文件操作只允许使用相对路径访问本次执行的临时工作目录，禁止绝对路径或 .. 逃逸。始终以退出码 0 结束。",
+      "starter_code": "var words = new SortedSet<string>(StringComparer.Ordinal);\n// 收集单词 -> 写入相对路径 words.txt -> 读回并输出 count/first/last\n",
+      "visible_tests": [
+        "输入 banana、apple 两行时输出 count=2、first=apple、last=banana。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var words = new SortedSet<string>(StringComparer.Ordinal);\nforeach (var raw in Console.In.ReadToEnd().Replace(\"\\r\\n\", \"\\n\").Split('\\n'))\n{\n    if (raw.Length == 0) continue;\n    words.Add(raw);\n}\nFile.WriteAllLines(\"words.txt\", words);\nvar stored = File.ReadAllLines(\"words.txt\");\nConsole.WriteLine($\"count={stored.Length}\");\nif (stored.Length > 0)\n{\n    Console.WriteLine($\"first={stored[0]}\");\n    Console.WriteLine($\"last={stored[^1]}\");\n}\n",
+        "hidden_tests": [
+          "重复出现的单词去重后 count=1，first 与 last 相同。",
+          "Apple 与 apple 是两个不同单词，ordinal 排序下 Apple 在前。",
+          "只输入一个单词时 count=1 且 first 与 last 相同。",
+          "空输入时输出 count=0，不再输出 first/last。",
+          "Zebra 与 apple 按 ordinal 排序时 Zebra 在前。",
+          "输入末尾带空行时空行被忽略。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "banana\napple\n",
+            "stdout": "count=2\nfirst=apple\nlast=banana\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "go\ngo\ngo\n",
+            "stdout": "count=1\nfirst=go\nlast=go\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "Apple\napple\n",
+            "stdout": "count=2\nfirst=Apple\nlast=apple\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "solo\n",
+            "stdout": "count=1\nfirst=solo\nlast=solo\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "",
+            "stdout": "count=0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "Zebra\napple\n",
+            "stdout": "count=2\nfirst=Zebra\nlast=apple\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "a\n\n",
+            "stdout": "count=1\nfirst=a\nlast=a\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

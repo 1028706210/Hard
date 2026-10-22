@@ -73,33 +73,54 @@
     {
       "id": "python-functions-iteration-decorators-c01",
       "type": "code",
-      "prompt": "定义保留函数元数据的 announce 装饰器，为输入名称添加 run 前缀。",
-      "starter_code": "# 定义 announce 装饰器并调用 task\n",
+      "prompt": "读取一个非空名称，去掉首尾空白但保留内部空格。定义 announce 装饰器，以 functools.wraps 保留被包装函数的元数据；包装器将参数转发给原函数，并给返回字符串加上 run 和一个空格。定义被装饰的 task(name)，原函数返回 name。第一行输出 task(名称)，第二行输出 task.__name__（应为 task）。任意非空文本包括中文和 __invalid__ 都是合法名称；空白输入不输出内容，退出码为 1。起始代码提供输入校验和所需导入。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\nif not text:\n    raise SystemExit(1)\nfrom functools import wraps\n# 按题面定义函数并调用输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'task'，输出 'run task\\ntask\\n'，退出码 0。",
+        "输入 'review'，输出 'run review\\ntask\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import functools\nimport sys\ndef announce(func):\n    @functools.wraps(func)\n    def wrapped(name):\n        return 'run ' + func(name)\n    return wrapped\n@announce\ndef task(name):\n    return name\nname = sys.stdin.read().strip()\nif name == '__invalid__' or not name:\n    raise ValueError('task name required')\nprint(task(name))\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\nif not text:\n    raise SystemExit(1)\nfrom functools import wraps\ndef announce(func):\n    @wraps(func)\n    def wrapped(*args, **kwargs):\n        return \"run \" + func(*args, **kwargs)\n    return wrapped\n@announce\ndef task(name):\n    return name\nprint(task(text))\nprint(task.__name__)\n",
         "hidden_tests": [
-          "边界输入必须返回主题定义的结果。",
-          "无效输入必须进入可预期的失败分支。"
+          "核对题面声明的有效输入与边界。",
+          "无效输入不输出内容，以退出码 1 结束。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "task\n",
-            "stdout": "run task\n",
+            "stdin": "task",
+            "stdout": "run task\ntask\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "review",
+            "stdout": "run review\ntask\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "review\n",
-            "stdout": "run review\n",
+            "stdin": "__invalid__",
+            "stdout": "run __invalid__\ntask\n",
             "exit_code": 0
           },
           {
-            "stdin": "__invalid__\n",
+            "stdin": "  Ada  Li \n",
+            "stdout": "run Ada  Li\ntask\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "学习",
+            "stdout": "run 学习\ntask\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": " \n",
             "stdout": "",
             "exit_code": 1
           }

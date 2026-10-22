@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-core-memory-vector",
+  "questions": [
+    {
+      "id": "cpp-core-memory-vector-k01",
+      "type": "knowledge",
+      "prompt": "std::vector 相对定长数组的核心优势是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "访问速度恒定快于数组十倍以上"
+        },
+        {
+          "id": "b",
+          "text": "元素可以是任意不同类型混合"
+        },
+        {
+          "id": "c",
+          "text": "长度可在运行期动态增长"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-core-memory-vector-k02",
+      "type": "knowledge",
+      "prompt": "下标访问 v[i] 与 v.at(i) 的区别是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "at() 越界时抛出 std::out_of_range，下标不检查"
+        },
+        {
+          "id": "b",
+          "text": "两者完全等价"
+        },
+        {
+          "id": "c",
+          "text": "下标越界时抛出异常，at() 不检查"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-core-memory-vector-k03",
+      "type": "knowledge",
+      "prompt": "在范围 for 遍历 vector 的同时 push_back 会？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "被编译器拒绝"
+        },
+        {
+          "id": "b",
+          "text": "可能引起迭代器失效，属于缺陷写法"
+        },
+        {
+          "id": "c",
+          "text": "完全安全，遍历自动扩展"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-core-memory-vector-c01",
+      "type": "code",
+      "prompt": "先读取整数 n，再读取 n 个整数存入 std::vector，输出两行：第一行所有元素之和，第二行最大元素（n ≥ 1）。",
+      "starter_code": "#include <iostream>\n#include <vector>\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    std::vector<int> values;\n    // 读取 n 个整数并输出和与最大值\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 n=3 且元素 1 2 3 时第一行输出 6、第二行输出 3。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <vector>\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    std::vector<int> values;\n    for (int i = 0; i < n; i++) {\n        int value = 0;\n        std::cin >> value;\n        values.push_back(value);\n    }\n    long long total = 0;\n    int best = values[0];\n    for (int value : values) {\n        total += value;\n        if (value > best) {\n            best = value;\n        }\n    }\n    std::cout << total << std::endl;\n    std::cout << best << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "单元素输入和与最大值相同。",
+          "全负数时最大值为负。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3\n1 2 3\n",
+            "stdout": "6\n3\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1\n5\n",
+            "stdout": "5\n5\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "4\n-2 -5 -1 -9\n",
+            "stdout": "-17\n-1\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

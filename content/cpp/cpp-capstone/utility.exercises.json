@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-capstone-utility",
+  "questions": [
+    {
+      "id": "cpp-capstone-utility-k01",
+      "type": "knowledge",
+      "prompt": "std::pair 的 operator< 比较规则是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "先比 second 再比 first"
+        },
+        {
+          "id": "b",
+          "text": "只比较 first"
+        },
+        {
+          "id": "c",
+          "text": "先比 first，first 相等再比 second（字典序）"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-utility-k02",
+      "type": "knowledge",
+      "prompt": "std::move(x) 的作用是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "立刻销毁 x"
+        },
+        {
+          "id": "b",
+          "text": "把 x 转为右值引用，允许移动偷取资源"
+        },
+        {
+          "id": "c",
+          "text": "深拷贝 x"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-capstone-utility-k03",
+      "type": "knowledge",
+      "prompt": "被 std::move 移走的对象处于？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "与移动前完全相同"
+        },
+        {
+          "id": "b",
+          "text": "立即失效的悬垂引用"
+        },
+        {
+          "id": "c",
+          "text": "有效但未指定的状态，不应再读其值"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-utility-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 1..1000，含两端），随后 n 对整数 k v（k 与 v 各合同范围 -1000..1000，含两端）。存入 std::vector<std::pair<long long,long long>>，用 std::sort 按字典序（先 k 后 v）排序后，每行输出一个「k:v」。任一输入无法解析、越界或缺失时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <algorithm>\n#include <cstdio>\n#include <utility>\n#include <vector>\n\nint main() {\n    // 读取 n 对 k v，pair 排序后逐行输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3 与 2 20、1 10、2 5 时输出 1:10、2:5、2:20 三行。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <algorithm>\n#include <cstdio>\n#include <utility>\n#include <vector>\n\nint main() {\n    int n = 0;\n    if (std::scanf(\"%d\", &n) != 1) return 1;\n    if (n < 1 || n > 1000) return 1;\n    std::vector<std::pair<long long, long long>> pairs;\n    for (int i = 0; i < n; i++) {\n        long long k = 0;\n        long long v = 0;\n        if (std::scanf(\"%lld %lld\", &k, &v) != 2) return 1;\n        if (k < -1000 || k > 1000 || v < -1000 || v > 1000) return 1;\n        pairs.emplace_back(k, v);\n    }\n    std::sort(pairs.begin(), pairs.end());\n    for (const auto& entry : pairs) {\n        std::printf(\"%lld:%lld\\n\", entry.first, entry.second);\n    }\n    return 0;\n}\n",
+        "hidden_tests": [
+          "同 k 不同 v 时按 v 升序输出。",
+          "负数键排在正数前。",
+          "k 越界 1001 不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 2 20 1 10 2 5\n",
+            "stdout": "1:10\n2:5\n2:20\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "2 5 9 5 3\n",
+            "stdout": "5:3\n5:9\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2 -1 0 1 -1\n",
+            "stdout": "-1:0\n1:-1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1 1001 5\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -73,9 +73,19 @@ placement_tests:
   - id: python-capstone-placement
     module_id: python-capstone
     question_ids:
+      - python-foundations-hello-world-k01
+      - python-core-types-basic-syntax-k01
+      - python-flow-collections-lists-k01
+      - python-functions-iteration-functions-k01
+      - python-modules-io-oop-modules-k01
+      - python-stdlib-data-overview-k01
+      - python-concurrency-network-asyncio-k01
+      - python-database-deployment-cgi-k01
+      - python-automation-ui-web-pyecharts-k01
       - python-capstone-examples-k01
       - python-capstone-openai-k02
       - python-capstone-quant-k03
+      - python-capstone-quiz-k01
     passing_score: 85
 modules:
   - id: python-foundations

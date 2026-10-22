@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-core-memory-strings",
+  "questions": [
+    {
+      "id": "cpp-core-memory-strings-k01",
+      "type": "knowledge",
+      "prompt": "要读取一整行含空格的文本，应使用？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "std::getline(std::cin, line)"
+        },
+        {
+          "id": "b",
+          "text": "std::cin >> line"
+        },
+        {
+          "id": "c",
+          "text": "std::cin.getline(line, 0)"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-core-memory-strings-k02",
+      "type": "knowledge",
+      "prompt": "std::string 相对 C 风格 char 数组的优势是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "不再需要任何头文件"
+        },
+        {
+          "id": "b",
+          "text": "字符不可修改，因此更安全"
+        },
+        {
+          "id": "c",
+          "text": "长度可变且自动管理内存，无需手动维护结尾符"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-core-memory-strings-k03",
+      "type": "knowledge",
+      "prompt": "s.size() 返回的类型是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "int"
+        },
+        {
+          "id": "b",
+          "text": "无符号整数类型（如 std::size_t）"
+        },
+        {
+          "id": "c",
+          "text": "bool"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-core-memory-strings-c01",
+      "type": "code",
+      "prompt": "用 std::getline 读取一整行文本（可能含空格，也可能为空行），输出其反转后的字符串。",
+      "starter_code": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string line;\n    std::getline(std::cin, line);\n    // 输出反转结果\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 abc 时输出 cba。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string line;\n    std::getline(std::cin, line);\n    std::string reversed;\n    for (std::size_t i = line.size(); i > 0; i--) {\n        reversed += line[i - 1];\n    }\n    std::cout << reversed << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "单字符输入反转后不变。",
+          "含空格文本整行反转（空格位置随之移动）。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "abc\n",
+            "stdout": "cba\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "a\n",
+            "stdout": "a\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "ab cd\n",
+            "stdout": "dc ba\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

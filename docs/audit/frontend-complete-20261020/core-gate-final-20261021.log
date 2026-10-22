@@ -1,0 +1,55 @@
+........................................................................ [ 56%]
+.......................................................                  [100%]
+=============================== tests coverage ================================
+______________ coverage: platform win32, python 3.13.13-final-0 _______________
+
+Name                                         Stmts   Miss Branch BrPart  Cover   Missing
+----------------------------------------------------------------------------------------
+apps\api\src\hard_api\runners\contracts.py      89      1     20      0    99%   114
+apps\api\src\hard_api\runners\cpp.py            95      2     32      3    96%   77, 110, 207->205
+apps\api\src\hard_api\runners\csharp.py        144      3     36      1    98%   179, 275-276
+apps\api\src\hard_api\runners\java.py          171      0     62      1    99%   104->103
+apps\api\src\hard_api\runners\limits.py         26      0     12      0   100%
+apps\api\src\hard_api\runners\manager.py       111      0     26      0   100%
+apps\api\src\hard_api\runners\processes.py      97      2     24      0    98%   133-134
+apps\api\src\hard_api\runners\python.py         93      1     36      1    98%   85
+apps\api\src\hard_api\runners\workspace.py      58      1     20      1    97%   45
+----------------------------------------------------------------------------------------
+TOTAL                                          884     10    268      7    99%
+Required test coverage of 95% reached. Total coverage: 98.52%
+127 passed, 21 warnings in 92.61s (0:01:32)
+...................                                                      [100%]
+=============================== tests coverage ================================
+______________ coverage: platform win32, python 3.13.13-final-0 _______________
+
+Name                                        Stmts   Miss Branch BrPart  Cover   Missing
+---------------------------------------------------------------------------------------
+apps\api\src\hard_api\backup\archive.py        97      5     28      1    95%   93, 115-116, 123-124
+apps\api\src\hard_api\backup\retention.py      18      0      2      0   100%
+apps\api\src\hard_api\backup\service.py       105      0     12      0   100%
+---------------------------------------------------------------------------------------
+TOTAL                                         220      5     42      1    98%
+Required test coverage of 95% reached. Total coverage: 97.71%
+19 passed, 11 warnings in 4.42s
+..........................                                               [100%]
+=============================== tests coverage ================================
+______________ coverage: platform win32, python 3.13.13-final-0 _______________
+
+Name                                        Stmts   Miss Branch BrPart  Cover   Missing
+---------------------------------------------------------------------------------------
+apps\api\src\hard_api\learning\scoring.py     143      0     54      0   100%
+---------------------------------------------------------------------------------------
+TOTAL                                         143      0     54      0   100%
+Required test coverage of 95% reached. Total coverage: 100.00%
+26 passed, 192 warnings in 6.78s
+........                                                                 [100%]
+=============================== tests coverage ================================
+______________ coverage: platform win32, python 3.13.13-final-0 _______________
+
+Name                                       Stmts   Miss Branch BrPart  Cover   Missing
+--------------------------------------------------------------------------------------
+apps\api\src\hard_api\learning\review.py      43      0     10      0   100%
+--------------------------------------------------------------------------------------
+TOTAL                                         43      0     10      0   100%
+Required test coverage of 95% reached. Total coverage: 100.00%
+8 passed, 48 warnings in 4.08s

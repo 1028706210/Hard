@@ -73,35 +73,51 @@
     {
       "id": "python-stdlib-data-stringio-c01",
       "type": "code",
-      "prompt": "从内存流读取 ready 并输出。",
-      "starter_code": "from io import StringIO\n# 输出文本",
+      "prompt": "读取全部文本，仅删除末尾所有换行符 \\n，保留空格及内部换行。创建空 StringIO，写入 text，再将游标移到开头并读取全部内容，用 print 输出。空文本输出一个换行。所有文本均有效，不读写磁盘。起始代码已读取 text 并导入 StringIO。",
+      "starter_code": "import sys\ntext = sys.stdin.read().rstrip(\"\\n\")\nfrom io import StringIO\n# 完成本课操作与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'ready\\n'，输出 'ready\\n'，退出码 0。",
+        "输入 '学习\\n'，输出 '学习\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-stdlib-data-stringio-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    from io import StringIO\n    print(StringIO('ready').read())\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().rstrip(\"\\n\")\nfrom io import StringIO\nstream = StringIO()\nstream.write(text)\nstream.seek(0)\nprint(stream.read())\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的正常边界。",
+          "输入、输出和退出状态必须符合题面。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "ready\n",
             "stdout": "ready\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "学习\n",
+            "stdout": "学习\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-stdlib-data-stringio-c01\n",
+            "stdin": "",
+            "stdout": "\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
-            "stdout": "",
-            "exit_code": 2
+            "stdin": " A  B \n",
+            "stdout": " A  B \n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "a\nb\n",
+            "stdout": "a\nb\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__",
+            "stdout": "__invalid__\n",
+            "exit_code": 0
           }
         ]
       }

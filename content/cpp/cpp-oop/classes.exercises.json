@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-oop-classes",
+  "questions": [
+    {
+      "id": "cpp-oop-classes-k01",
+      "type": "knowledge",
+      "prompt": "C++ 中 class 与 struct 的默认成员访问权限分别是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "class 公有，struct 私有"
+        },
+        {
+          "id": "b",
+          "text": "两者都是公有"
+        },
+        {
+          "id": "c",
+          "text": "class 私有，struct 公有"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-oop-classes-k02",
+      "type": "knowledge",
+      "prompt": "private 成员可以被谁访问？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "任意外部代码"
+        },
+        {
+          "id": "b",
+          "text": "同文件中的所有函数"
+        },
+        {
+          "id": "c",
+          "text": "仅本类的成员函数（与友元）"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-oop-classes-k03",
+      "type": "knowledge",
+      "prompt": "成员函数末尾的 const 修饰（如 int area() const）表示？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "返回值是常量"
+        },
+        {
+          "id": "b",
+          "text": "该函数不修改对象状态"
+        },
+        {
+          "id": "c",
+          "text": "该函数只能被常量调用一次"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-oop-classes-c01",
+      "type": "code",
+      "prompt": "定义类 Rect，私有成员保存宽与高，公有构造函数初始化、成员函数 area() 与 perimeter() 完成计算。读取宽 w 与高 h，构造对象并输出两行：面积与周长。",
+      "starter_code": "#include <iostream>\n\nclass Rect {\npublic:\n    // 构造函数、area()、perimeter()\nprivate:\n    int width_ = 0;\n    int height_ = 0;\n};\n\nint main() {\n    int w = 0;\n    int h = 0;\n    std::cin >> w >> h;\n    // 构造 Rect 并输出面积与周长\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3 4 时第一行输出 12、第二行输出 14。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n\nclass Rect {\npublic:\n    Rect(int width, int height) : width_(width), height_(height) {}\n    int area() const { return width_ * height_; }\n    int perimeter() const { return 2 * (width_ + height_); }\nprivate:\n    int width_ = 0;\n    int height_ = 0;\n};\n\nint main() {\n    int w = 0;\n    int h = 0;\n    std::cin >> w >> h;\n    Rect rect(w, h);\n    std::cout << rect.area() << std::endl;\n    std::cout << rect.perimeter() << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "宽为 0 时面积为 0、周长按公式输出。",
+          "正方形输入两行结果一致地按公式输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 4\n",
+            "stdout": "12\n14\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0 6\n",
+            "stdout": "0\n12\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "5 5\n",
+            "stdout": "25\n20\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

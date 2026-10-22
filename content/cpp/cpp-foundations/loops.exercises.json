@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-foundations-loops",
+  "questions": [
+    {
+      "id": "cpp-foundations-loops-k01",
+      "type": "knowledge",
+      "prompt": "有限计数循环通常需要哪三个组成部分？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "只需要输出语句"
+        },
+        {
+          "id": "b",
+          "text": "只需要一个永远为真的条件"
+        },
+        {
+          "id": "c",
+          "text": "初始化、继续条件和每轮更新"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-foundations-loops-k02",
+      "type": "knowledge",
+      "prompt": "哪段 for 语句会让 i 依次取 1 到 n（包含 n）？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "for (int i = 1; i < n; i--)"
+        },
+        {
+          "id": "b",
+          "text": "for (int i = 1; i <= n; i++)"
+        },
+        {
+          "id": "c",
+          "text": "for (int i = n; i > 1; i++)"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-foundations-loops-k03",
+      "type": "knowledge",
+      "prompt": "循环边界写成 i < n 而需求是包含 n，属于哪类常见错误？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "类型转换错误"
+        },
+        {
+          "id": "b",
+          "text": "内存泄漏"
+        },
+        {
+          "id": "c",
+          "text": "少执行一次的 off-by-one 错误"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-foundations-loops-c01",
+      "type": "code",
+      "prompt": "读取非负整数 n，使用有限循环累计 1 到 n 的整数和，并以 long long 类型输出结果。",
+      "starter_code": "#include <iostream>\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    long long total = 0;\n    // 使用有限循环累计 1..n\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 4 时输出 10。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    long long total = 0;\n    for (int i = 1; i <= n; i++) {\n        total += i;\n    }\n    std::cout << total << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "n 为 0 时循环不执行且输出 0。",
+          "n 为 100 时按等差求和输出 5050。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "4\n",
+            "stdout": "10\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "100\n",
+            "stdout": "5050\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-capstone-cstdio",
+  "questions": [
+    {
+      "id": "cpp-capstone-cstdio-k01",
+      "type": "knowledge",
+      "prompt": "printf 格式 %05d 的含义是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "宽度 5，不足左侧补 0"
+        },
+        {
+          "id": "b",
+          "text": "精度 5 位小数"
+        },
+        {
+          "id": "c",
+          "text": "输出 5 次"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-capstone-cstdio-k02",
+      "type": "knowledge",
+      "prompt": "scanf(\"%d\", &v) 的返回值表示？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "读取的字节数"
+        },
+        {
+          "id": "b",
+          "text": "成功解析的项目数（失败为 EOF 或 0）"
+        },
+        {
+          "id": "c",
+          "text": "恒为 0"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-capstone-cstdio-k03",
+      "type": "knowledge",
+      "prompt": "用 %d 打印 long long 变量会？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "正常打印"
+        },
+        {
+          "id": "b",
+          "text": "自动提升格式"
+        },
+        {
+          "id": "c",
+          "text": "格式与类型不匹配，未定义行为"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-cstdio-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 0..99999，含两端），用 printf 的 %05d 格式输出为一行 5 位补零十进制（不足 5 位左侧补 0，恰好 5 位原样输出）。n 越界、无法解析或缺失时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cstdio>\n\nint main() {\n    // 读取 n，%05d 补零输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 42 时输出 00042。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <cstdio>\n\nint main() {\n    int n = 0;\n    if (std::scanf(\"%d\", &n) != 1) return 1;\n    if (n < 0 || n > 99999) return 1;\n    std::printf(\"%05d\\n\", n);\n    return 0;\n}\n",
+        "hidden_tests": [
+          "下边界 0 输出 00000。",
+          "上边界 99999 原样输出 5 位。",
+          "越界 100000 不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "42\n",
+            "stdout": "00042\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "00000\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "99999\n",
+            "stdout": "99999\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "100000\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

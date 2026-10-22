@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-stl-containers-forward-list",
+  "questions": [
+    {
+      "id": "cpp-stl-containers-forward-list-k01",
+      "type": "knowledge",
+      "prompt": "forward_list 相比 list 省去了什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "每个节点的后继指针"
+        },
+        {
+          "id": "b",
+          "text": "每个节点的前驱指针"
+        },
+        {
+          "id": "c",
+          "text": "头节点本身"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-forward-list-k02",
+      "type": "knowledge",
+      "prompt": "push_front 之后调用 front() 得到？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "最早插入的元素"
+        },
+        {
+          "id": "b",
+          "text": "链表中间的元素"
+        },
+        {
+          "id": "c",
+          "text": "最近插入的元素"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-forward-list-k03",
+      "type": "knowledge",
+      "prompt": "forward_list 没有提供的接口是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "push_front"
+        },
+        {
+          "id": "b",
+          "text": "size()"
+        },
+        {
+          "id": "c",
+          "text": "front()"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-forward-list-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 1..100，含两端）与 n 个单词（无空格、长度 1..20，含两端），逐个 push_front 进 std::forward_list<std::string>，随后输出 front()（即最后一个读入的单词）。n 或任一单词无法解析、长度或个数越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <forward_list>\n#include <iostream>\n#include <string>\n\nint main() {\n    // 读取 n 与 n 个单词，push_front 后输出头部\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 n=3 与 a b c 时输出 c。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <forward_list>\n#include <iostream>\n#include <string>\n\nint main() {\n    int n = 0;\n    if (!(std::cin >> n)) return 1;\n    if (n < 1 || n > 100) return 1;\n    std::forward_list<std::string> words;\n    for (int i = 0; i < n; i++) {\n        std::string word;\n        if (!(std::cin >> word)) return 1;\n        if (word.size() < 1 || word.size() > 20) return 1;\n        words.push_front(word);\n    }\n    std::cout << words.front() << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "n=1 时输出唯一单词。",
+          "重复单词时输出最后一次读入。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 a b c\n",
+            "stdout": "c\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1 solo\n",
+            "stdout": "solo\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2 same same\n",
+            "stdout": "same\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

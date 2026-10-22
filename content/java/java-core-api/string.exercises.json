@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-core-api-string",
+  "questions": [
+    {
+      "id": "java-core-api-string-k01",
+      "type": "knowledge",
+      "prompt": "\"Hello\".length() 返回什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "6"
+        },
+        {
+          "id": "b",
+          "text": "5"
+        },
+        {
+          "id": "c",
+          "text": "4"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-string-k02",
+      "type": "knowledge",
+      "prompt": "比较两个字符串内容应该用哪个方法？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "=="
+        },
+        {
+          "id": "b",
+          "text": "equals"
+        },
+        {
+          "id": "c",
+          "text": "compare"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-string-k03",
+      "type": "knowledge",
+      "prompt": "\"abc\".substring(1) 的结果是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "ab"
+        },
+        {
+          "id": "b",
+          "text": "bc"
+        },
+        {
+          "id": "c",
+          "text": "abc"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-core-api-string-c01",
+      "type": "code",
+      "prompt": "从标准输入读取一个字符串，输出其反转结果。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // 读取字符串，输出反转\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        StringBuilder sb = new StringBuilder(input);\n        System.out.println(sb.reverse().toString());\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "hello\n",
+            "stdout": "olleh\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "ab\n",
+            "stdout": "ba\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

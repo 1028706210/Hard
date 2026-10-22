@@ -5,6 +5,7 @@ from __future__ import annotations
 import ast
 from pathlib import Path
 import threading
+import time
 
 from hard_api.diagnostics.python import normalize_python_diagnostic
 from hard_api.runners.contracts import CompileResult, ExecutableTestCase, RunResult, RunStatus, Submission, TestResult
@@ -48,7 +49,7 @@ class PythonRunner:
             "PYTHONUTF8": "1",
         }
         compiled = execute_process(
-            [str(self.executable), "-I", "-m", "py_compile", "main.py"],
+            [str(self.executable), "-I", "-X", "utf8", "-m", "py_compile", "main.py"],
             cwd=workspace,
             environment=environment,
             stdin="",
@@ -77,18 +78,49 @@ class PythonRunner:
         total_duration = compiled.duration_ms
         final_stdout = ""
         visible_passed = hidden_passed = 0
+        deadline = time.monotonic() + self.run_timeout_seconds
         for case, visible in tuple((item, True) for item in visible_cases) + tuple((item, False) for item in hidden_cases):
-            executed = execute_process([str(self.executable), "-I", "main.py"], cwd=workspace, environment=environment, stdin=case.stdin, timeout_seconds=self.run_timeout_seconds, output_limit_bytes=MAX_OUTPUT_BYTES, cancellation=cancellation)
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                return RunResult(
+                    status=RunStatus.TIMED_OUT,
+                    compile=compile_result,
+                    duration_ms=total_duration,
+                    error_code="run_timeout",
+                )
+            # Isolated mode ignores PYTHONUTF8; configure the pipe encoding explicitly.
+            executed = execute_process([str(self.executable), "-I", "-X", "utf8", "main.py"], cwd=workspace, environment=environment, stdin=case.stdin, timeout_seconds=remaining, output_limit_bytes=MAX_OUTPUT_BYTES, cancellation=cancellation)
             total_duration += executed.duration_ms
             terminal = self._terminal_process_result(executed.status, total_duration)
             if terminal is not None:
-                return terminal
+                return RunResult(
+                    status=terminal.status,
+                    compile=compile_result,
+                    duration_ms=terminal.duration_ms,
+                    error_code=terminal.error_code,
+                )
             stdout = executed.stdout.replace("\r\n", "\n")
             final_stdout = stdout
-            if executed.return_code != case.exit_code:
+            expected_stdout = case.stdout
+            stdout_matches = expected_stdout is None or stdout == expected_stdout
+            exit_code_matches = executed.return_code == case.exit_code
+            
+            if not stdout_matches:
+                passed = False
+            elif not exit_code_matches:
                 diagnostic = normalize_python_diagnostic(executed.stderr, workspace)
-                return RunResult(status=RunStatus.FAILED, compile=compile_result, stdout=stdout, stderr=diagnostic, diagnostics=(diagnostic,), duration_ms=total_duration, error_code="runtime_failed")
-            passed = executed.return_code == case.exit_code and (case.stdout is None or stdout == case.stdout) and (case.assertion != "stdout_nonempty" or bool(stdout))
+                return RunResult(
+                    status=RunStatus.FAILED,
+                    compile=compile_result,
+                    stdout=stdout,
+                    stderr=normalize_python_diagnostic(executed.stderr, workspace),
+                    diagnostics=(normalize_python_diagnostic(executed.stderr, workspace),),
+                    duration_ms=total_duration,
+                    error_code="runtime_failed",
+                )
+            else:
+                passed = True
+            
             if passed:
                 if visible: visible_passed += 1
                 else: hidden_passed += 1

@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-capstone-locale",
+  "questions": [
+    {
+      "id": "cpp-capstone-locale-k01",
+      "type": "knowledge",
+      "prompt": "std::locale::classic() 对应的 locale 名是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "\"C\""
+        },
+        {
+          "id": "b",
+          "text": "\"POSIX\""
+        },
+        {
+          "id": "c",
+          "text": "实现相关且每次不同"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-capstone-locale-k02",
+      "type": "knowledge",
+      "prompt": "带 locale 参数的 std::isalpha(ch, loc) 与 <cctype> 的 isalpha(ch) 区别是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "后者按 C locale 固定行为，前者按传入 locale 分类"
+        },
+        {
+          "id": "b",
+          "text": "完全相同"
+        },
+        {
+          "id": "c",
+          "text": "前者只能用于宽字符"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-capstone-locale-k03",
+      "type": "knowledge",
+      "prompt": "locale 对象的 name() 返回值？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "恒为 \"C\""
+        },
+        {
+          "id": "b",
+          "text": "实现相关的 locale 名称"
+        },
+        {
+          "id": "c",
+          "text": "随机标识符"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-capstone-locale-c01",
+      "type": "code",
+      "prompt": "读取一行非空字符串（长度 1..100，含两端，仅含可打印 ASCII 字符）。用 std::locale::classic() 构造 locale，逐字符用 std::isalpha/std::isdigit（带 locale 参数）分类，输出一行「alpha=<字母数> digit=<数字数> other=<其他字符数>」（既非字母也非数字的字符计入 other）。行为空、长度越界或含不可打印字符时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cctype>\n#include <iostream>\n#include <locale>\n#include <string>\n\nint main() {\n    // 读取一行，classic locale 分类统计\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 abc123 时输出 alpha=3 digit=3 other=0。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <cctype>\n#include <iostream>\n#include <locale>\n#include <string>\n\nint main() {\n    std::string line;\n    if (!std::getline(std::cin, line)) return 1;\n    if (line.size() < 1 || line.size() > 100) return 1;\n    std::locale classic = std::locale::classic();\n    long long alpha = 0;\n    long long digit = 0;\n    long long other = 0;\n    for (char ch : line) {\n        unsigned char code = static_cast<unsigned char>(ch);\n        if (code < 32 || code > 126) return 1;\n        if (std::isalpha(ch, classic)) {\n            alpha++;\n        } else if (std::isdigit(ch, classic)) {\n            digit++;\n        } else {\n            other++;\n        }\n    }\n    std::cout << \"alpha=\" << alpha << \" digit=\" << digit << \" other=\" << other << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "符号计入 other（a1! 输出 1/1/1）。",
+          "纯数字 000 输出 0/3/0。",
+          "含空格时空格计入 other（a b 输出 2/0/1）。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "abc123\n",
+            "stdout": "alpha=3 digit=3 other=0\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "a1!\n",
+            "stdout": "alpha=1 digit=1 other=1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "000\n",
+            "stdout": "alpha=0 digit=3 other=0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "a b\n",
+            "stdout": "alpha=2 digit=0 other=1\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -73,35 +73,71 @@
     {
       "id": "python-stdlib-data-date-time-c01",
       "type": "code",
-      "prompt": "输出 2026-08-23 的 ISO 日期。",
-      "starter_code": "from datetime import date\n# 输出 ISO 日期",
+      "prompt": "读取严格格式 YYYY-MM-DD 的日期，使用 date.fromisoformat 解析，再输出 isoformat()。年份为四位，月份和日期各两位；必须是真实存在且年份在 1 到 9999 的日期。去掉首尾空白，闰日按公历规则验证。不符合格式、日期不存在或空输入时不输出内容，退出码 1。起始代码已解析 value。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\nimport re\nfrom datetime import date\nif re.fullmatch(r\"[0-9]{4}-[0-9]{2}-[0-9]{2}\", text) is None:\n    raise SystemExit(1)\ntry:\n    value = date.fromisoformat(text)\nexcept ValueError:\n    raise SystemExit(1)\n# 完成本课操作与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '2026-08-23'，输出 '2026-08-23\\n'，退出码 0。",
+        "输入 '2024-02-29'，输出 '2024-02-29\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-stdlib-data-date-time-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    from datetime import date\n    print(date(2026, 8, 23).isoformat())\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\nimport re\nfrom datetime import date\nif re.fullmatch(r\"[0-9]{4}-[0-9]{2}-[0-9]{2}\", text) is None:\n    raise SystemExit(1)\ntry:\n    value = date.fromisoformat(text)\nexcept ValueError:\n    raise SystemExit(1)\nprint(value.isoformat())\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的正常边界。",
+          "输入、输出和退出状态必须符合题面。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "2026-08-23",
             "stdout": "2026-08-23\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2024-02-29",
+            "stdout": "2024-02-29\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-stdlib-data-date-time-c01\n",
+            "stdin": "0001-01-01",
+            "stdout": "0001-01-01\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "9999-12-31",
+            "stdout": "9999-12-31\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2023-02-29",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "2026-04-31",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "2026-1-1",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "20260101",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "0000-01-01",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

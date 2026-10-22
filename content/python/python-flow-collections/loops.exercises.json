@@ -73,35 +73,56 @@
     {
       "id": "python-flow-collections-loops-c01",
       "type": "code",
-      "prompt": "遍历 a 和 b 并逐行输出。",
-      "starter_code": "# 写出循环",
+      "prompt": "读取以空白分隔的名称，按原顺序逐行输出每个名称，保留重复项。中文有效；空白输入不输出任何内容并正常结束（退出码 0）。起始代码提供 items 列表，请用循环处理。",
+      "starter_code": "import sys\nitems = sys.stdin.read().split()\n# 按题面完成本课操作与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'a b\\n'，输出 'a\\nb\\n'，退出码 0。",
+        "输入 'code\\n'，输出 'code\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-flow-collections-loops-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    for item in ['a', 'b']:\n        print(item)\n",
+        "reference_solution": "import sys\nitems = sys.stdin.read().split()\nfor item in items:\n    print(item)\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的边界、顺序和重复项处理。",
+          "输入有效性与退出码按题面约定检查。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "a b\n",
             "stdout": "a\nb\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "code\n",
+            "stdout": "code\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-flow-collections-loops-c01\n",
+            "stdin": "",
+            "stdout": "",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": " \t\n",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 0
+          },
+          {
+            "stdin": "z a z",
+            "stdout": "z\na\nz\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "学习 编程",
+            "stdout": "学习\n编程\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "a\nb\tc",
+            "stdout": "a\nb\nc\n",
+            "exit_code": 0
           }
         ]
       }

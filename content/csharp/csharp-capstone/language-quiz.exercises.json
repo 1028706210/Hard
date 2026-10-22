@@ -1,0 +1,105 @@
+{
+  "lesson_id": "csharp-capstone-language-quiz",
+  "questions": [
+    {
+      "id": "csharp-capstone-language-quiz-k01",
+      "type": "knowledge",
+      "prompt": "泛型 List<int> 相比把整数存入非泛型 object 容器的主要优势是什么？",
+      "choices": [
+        {"id": "a", "text": "在编译期保持元素类型安全，取出时无需手工强制转换"},
+        {"id": "b", "text": "允许同时存入任意不相关类型"},
+        {"id": "c", "text": "会自动在多个线程间加锁"}
+      ],
+      "experience_points": 5,
+      "private": {"reference_answer": "a"}
+    },
+    {
+      "id": "csharp-capstone-language-quiz-k02",
+      "type": "knowledge",
+      "prompt": "捕获异常时，哪种做法最能保留具体失败原因？",
+      "choices": [
+        {"id": "a", "text": "使用空 catch 并继续执行"},
+        {"id": "b", "text": "捕获所有异常后统一返回成功"},
+        {"id": "c", "text": "只捕获能够处理的具体异常，并为其他异常保留传播或明确失败路径"}
+      ],
+      "experience_points": 5,
+      "private": {"reference_answer": "c"}
+    },
+    {
+      "id": "csharp-capstone-language-quiz-k03",
+      "type": "knowledge",
+      "prompt": "事件相比公开委托字段增加了什么约束？",
+      "choices": [
+        {"id": "a", "text": "订阅者可以从类型外直接清空整个调用列表"},
+        {"id": "b", "text": "类型外通常只能订阅和退订，事件的触发由声明事件的类型控制"},
+        {"id": "c", "text": "事件只能有一个订阅者"}
+      ],
+      "experience_points": 5,
+      "private": {"reference_answer": "b"}
+    },
+    {
+      "id": "csharp-capstone-language-quiz-c01",
+      "type": "code",
+      "prompt": "固定五题答案键为 B A C B C。输入一行恰好五个以空格分隔的大写 A/B/C，统计答对数量并输出 score=<分数>/5 level=<等级>：5 分为 expert，3..4 分为 solid，0..2 分为 review。数量不是5、含其他字符或空输入时不输出并以退出码1结束。",
+      "starter_code": "// 校验五个答案，与固定答案键逐项比较，再按分数映射等级\n",
+      "visible_tests": ["输入 B A C B A 时输出 score=4/5 level=solid。"],
+      "experience_points": 25,
+      "private": {
+        "reference_solution": "var answers = (Console.ReadLine() ?? \"\").Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);\nif (answers.Length != 5) Environment.Exit(1);\nvar key = new[] { \"B\", \"A\", \"C\", \"B\", \"C\" };\nvar score = 0;\nfor (var index = 0; index < answers.Length; index++)\n{\n    if (answers[index] is not (\"A\" or \"B\" or \"C\")) Environment.Exit(1);\n    if (answers[index] == key[index]) score++;\n}\nvar level = score == 5 ? \"expert\" : score >= 3 ? \"solid\" : \"review\";\nConsole.WriteLine($\"score={score}/5 level={level}\");\n",
+        "hidden_tests": [
+          "全部答对时等级为 expert。",
+          "低分时等级为 review。",
+          "恰好三分时等级为 solid。",
+          "小写答案被拒绝。",
+          "答案数量不足被拒绝。",
+          "超出 A/B/C 的选项被拒绝。"
+        ],
+        "visible_test_cases": [
+          {"stdin": "B A C B A\n", "stdout": "score=4/5 level=solid\n", "exit_code": 0}
+        ],
+        "hidden_test_cases": [
+          {"stdin": "B A C B C\n", "stdout": "score=5/5 level=expert\n", "exit_code": 0},
+          {"stdin": "A A A A A\n", "stdout": "score=1/5 level=review\n", "exit_code": 0},
+          {"stdin": "B A C A A\n", "stdout": "score=3/5 level=solid\n", "exit_code": 0},
+          {"stdin": "b A C B C\n", "stdout": "", "exit_code": 1},
+          {"stdin": "B A C B\n", "stdout": "", "exit_code": 1},
+          {"stdin": "B A D B C\n", "stdout": "", "exit_code": 1}
+        ]
+      }
+    },
+    {
+      "id": "csharp-capstone-language-quiz-challenge",
+      "type": "challenge",
+      "prompt": "C# 路线结业挑战——并发成绩汇总器。第一行输入 n（1..100），第二行输入恰好 n 个以空格分隔的整数分数（0..100）。把分数保存到 List<int>；定义带只读 Sum、Passed 属性的 WorkerResult；用 Predicate<int> 表示 score >= 60。启动两个 Thread，分别处理前半区间 [0,n/2) 与后半区间 [n/2,n)，每个线程生成自己的 WorkerResult，禁止共同递增同一计数器。Join 后输出 count=<n> pass=<及格人数> average=<平均分，固定两位小数并使用点号>。n 非法、第二行缺失、数量不符、非整数或分数越界时不输出并以退出码1结束。",
+      "starter_code": "// List<int> + Predicate<int> + WorkerResult 属性封装 + 两个 Thread 分片汇总\n",
+      "visible_tests": ["输入5和80 50 60 90 40时输出 count=5 pass=3 average=64.00。"],
+      "experience_points": 35,
+      "private": {
+        "reference_solution": "if (!int.TryParse((Console.ReadLine() ?? \"\").Trim(), out var count) || count < 1 || count > 100) Environment.Exit(1);\nvar tokens = (Console.ReadLine() ?? \"\").Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);\nif (tokens.Length != count) Environment.Exit(1);\nvar scores = new List<int>(count);\nforeach (var token in tokens)\n{\n    if (!int.TryParse(token, out var score) || score < 0 || score > 100) Environment.Exit(1);\n    scores.Add(score);\n}\nPredicate<int> isPassed = score => score >= 60;\nvar results = new[] { new WorkerResult(0, 0), new WorkerResult(0, 0) };\nvar middle = count / 2;\nvar first = new Thread(() => results[0] = Analyze(scores, 0, middle, isPassed));\nvar second = new Thread(() => results[1] = Analyze(scores, middle, count, isPassed));\nfirst.Start();\nsecond.Start();\nfirst.Join();\nsecond.Join();\nvar sum = results[0].Sum + results[1].Sum;\nvar passed = results[0].Passed + results[1].Passed;\nvar average = (sum / (double)count).ToString(\"F2\", System.Globalization.CultureInfo.InvariantCulture);\nConsole.WriteLine($\"count={count} pass={passed} average={average}\");\n\nstatic WorkerResult Analyze(List<int> scores, int start, int end, Predicate<int> isPassed)\n{\n    long sum = 0;\n    var passed = 0;\n    for (var index = start; index < end; index++)\n    {\n        sum += scores[index];\n        if (isPassed(scores[index])) passed++;\n    }\n    return new WorkerResult(sum, passed);\n}\n\nsealed class WorkerResult\n{\n    public long Sum { get; }\n    public int Passed { get; }\n\n    public WorkerResult(long sum, int passed)\n    {\n        Sum = sum;\n        Passed = passed;\n    }\n}\n",
+        "hidden_tests": [
+          "单个60分由后半工作线程处理并判定及格。",
+          "0、59、60、100覆盖及格边界和小数平均值。",
+          "全部100分时全部及格。",
+          "分数数量与n不符时被拒绝。",
+          "n为0时被拒绝。",
+          "分数101越界时被拒绝。",
+          "非整数分数被拒绝。",
+          "两个分片都包含数据时合并结果保持输入无关的确定性。"
+        ],
+        "visible_test_cases": [
+          {"stdin": "5\n80 50 60 90 40\n", "stdout": "count=5 pass=3 average=64.00\n", "exit_code": 0}
+        ],
+        "hidden_test_cases": [
+          {"stdin": "1\n60\n", "stdout": "count=1 pass=1 average=60.00\n", "exit_code": 0},
+          {"stdin": "4\n0 59 60 100\n", "stdout": "count=4 pass=2 average=54.75\n", "exit_code": 0},
+          {"stdin": "3\n100 100 100\n", "stdout": "count=3 pass=3 average=100.00\n", "exit_code": 0},
+          {"stdin": "3\n10 20\n", "stdout": "", "exit_code": 1},
+          {"stdin": "0\n\n", "stdout": "", "exit_code": 1},
+          {"stdin": "2\n50 101\n", "stdout": "", "exit_code": 1},
+          {"stdin": "2\n50 x\n", "stdout": "", "exit_code": 1},
+          {"stdin": "6\n10 20 30 60 70 80\n", "stdout": "count=6 pass=3 average=45.00\n", "exit_code": 0}
+        ]
+      }
+    }
+  ]
+}

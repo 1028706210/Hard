@@ -1,0 +1,108 @@
+{
+  "language": "java",
+  "applied": false,
+  "shared_file_owner": "root",
+  "frontmatter_unchanged": true,
+  "code_scope": "comparison fragments, not standalone Main.java programs",
+  "suggestions": [
+    {
+      "concept_id": "classes",
+      "java": {
+        "status": "available",
+        "summary": "类定义字段、构造方法和实例行为；对象是实例，变量保存对象引用。",
+        "difference": "实例字段各自独立，static 字段属于类；引用赋值不复制对象，final 引用不冻结内部状态。",
+        "code": "class Counter { int value; }\nCounter first = new Counter();\nCounter alias = first;\nalias.value = 7;\nSystem.out.println(first.value); // 7",
+        "lesson_id": "java-foundations-objects-classes"
+      }
+    },
+    {
+      "concept_id": "types",
+      "java": {
+        "status": "available",
+        "summary": "八种基本类型与引用类型并存；转换有范围、精度、提升和装箱/拆箱边界。",
+        "difference": "扩大转换也可能损失浮点精度；基本类型包装对象可以为 null，拆箱时需要考虑空值。",
+        "code": "long wide = 2147483648L;\nboolean fits = wide >= Integer.MIN_VALUE\n    && wide <= Integer.MAX_VALUE;\nSystem.out.println(fits); // false\nSystem.out.println((int) wide); // -2147483648",
+        "lesson_id": "java-foundations-basic-data-types"
+      }
+    },
+    {
+      "concept_id": "interfaces",
+      "java": {
+        "status": "available",
+        "summary": "interface 声明行为契约，类可 implements 多个接口，接口没有实例字段。",
+        "difference": "Java 17 接口支持 default、static、private 方法；普通抽象方法的实现必须 public。",
+        "code": "interface Calculator { int calc(int a, int b); }\nclass Add implements Calculator {\n    public int calc(int a, int b) { return a + b; }\n}\nCalculator operation = new Add();\nSystem.out.println(operation.calc(3, 4)); // 7",
+        "lesson_id": "java-oop-io-interfaces"
+      }
+    },
+    {
+      "concept_id": "encapsulation",
+      "java": {
+        "status": "available",
+        "summary": "通过私有状态和受控行为维护对象约束，封装并非给每个字段都生成 setter。",
+        "difference": "可变引用会泄露内部状态，必要时复制输入并返回快照；private 和 final 不自动提供深不可变或线程安全。",
+        "code": "class Account {\n    private int balance;\n    void deposit(int amount) {\n        if (amount <= 0) throw new IllegalArgumentException();\n        balance = Math.addExact(balance, amount);\n    }\n    int getBalance() { return balance; }\n}",
+        "lesson_id": "java-oop-io-encapsulation"
+      }
+    },
+    {
+      "concept_id": "collections",
+      "java": {
+        "status": "available",
+        "summary": "List、Set、Queue 属于 Collection 体系，Map 独立表示键值映射；按契约选择具体实现。",
+        "difference": "HashMap/HashSet 不保证迭代顺序，遍历可用增强 for、Iterator 或 Stream；不可修改容器不代表元素深不可变。",
+        "code": "List<String> values = new ArrayList<>(List.of(\"b\", \"a\", \"a\"));\nSet<String> unique = new TreeSet<>(values);\nSystem.out.println(unique); // [a, b]",
+        "lesson_id": "java-collections-generics-collections-framework"
+      }
+    },
+    {
+      "concept_id": "generics",
+      "java": {
+        "status": "available",
+        "summary": "类型参数在编译期约束类与方法；用上界和通配符表达读写能力。",
+        "difference": "List<Integer> 不是 List<Number>；擦除限制运行时参数化类型检查，原始类型仍可能造成运行时转换失败。",
+        "code": "static double sum(List<? extends Number> values) {\n    double total = 0;\n    for (Number value : values) total += value.doubleValue();\n    return total;\n}",
+        "lesson_id": "java-collections-generics-generics"
+      }
+    }
+  ],
+  "potential_frontmatter_tags_for_owner_review_only": [
+    {
+      "lesson_id": "java-foundations-objects-classes",
+      "concepts": [
+        "classes",
+        "variables",
+        "references"
+      ]
+    },
+    {
+      "lesson_id": "java-foundations-basic-data-types",
+      "concepts": [
+        "types",
+        "variables"
+      ]
+    },
+    {
+      "lesson_id": "java-foundations-variable-types",
+      "concepts": [
+        "variables",
+        "types"
+      ]
+    },
+    {
+      "lesson_id": "java-oop-io-interfaces",
+      "concepts": [
+        "interfaces",
+        "classes",
+        "polymorphism"
+      ]
+    },
+    {
+      "lesson_id": "java-oop-io-encapsulation",
+      "concepts": [
+        "encapsulation",
+        "classes"
+      ]
+    }
+  ]
+}

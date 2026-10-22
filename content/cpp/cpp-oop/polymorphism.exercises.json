@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-oop-polymorphism",
+  "questions": [
+    {
+      "id": "cpp-oop-polymorphism-k01",
+      "type": "knowledge",
+      "prompt": "实现运行期多态需要的关键字是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "static"
+        },
+        {
+          "id": "b",
+          "text": "inline"
+        },
+        {
+          "id": "c",
+          "text": "virtual（基类方法标记为虚函数）"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-oop-polymorphism-k02",
+      "type": "knowledge",
+      "prompt": "经基类指针 delete 一个派生类对象时，基类析构函数应为？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "protected 非虚"
+        },
+        {
+          "id": "b",
+          "text": "deleted"
+        },
+        {
+          "id": "c",
+          "text": "virtual，否则行为未定义"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-oop-polymorphism-k03",
+      "type": "knowledge",
+      "prompt": "派生类重写方法标注 override 的价值是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "让编译器校验签名确实重写了基类虚函数"
+        },
+        {
+          "id": "b",
+          "text": "提高运行速度"
+        },
+        {
+          "id": "c",
+          "text": "把函数转换为内联"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-oop-polymorphism-c01",
+      "type": "code",
+      "prompt": "定义基类 Shape（虚函数 area() 默认返回 0）与派生类 Circle（半径 r，面积按 3*r*r 计算）、Square（边长 s，面积 s*s）。读取一行两个整数 r s，用基类指针分别指向两类对象，多态调用 area() 并输出两者之和。",
+      "starter_code": "#include <iostream>\n\nclass Shape {\npublic:\n    virtual ~Shape() = default;\n    virtual int area() const { return 0; }\n};\n\n// 定义 Circle 与 Square\n\nint main() {\n    int r = 0;\n    int s = 0;\n    std::cin >> r >> s;\n    // 用基类指针多态求和输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 1 3 时输出 12。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n\nclass Shape {\npublic:\n    virtual ~Shape() = default;\n    virtual int area() const { return 0; }\n};\n\nclass Circle : public Shape {\npublic:\n    explicit Circle(int radius) : radius_(radius) {}\n    int area() const override { return 3 * radius_ * radius_; }\nprivate:\n    int radius_;\n};\n\nclass Square : public Shape {\npublic:\n    explicit Square(int side) : side_(side) {}\n    int area() const override { return side_ * side_; }\nprivate:\n    int side_;\n};\n\nint main() {\n    int r = 0;\n    int s = 0;\n    std::cin >> r >> s;\n    Shape* circle = new Circle(r);\n    Shape* square = new Square(s);\n    int total = circle->area() + square->area();\n    delete circle;\n    delete square;\n    std::cout << total << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "零半径时仅计算正方形面积。",
+          "另一组输入按 3*r*r + s*s 输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1 3\n",
+            "stdout": "12\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0 5\n",
+            "stdout": "25\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2 2\n",
+            "stdout": "16\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

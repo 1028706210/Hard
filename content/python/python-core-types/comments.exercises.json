@@ -73,35 +73,71 @@
     {
       "id": "python-core-types-comments-c01",
       "type": "code",
-      "prompt": "保留一行说明性注释，并输出 5。",
-      "starter_code": "# explain this value\n# 写出输出",
+      "prompt": "标准输入提供两个以空白分隔的非负整数，分别表示两个已确认的数量。输出它们的和，并写一条解释“为什么允许数量为零”的 # 注释。输入 2 3 时输出 5；零有效，负数、非整数或数量不是两个时不输出任何内容，以退出码 1 结束。起始代码提供校验。自动评分验证输出和失败分支，注释是否说明原因请自行检查。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    left, right = map(int, text.split())\nexcept ValueError:\n    raise SystemExit(1)\nif left < 0 or right < 0:\n    raise SystemExit(1)\n# 补充说明零数量含义的注释，再输出总数\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '2 3'，输出 '5'，退出码 0。",
+        "输入 '4 6'，输出 '10'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-core-types-comments-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    # confirmed count\n    print(5)\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    left, right = map(int, text.split())\nexcept ValueError:\n    raise SystemExit(1)\nif left < 0 or right < 0:\n    raise SystemExit(1)\n# 零表示这一组没有项目，仍然是有效数量。\nprint(left + right)\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面声明的有效边界输入。",
+          "非法输入不输出内容，退出码为 1。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "2 3\n",
             "stdout": "5\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "4 6\n",
+            "stdout": "10\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-core-types-comments-c01\n",
+            "stdin": "0 0\n",
+            "stdout": "0\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "0 8\n",
+            "stdout": "8\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "100 200\n",
+            "stdout": "300\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-1 2\n",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "2 x\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "2\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "1 2 3\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

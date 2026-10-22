@@ -1,0 +1,126 @@
+{
+  "lesson_id": "java-foundations-variable-types",
+  "questions": [
+    {
+      "id": "java-foundations-variable-types-k01",
+      "type": "knowledge",
+      "prompt": "Java 变量类型最需要先明确什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "局部变量、成员变量和生命周期的输入、规则和输出"
+        },
+        {
+          "id": "b",
+          "text": "公开样例的固定输出"
+        },
+        {
+          "id": "c",
+          "text": "在线服务响应"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "java-foundations-variable-types-k02",
+      "type": "knowledge",
+      "prompt": "为什么要保留边界输入？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "让程序忽略错误"
+        },
+        {
+          "id": "b",
+          "text": "验证空值或异常状态下规则仍明确"
+        },
+        {
+          "id": "c",
+          "text": "减少测试"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-foundations-variable-types-k03",
+      "type": "knowledge",
+      "prompt": "哪个做法更可靠？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "只输出公开答案"
+        },
+        {
+          "id": "b",
+          "text": "跳过失败分支"
+        },
+        {
+          "id": "c",
+          "text": "用不同输入断言不同结果或失败状态"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "java-foundations-variable-types-c01",
+      "type": "code",
+      "prompt": "读取-1000000到1000000的整数n，创建Counter实例保存成员value=n；另声明main的局部变量value=n+1。先输出局部value，再输出实例value，两行。非法输入无输出，退出码1。Counter骨架已给出，用两个作用域观察同名变量不会自动互相覆盖。",
+      "starter_code": "import java.nio.charset.StandardCharsets;\npublic class Main {\n    static class Counter { long value; Counter(long value) { this.value = value; } }\n    public static void main(String[] args) throws Exception {\n        String text = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        long n;\n        try { n = Long.parseLong(text); } catch (NumberFormatException error) { System.exit(1); return; }\n        if (n < -1000000 || n > 1000000) { System.exit(1); return; }\n        // 按题面完成本课操作与输出\n    }\n}\n",
+      "visible_tests": [
+        "输入 '2'，输出 '3\\n2\\n'，退出码 0。",
+        "输入 '8'，输出 '9\\n8\\n'，退出码 0。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\npublic class Main {\n    static class Counter { long value; Counter(long value) { this.value = value; } }\n    public static void main(String[] args) throws Exception {\n        String text = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        long n;\n        try { n = Long.parseLong(text); } catch (NumberFormatException error) { System.exit(1); return; }\n        if (n < -1000000 || n > 1000000) { System.exit(1); return; }\n        Counter counter = new Counter(n);\n        long value = n + 1;\n        System.out.println(value);\n        System.out.println(counter.value);\n    }\n}\n",
+        "hidden_tests": [
+          "覆盖真实主题边界，不使用未声明的特殊标记。",
+          "校验输入、输出格式和退出码。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "2",
+            "stdout": "3\n2\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "8",
+            "stdout": "9\n8\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0",
+            "stdout": "1\n0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-2",
+            "stdout": "-1\n-2\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1000001",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

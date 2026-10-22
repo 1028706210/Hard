@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-oop-overloading",
+  "questions": [
+    {
+      "id": "cpp-oop-overloading-k01",
+      "type": "knowledge",
+      "prompt": "函数重载的区分依据是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "参数个数与类型（与返回类型无关）"
+        },
+        {
+          "id": "b",
+          "text": "返回类型"
+        },
+        {
+          "id": "c",
+          "text": "函数定义的先后顺序"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-oop-overloading-k02",
+      "type": "knowledge",
+      "prompt": "自定义类型重载 && 或 || 后需要警惕什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "编译器禁止重载这两个运算符"
+        },
+        {
+          "id": "b",
+          "text": "只能用于整数类型"
+        },
+        {
+          "id": "c",
+          "text": "重载后失去短路求值语义"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-oop-overloading-k03",
+      "type": "knowledge",
+      "prompt": "Vec2 operator*(int k) const 作为成员函数时，左操作数是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "整数 k"
+        },
+        {
+          "id": "b",
+          "text": "调用该运算符的 Vec2 对象自身"
+        },
+        {
+          "id": "c",
+          "text": "没有左操作数"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-oop-overloading-c01",
+      "type": "code",
+      "prompt": "定义类 Vec2（保存 x 与 y），为其重载 operator*(int k) 实现数乘。读取一行三个整数 k x y，构造 Vec2 并输出 k 倍后的两个分量（空格分隔）。",
+      "starter_code": "#include <iostream>\n\nclass Vec2 {\npublic:\n    Vec2(int x, int y) : x_(x), y_(y) {}\n    // 重载 operator*(int k)\n    int x() const { return x_; }\n    int y() const { return y_; }\nprivate:\n    int x_;\n    int y_;\n};\n\nint main() {\n    int k = 0;\n    int x = 0;\n    int y = 0;\n    std::cin >> k >> x >> y;\n    // 输出数乘结果\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3 1 2 时输出 3 6。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n\nclass Vec2 {\npublic:\n    Vec2(int x, int y) : x_(x), y_(y) {}\n    Vec2 operator*(int k) const { return Vec2(x_ * k, y_ * k); }\n    int x() const { return x_; }\n    int y() const { return y_; }\nprivate:\n    int x_;\n    int y_;\n};\n\nint main() {\n    int k = 0;\n    int x = 0;\n    int y = 0;\n    std::cin >> k >> x >> y;\n    Vec2 scaled = Vec2(x, y) * k;\n    std::cout << scaled.x() << \" \" << scaled.y() << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "零倍数乘得到 0 0。",
+          "负倍数保持符号语义。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 1 2\n",
+            "stdout": "3 6\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0 1 2\n",
+            "stdout": "0 0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-2 3 -1\n",
+            "stdout": "-6 2\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-foundations-basic-syntax",
+  "questions": [
+    {
+      "id": "cpp-foundations-basic-syntax-k01",
+      "type": "knowledge",
+      "prompt": "下列哪个是合法的 C++ 标识符？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "2nd_place"
+        },
+        {
+          "id": "b",
+          "text": "_count"
+        },
+        {
+          "id": "c",
+          "text": "my count"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-foundations-basic-syntax-k02",
+      "type": "knowledge",
+      "prompt": "C++ 中单引号和双引号分别用于？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "单引号表示单个字符，双引号表示字符串"
+        },
+        {
+          "id": "b",
+          "text": "两者完全等价，可随意互换"
+        },
+        {
+          "id": "c",
+          "text": "双引号表示单个字符，单引号表示字符串"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-foundations-basic-syntax-k03",
+      "type": "knowledge",
+      "prompt": "main 函数的返回类型应当是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "void 或任意类型均可"
+        },
+        {
+          "id": "b",
+          "text": "int"
+        },
+        {
+          "id": "c",
+          "text": "string"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-foundations-basic-syntax-c01",
+      "type": "code",
+      "prompt": "读取整数 count，声明字符串变量 language 保存 \"cpp\"、字符变量 marker 保存 '#'，按 cpp:#<count> 格式输出。",
+      "starter_code": "#include <iostream>\n#include <string>\n\nint main() {\n    int count = 0;\n    std::cin >> count;\n    // 声明 language 与 marker，并按格式输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3 时输出 cpp:#3。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <string>\n\nint main() {\n    int count = 0;\n    std::cin >> count;\n    std::string language = \"cpp\";\n    char marker = '#';\n    std::cout << language << ':' << marker << count << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "零值保持数字含义输出 cpp:#0。",
+          "多位整数完整输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3\n",
+            "stdout": "cpp:#3\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "cpp:#0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "42\n",
+            "stdout": "cpp:#42\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

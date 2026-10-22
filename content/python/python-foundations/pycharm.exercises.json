@@ -73,35 +73,71 @@
     {
       "id": "python-foundations-pycharm-c01",
       "type": "code",
-      "prompt": "输出“Entry: main.py”。",
-      "starter_code": "entry = \"\"\n# 输出入口文件",
+      "prompt": "整理项目入口文件名，不启动 PyCharm，也不访问文件。输入去掉首尾空白后必须是单个 .py 文件名：主体以 ASCII 字母或下划线开头，后续只含 ASCII 字母、数字或下划线，扩展名固定为小写 .py。例如 main.py 输出 Entry: main.py。路径、空文件名、其他扩展名均无效，不输出内容，退出码为 1。起始代码已校验并保存到 entry，请输出 Entry: 后接一个空格和 entry。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\nimport re\nif re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*\\.py', text) is None:\n    raise SystemExit(1)\nentry = text\n# 按题面补上结果计算与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'main.py'，输出 'Entry: main.py'，退出码 0。",
+        "输入 'practice.py'，输出 'Entry: practice.py'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-foundations-pycharm-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    entry = 'main.py'\n    print(f'Entry: {entry}')\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\nimport re\nif re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*\\.py', text) is None:\n    raise SystemExit(1)\nentry = text\nprint(f\"Entry: {entry}\")\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面声明的有效边界。",
+          "不符合约定的输入不得产生输出，退出码为 1。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "main.py\n",
             "stdout": "Entry: main.py\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "practice.py\n",
+            "stdout": "Entry: practice.py\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-foundations-pycharm-c01\n",
+            "stdin": "_check2.py\n",
+            "stdout": "Entry: _check2.py\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": " main.py \n",
+            "stdout": "Entry: main.py\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": ".py\n",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "1main.py\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "../main.py\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "main.txt\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "main.py.bak\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

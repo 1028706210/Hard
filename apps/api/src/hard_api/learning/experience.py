@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 from sqlalchemy import text
@@ -45,13 +45,16 @@ def growth_summary(
     database_path: Path, *, repository: ContentRepository, today: date | None = None
 ) -> dict[str, object]:
     current_day = today or date.today()
+    activity_start_date = (current_day - timedelta(days=89)).isoformat()
+    activity_end_date = current_day.isoformat()
     with session.database_connection(database_path) as connection:
         total_experience = int(
             connection.execute(text("SELECT COALESCE(SUM(points), 0) FROM experience_events")).scalar_one()
         )
-        activity_dates = connection.execute(
-            text("SELECT activity_date FROM learning_activity_days")
-        ).scalars().all()
+        activity_rows = connection.execute(
+            text("SELECT activity_date, time_spent_seconds, completed_exercises FROM learning_activity_days ORDER BY activity_date")
+        ).mappings().all()
+        activity_dates = [row["activity_date"] for row in activity_rows]
         earned_badges = connection.execute(text("SELECT code FROM achievements ORDER BY code")).scalars().all()
         mastery_rows = connection.execute(
             text(
@@ -112,4 +115,15 @@ def growth_summary(
         ],
         "new_badges": [],
         "route_completion": route_completion,
+        "activity_start_date": activity_start_date,
+        "activity_end_date": activity_end_date,
+        "activity_days": [
+            {
+                "date": str(row["activity_date"]),
+                "time_spent_seconds": int(row["time_spent_seconds"]),
+                "completed_exercises": int(row["completed_exercises"]),
+            }
+            for row in activity_rows
+            if activity_start_date <= str(row["activity_date"]) <= activity_end_date
+        ],
     }

@@ -73,35 +73,71 @@
     {
       "id": "python-flow-collections-for-loop-c01",
       "type": "code",
-      "prompt": "用 range 输出 0、1、2。",
-      "starter_code": "# 写出循环",
+      "prompt": "读取一个 0 到 100（含端点）的整数 n，使用 range(n) 逐行输出从 0 到 n-1 的整数。n 为 0 时不输出内容并正常结束。非整数、空输入或越界时不输出内容，退出码为 1。起始代码已经校验 n。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    n = int(text)\nexcept ValueError:\n    raise SystemExit(1)\nif not 0 <= n <= 100:\n    raise SystemExit(1)\n# 按题面完成本课操作与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '3'，输出 '0\\n1\\n2\\n'，退出码 0。",
+        "输入 '1'，输出 '0\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-flow-collections-for-loop-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    for index in range(3):\n        print(index)\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    n = int(text)\nexcept ValueError:\n    raise SystemExit(1)\nif not 0 <= n <= 100:\n    raise SystemExit(1)\nfor index in range(n):\n    print(index)\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的边界、顺序和重复项处理。",
+          "输入有效性与退出码按题面约定检查。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "3",
             "stdout": "0\n1\n2\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1",
+            "stdout": "0\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-flow-collections-for-loop-c01\n",
+            "stdin": "0",
+            "stdout": "",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "2",
+            "stdout": "0\n1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "5",
+            "stdout": "0\n1\n2\n3\n4\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "100",
+            "stdout": "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n53\n54\n55\n56\n57\n58\n59\n60\n61\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n74\n75\n76\n77\n78\n79\n80\n81\n82\n83\n84\n85\n86\n87\n88\n89\n90\n91\n92\n93\n94\n95\n96\n97\n98\n99\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-1",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "101",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "2.5",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

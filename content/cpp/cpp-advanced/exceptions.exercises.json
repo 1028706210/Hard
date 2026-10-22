@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-advanced-exceptions",
+  "questions": [
+    {
+      "id": "cpp-advanced-exceptions-k01",
+      "type": "knowledge",
+      "prompt": "std::stoi 解析非整数字符串时会抛出？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "不会抛异常，返回 0"
+        },
+        {
+          "id": "b",
+          "text": "std::bad_alloc"
+        },
+        {
+          "id": "c",
+          "text": "std::invalid_argument"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-advanced-exceptions-k02",
+      "type": "knowledge",
+      "prompt": "整数除以零在 C++ 中是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "抛出 std::overflow_error"
+        },
+        {
+          "id": "b",
+          "text": "未定义行为，必须事先检查"
+        },
+        {
+          "id": "c",
+          "text": "返回无穷大"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-advanced-exceptions-k03",
+      "type": "knowledge",
+      "prompt": "多个 catch 子句的匹配顺序是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "自动从最一般的类型开始"
+        },
+        {
+          "id": "b",
+          "text": "按声明顺序，具体类型应放在基类之前"
+        },
+        {
+          "id": "c",
+          "text": "随机匹配任意子句"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-advanced-exceptions-c01",
+      "type": "code",
+      "prompt": "读取一整行文本，用 std::stoi 尝试解析为整数：成功时输出该数的两倍，解析抛出异常时捕获并输出 error。",
+      "starter_code": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string line;\n    std::getline(std::cin, line);\n    // 解析成功输出两倍，失败输出 error\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 21 时输出 42。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string line;\n    std::getline(std::cin, line);\n    try {\n        int value = std::stoi(line);\n        std::cout << value * 2 << std::endl;\n    } catch (const std::exception& error) {\n        std::cout << \"error\" << std::endl;\n    }\n    return 0;\n}\n",
+        "hidden_tests": [
+          "非整数文本输出 error。",
+          "负数解析成功输出对应负偶数。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "21\n",
+            "stdout": "42\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "abc\n",
+            "stdout": "error\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-5\n",
+            "stdout": "-10\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

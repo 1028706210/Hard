@@ -32,15 +32,18 @@ function ConvertTo-TypeScript {
         return 'unknown'
     }
 
-    switch ([string]$Schema.type) {
+    $typeProperty = $Schema.PSObject.Properties['type']
+    $schemaType = if ($null -ne $typeProperty) { [string]$typeProperty.Value } else { '' }
+    switch ($schemaType) {
         'string' { return 'string' }
         'integer' { return 'number' }
         'number' { return 'number' }
         'boolean' { return 'boolean' }
         'array' { return "Array<$((ConvertTo-TypeScript $Schema.items))>" }
         'object' {
-            if ($Schema.additionalProperties -is [System.Management.Automation.PSCustomObject]) {
-                return "Record<string, $((ConvertTo-TypeScript $Schema.additionalProperties))>"
+            $additional = $Schema.PSObject.Properties['additionalProperties']
+            if ($null -ne $additional -and $additional.Value -is [System.Management.Automation.PSCustomObject]) {
+                return "Record<string, $((ConvertTo-TypeScript $additional.Value))>"
             }
             return 'Record<string, unknown>'
         }
@@ -93,15 +96,41 @@ $openApiContent = ($openApiLines -join [Environment]::NewLine) + [Environment]::
 $document = $openApiContent | ConvertFrom-Json
 $responseTypes = [System.Collections.Generic.List[string]]::new()
 $responseMappings = [System.Collections.Generic.List[string]]::new()
+# Preserve the public aliases already imported by the frontend when several
+# operations share one response schema.
+$responseAliases = @{
+    'DELETE /api/lan/enable' = 'LanDisableResponse'
+    'POST /api/lan/enable' = 'LanEnableResponse'
+    'DELETE /api/progress/favorites/{lesson_id}' = 'DeleteFavoriteResponse'
+    'DELETE /api/progress/notes/{lesson_id}' = 'DeleteNoteResponse'
+    'DELETE /api/runners/jobs/{job_id}' = 'RunnerJobCancelResponse'
+    'GET /api/runners/jobs/{job_id}' = 'RunnerJobStatusResponse'
+    'POST /api/runners/submissions' = 'RunnerSubmissionResponse'
+}
 
 foreach ($pathEntry in $document.paths.PSObject.Properties) {
     $methodMappings = [System.Collections.Generic.List[string]]::new()
     foreach ($methodEntry in $pathEntry.Value.PSObject.Properties) {
         $response = $methodEntry.Value.responses.'200'
         $schema = $response.content.'application/json'.schema
-        $title = [string]$schema.title
+        $reference = $schema.PSObject.Properties['$ref']
+        if ($null -ne $reference) {
+            $prefix = '#/components/schemas/'
+            if (-not ([string]$reference.Value).StartsWith($prefix)) {
+                throw "Unsupported response schema reference: $($reference.Value)"
+            }
+            $componentName = ([string]$reference.Value).Substring($prefix.Length)
+            $component = $document.components.schemas.PSObject.Properties[$componentName]
+            if ($null -eq $component) { throw "Missing response schema: $componentName" }
+            $schema = $component.Value
+        }
+        $titleProperty = $schema.PSObject.Properties['title']
+        $title = if ($null -ne $titleProperty) { [string]$titleProperty.Value } else { '' }
         $typeName = if ($title) { ConvertTo-TypeName $title } else { 'UnknownResponse' }
-        $responseTypes.Add("export type $typeName = $(ConvertTo-TypeScript $schema);")
+        $operation = "$($methodEntry.Name.ToUpperInvariant()) $($pathEntry.Name)"
+        if ($responseAliases.ContainsKey($operation)) { $typeName = $responseAliases[$operation] }
+        $declaration = "export type $typeName = $(ConvertTo-TypeScript $schema);"
+        if (-not $responseTypes.Contains($declaration)) { $responseTypes.Add($declaration) }
         $methodMappings.Add("$($methodEntry.Name.ToUpperInvariant()): $typeName;")
     }
     $responseMappings.Add("  `"$($pathEntry.Name)`": { $($methodMappings -join ' ') };")

@@ -1,0 +1,110 @@
+{
+  "lesson_id": "csharp-foundations-conversion",
+  "questions": [
+    {
+      "id": "csharp-foundations-conversion-k01",
+      "type": "knowledge",
+      "prompt": "与 int.Parse 相比，int.TryParse 的核心用途是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "转换失败时通过 bool 返回结果而不抛 FormatException"
+        },
+        {
+          "id": "b",
+          "text": "把任意文本都转换成 0"
+        },
+        {
+          "id": "c",
+          "text": "只处理小数文本"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-foundations-conversion-k02",
+      "type": "knowledge",
+      "prompt": "哪段代码正确取得 TryParse 的成功状态和转换结果？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "int.TryParse(text);"
+        },
+        {
+          "id": "b",
+          "text": "if (int.TryParse(text, out var value)) { /* 使用 value */ }"
+        },
+        {
+          "id": "c",
+          "text": "var value = int.TryParse(out text);"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-foundations-conversion-k03",
+      "type": "knowledge",
+      "prompt": "忽略 TryParse 返回的 false 并继续使用 out 变量，最容易造成什么误判？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "编译器自动重试输入"
+        },
+        {
+          "id": "b",
+          "text": "失败文本会保留在 int 中"
+        },
+        {
+          "id": "c",
+          "text": "转换失败得到的默认 0 可能被当成合法输入 0"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "csharp-foundations-conversion-c01",
+      "type": "code",
+      "prompt": "读取一行文本；用 int.TryParse 转成整数，成功时输出该整数的两倍，失败时输出 invalid。",
+      "starter_code": "var text = Console.ReadLine();\n// 使用 TryParse 区分成功与失败\n",
+      "visible_tests": [
+        "输入 21 时输出 42。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var text = Console.ReadLine();\nif (int.TryParse(text, out var value))\n{\n    Console.WriteLine(value * 2);\n}\nelse\n{\n    Console.WriteLine(\"invalid\");\n}\n",
+        "hidden_tests": [
+          "非整数文本输出 invalid。",
+          "负整数成功转换并参与计算。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "21\n",
+            "stdout": "42\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "abc\n",
+            "stdout": "invalid\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-3\n",
+            "stdout": "-6\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

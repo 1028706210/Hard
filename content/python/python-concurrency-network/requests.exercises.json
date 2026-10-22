@@ -73,35 +73,61 @@
     {
       "id": "python-concurrency-network-requests-c01",
       "type": "code",
-      "prompt": "读取响应 fixture，状态码为 200 时输出 True。",
-      "starter_code": "response = {'status_code': 200}\n# 输出是否成功",
+      "prompt": "输入 JSON 响应 fixture，必须含整数 status_code，范围 100 到 599，布尔值不算整数。仅状态恰好 200 输出 True，其他合法状态输出 False。缺字段、错误类型或非法 JSON 无输出，退出码 1。只判断 fixture，不导入 requests、不发网络请求，支架已校验 data。",
+      "starter_code": "import sys, json\ntry:\n    data = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif not isinstance(data, dict):\n    raise SystemExit(1)\nif type(data.get(\"status_code\")) is not int or not 100 <= data[\"status_code\"] <= 599:\n    raise SystemExit(1)\n# 按题面实现本课操作\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '{\"status_code\":200}'，输出 'True\\n'，退出码 0。",
+        "输入 '{\"status_code\":404}'，输出 'False\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-concurrency-network-requests-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    response = {'status_code': 200}\n    print(response['status_code'] == 200)\n",
+        "reference_solution": "import sys, json\ntry:\n    data = json.loads(sys.stdin.read())\nexcept ValueError:\n    raise SystemExit(1)\nif not isinstance(data, dict):\n    raise SystemExit(1)\nif type(data.get(\"status_code\")) is not int or not 100 <= data[\"status_code\"] <= 599:\n    raise SystemExit(1)\nprint(data[\"status_code\"] == 200)\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面规定的有效边界和失败行为。",
+          "输出格式、类型和顺序以题面约定为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "{\"status_code\":200}",
             "stdout": "True\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"status_code\":404}",
+            "stdout": "False\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-concurrency-network-requests-c01\n",
+            "stdin": "{\"status_code\":201}",
+            "stdout": "False\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "{\"status_code\":100}",
+            "stdout": "False\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"status_code\":599}",
+            "stdout": "False\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "{\"status_code\":true}",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "{\"status_code\":600}",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "{}",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

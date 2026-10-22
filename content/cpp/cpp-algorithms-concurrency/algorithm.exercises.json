@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-algorithms-concurrency-algorithm",
+  "questions": [
+    {
+      "id": "cpp-algorithms-concurrency-algorithm-k01",
+      "type": "knowledge",
+      "prompt": "std::sort 默认的排序顺序是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "保持原顺序不变"
+        },
+        {
+          "id": "b",
+          "text": "降序"
+        },
+        {
+          "id": "c",
+          "text": "升序（operator<）"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-algorithm-k02",
+      "type": "knowledge",
+      "prompt": "对空区间调用 min_element 会返回？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "0"
+        },
+        {
+          "id": "b",
+          "text": "last（即 end 迭代器）"
+        },
+        {
+          "id": "c",
+          "text": "抛出异常"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-algorithm-k03",
+      "type": "knowledge",
+      "prompt": "标准算法函数操作数据的方式是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "直接访问全局变量"
+        },
+        {
+          "id": "b",
+          "text": "通过成员函数绑定具体容器"
+        },
+        {
+          "id": "c",
+          "text": "通过迭代器区间 [first, last)"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-algorithm-c01",
+      "type": "code",
+      "prompt": "读取奇数 n（合同范围 1..999，含两端，保证为奇数）与 n 个整数（每个合同范围 -10000..10000，含两端），用 std::sort 升序排序后输出中位元素（下标 n/2）。n 为偶数、或任一输入无法解析或越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <algorithm>\n#include <iostream>\n#include <vector>\n\nint main() {\n    // 读取奇数 n 与 n 个整数，sort 后输出中位元素\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 n=5 与 3 1 4 2 5 时输出 3。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <algorithm>\n#include <iostream>\n#include <vector>\n\nint main() {\n    int n = 0;\n    if (!(std::cin >> n)) return 1;\n    if (n < 1 || n > 999 || n % 2 == 0) return 1;\n    std::vector<int> values;\n    for (int i = 0; i < n; i++) {\n        int value = 0;\n        if (!(std::cin >> value)) return 1;\n        if (value < -10000 || value > 10000) return 1;\n        values.push_back(value);\n    }\n    std::sort(values.begin(), values.end());\n    std::cout << values[values.size() / 2] << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "n=1 时输出唯一元素。",
+          "含负数时中位元素保留符号。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "5 3 1 4 2 5\n",
+            "stdout": "3\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1 42\n",
+            "stdout": "42\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3 -5 10 0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

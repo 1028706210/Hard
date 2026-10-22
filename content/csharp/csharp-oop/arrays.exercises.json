@@ -1,0 +1,128 @@
+{
+  "lesson_id": "csharp-oop-arrays",
+  "questions": [
+    {
+      "id": "csharp-oop-arrays-k01",
+      "type": "knowledge",
+      "prompt": "`var a = new int[5];` 之后 a 中各元素的初始值是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "全部为 0"
+        },
+        {
+          "id": "b",
+          "text": "全部为 null"
+        },
+        {
+          "id": "c",
+          "text": "未定义，可能是任意值"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-arrays-k02",
+      "type": "knowledge",
+      "prompt": "数组 a 有 5 个元素，执行 `a[5] = 1;` 会发生什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "写入最后一个元素"
+        },
+        {
+          "id": "b",
+          "text": "抛出 IndexOutOfRangeException"
+        },
+        {
+          "id": "c",
+          "text": "自动扩容数组"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-oop-arrays-k03",
+      "type": "knowledge",
+      "prompt": "关于数组长度，下列说法正确的是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "创建后固定不变，只能新建数组来获得更大空间"
+        },
+        {
+          "id": "b",
+          "text": "放入超出容量的元素时会自动增长"
+        },
+        {
+          "id": "c",
+          "text": "可以调用 Add 方法追加元素"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-arrays-c01",
+      "type": "code",
+      "prompt": "读取一行由空格分隔的整数（最多 12 个），把它们按相反顺序用单个空格分隔后输出一行。没有任何元素时输出 empty。元素超过 12 个或含无法解析的内容时不输出并以退出码 1 结束。",
+      "starter_code": "var tokens = (Console.ReadLine() ?? \"\").Split(' ', StringSplitOptions.RemoveEmptyEntries);\n// 先检查元素个数上限，再存入数组并从后向前输出\n",
+      "visible_tests": [
+        "输入 1 2 3 时输出 3 2 1。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var tokens = (Console.ReadLine() ?? \"\").Split(' ', StringSplitOptions.RemoveEmptyEntries);\nif (tokens.Length > 12) Environment.Exit(1);\nif (tokens.Length == 0)\n{\n    Console.WriteLine(\"empty\");\n    return;\n}\nvar numbers = new int[tokens.Length];\nfor (var i = 0; i < tokens.Length; i++)\n{\n    if (!int.TryParse(tokens[i], out numbers[i])) Environment.Exit(1);\n}\nfor (var i = numbers.Length - 1; i >= 0; i--)\n{\n    Console.Write(numbers[i]);\n    if (i > 0) Console.Write(' ');\n}\nConsole.WriteLine();\n",
+        "hidden_tests": [
+          "只有一个元素时原样输出该元素。",
+          "含负数与零时逆序输出且分隔符正确。",
+          "空行输入时输出 empty。",
+          "元素超过 12 个时无输出并以退出码 1 结束。",
+          "含非整数内容时无输出并以退出码 1 结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1 2 3\n",
+            "stdout": "3 2 1\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "7\n",
+            "stdout": "7\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-1 0 5\n",
+            "stdout": "5 0 -1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "\n",
+            "stdout": "empty\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1 2 3 4 5 6 7 8 9 10 11 12 13\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "1 two 3\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

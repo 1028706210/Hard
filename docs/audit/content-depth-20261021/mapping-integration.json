@@ -1,0 +1,108 @@
+{
+  "slots_updated": [
+    {
+      "concept_id": "inheritance",
+      "language": "python",
+      "lesson_id": "python-modules-io-oop-classes"
+    },
+    {
+      "concept_id": "polymorphism",
+      "language": "python",
+      "lesson_id": "python-modules-io-oop-classes"
+    },
+    {
+      "concept_id": "encapsulation",
+      "language": "python",
+      "lesson_id": "python-modules-io-oop-classes"
+    },
+    {
+      "concept_id": "methods",
+      "language": "python",
+      "lesson_id": "python-modules-io-oop-classes"
+    },
+    {
+      "concept_id": "operator-overloading",
+      "language": "python",
+      "lesson_id": "python-modules-io-oop-classes"
+    },
+    {
+      "concept_id": "data-structures",
+      "language": "python",
+      "lesson_id": "python-flow-collections-data-structures"
+    },
+    {
+      "concept_id": "classes",
+      "language": "java",
+      "lesson_id": "java-foundations-objects-classes"
+    },
+    {
+      "concept_id": "types",
+      "language": "java",
+      "lesson_id": "java-foundations-basic-data-types"
+    },
+    {
+      "concept_id": "interfaces",
+      "language": "java",
+      "lesson_id": "java-oop-io-interfaces"
+    },
+    {
+      "concept_id": "encapsulation",
+      "language": "java",
+      "lesson_id": "java-oop-io-encapsulation"
+    },
+    {
+      "concept_id": "collections",
+      "language": "java",
+      "lesson_id": "java-collections-generics-collections-framework"
+    },
+    {
+      "concept_id": "generics",
+      "language": "java",
+      "lesson_id": "java-collections-generics-generics"
+    },
+    {
+      "concept_id": "classes",
+      "language": "csharp",
+      "lesson_id": "csharp-oop-classes"
+    },
+    {
+      "concept_id": "memory",
+      "language": "csharp",
+      "lesson_id": "csharp-oop-structs"
+    },
+    {
+      "concept_id": "polymorphism",
+      "language": "csharp",
+      "lesson_id": "csharp-oop-polymorphism"
+    },
+    {
+      "concept_id": "interfaces",
+      "language": "csharp",
+      "lesson_id": "csharp-oop-interfaces"
+    },
+    {
+      "concept_id": "generics",
+      "language": "csharp",
+      "lesson_id": "csharp-language-features-generics"
+    }
+  ],
+  "tag_changes": [
+    {
+      "lesson_id": "java-foundations-objects-classes",
+      "added": "classes"
+    },
+    {
+      "lesson_id": "java-foundations-basic-data-types",
+      "added": "types"
+    },
+    {
+      "lesson_id": "java-oop-io-interfaces",
+      "added": "interfaces"
+    },
+    {
+      "lesson_id": "java-oop-io-encapsulation",
+      "added": "encapsulation"
+    }
+  ],
+  "csharp_references": "Not applied: class object-reference semantics do not by themselves teach C++ alias references."
+}

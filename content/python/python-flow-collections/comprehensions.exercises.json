@@ -73,35 +73,61 @@
     {
       "id": "python-flow-collections-comprehensions-c01",
       "type": "code",
-      "prompt": "用推导式输出 1、2、3 的平方列表。",
-      "starter_code": "values = [1, 2, 3]\n# 构造平方列表",
+      "prompt": "读取以空白分隔的整数序列 values，用列表推导式计算每个数的平方，并按原顺序输出 Python 整数列表，例如 1 2 3 输出 [1, 4, 9]。保留重复项，零和负数有效；空白输入输出 []。任意字段不是整数时不输出内容，退出码为 1。起始代码提供解析后的 values。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    values = [int(word) for word in text.split()]\nexcept ValueError:\n    raise SystemExit(1)\n# 按题面完成本课操作与输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '1 2 3\\n'，输出 '[1, 4, 9]\\n'，退出码 0。",
+        "输入 '4\\n'，输出 '[16]\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-flow-collections-comprehensions-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    values = [1, 2, 3]\n    print([value * value for value in values])\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    values = [int(word) for word in text.split()]\nexcept ValueError:\n    raise SystemExit(1)\nprint([value * value for value in values])\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "核对题面声明的边界、顺序和重复项处理。",
+          "输入有效性与退出码按题面约定检查。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "1 2 3\n",
             "stdout": "[1, 4, 9]\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "4\n",
+            "stdout": "[16]\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-flow-collections-comprehensions-c01\n",
+            "stdin": "",
+            "stdout": "[]\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "-3 0 2",
+            "stdout": "[9, 0, 4]\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2 2 -2",
+            "stdout": "[4, 4, 4]\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "5 1",
+            "stdout": "[25, 1]\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1 a",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "1.5",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

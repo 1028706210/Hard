@@ -5,6 +5,7 @@ import hashlib
 import json
 import re
 import sys
+from time import sleep
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Callable, Sequence
@@ -136,16 +137,23 @@ def scan_module(
     return report
 
 
-def fetch_source_text(url: str, timeout: float) -> str:
+def fetch_source_text(url: str, timeout: float, retries: int = 2) -> str:
     parsed = urlsplit(url)
     if parsed.scheme != "https" or parsed.hostname != "www.runoob.com":
         raise ValueError(f"来源 URL 必须位于 https://www.runoob.com：{url}")
     request = Request(url, headers={"User-Agent": "Hard-originality-check/1.0"})
-    with urlopen(request, timeout=timeout) as response:
-        redirected = urlsplit(response.geturl())
-        if redirected.scheme != "https" or redirected.hostname != "www.runoob.com":
-            raise ValueError(f"来源 URL 重定向到站外：{response.geturl()}")
-        return response.read().decode(response.headers.get_content_charset() or "utf-8", errors="replace")
+    for attempt in range(retries + 1):
+        try:
+            with urlopen(request, timeout=timeout) as response:
+                redirected = urlsplit(response.geturl())
+                if redirected.scheme != "https" or redirected.hostname != "www.runoob.com":
+                    raise ValueError(f"来源 URL 重定向到站外：{response.geturl()}")
+                return response.read().decode(response.headers.get_content_charset() or "utf-8", errors="replace")
+        except OSError:
+            if attempt == retries:
+                raise
+            sleep(0.2 * (attempt + 1))
+    raise AssertionError("unreachable")
 
 
 def main(argv: Sequence[str] | None = None) -> int:

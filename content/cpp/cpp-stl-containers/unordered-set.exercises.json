@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-stl-containers-unordered-set",
+  "questions": [
+    {
+      "id": "cpp-stl-containers-unordered-set-k01",
+      "type": "knowledge",
+      "prompt": "unordered_set 的元素遍历顺序是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "插入顺序"
+        },
+        {
+          "id": "b",
+          "text": "不保证任何特定顺序"
+        },
+        {
+          "id": "c",
+          "text": "字典升序"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-unordered-set-k02",
+      "type": "knowledge",
+      "prompt": "unordered_set 的 insert/count 平均复杂度是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "O(1)"
+        },
+        {
+          "id": "b",
+          "text": "O(log n)"
+        },
+        {
+          "id": "c",
+          "text": "O(n)"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-unordered-set-k03",
+      "type": "knowledge",
+      "prompt": "需要有序范围查询时应改用？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "std::set"
+        },
+        {
+          "id": "b",
+          "text": "std::stack"
+        },
+        {
+          "id": "c",
+          "text": "std::forward_list"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-unordered-set-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 1..100，含两端）、n 个单词（无空格、长度 1..20，含两端）插入 std::unordered_set<std::string>，再读取整数 q（合同范围 1..100，含两端）与 q 个查询单词，对每个查询单词输出一行：在集合中输出 yes，否则输出 no。任一输入无法解析、长度或个数越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <iostream>\n#include <string>\n#include <unordered_set>\n\nint main() {\n    // 读取 n 个单词建集合，q 个查询输出 yes/no\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 n=3、apple pear plum、q=2、pear grape 时输出 yes 与 no 各一行。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <string>\n#include <unordered_set>\n\nint main() {\n    int n = 0;\n    if (!(std::cin >> n)) return 1;\n    if (n < 1 || n > 100) return 1;\n    std::unordered_set<std::string> known;\n    for (int i = 0; i < n; i++) {\n        std::string word;\n        if (!(std::cin >> word)) return 1;\n        if (word.size() < 1 || word.size() > 20) return 1;\n        known.insert(word);\n    }\n    int q = 0;\n    if (!(std::cin >> q)) return 1;\n    if (q < 1 || q > 100) return 1;\n    for (int i = 0; i < q; i++) {\n        std::string query;\n        if (!(std::cin >> query)) return 1;\n        if (query.size() < 1 || query.size() > 20) return 1;\n        std::cout << (known.count(query) ? \"yes\" : \"no\") << \"\\n\";\n    }\n    return 0;\n}\n",
+        "hidden_tests": [
+          "查询集合外多个词连续输出 no。",
+          "重复插入的词查询仍为 yes。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 apple pear plum 2 pear grape\n",
+            "stdout": "yes\nno\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "2 a b 3 c d a\n",
+            "stdout": "no\nno\nyes\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2 dup dup 1 dup\n",
+            "stdout": "yes\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

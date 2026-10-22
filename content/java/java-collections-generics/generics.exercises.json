@@ -1,0 +1,146 @@
+{
+  "lesson_id": "java-collections-generics-generics",
+  "questions": [
+    {
+      "id": "java-collections-generics-generics-k01",
+      "type": "knowledge",
+      "prompt": "泛型的主要好处是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "提高性能"
+        },
+        {
+          "id": "b",
+          "text": "编译时类型安全"
+        },
+        {
+          "id": "c",
+          "text": "减少内存"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-collections-generics-generics-k02",
+      "type": "knowledge",
+      "prompt": "List<String> 中 get(0) 返回什么类型？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Object"
+        },
+        {
+          "id": "b",
+          "text": "String"
+        },
+        {
+          "id": "c",
+          "text": "T"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-collections-generics-generics-k03",
+      "type": "knowledge",
+      "prompt": "泛型类型在运行时还存在吗？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "是"
+        },
+        {
+          "id": "b",
+          "text": "否（类型擦除）"
+        },
+        {
+          "id": "c",
+          "text": "仅方法"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-collections-generics-generics-c01",
+      "type": "code",
+      "prompt": "从标准输入读取逗号分隔整数，用泛型方法找出最大值并输出。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\nimport java.util.*;\n\npublic class Main {\n    static <T extends Comparable<T>> T findMax(List<T> list) {\n        T max = list.get(0);\n        for (T item : list) if (item.compareTo(max) > 0) max = item;\n        return max;\n    }\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        List<Integer> list = new ArrayList<>();\n        for (String p : input.split(\",\")) list.add(Integer.parseInt(p.trim()));\n        System.out.println(findMax(list));\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1,5,3\n",
+            "stdout": "5\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "7,2,9\n",
+            "stdout": "9\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "java-collections-generics-generics-challenge",
+      "type": "challenge",
+      "prompt": "从标准输入读取逗号分隔整数，用泛型方法统计大于第一个值的元素数量并输出。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\nimport java.util.*;\n\npublic class Main {\n    static <T extends Comparable<T>> int countGreater(List<T> list, T threshold) {\n        int count = 0;\n        for (T item : list) if (item.compareTo(threshold) > 0) count++;\n        return count;\n    }\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        List<Integer> list = new ArrayList<>();\n        for (String p : input.split(\",\")) list.add(Integer.parseInt(p.trim()));\n        System.out.println(countGreater(list, list.get(0)));\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3,1,5,2,7\n",
+            "stdout": "2\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "5,3,8,1\n",
+            "stdout": "1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

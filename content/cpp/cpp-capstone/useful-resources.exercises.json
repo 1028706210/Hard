@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-capstone-useful-resources",
+  "questions": [
+    {
+      "id": "cpp-capstone-useful-resources-k01",
+      "type": "knowledge",
+      "prompt": "整理资源清单时每条记录至少应包含？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "访问次数、排名"
+        },
+        {
+          "id": "b",
+          "text": "收藏时间、图标"
+        },
+        {
+          "id": "c",
+          "text": "名称、类别、用途"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-useful-resources-k02",
+      "type": "knowledge",
+      "prompt": "资源类别用受限词表（如 cpp/python/other）的好处是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "链接加载更快"
+        },
+        {
+          "id": "b",
+          "text": "页面更美观"
+        },
+        {
+          "id": "c",
+          "text": "统计可聚合、异常值可拒绝"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-capstone-useful-resources-k03",
+      "type": "knowledge",
+      "prompt": "对陌生教程资源的稳妥态度是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "直接照抄代码运行"
+        },
+        {
+          "id": "b",
+          "text": "先核对来源与版本，再验证关键结论"
+        },
+        {
+          "id": "c",
+          "text": "只看标题不读正文"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-capstone-useful-resources-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 1..50，含两端），随后 n 行资源条目，每行为「名称 类别」，类别只能是 cpp、python 或 other（名称为不含空白的任意 token，长度 1..30）。统计各类别数量并输出一行「cpp=<数量> python=<数量> other=<数量>」。类别非法、n 越界或条目缺失时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cstdio>\n#include <string>\n\nint main() {\n    // 读取资源条目，按受限类别统计\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3 与 a cpp、b python、c cpp 时输出 cpp=2 python=1 other=0。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <cstdio>\n#include <string>\n\nint main() {\n    int n = 0;\n    if (std::scanf(\"%d\", &n) != 1) return 1;\n    if (n < 1 || n > 50) return 1;\n    long long cpp_count = 0;\n    long long python_count = 0;\n    long long other_count = 0;\n    for (int i = 0; i < n; i++) {\n        char name[64];\n        char category[32];\n        if (std::scanf(\"%63s %31s\", name, category) != 2) return 1;\n        std::string kind(category);\n        if (kind == \"cpp\") {\n            cpp_count++;\n        } else if (kind == \"python\") {\n            python_count++;\n        } else if (kind == \"other\") {\n            other_count++;\n        } else {\n            return 1;\n        }\n    }\n    std::printf(\"cpp=%lld python=%lld other=%lld\\n\", cpp_count, python_count, other_count);\n    return 0;\n}\n",
+        "hidden_tests": [
+          "全部 other 时输出 other=3。",
+          "未知类别 rust 不输出并以非零退出码结束。",
+          "n=0 越界不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 a cpp b python c cpp\n",
+            "stdout": "cpp=2 python=1 other=0\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "3 a other b other c other\n",
+            "stdout": "cpp=0 python=0 other=3\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1 a rust\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "0\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "lesson_id": "csharp-language-features-collections",
+  "questions": [
+    {
+      "id": "csharp-language-features-collections-k01",
+      "type": "knowledge",
+      "prompt": "List<T> 相比定长数组的主要优势是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "元素存放在栈上，访问速度必然更快"
+        },
+        {
+          "id": "b",
+          "text": "长度动态增长，增删元素与扩容由类型自身管理"
+        },
+        {
+          "id": "c",
+          "text": "List<T> 的元素类型允许混用不同类型"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-language-features-collections-k02",
+      "type": "knowledge",
+      "prompt": "按键查找一个值时，Dictionary 的查找成本与在 List 中线性扫描相比？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "两者完全相同"
+        },
+        {
+          "id": "b",
+          "text": "Dictionary 更慢，因为要先计算哈希"
+        },
+        {
+          "id": "c",
+          "text": "Dictionary 接近常数时间，List 线性扫描随元素数线性增长"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "csharp-language-features-collections-k03",
+      "type": "knowledge",
+      "prompt": "为什么不能依赖 Dictionary 的枚举顺序作为输出顺序？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "Dictionary 的枚举顺序没有按插入顺序的契约保证，需要顺序时应自己记录（如用 List）"
+        },
+        {
+          "id": "b",
+          "text": "Dictionary 的枚举顺序严格按插入顺序，无需处理"
+        },
+        {
+          "id": "c",
+          "text": "Dictionary 枚举顺序按值的字典序排列"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-language-features-collections-c01",
+      "type": "code",
+      "prompt": "输入一行以单个空格分隔的单词（1..100 个，每个 1..20 个字符，只含小写字母）。用 List<string> 记录首次出现顺序，用 Dictionary<string,int> 统计每个单词出现次数，然后按首次出现顺序逐行输出 word=<单词> count=<次数>。以下情形不输出并以退出码 1 结束：整行为空（或仅空白）；单词个数超过 100；任一单词为空、长度超过 20 或含非小写字母字符。",
+      "starter_code": "// List 记首次出现顺序，Dictionary 计数，再按顺序输出\n",
+      "visible_tests": [
+        "输入 apple banana apple cherry banana apple 时按首现顺序输出三行统计。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var words = (Console.ReadLine() ?? \"\").Trim().Split(' ');\nif (words.Length > 100) Environment.Exit(1);\nvar order = new List<string>();\nvar counts = new Dictionary<string, int>();\nforeach (var word in words)\n{\n    if (word.Length == 0 || word.Length > 20) Environment.Exit(1);\n    foreach (var character in word)\n    {\n        if (character < 'a' || character > 'z') Environment.Exit(1);\n    }\n    if (!counts.TryGetValue(word, out _))\n    {\n        counts[word] = 0;\n        order.Add(word);\n    }\n    counts[word] += 1;\n}\nforeach (var word in order)\n{\n    Console.WriteLine($\"word={word} count={counts[word]}\");\n}\n",
+        "hidden_tests": [
+          "单个单词时输出一行 count=1。",
+          "含大写字母的单词被拒绝并以退出码 1 结束。",
+          "空行被拒绝并以退出码 1 结束。",
+          "长度 21 的单词被拒绝并以退出码 1 结束。",
+          "同一单词连续重复出现时计数正确合并。",
+          "单词个数超过 100 时被拒绝并以退出码 1 结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "apple banana apple cherry banana apple\n",
+            "stdout": "word=apple count=3\nword=banana count=2\nword=cherry count=1\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "solo\n",
+            "stdout": "word=solo count=1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "Apple\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "aaaaaaaaaaaaaaaaaaaaa\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "z z z\n",
+            "stdout": "word=z count=3\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

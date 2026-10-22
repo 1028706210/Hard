@@ -1,0 +1,17 @@
+{
+  "baseline": "Java SE 17",
+  "execution_status": "prepared_not_run",
+  "examples": [
+    {
+      "lesson_path": "content/java/java-foundations/documentation.md",
+      "lesson_sha256": "5ed978c527587ada1c26d46402baaeaddd0ede171873fc654df13516b80ffd82",
+      "example_index": 1,
+      "code": "/** 展示整数平方方法的公开契约。 */\npublic class Main {\n    /**\n     * 返回非负整数的平方。\n     * <p>只接受能让结果放入 int 的本例范围。\n     * 比较表达式可写为 {@code 0 <= value && value <= 46340}。\n     *\n     * @param value 范围为 0 到 46340（包含端点）的整数\n     * @return value 的平方\n     * @throws IllegalArgumentException value 为负数或超过 46340\n     */\n    public static int square(int value) {\n        if (value < 0 || value > 46340) {\n            throw new IllegalArgumentException(\"out of range\");\n        }\n        return value * value;\n    }\n\n    /**\n     * 运行一个成功调用和一个拒绝调用。\n     * @param args 本示例不使用命令行参数\n     */\n    public static void main(String[] args) {\n        System.out.println(square(3));\n        try {\n            square(-1);\n        } catch (IllegalArgumentException error) {\n            System.out.println(\"rejected\");\n        }\n    }\n}\n",
+      "code_sha256": "984b9ce25fa2de9d196ef74c241c212909458c08c5f0dc34057907582b572742",
+      "stdin": "",
+      "stdout": "9\nrejected\n",
+      "exit_code": 0,
+      "status": "prepared_not_run"
+    }
+  ]
+}

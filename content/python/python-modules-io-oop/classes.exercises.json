@@ -73,35 +73,56 @@
     {
       "id": "python-modules-io-oop-classes-c01",
       "type": "code",
-      "prompt": "定义 Learner，实例方法按输入名称输出问候；无名称使用 Learner。",
-      "starter_code": "import sys\nclass Learner:\n    # 保存名称并实现 greet\n    pass\n",
+      "prompt": "定义 Learner(name)，在 __init__ 中将名称保存为实例属性 self.name，greet() 返回 Hello, 后接一个空格和名称。读取全部输入并去掉首尾空白，空白输入使用默认名称 Learner；其他文本（包括中文和 __invalid__）均按原文使用，保留内部空格。创建实例并打印 greet() 的返回值。起始代码已提供名称读取与默认值。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\nname = text or \"Learner\"\n# 按题面完成操作并输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'Hard'，输出 'Hello, Hard\\n'，退出码 0。",
+        "输入 'Ada'，输出 'Hello, Ada\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\nclass Learner:\n    def __init__(self, name):\n        self.name = name\n    def greet(self):\n        return f'Hello, {self.name}'\nname = sys.stdin.read().strip()\nif name == '__invalid__':\n    raise ValueError('invalid learner')\nprint(Learner(name or 'Learner').greet())\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\nname = text or \"Learner\"\nclass Learner:\n    def __init__(self, name):\n        self.name = name\n    def greet(self):\n        return f\"Hello, {self.name}\"\nprint(Learner(name).greet())\n",
         "hidden_tests": [
-          "边界输入必须返回主题定义的结果。",
-          "无效输入必须进入可预期的失败分支。"
+          "验证题面声明的边界与正常结果。",
+          "输入有效性和退出码以题面为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "Hard\n",
+            "stdin": "Hard",
             "stdout": "Hello, Hard\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "Ada",
+            "stdout": "Hello, Ada\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "\n",
+            "stdin": "",
             "stdout": "Hello, Learner\n",
             "exit_code": 0
           },
           {
-            "stdin": "__invalid__\n",
-            "stdout": "",
-            "exit_code": 1
+            "stdin": " \n",
+            "stdout": "Hello, Learner\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__",
+            "stdout": "Hello, __invalid__\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "  Ada  Li \n",
+            "stdout": "Hello, Ada  Li\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "学习",
+            "stdout": "Hello, 学习\n",
+            "exit_code": 0
           }
         ]
       }
@@ -109,35 +130,66 @@
     {
       "id": "python-modules-io-oop-classes-challenge",
       "type": "challenge",
-      "prompt": "定义 Learner(name) 并输出 Hello, Hard。",
-      "starter_code": "class Learner:\n    # 初始化并问候\n    pass",
+      "prompt": "输入恰好两行名称，逐行去掉首尾空白、保留内部空格；任一空白行使用默认名称 Learner。定义 Learner(name) 与 greet()，返回 Hello, 后接一个空格和实例名称。先创建两个独立实例，再按输入顺序逐行输出两个 greet() 的返回值，验证第二次初始化没有覆盖第一个实例的名称。缺少行或超过两行时不输出内容，退出码为 1。起始代码已解析 names。",
+      "starter_code": "import sys\nlines = sys.stdin.read().splitlines()\nif len(lines) != 2:\n    raise SystemExit(1)\nnames = [line.strip() or \"Learner\" for line in lines]\n# 按题面完成操作并输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'Hard\\nAda\\n'，输出 'Hello, Hard\\nHello, Ada\\n'，退出码 0。",
+        "输入 'One\\nTwo\\n'，输出 'Hello, One\\nHello, Two\\n'，退出码 0。"
       ],
       "experience_points": 30,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-modules-io-oop-classes-challenge')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    class Learner:\n        def __init__(self, name):\n            self.name = name\n        def greet(self):\n            return f'Hello, {self.name}'\n    print(Learner('Hard').greet())\n",
+        "reference_solution": "import sys\nlines = sys.stdin.read().splitlines()\nif len(lines) != 2:\n    raise SystemExit(1)\nnames = [line.strip() or \"Learner\" for line in lines]\nclass Learner:\n    def __init__(self, name):\n        self.name = name\n    def greet(self):\n        return f\"Hello, {self.name}\"\nfirst = Learner(names[0])\nsecond = Learner(names[1])\nprint(first.greet())\nprint(second.greet())\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "验证题面声明的边界与正常结果。",
+          "输入有效性和退出码以题面为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
-            "stdout": "Hello, Hard\n",
+            "stdin": "Hard\nAda\n",
+            "stdout": "Hello, Hard\nHello, Ada\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "One\nTwo\n",
+            "stdout": "Hello, One\nHello, Two\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-modules-io-oop-classes-challenge\n",
+            "stdin": "\n\n",
+            "stdout": "Hello, Learner\nHello, Learner\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": " 学习 \n Ada  Li \n",
+            "stdout": "Hello, 学习\nHello, Ada  Li\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\nHard\n",
+            "stdout": "Hello, __invalid__\nHello, Hard\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "same\nsame",
+            "stdout": "Hello, same\nHello, same\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "one\n",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "a\nb\nc",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

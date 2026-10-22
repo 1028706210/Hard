@@ -1,0 +1,164 @@
+{
+  "lesson_id": "cpp-core-memory-data-structures",
+  "questions": [
+    {
+      "id": "cpp-core-memory-data-structures-k01",
+      "type": "knowledge",
+      "prompt": "栈（stack）的访问顺序是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "先进先出"
+        },
+        {
+          "id": "b",
+          "text": "后进先出"
+        },
+        {
+          "id": "c",
+          "text": "按关键字排序访问"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-core-memory-data-structures-k02",
+      "type": "knowledge",
+      "prompt": "对空 vector 调用 pop_back() 会？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "未定义行为，必须先判空"
+        },
+        {
+          "id": "b",
+          "text": "安全返回 0"
+        },
+        {
+          "id": "c",
+          "text": "抛出 std::out_of_range"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-core-memory-data-structures-k03",
+      "type": "knowledge",
+      "prompt": "需要频繁随机访问元素时，首选容器是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "链表"
+        },
+        {
+          "id": "b",
+          "text": "栈"
+        },
+        {
+          "id": "c",
+          "text": "vector（连续存储，下标随机访问）"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-core-memory-data-structures-c01",
+      "type": "code",
+      "prompt": "读取操作数 n 与 n 行操作（每行为 push x 或 pop），用 std::vector 实现栈维护整数序列，pop 弹出栈顶（输入保证 pop 时栈非空），最后按从栈底到栈顶的顺序输出所有剩余元素，用空格分隔（栈为空时输出空行）。",
+      "starter_code": "#include <iostream>\n#include <string>\n#include <vector>\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    std::vector<int> stack;\n    // 依次处理 push x / pop 指令\n    return 0;\n}\n",
+      "visible_tests": [
+        "3 次操作 push 5、push 7、pop 后输出 5。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <string>\n#include <vector>\n\nint main() {\n    int n = 0;\n    std::cin >> n;\n    std::vector<int> stack;\n    for (int i = 0; i < n; i++) {\n        std::string op;\n        std::cin >> op;\n        if (op == \"push\") {\n            int value = 0;\n            std::cin >> value;\n            stack.push_back(value);\n        } else if (op == \"pop\") {\n            stack.pop_back();\n        }\n    }\n    for (std::size_t i = 0; i < stack.size(); i++) {\n        if (i > 0) {\n            std::cout << \" \";\n        }\n        std::cout << stack[i];\n    }\n    std::cout << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "所有元素弹出后输出空行。",
+          "多次 push 后按栈底到栈顶顺序输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3\npush 5\npush 7\npop\n",
+            "stdout": "5\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "2\npush 1\npop\n",
+            "stdout": "\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "4\npush 2\npush 4\npush 6\npush 8\n",
+            "stdout": "2 4 6 8\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "cpp-core-memory-data-structures-challenge",
+      "type": "challenge",
+      "prompt": "模块挑战：读取整数 n（合同范围 1..1000，含两端），随后读取 n 行整数成绩（每行一个，合同范围 0..100，含两端）。输出三行：最高分、最低分、平均分（整数除法截断）。n 或任一成绩无法解析为整数或超出范围时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <iostream>\n#include <string>\n#include <vector>\n\nint main() {\n    // 读取并校验 n，再读取成绩、统计并输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 n=3 且成绩 80 90 70 时输出 90、70、80 三行。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <string>\n#include <vector>\n\nint main() {\n    std::string line;\n    if (!std::getline(std::cin, line)) return 1;\n    int n = 0;\n    try {\n        std::size_t pos = 0;\n        n = std::stoi(line, &pos);\n        if (pos != line.size()) return 1;\n    } catch (...) {\n        return 1;\n    }\n    if (n < 1 || n > 1000) return 1;\n    std::vector<int> scores;\n    for (int i = 0; i < n; i++) {\n        if (!std::getline(std::cin, line)) return 1;\n        int value = 0;\n        try {\n            std::size_t pos = 0;\n            value = std::stoi(line, &pos);\n            if (pos != line.size()) return 1;\n        } catch (...) {\n            return 1;\n        }\n        if (value < 0 || value > 100) return 1;\n        scores.push_back(value);\n    }\n    int best = scores[0];\n    int worst = scores[0];\n    long long total = 0;\n    for (int value : scores) {\n        if (value > best) best = value;\n        if (value < worst) worst = value;\n        total += value;\n    }\n    std::cout << best << std::endl;\n    std::cout << worst << std::endl;\n    std::cout << total / n << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "单元素 100 输出 100、100、100。",
+          "0 与 99 的组合按下界与整数截断输出。",
+          "n=0 越界时不输出并以非零退出码结束。",
+          "成绩 101 越界时不输出并以非零退出码结束。",
+          "非整数成绩不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3\n80\n90\n70\n",
+            "stdout": "90\n70\n80\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1\n100\n",
+            "stdout": "100\n100\n100\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2\n0\n99\n",
+            "stdout": "99\n0\n49\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "0\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "1\n101\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "1\nnot-a-number\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

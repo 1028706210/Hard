@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-stl-containers-iostream",
+  "questions": [
+    {
+      "id": "cpp-stl-containers-iostream-k01",
+      "type": "knowledge",
+      "prompt": "读取含空格的一整行应使用？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "std::getline(std::cin, s)"
+        },
+        {
+          "id": "b",
+          "text": "std::cin >> s"
+        },
+        {
+          "id": "c",
+          "text": "std::cin.getline(s)"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-iostream-k02",
+      "type": "knowledge",
+      "prompt": "std::cin 读取失败后再执行后续读取会？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "自动重试直到成功"
+        },
+        {
+          "id": "b",
+          "text": "全部立即失败，流保持 fail 状态"
+        },
+        {
+          "id": "c",
+          "text": "抛出 std::exception"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-iostream-k03",
+      "type": "knowledge",
+      "prompt": "适合输出错误信息且不经过缓冲的流是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "std::clog"
+        },
+        {
+          "id": "b",
+          "text": "std::cout"
+        },
+        {
+          "id": "c",
+          "text": "std::cerr"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-iostream-c01",
+      "type": "code",
+      "prompt": "用 std::getline 读取一行文本（可能为空，长度 0..1000，含两端，不含换行符），输出该行字符数。无任何输入行时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <iostream>\n#include <string>\n\nint main() {\n    // 读取一行并输出字符数\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 hello 时输出 5。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string line;\n    if (!std::getline(std::cin, line)) return 1;\n    if (line.size() > 1000) return 1;\n    std::cout << line.size() << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "空行输出 0。",
+          "含空格的行把空格计入长度。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "hello\n",
+            "stdout": "5\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "a b c\n",
+            "stdout": "5\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

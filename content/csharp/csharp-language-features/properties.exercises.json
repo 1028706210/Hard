@@ -1,0 +1,134 @@
+{
+  "lesson_id": "csharp-language-features-properties",
+  "questions": [
+    {
+      "id": "csharp-language-features-properties-k01",
+      "type": "knowledge",
+      "prompt": "public int Count { get; set; } 这样的自动实现属性，编译器实际生成的是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "一个名为 Count 的公共字段，访问没有方法调用"
+        },
+        {
+          "id": "b",
+          "text": "一个隐藏后备字段加上 get_Count/set_Count 两个访问器方法"
+        },
+        {
+          "id": "c",
+          "text": "一个内部字典，把属性名映射到当前值"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-language-features-properties-k02",
+      "type": "knowledge",
+      "prompt": "public int Balance { get; private set; } 的含义是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "类外的代码可以随意读写 Balance"
+        },
+        {
+          "id": "b",
+          "text": "类外的代码只能写不能读"
+        },
+        {
+          "id": "c",
+          "text": "任何代码都能读，但只有类内部的代码能写"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "csharp-language-features-properties-k03",
+      "type": "knowledge",
+      "prompt": "与公共字段相比，属性的主要优势是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "可以在访问器里加入校验、计算或通知逻辑，而调用方写法保持不变"
+        },
+        {
+          "id": "b",
+          "text": "属性的访问速度在所有场景下都比字段快"
+        },
+        {
+          "id": "c",
+          "text": "属性可以在程序运行期间被删除或改名"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-language-features-properties-c01",
+      "type": "code",
+      "prompt": "定义类 Account：只读属性 Id（get，构造时赋值）、受控属性 Balance { get; private set; }；方法 Deposit(int amount) 仅在 amount > 0 时累加，方法 Withdraw(int amount) 仅在 amount > 0 且 amount <= Balance 时扣减，否则忽略。输入三行：第一行 Id（非空、不含空格）；第二行初始余额 initial（0..100000 含两端的整数）；第三行以单个空格分隔的命令序列，每条命令形如 deposit:<n> 或 withdraw:<n>（n 为整数）。构造 Account 后依次执行命令，输出 account=<Id> balance=<最终余额>。以下情形不输出并以退出码 1 结束：Id 为空或含空格；initial 不是整数或越界；命令 token 缺冒号、冒号前不是 deposit/withdraw、冒号后不是整数；第三行不存在或含空 token。",
+      "starter_code": "// 用受控属性实现 Account：规则写在业务方法里，调用方保持简洁\n",
+      "visible_tests": [
+        "输入 alice、100、deposit:50 withdraw:30 时输出 account=alice balance=120。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var id = (Console.ReadLine() ?? \"\").Trim();\nif (id.Length == 0 || id.Contains(' ')) Environment.Exit(1);\nif (!int.TryParse((Console.ReadLine() ?? \"\").Trim(), out var initial) || initial < 0 || initial > 100000) Environment.Exit(1);\nvar account = new Account(id, initial);\nvar commands = (Console.ReadLine() ?? \"\").Split(' ');\nforeach (var token in commands)\n{\n    if (token.Length == 0) Environment.Exit(1);\n    var separator = token.IndexOf(':');\n    if (separator <= 0) Environment.Exit(1);\n    var action = token[..separator];\n    if (!int.TryParse(token[(separator + 1)..], out var amount)) Environment.Exit(1);\n    if (action == \"deposit\") account.Deposit(amount);\n    else if (action == \"withdraw\") account.Withdraw(amount);\n    else Environment.Exit(1);\n}\nConsole.WriteLine($\"account={account.Id} balance={account.Balance}\");\n\nsealed class Account\n{\n    public string Id { get; }\n    public int Balance { get; private set; }\n\n    public Account(string id, int initialBalance)\n    {\n        Id = id;\n        Balance = initialBalance;\n    }\n\n    public void Deposit(int amount)\n    {\n        if (amount > 0) Balance += amount;\n    }\n\n    public void Withdraw(int amount)\n    {\n        if (amount > 0 && amount <= Balance) Balance -= amount;\n    }\n}\n",
+        "hidden_tests": [
+          "取款超过余额时命令被忽略，余额保持不变。",
+          "存款金额为负时命令被忽略，余额保持不变。",
+          "命令名不是 deposit/withdraw 时不输出并以退出码 1 结束。",
+          "Id 为空行时不输出并以退出码 1 结束。",
+          "初始余额超过 100000 时不输出并以退出码 1 结束。",
+          "命令缺冒号（如 deposit5）时不输出并以退出码 1 结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "alice\n100\ndeposit:50 withdraw:30\n",
+            "stdout": "account=alice balance=120\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "bob\n50\nwithdraw:80\n",
+            "stdout": "account=bob balance=50\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "carl\n10\ndeposit:-5\n",
+            "stdout": "account=carl balance=10\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "dan\n10\ntransfer:5\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "\n10\ndeposit:5\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "eve\n100001\ndeposit:1\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "fox\n10\ndeposit5\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

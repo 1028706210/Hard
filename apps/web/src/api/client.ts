@@ -5,6 +5,7 @@ export type ApiPath =
   | "/api/assessment/placement"
   | "/api/backup/export"
   | "/api/backup/import"
+  | "/api/compare/concepts"
   | "/api/content/catalog"
   | "/api/content/courses/{language}"
   | "/api/content/lessons/{lesson_id}"
@@ -30,6 +31,7 @@ export type AttemptResponse = Record<string, unknown>;
 export type PlacementResponse = Record<string, unknown>;
 export type ExportResponse = Record<string, unknown>;
 export type ImportResponse = Record<string, unknown>;
+export type ComparisonResponse = Record<string, unknown>;
 export type CatalogResponse = Record<string, unknown>;
 export type CourseResponse = Record<string, unknown>;
 export type LessonResponse = Record<string, unknown>;
@@ -60,6 +62,7 @@ export interface ApiResponseByPath {
   "/api/assessment/placement": { POST: PlacementResponse; };
   "/api/backup/export": { POST: ExportResponse; };
   "/api/backup/import": { POST: ImportResponse; };
+  "/api/compare/concepts": { GET: ComparisonResponse; };
   "/api/content/catalog": { GET: CatalogResponse; };
   "/api/content/courses/{language}": { GET: CourseResponse; };
   "/api/content/lessons/{lesson_id}": { GET: LessonResponse; };

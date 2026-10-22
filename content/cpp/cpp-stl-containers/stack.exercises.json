@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-stl-containers-stack",
+  "questions": [
+    {
+      "id": "cpp-stl-containers-stack-k01",
+      "type": "knowledge",
+      "prompt": "std::stack 的出入规则是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "先进先出"
+        },
+        {
+          "id": "b",
+          "text": "后进先出"
+        },
+        {
+          "id": "c",
+          "text": "按 key 排序"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-stack-k02",
+      "type": "knowledge",
+      "prompt": "既要删除栈顶又要拿到它的值，正确做法是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "先 top() 再 pop()"
+        },
+        {
+          "id": "b",
+          "text": "调用 pop() 的返回值"
+        },
+        {
+          "id": "c",
+          "text": "调用 push() 覆盖"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-stack-k03",
+      "type": "knowledge",
+      "prompt": "在空栈上调用 top() 是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "返回 0"
+        },
+        {
+          "id": "b",
+          "text": "抛 std::out_of_range"
+        },
+        {
+          "id": "c",
+          "text": "未定义行为"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-stack-c01",
+      "type": "code",
+      "prompt": "读取一行仅由 ( 与 ) 组成的字符串（长度 0..1000，含两端），用 std::stack 判断是否为合法配对（每个 ( 都有稍后的 ) 与之闭合，且不交叉），合法输出 yes，否则输出 no。行内出现其他字符、或长度越界、或无输入时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <iostream>\n#include <stack>\n#include <string>\n\nint main() {\n    // 读取括号串，用栈判断配对\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 (()) 时输出 yes。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <stack>\n#include <string>\n\nint main() {\n    std::string line;\n    if (!std::getline(std::cin, line)) return 1;\n    if (line.size() > 1000) return 1;\n    std::stack<char> pending;\n    for (char ch : line) {\n        if (ch == '(') {\n            pending.push(ch);\n        } else if (ch == ')') {\n            if (pending.empty()) {\n                std::cout << \"no\" << std::endl;\n                return 0;\n            }\n            pending.pop();\n        } else {\n            return 1;\n        }\n    }\n    std::cout << (pending.empty() ? \"yes\" : \"no\") << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "空串输出 yes。",
+          "多一个右括号输出 no。",
+          "多一个左括号输出 no。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "(())\n",
+            "stdout": "yes\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "\n",
+            "stdout": "yes\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "())\n",
+            "stdout": "no\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "(()\n",
+            "stdout": "no\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-capstone-codecvt",
+  "questions": [
+    {
+      "id": "cpp-capstone-codecvt-k01",
+      "type": "knowledge",
+      "prompt": "std::codecvt 系列在 C++17 起的状态是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "标记为弃用"
+        },
+        {
+          "id": "b",
+          "text": "被删除"
+        },
+        {
+          "id": "c",
+          "text": "新增强化"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-capstone-codecvt-k02",
+      "type": "knowledge",
+      "prompt": "ASCII 范围内 char 与 wchar_t 的对应关系是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "一一对应，可直接映射"
+        },
+        {
+          "id": "b",
+          "text": "wchar_t 恒为 0"
+        },
+        {
+          "id": "c",
+          "text": "需要查表转换"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-capstone-codecvt-k03",
+      "type": "knowledge",
+      "prompt": "UTF-8 编码的中文串的 string 字节数与字符数关系是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "字节数等于字符数"
+        },
+        {
+          "id": "b",
+          "text": "字节数通常大于字符数（一个汉字多个字节）"
+        },
+        {
+          "id": "c",
+          "text": "字符数大于字节数"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-capstone-codecvt-c01",
+      "type": "code",
+      "prompt": "读取一行仅由小写字母 a..z 组成的单词（长度 1..100，含两端）。转换为 std::wstring 后按码点求字母值之和（a=1、b=2、…、z=26），输出一行总和。行为空、长度越界或含非小写字母字符时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cstdio>\n#include <iostream>\n#include <string>\n\nint main() {\n    // 读取小写单词，转 wstring 求字母值之和\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 abc 时输出 6（1+2+3）。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string line;\n    if (!std::getline(std::cin, line)) return 1;\n    if (line.size() < 1 || line.size() > 100) return 1;\n    for (char ch : line) {\n        if (ch < 'a' || ch > 'z') return 1;\n    }\n    std::wstring wide(line.begin(), line.end());\n    long long total = 0;\n    for (wchar_t ch : wide) {\n        total += static_cast<long long>(ch - L'a') + 1;\n    }\n    std::cout << total << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "单词 z 输出 26。",
+          "单词 hard 输出 8+1+18+4=31。",
+          "含大写字母 A 不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "abc\n",
+            "stdout": "6\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "z\n",
+            "stdout": "26\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "hard\n",
+            "stdout": "31\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "Apple\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

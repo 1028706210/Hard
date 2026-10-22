@@ -1,0 +1,128 @@
+{
+  "lesson_id": "csharp-oop-enums",
+  "questions": [
+    {
+      "id": "csharp-oop-enums-k01",
+      "type": "knowledge",
+      "prompt": "枚举成员未显式赋值时，第一个成员的底层值是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "0"
+        },
+        {
+          "id": "b",
+          "text": "1"
+        },
+        {
+          "id": "c",
+          "text": "-1"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-enums-k02",
+      "type": "knowledge",
+      "prompt": "执行 `(Level)99`（Level 只定义了 1..3）的结果是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "运行时抛出异常"
+        },
+        {
+          "id": "b",
+          "text": "得到一个未定义的枚举值，不会抛异常"
+        },
+        {
+          "id": "c",
+          "text": "编译错误，无法转换"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-oop-enums-k03",
+      "type": "knowledge",
+      "prompt": "把外部输入的字符串安全地解析成枚举应采用哪种做法？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "用 Enum.TryParse 并校验解析结果后再使用"
+        },
+        {
+          "id": "b",
+          "text": "直接把字符串强制转换为枚举类型"
+        },
+        {
+          "id": "c",
+          "text": "对字符串调用 ToString 再截取"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-oop-enums-c01",
+      "type": "code",
+      "prompt": "定义枚举 Level { Low = 1, Medium = 2, High = 3 }。读取一行：内容为 1..3 的整数时输出对应的枚举名称；内容恰为 Low、Medium 或 High（区分大小写）时输出对应的数字；其他任何输入（包括小写名称、0、4）不输出并以退出码 1 结束。",
+      "starter_code": "var line = Console.ReadLine() ?? \"\";\n// 数字转名称、名称转数字两个方向，其余输入按失败处理\n",
+      "visible_tests": [
+        "输入 2 时输出 Medium。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var line = Console.ReadLine() ?? \"\";\nif (int.TryParse(line, out var number))\n{\n    if (number >= 1 && number <= 3)\n    {\n        Console.WriteLine(((Level)number).ToString());\n    }\n    else\n    {\n        Environment.Exit(1);\n    }\n    return;\n}\nif (Enum.TryParse(line, out Level parsed) && line == parsed.ToString())\n{\n    Console.WriteLine((int)parsed);\n    return;\n}\nEnvironment.Exit(1);\n\nenum Level\n{\n    Low = 1,\n    Medium = 2,\n    High = 3\n}\n",
+        "hidden_tests": [
+          "输入 High 时输出 3。",
+          "输入 Low 时输出 1。",
+          "输入小写 low 时区分大小写，以退出码 1 结束。",
+          "输入 0 时以退出码 1 结束。",
+          "输入 4 时以退出码 1 结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "2\n",
+            "stdout": "Medium\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "High\n",
+            "stdout": "3\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "Low\n",
+            "stdout": "1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "low\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "0\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "4\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

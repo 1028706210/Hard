@@ -1,0 +1,134 @@
+{
+  "lesson_id": "csharp-language-features-events",
+  "questions": [
+    {
+      "id": "csharp-language-features-events-k01",
+      "type": "knowledge",
+      "prompt": "event 关键字给订阅者带来的限制是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "订阅者可以像调用方法一样直接触发事件"
+        },
+        {
+          "id": "b",
+          "text": "订阅者只能 += 订阅与 -= 退订，不能调用、覆盖或清空事件"
+        },
+        {
+          "id": "c",
+          "text": "订阅者可以把事件整体赋值为 null 来清空所有订阅"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-language-features-events-k02",
+      "type": "knowledge",
+      "prompt": "事件与公共委托字段的核心差异是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "事件比委托字段多一次内存拷贝"
+        },
+        {
+          "id": "b",
+          "text": "两者完全等价，event 只是一个注释"
+        },
+        {
+          "id": "c",
+          "text": "事件是封装的委托：外部无法覆盖整条调用链，触发权只在发布者类内部"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "csharp-language-features-events-k03",
+      "type": "knowledge",
+      "prompt": "发布者触发事件时写 Alert?.Invoke(this, args) 的意义是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "没有订阅者时安全地跳过触发，不抛空引用异常"
+        },
+        {
+          "id": "b",
+          "text": "保证至少有一个订阅者，否则自动补一个空处理器"
+        },
+        {
+          "id": "c",
+          "text": "让事件在新线程上异步触发"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-language-features-events-c01",
+      "type": "code",
+      "prompt": "定义类 TemperatureMonitor：构造时传入阈值；事件 Alert（类型 EventHandler<AlertArgs>，AlertArgs 继承 EventArgs 并含 int 属性 Value）；方法 Observe(int value) 在 value >= 阈值时触发 Alert 并把 Value 设为该读数。输入：第一行 threshold（1..100 含两端）；第二行以单个空格分隔的读数序列（0..50 个整数；行为空或仅空白时视为 0 个读数）。主程序订阅 Alert 收集告警值，依次 Observe 每个读数，输出 alerts=<告警次数> first=<第一个告警值|none> max=<最大告警值|none>（单空格分隔）。以下情形不输出并以退出码 1 结束：threshold 不是整数或越界；任一读数不是整数；读数个数超过 50。",
+      "starter_code": "// 实现 TemperatureMonitor 的事件、触发方法与订阅统计\n",
+      "visible_tests": [
+        "输入 30 与读数 25 30 41 时输出 alerts=2 first=30 max=41。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "if (!int.TryParse((Console.ReadLine() ?? \"\").Trim(), out var threshold) || threshold < 1 || threshold > 100) Environment.Exit(1);\nvar readings = (Console.ReadLine() ?? \"\").Split(' ', StringSplitOptions.RemoveEmptyEntries);\nif (readings.Length > 50) Environment.Exit(1);\nvar monitor = new TemperatureMonitor(threshold);\nvar alerts = new List<int>();\nmonitor.Alert += (_, args) => alerts.Add(args.Value);\nforeach (var token in readings)\n{\n    if (!int.TryParse(token, out var value)) Environment.Exit(1);\n    monitor.Observe(value);\n}\nConsole.WriteLine($\"alerts={alerts.Count} first={(alerts.Count > 0 ? alerts[0].ToString() : \"none\")} max={(alerts.Count > 0 ? alerts.Max().ToString() : \"none\")}\");\n\nsealed class AlertArgs : EventArgs\n{\n    public int Value { get; init; }\n}\n\nsealed class TemperatureMonitor\n{\n    private readonly int _threshold;\n\n    public TemperatureMonitor(int threshold) => _threshold = threshold;\n\n    public event EventHandler<AlertArgs>? Alert;\n\n    public void Observe(int value)\n    {\n        if (value >= _threshold)\n        {\n            Alert?.Invoke(this, new AlertArgs { Value = value });\n        }\n    }\n}\n",
+        "hidden_tests": [
+          "全部读数低于阈值时输出 alerts=0 first=none max=none。",
+          "读数恰好等于阈值时触发告警。",
+          "读数不是整数时不输出并以退出码 1 结束。",
+          "阈值超过 100 时不输出并以退出码 1 结束。",
+          "第二行为空行（0 个读数）时输出 alerts=0 first=none max=none。",
+          "首个告警值小于后续告警值时 first 与 max 取不同读数。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "30\n25 30 41\n",
+            "stdout": "alerts=2 first=30 max=41\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "100\n1 2 99\n",
+            "stdout": "alerts=0 first=none max=none\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "50\n50\n",
+            "stdout": "alerts=1 first=50 max=50\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "10\n5 x\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "101\n5\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "20\n\n",
+            "stdout": "alerts=0 first=none max=none\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "10\n11 12\n",
+            "stdout": "alerts=2 first=11 max=12\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

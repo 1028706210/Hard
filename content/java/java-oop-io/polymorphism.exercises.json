@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-oop-io-polymorphism",
+  "questions": [
+    {
+      "id": "java-oop-io-polymorphism-k01",
+      "type": "knowledge",
+      "prompt": "多态的核心机制是什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "编译时绑定"
+        },
+        {
+          "id": "b",
+          "text": "运行时动态绑定"
+        },
+        {
+          "id": "c",
+          "text": "静态分发"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-oop-io-polymorphism-k02",
+      "type": "knowledge",
+      "prompt": "接口引用指向实现类对象叫什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "向下转型"
+        },
+        {
+          "id": "b",
+          "text": "向上转型"
+        },
+        {
+          "id": "c",
+          "text": "类型转换"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-oop-io-polymorphism-k03",
+      "type": "knowledge",
+      "prompt": "多态调用时执行哪个版本的方法？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "父类版本"
+        },
+        {
+          "id": "b",
+          "text": "声明类型版本"
+        },
+        {
+          "id": "c",
+          "text": "实际对象版本"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "java-oop-io-polymorphism-c01",
+      "type": "code",
+      "prompt": "从标准输入读取 \"circle 半径\" 或 \"square 边长\"，输出面积的整数四舍五入值。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\ninterface Shape { double area(); }\nclass Circle implements Shape {\n    double r;\n    Circle(double r) { this.r = r; }\n    public double area() { return Math.PI * r * r; }\n}\nclass Square implements Shape {\n    double s;\n    Square(double s) { this.s = s; }\n    public double area() { return s * s; }\n}\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        String[] parts = input.split(\"\\\\s+\");\n        Shape sh;\n        if (parts[0].equals(\"circle\")) sh = new Circle(Double.parseDouble(parts[1]));\n        else sh = new Square(Double.parseDouble(parts[1]));\n        System.out.println(Math.round(sh.area()));\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "circle 1\n",
+            "stdout": "3\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "square 4\n",
+            "stdout": "16\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

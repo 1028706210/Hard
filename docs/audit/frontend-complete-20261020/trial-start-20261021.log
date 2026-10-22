@@ -1,0 +1,8 @@
+Database ready: D:\projects\1\Hard-trial-clean-20260910\data\hard.db
+Hard 已启动（仅本机访问）。
+  API：http://127.0.0.1:8000
+  Web：http://127.0.0.1:4173
+  数据：D:\projects\1\Hard-trial-clean-20260910\data（数据库）、backups（自动备份）、exports（手动导出）、runner-work（运行工作区），全部位于 D 盘。
+  手机访问属可选 LAN 模式：需在设置页显式开启并确认；同网络设备可访问数据并运行代码。
+  安全边界：Runner 仅适合运行你自己编写的学习代码（TRUSTED_LOCAL_LEARNING_ONLY），不能安全运行恶意代码。
+  停止：powershell -NoProfile -ExecutionPolicy Bypass -File scripts\stop-hard.ps1

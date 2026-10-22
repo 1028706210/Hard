@@ -243,6 +243,13 @@ def test_assigns_each_directory_entry_to_one_declared_module(
     assert snapshot_sources.assignment_for_title(language, title) == expected
 
 
+def test_csharp_foundations_declares_all_thirteen_task42_source_topics() -> None:
+    topics = dict(snapshot_sources.MODULE_RULES["csharp"])["csharp-foundations"]
+
+    assert len(topics) == 13
+    assert "变量作用域" in topics
+
+
 def test_snapshots_a_live_index_with_task_module_assignments() -> None:
     entries = snapshot_sources.snapshot_live_index("python", INDEX_URL, COURSE_NAVIGATION)
 
@@ -348,6 +355,51 @@ def test_originality_cli_never_emits_matching_source_text(
     assert shared not in captured.err
     assert shared not in json.dumps(payload, ensure_ascii=False)
     assert payload["matches"]["python/python-foundations/intro.md"][0]["length"] == len(shared)
+
+
+def test_originality_fetch_retries_transient_failures_without_persisting_source_text(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    calls: list[int] = []
+
+    class Response:
+        headers = type("Headers", (), {"get_content_charset": lambda _self: "utf-8"})()
+
+        def geturl(self) -> str:
+            return "https://www.runoob.com/python3/python3-intro.html"
+
+        def read(self) -> bytes:
+            return b"<p>temporary source</p>"
+
+        def __enter__(self) -> "Response":
+            return self
+
+        def __exit__(self, *_args: object) -> None:
+            return None
+
+    def flaky_urlopen(*_args: object, **_kwargs: object) -> Response:
+        calls.append(1)
+        if len(calls) < 3:
+            raise OSError("temporary network failure")
+        return Response()
+
+    monkeypatch.setattr(check_originality, "urlopen", flaky_urlopen)
+    monkeypatch.setattr(check_originality, "sleep", lambda _seconds: None)
+
+    assert check_originality.fetch_source_text(
+        "https://www.runoob.com/python3/python3-intro.html", 1, retries=2
+    ) == "<p>temporary source</p>"
+    assert len(calls) == 3
+
+
+def test_originality_fetch_reports_exhausted_transient_failures(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(check_originality, "urlopen", lambda *_args, **_kwargs: (_ for _ in ()).throw(OSError("offline")))
+    monkeypatch.setattr(check_originality, "sleep", lambda _seconds: None)
+
+    with pytest.raises(OSError, match="offline"):
+        check_originality.fetch_source_text(
+            "https://www.runoob.com/python3/python3-intro.html", 1, retries=1
+        )
 
 
 def test_committed_source_manifest_matches_coverage_baseline() -> None:

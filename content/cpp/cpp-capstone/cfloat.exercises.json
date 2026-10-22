@@ -1,0 +1,116 @@
+{
+  "lesson_id": "cpp-capstone-cfloat",
+  "questions": [
+    {
+      "id": "cpp-capstone-cfloat-k01",
+      "type": "knowledge",
+      "prompt": "DBL_EPSILON 的定义是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "最小正 double 值"
+        },
+        {
+          "id": "b",
+          "text": "1 与最近可表示 double 的差（≈2.22e-16）"
+        },
+        {
+          "id": "c",
+          "text": "double 的最大值"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-capstone-cfloat-k02",
+      "type": "knowledge",
+      "prompt": "两个 double 判「相等」的稳妥做法是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "直接 == 比较"
+        },
+        {
+          "id": "b",
+          "text": "差值不超过合适容差（如 epsilon 的倍数）"
+        },
+        {
+          "id": "c",
+          "text": "先转字符串再比较"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-capstone-cfloat-k03",
+      "type": "knowledge",
+      "prompt": "DBL_MAX 表示？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "double 可表示的最大有限值"
+        },
+        {
+          "id": "b",
+          "text": "无穷大"
+        },
+        {
+          "id": "c",
+          "text": "最长 double 字面量长度"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-capstone-cfloat-c01",
+      "type": "code",
+      "prompt": "读取两个浮点数 a 与 b（每个合同范围 -1000.00..1000.00，含两端，最多两位小数）。用 fabs 计算 |a-b|，若不超过 DBL_EPSILON×10 输出一行 same，否则输出一行 diff。任一输入无法解析、越界或缺失时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <cfloat>\n#include <cmath>\n#include <cstdio>\n\nint main() {\n    // 读取两个两位小数，epsilon 容差判 same/diff\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3.14 3.14 时输出 same。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <cfloat>\n#include <cmath>\n#include <cstdio>\n\nint main() {\n    double a = 0.0;\n    double b = 0.0;\n    if (std::scanf(\"%lf %lf\", &a, &b) != 2) return 1;\n    if (a < -1000.0 || a > 1000.0 || b < -1000.0 || b > 1000.0) return 1;\n    if (std::fabs(a - b) <= DBL_EPSILON * 10.0) {\n        std::printf(\"same\\n\");\n    } else {\n        std::printf(\"diff\\n\");\n    }\n    return 0;\n}\n",
+        "hidden_tests": [
+          "0.1 与 0.2 差值远超容差输出 diff。",
+          "负数相等 -5.00 -5.00 输出 same。",
+          "越界 1000.01 不输出并以非零退出码结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3.14 3.14\n",
+            "stdout": "same\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0.1 0.2\n",
+            "stdout": "diff\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-5.00 -5.00\n",
+            "stdout": "same\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "1000.01 1.00\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

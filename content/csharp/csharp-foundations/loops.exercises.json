@@ -1,0 +1,164 @@
+{
+  "lesson_id": "csharp-foundations-loops",
+  "questions": [
+    {
+      "id": "csharp-foundations-loops-k01",
+      "type": "knowledge",
+      "prompt": "有限计数循环通常需要哪三个组成部分？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "初始化、继续条件和每轮更新"
+        },
+        {
+          "id": "b",
+          "text": "只需要输出语句"
+        },
+        {
+          "id": "c",
+          "text": "只需要一个永远为真的条件"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "csharp-foundations-loops-k02",
+      "type": "knowledge",
+      "prompt": "哪段 for 语句会让 i 依次取 1 到 n（包含 n）？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "for (var i = 1; i < n; i--)"
+        },
+        {
+          "id": "b",
+          "text": "for (var i = 1; i <= n; i++)"
+        },
+        {
+          "id": "c",
+          "text": "for (var i = n; i > 1; i++)"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "csharp-foundations-loops-k03",
+      "type": "knowledge",
+      "prompt": "循环边界写成 i < n 而需求是包含 n，属于哪类常见错误？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "类型转换错误"
+        },
+        {
+          "id": "b",
+          "text": "命名空间错误"
+        },
+        {
+          "id": "c",
+          "text": "少执行一次的 off-by-one 错误"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "csharp-foundations-loops-c01",
+      "type": "code",
+      "prompt": "读取非负整数 n，使用有限循环累计 1² + 2² + ... + n²，并输出 long 类型的累计结果。",
+      "starter_code": "var n = int.Parse(Console.ReadLine() ?? \"\");\nlong total = 0;\n// 使用有限循环累计平方和\n",
+      "visible_tests": [
+        "输入 4 时输出 30。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "var n = int.Parse(Console.ReadLine() ?? \"\");\nlong total = 0;\nfor (var i = 1; i <= n; i++)\n{\n    total += (long)i * i;\n}\nConsole.WriteLine(total);\n",
+        "hidden_tests": [
+          "n 为 0 时循环不执行且输出 0。",
+          "较小正整数按每轮状态累计。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "4\n",
+            "stdout": "30\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "3\n",
+            "stdout": "14\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "csharp-foundations-loops-challenge",
+      "type": "challenge",
+      "prompt": "模块挑战：读取一个十进制整数 n（合同范围为 0..100000，含两端），使用循环和 long 累加 1 到 n 的整数和并输出；无法解析或越界时不输出内容且以非零退出码结束。",
+      "starter_code": "var input = Console.ReadLine();\nlong sum = 0;\n// 校验输入范围，再使用循环完成累加与输出\n",
+      "visible_tests": [
+        "输入合法范围内的 5 时输出 15。"
+      ],
+      "experience_points": 30,
+      "private": {
+        "reference_solution": "if (!int.TryParse(Console.ReadLine(), out var n) || n < 0 || n > 100000) Environment.Exit(1);\nlong sum = 0;\nfor (var i = 1; i <= n; i++) sum += i;\nConsole.WriteLine(sum);\n",
+        "hidden_tests": [
+          "输入下边界 0 时输出 0。",
+          "输入 65536 时以 long 精确输出 2147516416。",
+          "输入 -1 时不输出并以退出码 1 结束。",
+          "输入 100001 时不输出并以退出码 1 结束。",
+          "输入非整数文本时不输出并以退出码 1 结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "5\n",
+            "stdout": "15\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "65536\n",
+            "stdout": "2147516416\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-1\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "100001\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "not-a-number\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

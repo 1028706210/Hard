@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-stl-containers-vector",
+  "questions": [
+    {
+      "id": "cpp-stl-containers-vector-k01",
+      "type": "knowledge",
+      "prompt": "vector 扩容后原有迭代器与元素指针会？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "全部失效"
+        },
+        {
+          "id": "b",
+          "text": "自动更新指向新内存"
+        },
+        {
+          "id": "c",
+          "text": "不受影响"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-vector-k02",
+      "type": "knowledge",
+      "prompt": "向 vector 尾部追加元素的成员函数是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "push_back"
+        },
+        {
+          "id": "b",
+          "text": "push_front"
+        },
+        {
+          "id": "c",
+          "text": "insert_head"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-vector-k03",
+      "type": "knowledge",
+      "prompt": "在空 vector 上调用 back() 是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "返回 0"
+        },
+        {
+          "id": "b",
+          "text": "未定义行为"
+        },
+        {
+          "id": "c",
+          "text": "抛 std::out_of_range"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-vector-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 1..1000，含两端）与 n 个整数（每个合同范围 -10000..10000，含两端），全部 push_back 进 vector 后输出三行：元素个数、首元素、尾元素。n 或任一值无法解析或越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <iostream>\n#include <vector>\n\nint main() {\n    // 读取 n 与 n 个整数，输出个数、首元素、尾元素\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 n=3 与 10 20 30 时输出 3、10、30 三行。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n#include <vector>\n\nint main() {\n    int n = 0;\n    if (!(std::cin >> n)) return 1;\n    if (n < 1 || n > 1000) return 1;\n    std::vector<int> values;\n    for (int i = 0; i < n; i++) {\n        int value = 0;\n        if (!(std::cin >> value)) return 1;\n        if (value < -10000 || value > 10000) return 1;\n        values.push_back(value);\n    }\n    std::cout << values.size() << \"\\n\";\n    std::cout << values.front() << \"\\n\";\n    std::cout << values.back() << \"\\n\";\n    return 0;\n}\n",
+        "hidden_tests": [
+          "n=1 时首尾相同。",
+          "含负数时首尾保留符号。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 10 20 30\n",
+            "stdout": "3\n10\n30\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "1 42\n",
+            "stdout": "1\n42\n42\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "2 -7 9\n",
+            "stdout": "2\n-7\n9\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,442 @@
+Assessment review 2026-10-21 - RED baseline
+
+ RUN  v4.1.11 D:/projects/1/Hard-trial-clean-20260910/apps/web
+
+ × tests/assessment/assessment-store.spec.ts > assessment store > keeps the latest answer feedback when an older same-question request ends in success 15ms
+   → expected +0 to be 85 // Object.is equality
+ × tests/assessment/assessment-store.spec.ts > assessment store > keeps the latest answer feedback when an older same-question request ends in failure 3ms
+   → expected '答案尚未保存，已保留为离线草稿。请恢复连接后重试。' to be '' // Object.is equality
+ × tests/assessment/assessment-store.spec.ts > assessment store > keeps the newest answer failure when an older same-question request succeeds later 4ms
+   → expected { question_score: 100, …(2) } to be null
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > does not expose an old lesson's late successful answer on the same exercise id after navigation 2ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > keeps a confirmed cancellation when an older poll finishes later 5ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > scores a late completed run for its original lesson and preserves a newer code draft 3ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > keeps a late answer response on its exercise without replacing the selected exercise score 2ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > keeps a late runner response, score, and draft cleanup on the originating exercise 2ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > does not expose an old lesson's late failure in a newly loaded lesson 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > submits a knowledge answer with hint penalty and a stable idempotency key 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > uses the public runner result only and clears a draft after scoring succeeds 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > turns a runner submission network failure into a terminal error while retaining the draft 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > ends polling on a network interruption instead of leaving the runner active 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > ends on a total runner timeout while retaining the draft 7ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > ends scoring failure and cancellation failure with an actionable retained-draft error 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > reports lesson loading failure as a retryable error state 0ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > cancels a running job and restores the same code draft after refresh 0ms
+stderr | tests/assessment/code-workspace.spec.ts > code workspace language > does not reset the current exercise when a superseded lesson load is discarded
+[VUE_ROUTER_R0004] No match found for location with path "/lesson/old"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+stderr | tests/assessment/code-workspace.spec.ts > code workspace language > does not reset the current exercise when a superseded lesson load is discarded
+[VUE_ROUTER_R0004] No match found for location with path "/lesson/current"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+stderr | tests/assessment/code-workspace.spec.ts > code workspace language > selects feedback by exercise and preserves knowledge answers across a code exercise
+[VUE_ROUTER_R0004] No match found for location with path "/lesson/switching"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > keeps answers and hint choices independent when moving between knowledge exercises 40ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > distinguishes a pending run from a failed run in public feedback 2ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > gives changed code a new submission key while preserving a restored draft key 12ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > uses native radio semantics and arrow/space keyboard selection 9ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > shows hint impact and only public runner feedback 7ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > restores and explicitly clears a local code draft 7ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > forwards the lesson language to the fallback editor without changing draft behavior 4ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > keeps Java fallback run, cancel, and mobile result controls available 10ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > keeps C# and unsupported-language fallback ids and labels aligned with data-language 7ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > keeps C++ fallback id and label aligned with data-language 4ms
+stderr | tests/assessment/code-workspace.spec.ts > code workspace language > passes a C++ lesson language from the assessment page to the workspace
+[VUE_ROUTER_R0004] No match found for location with path "/lesson/cpp-basics"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+ × tests/assessment/code-workspace.spec.ts > code workspace language > does not reset the current exercise when a superseded lesson load is discarded 46ms
+   → expected '第一题' to be '第二题' // Object.is equality
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > selects feedback by exercise and preserves knowledge answers across a code exercise 24ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > keeps the existing Python Monaco semantics 6ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > updates Monaco model language and accessibility label when the lesson language changes 4ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > uses explicit C# Monaco and accessibility semantics 4ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > uses explicit C++ Monaco and accessibility semantics 4ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > maps unsupported languages to plaintext instead of Python 4ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > updates model and accessibility semantics across C#, C++, Python, and unknown languages 4ms
+stderr | tests/assessment/code-workspace.spec.ts > code workspace language > passes a Java lesson language from the assessment page to the workspace
+[VUE_ROUTER_R0004] No match found for location with path "/lesson/java-basics"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+stderr | tests/assessment/code-workspace.spec.ts > code workspace language > passes a C# lesson language unchanged from the assessment page
+[VUE_ROUTER_R0004] No match found for location with path "/lesson/csharp-basics"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > passes a C++ lesson language from the assessment page to the workspace 6ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > passes a Java lesson language from the assessment page to the workspace 10ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > passes a C# lesson language unchanged from the assessment page 8ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/assessment/assessment-store.spec.ts > assessment store > keeps the latest answer feedback when an older same-question request ends in success
+AssertionError: expected +0 to be 85 // Object.is equality
+
+- Expected
++ Received
+
+- 85
++ 0
+
+ ❯ tests/assessment/assessment-store.spec.ts:52:52
+
+     50|     await oldPending;
+     51|
+     52|     expect(store.state.assessment?.question_score).toBe(85);
+       |                                                    ^
+     53|     expect(store.state.error).toBe("");
+     54|     const drafts = createOfflineDraftQueue(storage).items();
+ Test Files  2 failed | 1 passed (3)
+      Tests  4 failed | 34 passed (38)
+   Start at  05:43:57
+   Duration  2.86s (transform 1.13s, setup 0ms, import 1.50s, tests 278ms, environment 5.02s)
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/assessment/assessment-store.spec.ts > assessment store > keeps the latest answer feedback when an older same-question request ends in failure
+AssertionError: expected '答案尚未保存，已保留为离线草稿。请恢复连接后重试。' to be '' // Object.is equality
+
+- Expected
++ Received
+
++ 答案尚未保存，已保留为离线草稿。请恢复连接后重试。
+
+ ❯ tests/assessment/assessment-store.spec.ts:53:31
+     51|
+     52|     expect(store.state.assessment?.question_score).toBe(85);
+     53|     expect(store.state.error).toBe("");
+       |                               ^
+     54|     const drafts = createOfflineDraftQueue(storage).items();
+     55|     if (outcome === "failure") {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/assessment/assessment-store.spec.ts > assessment store > keeps the newest answer failure when an older same-question request succeeds later
+AssertionError: expected { question_score: 100, …(2) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "passed": true,
+  "question_score": 100,
+  "total_score": 50,
+}
+
+ ❯ tests/assessment/assessment-store.spec.ts:79:36
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/assessment/code-workspace.spec.ts > code workspace language > does not reset the current exercise when a superseded lesson load is discarded
+AssertionError: expected '第一题' to be '第二题' // Object.is equality
+
+Expected: "第二题"
+Received: "第一题"
+
+ ❯ tests/assessment/code-workspace.spec.ts:36:59
+     34|     finishOld(null);
+     35|     await flushPromises();
+     36|     expect(wrapper.get(".knowledge-question > p").text()).toBe("第二题");
+       |                                                           ^
+     37|     expect(wrapper.findAll(".exercise-nav button")[1]!.attributes("ari…
+     38|     wrapper.unmount();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+RED_EXIT=1
+GREEN - assessment tests after minimal implementation
+
+ RUN  v4.1.11 D:/projects/1/Hard-trial-clean-20260910/apps/web
+
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > keeps the latest answer feedback when an older same-question request ends in success 6ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > keeps the latest answer feedback when an older same-question request ends in failure 2ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > keeps the newest answer failure when an older same-question request succeeds later 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > does not expose an old lesson's late successful answer on the same exercise id after navigation 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > keeps a confirmed cancellation when an older poll finishes later 3ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > scores a late completed run for its original lesson and preserves a newer code draft 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > keeps a late answer response on its exercise without replacing the selected exercise score 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > keeps a late runner response, score, and draft cleanup on the originating exercise 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > does not expose an old lesson's late failure in a newly loaded lesson 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > submits a knowledge answer with hint penalty and a stable idempotency key 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > uses the public runner result only and clears a draft after scoring succeeds 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > turns a runner submission network failure into a terminal error while retaining the draft 0ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > ends polling on a network interruption instead of leaving the runner active 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > ends on a total runner timeout while retaining the draft 3ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > ends scoring failure and cancellation failure with an actionable retained-draft error 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > reports lesson loading failure as a retryable error state 0ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > cancels a running job and restores the same code draft after refresh 0ms
+stderr | tests/assessment/code-workspace.spec.ts > code workspace language > does not reset the current exercise when a superseded lesson load is discarded
+[VUE_ROUTER_R0004] No match found for location with path "/lesson/old"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+stderr | tests/assessment/code-workspace.spec.ts > code workspace language > does not reset the current exercise when a superseded lesson load is discarded
+[VUE_ROUTER_R0004] No match found for location with path "/lesson/current"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+stderr | tests/assessment/code-workspace.spec.ts > code workspace language > selects feedback by exercise and preserves knowledge answers across a code exercise
+[VUE_ROUTER_R0004] No match found for location with path "/lesson/switching"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > keeps answers and hint choices independent when moving between knowledge exercises 33ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > distinguishes a pending run from a failed run in public feedback 3ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > gives changed code a new submission key while preserving a restored draft key 15ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > uses native radio semantics and arrow/space keyboard selection 5ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > shows hint impact and only public runner feedback 3ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > restores and explicitly clears a local code draft 5ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > forwards the lesson language to the fallback editor without changing draft behavior 4ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > keeps Java fallback run, cancel, and mobile result controls available 7ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > keeps C# and unsupported-language fallback ids and labels aligned with data-language 6ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > keeps C++ fallback id and label aligned with data-language 2ms
+stderr | tests/assessment/code-workspace.spec.ts > code workspace language > passes a C++ lesson language from the assessment page to the workspace
+[VUE_ROUTER_R0004] No match found for location with path "/lesson/cpp-basics"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+stderr | tests/assessment/code-workspace.spec.ts > code workspace language > passes a Java lesson language from the assessment page to the workspace
+[VUE_ROUTER_R0004] No match found for location with path "/lesson/java-basics"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+stderr | tests/assessment/code-workspace.spec.ts > code workspace language > passes a C# lesson language unchanged from the assessment page
+[VUE_ROUTER_R0004] No match found for location with path "/lesson/csharp-basics"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > does not reset the current exercise when a superseded lesson load is discarded 39ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > selects feedback by exercise and preserves knowledge answers across a code exercise 20ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > keeps the existing Python Monaco semantics 4ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > updates Monaco model language and accessibility label when the lesson language changes 5ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > uses explicit C# Monaco and accessibility semantics 2ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > uses explicit C++ Monaco and accessibility semantics 3ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > maps unsupported languages to plaintext instead of Python 2ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > updates model and accessibility semantics across C#, C++, Python, and unknown languages 3ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > passes a C++ lesson language from the assessment page to the workspace 6ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > passes a Java lesson language from the assessment page to the workspace 5ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > passes a C# lesson language unchanged from the assessment page 4ms
+
+ Test Files  3 passed (3)
+      Tests  38 passed (38)
+   Start at  05:44:36
+   Duration  2.04s (transform 728ms, setup 0ms, import 1.07s, tests 205ms, environment 3.55s)
+
+GREEN_EXIT=0
+FULL_VITEST - complete frontend unit suite (E2E excluded by project config)
+
+ RUN  v4.1.11 D:/projects/1/Hard-trial-clean-20260910/apps/web
+
+ ✓ tests/review/review-page.spec.ts > review page > does not announce an empty review queue before a response arrives or after failure 113ms
+ ✓ tests/growth/growth-page.spec.ts > growth page > keeps every mastery record reachable and combines scope, language and text filters 153ms
+ ✓ tests/growth/growth-page.spec.ts > growth page > renders actual activity and empty dates without inventing completed exercises 67ms
+ ✓ tests/review/review-page.spec.ts > review page > keeps scheduled reviews separate from ordinary weak-answer links and scores only queue items 135ms
+ ✓ tests/review/review-page.spec.ts > review page > fails closed to empty sections when a late refresh has no item arrays 64ms
+ ✓ tests/growth/growth-page.spec.ts > growth page > resolves catalog names without changing scores or links 58ms
+ ✓ tests/growth/growth-page.spec.ts > growth page > shows only returned growth data, an explicit empty heatmap, and escaped source history 74ms
+ ✓ tests/settings/data-management.spec.ts > data management > exports a local archive and uploads an explicit selected archive without implying D-drive hardware safety 163ms
+ ✓ tests/settings/lan-access.spec.ts > LAN access > shows an actionable build instruction when the local frontend is unavailable 145ms
+ ✓ tests/settings/settings-page.spec.ts > settings page > shows D-drive health and paths, honest phone and backup risk, and persists a daily goal 176ms
+ ✓ tests/settings/lan-access.spec.ts > LAN access > enables and then stops LAN access through the API 186ms
+ ✓ tests/compare/compare-page.spec.ts > compare page > pages through the full catalog and returns to the first page when filtering 138ms
+stderr | tests/course/lesson-components.spec.ts > lesson workspace components > links to actual article sections and refreshes them when the lesson changes
+[Vue warn]: Failed to resolve component: RouterLink
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <LessonContent lesson= {
+  id: 'sections',
+  title: '课时标题',
+  rendered_html: '<h1>课时标题</h1><p>导言</p><h2>开始</h2><p>正文</p><h3>开始</h3>',
+  source_url: 'https://www.runoob.com/python3/',
+  source_snapshot_date: '2026-08-23'
+} ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | tests/course/lesson-components.spec.ts > lesson workspace components > links to actual article sections and refreshes them when the lesson changes
+[Vue warn]: Failed to resolve component: RouterLink
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <LessonContent lesson= {
+  id: 'simple',
+  title: '课时标题',
+  rendered_html: '<p>简短正文</p>',
+  source_url: 'https://www.runoob.com/python3/',
+  source_snapshot_date: '2026-08-23'
+} ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | tests/course/lesson-components.spec.ts > lesson workspace components > marks locked lessons in navigation and renders the structured source link
+[Vue warn]: Failed to resolve component: RouterLink
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <LessonContent lesson= {
+  id: 'hello',
+  title: 'Hello',
+  rendered_html: '<p>正文</p>',
+  source_url: 'https://www.runoob.com/python3/python3-hello-world.html',
+  source_snapshot_date: '2026-08-23'
+} ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+ ✓ tests/course/lesson-components.spec.ts > lesson workspace components > links to actual article sections and refreshes them when the lesson changes 64ms
+ ✓ tests/course/lesson-components.spec.ts > lesson workspace components > marks locked lessons in navigation and renders the structured source link 22ms
+stderr | tests/assessment/code-workspace.spec.ts > code workspace language > does not reset the current exercise when a superseded lesson load is discarded
+[VUE_ROUTER_R0004] No match found for location with path "/lesson/old"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+stderr | tests/assessment/code-workspace.spec.ts > code workspace language > does not reset the current exercise when a superseded lesson load is discarded
+[VUE_ROUTER_R0004] No match found for location with path "/lesson/current"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+ ✓ tests/search/search-page.spec.ts > search page > keeps the submitted query with its results and explains an empty query without requesting 116ms
+stderr | tests/assessment/code-workspace.spec.ts > code workspace language > selects feedback by exercise and preserves knowledge answers across a code exercise
+[VUE_ROUTER_R0004] No match found for location with path "/lesson/switching"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > keeps answers and hint choices independent when moving between knowledge exercises 61ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > distinguishes a pending run from a failed run in public feedback 4ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > gives changed code a new submission key while preserving a restored draft key 18ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > uses native radio semantics and arrow/space keyboard selection 11ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > shows hint impact and only public runner feedback 9ms
+ ✓ tests/compare/compare-page.spec.ts > compare page > renders four language slots per concept with lesson links and explicit missing slots 67ms
+ ✓ tests/map/constellation.spec.ts > knowledge constellations > connects only available references in the matching language catalog 3ms
+ ✓ tests/map/constellation.spec.ts > knowledge constellations > keeps directory order continuous at the turn of each star-chain row 1ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > does not reset the current exercise when a superseded lesson load is discarded 74ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > selects feedback by exercise and preserves knowledge answers across a code exercise 52ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > restores and explicitly clears a local code draft 16ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > forwards the lesson language to the fallback editor without changing draft behavior 11ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > keeps Java fallback run, cancel, and mobile result controls available 15ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > keeps C# and unsupported-language fallback ids and labels aligned with data-language 13ms
+ ✓ tests/assessment/assessment-components.spec.ts > assessment components > keeps C++ fallback id and label aligned with data-language 6ms
+ ✓ tests/search/search-page.spec.ts > search page > submits a query, locates a lesson, and renders snippets as text 98ms
+stderr | tests/assessment/code-workspace.spec.ts > code workspace language > passes a C++ lesson language from the assessment page to the workspace
+[VUE_ROUTER_R0004] No match found for location with path "/lesson/cpp-basics"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+stderr | tests/assessment/code-workspace.spec.ts > code workspace language > passes a Java lesson language from the assessment page to the workspace
+[VUE_ROUTER_R0004] No match found for location with path "/lesson/java-basics"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+stderr | tests/assessment/code-workspace.spec.ts > code workspace language > passes a C# lesson language unchanged from the assessment page
+[VUE_ROUTER_R0004] No match found for location with path "/lesson/csharp-basics"
+├▶ fix: Add a route matching this path or check for typos in the location.
+╰▶ see: https://router.vuejs.org/guide/essentials/dynamic-matching.html#Catch-all-404-Not-found-Route
+
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > keeps the existing Python Monaco semantics 12ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > updates Monaco model language and accessibility label when the lesson language changes 9ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > uses explicit C# Monaco and accessibility semantics 8ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > uses explicit C++ Monaco and accessibility semantics 5ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > maps unsupported languages to plaintext instead of Python 5ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > updates model and accessibility semantics across C#, C++, Python, and unknown languages 11ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > passes a C++ lesson language from the assessment page to the workspace 16ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > passes a Java lesson language from the assessment page to the workspace 18ms
+ ✓ tests/assessment/code-workspace.spec.ts > code workspace language > passes a C# lesson language unchanged from the assessment page 8ms
+ ✓ tests/map/constellation.spec.ts > knowledge constellations > loads bounded aggregates, shows saved progress and authored differences, and escapes examples 129ms
+ ✓ tests/map/constellation.spec.ts > knowledge constellations > aligns selected concepts with their module and language without extra requests 73ms
+ ✓ tests/compare/compare-page.spec.ts > compare page > renders code examples as escaped text and never executes them as HTML 70ms
+ ✓ tests/compare/compare-page.spec.ts > compare page > filters concepts by id or Chinese name 68ms
+ ✓ tests/map/constellation.spec.ts > knowledge constellations > does not invent connections for unmapped lessons and supports empty searches 31ms
+ ✓ tests/map/constellation.spec.ts > homepage constellation interactions > keeps the homepage and expanded module motion controls in sync 34ms
+ ✓ tests/map/constellation.spec.ts > homepage constellation interactions > keeps missing and wrong-language references disabled and emits a real concept 21ms
+ ✓ tests/map/constellation.spec.ts > homepage constellation interactions > brings a non-core selected concept into the map without inventing other language links 12ms
+ ✓ tests/map/constellation.spec.ts > groups actual concepts once and retains a selected non-featured concept 1ms
+ ✓ tests/compare/compare-page.spec.ts > compare page > shows an explicit error instead of silently dropping content when the API fails 70ms
+ ✓ tests/compare/compare-page.spec.ts > compare page > shows an empty state when the catalog has no comparable concepts 64ms
+ ✓ tests/map/knowledge-map.spec.ts > knowledge map > distinguishes saved lesson progress, mastery and due reviews without promoting a visit to mastery 5ms
+ ✓ tests/map/knowledge-map.spec.ts > knowledge map > shows a retryable error instead of fallback learning metrics when a critical API fails 3ms
+ ✓ tests/map/knowledge-map.spec.ts > knowledge map > shows a loading state instead of static learning metrics before the critical APIs resolve 56ms
+ ✓ tests/map/knowledge-map.spec.ts > knowledge map > does not expose navigation actions until real learning data is ready 14ms
+ ✓ tests/map/knowledge-map.spec.ts > knowledge map > derives without content from real catalog, progress, and mastery 1ms
+ ✓ tests/map/knowledge-map.spec.ts > knowledge map > derives before starting from real catalog, progress, and mastery 0ms
+ ✓ tests/map/knowledge-map.spec.ts > knowledge map > derives after progress from real catalog, progress, and mastery 0ms
+ ✓ tests/map/knowledge-map.spec.ts > knowledge map > derives after course mastery from real catalog, progress, and mastery 0ms
+ ✓ tests/map/knowledge-map.spec.ts > knowledge map > derives when its first module is gated from real catalog, progress, and mastery 0ms
+ ✓ tests/map/knowledge-map.spec.ts > knowledge map > uses the persisted unlock result instead of treating a course as enterable by default 0ms
+ ✓ tests/design-system.spec.ts > Hard design system shell > exposes all eight destinations in semantic desktop navigation with the current page 65ms
+ ✓ tests/design-system.spec.ts > Hard design system shell > offers a keyboard-addressable mobile menu with an explicit open state 30ms
+ ✓ tests/app-shell.spec.ts > application shell > makes / accessible 55ms
+ ✓ tests/app-shell.spec.ts > application shell > makes /course/python accessible 15ms
+ ✓ tests/app-shell.spec.ts > application shell > makes /lesson/python-basics accessible 9ms
+ ✓ tests/app-shell.spec.ts > application shell > makes /review accessible 16ms
+ ✓ tests/app-shell.spec.ts > application shell > makes /search accessible 9ms
+ ✓ tests/navigation-context.spec.ts > learning navigation context > retains the actual lesson in desktop and mobile shortcuts after opening another page 84ms
+ ✓ tests/navigation-context.spec.ts > learning navigation context > returns keyboard focus to the mobile menu trigger after Escape 25ms
+ ✓ tests/app-shell.spec.ts > application shell > makes /compare accessible 8ms
+ ✓ tests/app-shell.spec.ts > application shell > makes /growth accessible 10ms
+ ✓ tests/app-shell.spec.ts > application shell > makes /settings accessible 18ms
+ ✓ tests/app-shell.spec.ts > application shell > redirects an unknown route to the home destination 11ms
+ ✓ tests/app-shell.spec.ts > application shell > uses language and lesson route parameters 14ms
+ ✓ tests/app-shell.spec.ts > application shell > preserves the API error body 5ms
+ ✓ tests/app-shell.spec.ts > application shell > retries a failed code draft without secure-context UUID support while retaining its source 21ms
+ ✓ tests/offline-drafts.spec.ts > offline drafts > survives refreshes and replays only unconfirmed position, answer, note, and code requests with original keys 6ms
+ ✓ tests/offline-drafts.spec.ts > offline drafts > persists cancelled runner jobs as a visible retryable failure instead of polling forever 1ms
+ ✓ tests/offline-drafts.spec.ts > offline drafts > persists timed_out runner jobs as a visible retryable failure instead of polling forever 1ms
+ ✓ tests/offline-drafts.spec.ts > offline drafts > persists output_overflow runner jobs as a visible retryable failure instead of polling forever 0ms
+ ✓ tests/offline-drafts.spec.ts > offline drafts > persists rejected runner jobs as a visible retryable failure instead of polling forever 0ms
+ ✓ tests/offline-drafts.spec.ts > offline drafts > persists tool_missing runner jobs as a visible retryable failure instead of polling forever 0ms
+ ✓ tests/offline-drafts.spec.ts > offline drafts > keeps the runner job and independent score key after a scoring failure, then removes only after scoring succeeds 1ms
+ ✓ tests/offline-drafts.spec.ts > offline drafts > retains queued, running, network-failed, and server-failed jobs for a later flush but stops after a missing job 1ms
+ ✓ tests/offline-drafts.spec.ts > offline drafts > retries a terminal draft with a new runner key and permits explicit removal 0ms
+ ✓ tests/course/course-store.spec.ts > course store > loads module navigation and keeps prerequisite-locked lessons unavailable 5ms
+ ✓ tests/course/course-store.spec.ts > course store > stores failed note drafts locally and retries with the original idempotency key 9ms
+ ✓ tests/course/course-store.spec.ts > course store > uses idempotent progress and favorite writes without retaining unsafe lesson HTML 12ms
+ ✓ tests/map/map-layout.spec.ts > map layout > uses four stable non-overlapping orbital worlds and only transform-safe animation properties 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > keeps the latest answer feedback when an older same-question request ends in success 6ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > keeps the latest answer feedback when an older same-question request ends in failure 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > keeps the newest answer failure when an older same-question request succeeds later 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > does not expose an old lesson's late successful answer on the same exercise id after navigation 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > keeps a confirmed cancellation when an older poll finishes later 2ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > scores a late completed run for its original lesson and preserves a newer code draft 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > keeps a late answer response on its exercise without replacing the selected exercise score 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > keeps a late runner response, score, and draft cleanup on the originating exercise 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > does not expose an old lesson's late failure in a newly loaded lesson 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > submits a knowledge answer with hint penalty and a stable idempotency key 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > uses the public runner result only and clears a draft after scoring succeeds 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > turns a runner submission network failure into a terminal error while retaining the draft 0ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > ends polling on a network interruption instead of leaving the runner active 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > ends on a total runner timeout while retaining the draft 3ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > ends scoring failure and cancellation failure with an actionable retained-draft error 1ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > reports lesson loading failure as a retryable error state 0ms
+ ✓ tests/assessment/assessment-store.spec.ts > assessment store > cancels a running job and restores the same code draft after refresh 0ms
+
+ Test Files  19 passed (19)
+      Tests  107 passed (107)
+   Start at  05:45:02
+   Duration  6.31s (transform 9.04s, setup 0ms, import 14.75s, tests 3.37s, environment 49.44s)
+
+FULL_VITEST_EXIT=0
+TYPECHECK - vue-tsc --noEmit
+TYPECHECK_EXIT=0
+SCOPED_DIFF_CHECK
+SCOPED_DIFF_CHECK_EXIT=0
+SOURCE_AND_TEST_SHA256
+
+Path : D:\projects\1\Hard-trial-clean-20260910\apps\web\src\features\assessment\assessment.store.ts
+Hash : 4660B896827C49E0C41B740BB01D010E48D4AAB8ACC061DA9685971EC8340D17
+
+Path : D:\projects\1\Hard-trial-clean-20260910\apps\web\src\features\assessment\AssessmentPage.vue
+Hash : EBBE2E430EF2D41F6899895C25CA90CA0DEF3026241A9DB45C43ADF7F3120ABA
+
+Path : D:\projects\1\Hard-trial-clean-20260910\apps\web\tests\assessment\assessment-store.spec.ts
+Hash : 9785D6BF6D788E872C61BCAB7EBE1162CBD9442F28540F3CB5C050B2FB405E83
+
+Path : D:\projects\1\Hard-trial-clean-20260910\apps\web\tests\assessment\assessment-components.spec.ts
+Hash : 8017ABE2F8A41FA5ADD855290319BDC7EC0E7F81B3EE6EFFEC7E06ED8D022702
+
+Path : D:\projects\1\Hard-trial-clean-20260910\apps\web\tests\assessment\code-workspace.spec.ts
+Hash : A91B09F60E49B459CD3C743D54F4DDDFBA1D932916C67B54DDD618DA5DBA3A84
+
+

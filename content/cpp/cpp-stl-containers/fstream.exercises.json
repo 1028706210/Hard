@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-stl-containers-fstream",
+  "questions": [
+    {
+      "id": "cpp-stl-containers-fstream-k01",
+      "type": "knowledge",
+      "prompt": "ofstream 析构时会？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "把缓冲区内容打印到控制台"
+        },
+        {
+          "id": "b",
+          "text": "删除文件"
+        },
+        {
+          "id": "c",
+          "text": "自动关闭文件"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-fstream-k02",
+      "type": "knowledge",
+      "prompt": "默认模式下用 ofstream 打开已存在的文件会？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "在末尾追加"
+        },
+        {
+          "id": "b",
+          "text": "覆盖原有内容"
+        },
+        {
+          "id": "c",
+          "text": "打开失败"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-fstream-k03",
+      "type": "knowledge",
+      "prompt": "逐行读取文件直到结束的惯用循环条件是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "for (int i = 0; ; i++)"
+        },
+        {
+          "id": "b",
+          "text": "while (!in.eof()) 后再 getline"
+        },
+        {
+          "id": "c",
+          "text": "while (std::getline(in, line))"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-stl-containers-fstream-c01",
+      "type": "code",
+      "prompt": "读取两行文本（每行可能为空，长度 0..100，含两端），用 ofstream 依次写入当前目录的 lines.txt（每行一条），作用域结束后用 ifstream 读回，输出两行：第一行为行数（2），第二行为文件中最后一行的内容。任一行长度越界或无输入时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <fstream>\n#include <iostream>\n#include <string>\n\nint main() {\n    // 读取两行写入 lines.txt，再读回输出行数与最后一行\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 alpha 与 beta 时输出 2 与 beta 两行。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <fstream>\n#include <iostream>\n#include <string>\n\nint main() {\n    std::string first, second;\n    if (!std::getline(std::cin, first)) return 1;\n    if (!std::getline(std::cin, second)) return 1;\n    if (first.size() > 100 || second.size() > 100) return 1;\n    {\n        std::ofstream out(\"lines.txt\");\n        if (!out) return 1;\n        out << first << \"\\n\";\n        out << second << \"\\n\";\n    }\n    std::ifstream in(\"lines.txt\");\n    if (!in) return 1;\n    std::string line;\n    int count = 0;\n    std::string last;\n    while (std::getline(in, line)) {\n        count++;\n        last = line;\n    }\n    std::cout << count << \"\\n\";\n    std::cout << last << \"\\n\";\n    return 0;\n}\n",
+        "hidden_tests": [
+          "第二行为空串时行数仍为 2 且输出空行。",
+          "两行相同时仍分别写入并读回。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "alpha\nbeta\n",
+            "stdout": "2\nbeta\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "one\n\n",
+            "stdout": "2\n\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "same\nsame\n",
+            "stdout": "2\nsame\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

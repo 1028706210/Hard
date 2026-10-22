@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-algorithms-concurrency-iterator",
+  "questions": [
+    {
+      "id": "cpp-algorithms-concurrency-iterator-k01",
+      "type": "knowledge",
+      "prompt": "end() 迭代器指向的是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "最后一个元素"
+        },
+        {
+          "id": "b",
+          "text": "尾后位置（最后一个元素之后）"
+        },
+        {
+          "id": "c",
+          "text": "第一个元素"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-iterator-k02",
+      "type": "knowledge",
+      "prompt": "std::find 找不到目标值时返回？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "区间的 end 迭代器"
+        },
+        {
+          "id": "b",
+          "text": "nullptr"
+        },
+        {
+          "id": "c",
+          "text": "-1"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-iterator-k03",
+      "type": "knowledge",
+      "prompt": "把 vector 迭代器换算为下标的惯用写法是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "position - values.begin()"
+        },
+        {
+          "id": "b",
+          "text": "position + values.size()"
+        },
+        {
+          "id": "c",
+          "text": "position.index()"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-algorithms-concurrency-iterator-c01",
+      "type": "code",
+      "prompt": "读取整数 n（合同范围 1..1000，含两端）、n 个整数（每个合同范围 -10000..10000，含两端）与查询值 x（合同范围 -10000..10000，含两端），用 std::find 查找 x 首次出现的位置：找到输出对应下标（从 0 开始），找不到输出 -1。任一输入无法解析或越界时不输出内容并以非零退出码结束。",
+      "starter_code": "#include <algorithm>\n#include <iostream>\n#include <vector>\n\nint main() {\n    // 读取 n、n 个整数与 x，find 定位输出下标或 -1\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 n=5、10 20 30 40 50 与 x=30 时输出 2。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <algorithm>\n#include <iostream>\n#include <vector>\n\nint main() {\n    int n = 0;\n    if (!(std::cin >> n)) return 1;\n    if (n < 1 || n > 1000) return 1;\n    std::vector<int> values;\n    for (int i = 0; i < n; i++) {\n        int value = 0;\n        if (!(std::cin >> value)) return 1;\n        if (value < -10000 || value > 10000) return 1;\n        values.push_back(value);\n    }\n    int x = 0;\n    if (!(std::cin >> x)) return 1;\n    if (x < -10000 || x > 10000) return 1;\n    auto position = std::find(values.begin(), values.end(), x);\n    if (position == values.end()) {\n        std::cout << -1 << std::endl;\n    } else {\n        std::cout << (position - values.begin()) << std::endl;\n    }\n    return 0;\n}\n",
+        "hidden_tests": [
+          "查询不存在的值输出 -1。",
+          "重复值时输出首次出现下标。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "5 10 20 30 40 50 30\n",
+            "stdout": "2\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "3 1 2 3 9\n",
+            "stdout": "-1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "4 5 7 5 7 5\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

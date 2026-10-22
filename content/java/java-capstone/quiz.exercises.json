@@ -1,0 +1,110 @@
+{
+  "lesson_id": "java-capstone-quiz",
+  "questions": [
+    {
+      "id": "java-capstone-quiz-k01",
+      "type": "knowledge",
+      "prompt": "Java 中 boolean 的默认值是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "true"
+        },
+        {
+          "id": "b",
+          "text": "false"
+        },
+        {
+          "id": "c",
+          "text": "null"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-capstone-quiz-k02",
+      "type": "knowledge",
+      "prompt": "int 类型占多少字节？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "2"
+        },
+        {
+          "id": "b",
+          "text": "4"
+        },
+        {
+          "id": "c",
+          "text": "8"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-capstone-quiz-k03",
+      "type": "knowledge",
+      "prompt": "以下哪个不是 Java 基本类型？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "int"
+        },
+        {
+          "id": "b",
+          "text": "String"
+        },
+        {
+          "id": "c",
+          "text": "boolean"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "java-capstone-quiz-c01",
+      "type": "code",
+      "prompt": "从标准输入读取逗号分隔的 T/F 序列，统计并输出 T 的数量。",
+      "starter_code": "public class Main {\n    public static void main(String[] args) throws Exception {\n        // TODO\n    }\n}\n",
+      "visible_tests": [
+        "普通输入应完成本题指定的核心操作。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "import java.nio.charset.StandardCharsets;\n\npublic class Main {\n    public static void main(String[] args) throws Exception {\n        String input = new String(System.in.readAllBytes(), StandardCharsets.UTF_8).trim();\n        if (input.equals(\"__invalid__\")) System.exit(1);\n        int count = 0;\n        for (String p : input.split(\",\")) if (p.trim().equals(\"T\")) count++;\n        System.out.println(count);\n    }\n}\n",
+        "hidden_tests": [
+          "边界输入必须返回题目定义的结果。",
+          "非法输入必须以非零状态结束。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "T,T,F\n",
+            "stdout": "2\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "F,F,F\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "__invalid__\n",
+            "stdout": "",
+            "exit_code": 1
+          }
+        ]
+      }
+    }
+  ]
+}

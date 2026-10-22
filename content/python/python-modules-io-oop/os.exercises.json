@@ -73,35 +73,86 @@
     {
       "id": "python-modules-io-oop-os-c01",
       "type": "code",
-      "prompt": "创建 reports/today.txt 路径并输出 today.txt。",
-      "starter_code": "from pathlib import Path\n# 组合路径并输出名称",
+      "prompt": "读取一条教学用相对路径，去掉首尾空白，以 / 分隔目录和文件名。每段只能含 ASCII 字母、数字、点、下划线或连字符；禁止空段、单独的 . 或 ..，因此绝对路径、连续或末尾斜杠、反斜杠与盘符均无效。使用 PurePosixPath 解析并输出最后一段，例如 reports/today.txt 输出 today.txt。无效输入不输出内容，退出码为 1。起始代码已校验，练习只操作路径文本，不创建或访问文件。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\nimport re\nfrom pathlib import PurePosixPath\nparts = text.split(\"/\")\nif any(part in (\"\", \".\", \"..\") or re.fullmatch(r\"[A-Za-z0-9_.-]+\", part) is None for part in parts):\n    raise SystemExit(1)\n# 按题面完成操作并输出\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 'reports/today.txt'，输出 'today.txt\\n'，退出码 0。",
+        "输入 'notes/lesson.py'，输出 'lesson.py\\n'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-modules-io-oop-os-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    from pathlib import Path\n    path = Path('reports') / 'today.txt'\n    print(path.name)\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\nimport re\nfrom pathlib import PurePosixPath\nparts = text.split(\"/\")\nif any(part in (\"\", \".\", \"..\") or re.fullmatch(r\"[A-Za-z0-9_.-]+\", part) is None for part in parts):\n    raise SystemExit(1)\npath = PurePosixPath(text)\nprint(path.name)\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "验证题面声明的边界与正常结果。",
+          "输入有效性和退出码以题面为准。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "reports/today.txt",
             "stdout": "today.txt\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "notes/lesson.py",
+            "stdout": "lesson.py\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-modules-io-oop-os-c01\n",
+            "stdin": "readme.txt",
+            "stdout": "readme.txt\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "a/b/c.txt",
+            "stdout": "c.txt\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": " .config/settings.json ",
+            "stdout": "settings.json\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "../note.txt",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "a/../b",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "/tmp/file",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "a//b",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "a/",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "a\\b",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "C:/file",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }

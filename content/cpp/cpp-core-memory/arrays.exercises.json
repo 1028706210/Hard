@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-core-memory-arrays",
+  "questions": [
+    {
+      "id": "cpp-core-memory-arrays-k01",
+      "type": "knowledge",
+      "prompt": "int a[5] 声明的数组，合法下标范围是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "0 到 5"
+        },
+        {
+          "id": "b",
+          "text": "1 到 5"
+        },
+        {
+          "id": "c",
+          "text": "0 到 4"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-core-memory-arrays-k02",
+      "type": "knowledge",
+      "prompt": "访问 a[5]（长度为 5 的数组）会发生什么？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "未定义行为，不会自动报错"
+        },
+        {
+          "id": "b",
+          "text": "运行时抛出标准异常"
+        },
+        {
+          "id": "c",
+          "text": "自动返回 0"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-core-memory-arrays-k03",
+      "type": "knowledge",
+      "prompt": "数组作为函数参数传递时，实际传递的是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "整个数组的副本"
+        },
+        {
+          "id": "b",
+          "text": "指向首元素的指针，长度需另行传入"
+        },
+        {
+          "id": "c",
+          "text": "数组长度和元素个数"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-core-memory-arrays-c01",
+      "type": "code",
+      "prompt": "读取同一行上的 5 个整数存入定长数组，遍历数组输出所有元素之和。",
+      "starter_code": "#include <iostream>\n\nint main() {\n    int values[5] = {0};\n    // 读取 5 个整数并求和输出\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 1 2 3 4 5 时输出 15。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n\nint main() {\n    int values[5] = {0};\n    for (int i = 0; i < 5; i++) {\n        std::cin >> values[i];\n    }\n    int total = 0;\n    for (int i = 0; i < 5; i++) {\n        total += values[i];\n    }\n    std::cout << total << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "全 0 输入输出 0。",
+          "含负数时按有符号求和输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "1 2 3 4 5\n",
+            "stdout": "15\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "0 0 0 0 0\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-1 5 -2 8 3\n",
+            "stdout": "13\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

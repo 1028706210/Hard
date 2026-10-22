@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-foundations-variables",
+  "questions": [
+    {
+      "id": "cpp-foundations-variables-k01",
+      "type": "knowledge",
+      "prompt": "声明 int count = 5; 后，count 的含义是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "一个初始化后不可修改的常量"
+        },
+        {
+          "id": "b",
+          "text": "一个编译期占位符，不占内存"
+        },
+        {
+          "id": "c",
+          "text": "一个可重新赋值的命名整数值"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-foundations-variables-k02",
+      "type": "knowledge",
+      "prompt": "读取一个未初始化的局部 int 变量的值会导致？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "编译错误"
+        },
+        {
+          "id": "b",
+          "text": "未定义行为，结果不可预测"
+        },
+        {
+          "id": "c",
+          "text": "自动得到 0"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-foundations-variables-k03",
+      "type": "knowledge",
+      "prompt": "int double = 3; 无法通过编译的原因是？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "double 是关键字，不能作为变量名"
+        },
+        {
+          "id": "b",
+          "text": "3 必须写成 3.0"
+        },
+        {
+          "id": "c",
+          "text": "int 后面缺少分号之前的花括号"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-foundations-variables-c01",
+      "type": "code",
+      "prompt": "读取同一行上的两个整数 width 与 height，用变量保存二者并输出其乘积（面积）。",
+      "starter_code": "#include <iostream>\n\nint main() {\n    int width = 0;\n    int height = 0;\n    std::cin >> width >> height;\n    // 用变量保存并输出面积\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3 4 时输出 12。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n\nint main() {\n    int width = 0;\n    int height = 0;\n    std::cin >> width >> height;\n    int area = width * height;\n    std::cout << area << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "任一边为 0 时输出 0。",
+          "较大边长按 int 乘法正确输出。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 4\n",
+            "stdout": "12\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "5 5\n",
+            "stdout": "25\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "0 9\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

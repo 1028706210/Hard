@@ -1,0 +1,110 @@
+{
+  "lesson_id": "cpp-foundations-scope",
+  "questions": [
+    {
+      "id": "cpp-foundations-scope-k01",
+      "type": "knowledge",
+      "prompt": "在花括号块内声明的局部变量，块结束后？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "保留到程序结束"
+        },
+        {
+          "id": "b",
+          "text": "自动提升为全局变量"
+        },
+        {
+          "id": "c",
+          "text": "立即销毁，不能再引用"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "c"
+      }
+    },
+    {
+      "id": "cpp-foundations-scope-k02",
+      "type": "knowledge",
+      "prompt": "内层块声明了与外层同名的变量时，内层引用解析到？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "外层变量"
+        },
+        {
+          "id": "b",
+          "text": "内层声明（遮蔽外层）"
+        },
+        {
+          "id": "c",
+          "text": "编译报错，禁止同名"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "b"
+      }
+    },
+    {
+      "id": "cpp-foundations-scope-k03",
+      "type": "knowledge",
+      "prompt": "全局变量与函数内局部变量同名时，函数体内默认引用哪个？",
+      "choices": [
+        {
+          "id": "a",
+          "text": "局部变量"
+        },
+        {
+          "id": "b",
+          "text": "全局变量"
+        },
+        {
+          "id": "c",
+          "text": "两个变量会合并为一个"
+        }
+      ],
+      "experience_points": 5,
+      "private": {
+        "reference_answer": "a"
+      }
+    },
+    {
+      "id": "cpp-foundations-scope-c01",
+      "type": "code",
+      "prompt": "读取同一行上的两个整数 a 与 b，在一个嵌套块内声明局部变量 total 保存 a+b 并输出，随后在块外输出 a*b，共两行结果。",
+      "starter_code": "#include <iostream>\n\nint main() {\n    int a = 0;\n    int b = 0;\n    std::cin >> a >> b;\n    {\n        // 在块内声明 total 并输出 a+b\n    }\n    // 在块外输出 a*b\n    return 0;\n}\n",
+      "visible_tests": [
+        "输入 3 4 时第一行输出 7、第二行输出 12。"
+      ],
+      "experience_points": 20,
+      "private": {
+        "reference_solution": "#include <iostream>\n\nint main() {\n    int a = 0;\n    int b = 0;\n    std::cin >> a >> b;\n    {\n        int total = a + b;\n        std::cout << total << std::endl;\n    }\n    std::cout << a * b << std::endl;\n    return 0;\n}\n",
+        "hidden_tests": [
+          "含 0 的输入按加法与乘法语义分别输出。",
+          "另一组输入验证两行结果都随输入变化。"
+        ],
+        "visible_test_cases": [
+          {
+            "stdin": "3 4\n",
+            "stdout": "7\n12\n",
+            "exit_code": 0
+          }
+        ],
+        "hidden_test_cases": [
+          {
+            "stdin": "2 5\n",
+            "stdout": "7\n10\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "0 6\n",
+            "stdout": "6\n0\n",
+            "exit_code": 0
+          }
+        ]
+      }
+    }
+  ]
+}

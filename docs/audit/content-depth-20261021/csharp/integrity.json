@@ -1,0 +1,24 @@
+{
+  "unchanged_course_and_exercise_files": 43,
+  "unchanged_exercise_contracts": 42,
+  "changed_lesson_bodies": 15,
+  "lesson_count": 42,
+  "lesson_front_matter": "Authoring operation preserves complete front matter text; edited Markdown line endings normalized to LF. No IDs/objectives/XP/prerequisites/source fields changed.",
+  "changed_paths": [
+    "content/csharp/csharp-io-metadata/preprocessor-directives.md",
+    "content/csharp/csharp-io-metadata/reflection.md",
+    "content/csharp/csharp-language-features/anonymous-methods.md",
+    "content/csharp/csharp-language-features/collections.md",
+    "content/csharp/csharp-language-features/delegates.md",
+    "content/csharp/csharp-language-features/events.md",
+    "content/csharp/csharp-language-features/generics.md",
+    "content/csharp/csharp-language-features/indexer.md",
+    "content/csharp/csharp-language-features/properties.md",
+    "content/csharp/csharp-oop/classes.md",
+    "content/csharp/csharp-oop/inheritance.md",
+    "content/csharp/csharp-oop/interfaces.md",
+    "content/csharp/csharp-oop/nullable.md",
+    "content/csharp/csharp-oop/polymorphism.md",
+    "content/csharp/csharp-oop/structs.md"
+  ]
+}

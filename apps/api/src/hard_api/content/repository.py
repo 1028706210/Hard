@@ -4,7 +4,8 @@ from dataclasses import dataclass
 from hashlib import sha256
 from pathlib import Path
 
-from hard_api.content.models import CourseDocument, ExerciseDocument, LessonDocument
+from hard_api.content.models import ConceptsDocument, CourseDocument, ExerciseDocument, LessonDocument
+from hard_api.content.comparison import build_comparison, build_concept_reference_index
 from hard_api.content.parser import (
     ContentParseError,
     parse_concepts,
@@ -76,6 +77,7 @@ _SAFE_MESSAGES = {
     "invalid_question_id": "练习题号不符合类型规则。",
     "unknown_source_coverage": "来源覆盖引用了未知课时。",
     "unknown_placement_question": "分级测试引用了未知题目。",
+    "invalid_comparison_reference": "概念对照引用了无效课时。",
 }
 
 
@@ -88,8 +90,12 @@ class ContentRepository:
         self.lessons: dict[str, LessonRecord] = {}
         self.isolated_errors: tuple[IsolatedContentError, ...] = ()
         self.content_version = sha256(b"").hexdigest()
+        self.concepts_document: ConceptsDocument | None = None
+        self.comparison_concepts: tuple[dict[str, object], ...] = ()
+        self.comparison_invalid_references: list[dict[str, str]] = []
         try:
-            self.concept_ids = {concept.id for concept in parse_concepts(self.content_root / "concepts.yaml").concepts}
+            self.concepts_document = parse_concepts(self.content_root / "concepts.yaml")
+            self.concept_ids = {concept.id for concept in self.concepts_document.concepts}
         except ContentParseError:
             self.concept_ids = set()
         self._scan()
@@ -142,6 +148,32 @@ class ContentRepository:
         self.lessons = lessons
         self.isolated_errors = tuple(errors)
         self.content_version = self._version_for(courses)
+        self._build_comparison(errors)
+        self.isolated_errors = tuple(errors)
+
+    def _build_comparison(self, errors: list[IsolatedContentError]) -> None:
+        reference_index = build_concept_reference_index(
+            {
+                lesson_id: (record.language, record.document.front_matter.concepts)
+                for lesson_id, record in self.lessons.items()
+            }
+        )
+        lesson_titles = {
+            lesson_id: record.document.front_matter.title for lesson_id, record in self.lessons.items()
+        }
+        payload, invalid_references = build_comparison(
+            self.concepts_document, reference_index, lesson_titles
+        )
+        for _reference in invalid_references:
+            errors.append(
+                IsolatedContentError(
+                    path="concepts.yaml",
+                    code="invalid_comparison_reference",
+                    message=_SAFE_MESSAGES["invalid_comparison_reference"],
+                )
+            )
+        self.comparison_concepts = tuple(payload)
+        self.comparison_invalid_references = invalid_references
 
     def _load_course(self, course_path: Path) -> CourseRecord:
         try:

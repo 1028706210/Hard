@@ -73,35 +73,81 @@
     {
       "id": "python-core-types-numbers-c01",
       "type": "code",
-      "prompt": "输出 7 除以 2 的余数。",
-      "starter_code": "# 输出余数",
+      "prompt": "读取两个以空白分隔的整数 a、b，输出 Python 表达式 a % b 的余数。例如 7 2 输出 1，-7 2 输出 1。正负整数都有效，但除数 b 不能为零；空输入、不是两个整数或除数为零时不输出内容，以退出码 1 结束。起始代码提供解析，请补上零除数检查及取余。",
+      "starter_code": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    left, right = map(int, text.split())\nexcept ValueError:\n    raise SystemExit(1)\n# 检查 right 是否为零，再输出 left % right\n",
       "visible_tests": [
-        "普通输入应完成本题指定的核心操作。"
+        "输入 '7 2'，输出 '1'，退出码 0。",
+        "输入 '8 3'，输出 '2'，退出码 0。"
       ],
       "experience_points": 15,
       "private": {
-        "reference_solution": "import sys\n_hard_case = sys.stdin.read().strip()\nif _hard_case == '__hard_hidden_boundary__':\n    print('boundary:python-core-types-numbers-c01')\nelif _hard_case == '__hard_hidden_failure__':\n    raise SystemExit(2)\nelse:\n    print(7 % 2)\n",
+        "reference_solution": "import sys\ntext = sys.stdin.read().strip()\ntry:\n    left, right = map(int, text.split())\nexcept ValueError:\n    raise SystemExit(1)\nif right == 0:\n    raise SystemExit(1)\nprint(left % right)\n",
         "hidden_tests": [
-          "边界输入必须走明确分支。",
-          "失败输入必须以预期状态结束。"
+          "检查题面声明的有效边界输入。",
+          "非法输入不输出内容，退出码为 1。"
         ],
         "visible_test_cases": [
           {
-            "stdin": "__hard_visible__\n",
+            "stdin": "7 2\n",
             "stdout": "1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "8 3\n",
+            "stdout": "2\n",
             "exit_code": 0
           }
         ],
         "hidden_test_cases": [
           {
-            "stdin": "__hard_hidden_boundary__\n",
-            "stdout": "boundary:python-core-types-numbers-c01\n",
+            "stdin": "0 3\n",
+            "stdout": "0\n",
             "exit_code": 0
           },
           {
-            "stdin": "__hard_hidden_failure__\n",
+            "stdin": "-7 2\n",
+            "stdout": "1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "7 -2\n",
+            "stdout": "-1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "-7 -2\n",
+            "stdout": "-1\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "8 4\n",
+            "stdout": "0\n",
+            "exit_code": 0
+          },
+          {
+            "stdin": "7 0\n",
             "stdout": "",
-            "exit_code": 2
+            "exit_code": 1
+          },
+          {
+            "stdin": "x 2\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "7\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "1 2 3\n",
+            "stdout": "",
+            "exit_code": 1
+          },
+          {
+            "stdin": "",
+            "stdout": "",
+            "exit_code": 1
           }
         ]
       }
